@@ -15,7 +15,6 @@ public class PostDAO {
 	public static PostDAO getInstance() {
 		return instance;
 	}
-<<<<<<< HEAD
 
 	public Post insert(Connection conn, Post post) throws SQLException {
 		String sql = "insert into post(userId, title, genre, musician, instrument, write_date) values(?,?,?,?,?,now())";
@@ -34,8 +33,5 @@ public class PostDAO {
 			}
 		}
 	}
-=======
-	
-	
->>>>>>> branch 'master' of https://github.com/suwongogogo/mutube.git
+
 }
