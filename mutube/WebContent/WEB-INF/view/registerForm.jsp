@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8" />
-    <title>회원가입</title>
+    <title>íìê°ì</title>
     <link rel="stylesheet" type="text/css" media="screen" href="CSS/registerForm.css" />
     <script src="JavaScript/registerForm.js"></script>
 </head>
@@ -10,7 +10,7 @@
     <div class="login-container">
         <div class="login">
             <form action="#" method="post">
-                <p>아이디</p>
+                <p>아이디</p>
                 <input type="text" name="loginId" class="signup" placeholder="아이디">
                 <p>이름</p>
                 <input type="text" name="name" class="signup" placeholder="이름">
