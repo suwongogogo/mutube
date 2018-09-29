@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>우리의 프로젝트</title>
+    <link rel="stylesheet" type="text/css" href="CSS/main.css" />
+    <script src="JavaScript/main.js"></script>
+</head>
+<body oncontextmenu="return false" onselectstart="return false" ondragstart="return false">
+    <div class="wrapper">
+        <!-- 헤더 -->
+        <header class="header">
+            <div class="search-container">
+                <form action="#" method="get">
+                    <div class="">
+                        <input class="search" type="text" name="keyword">
+                        <button class="search-button">검색</button>
+                    </div>
+                </form>
+            </div>
+        </header>
+        <!-- 회원가입 -->
+        <div class="middle">
+            <div class="nav">
+                <div class="user-container">
+                    <a href="loginForm.html">
+                        <p class="login">로그인</p>
+                    </a>
+                    <ul class="information">
+                        <li class="sub-font">
+                            <a href="registerForm.jsp">회원가입</a>
+                        </li>
+                        <span class="sub-font"> / </span>
+                        <li class="sub-font">
+                            <a href="#">아이디 찾기</a>
+                        </li>
+                        <span class="sub-font"> / </span>
+                        <li class="sub-font">
+                            <a href="#">비밀번호 찾기</a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- 보기 -->
+                <div class="genre-container">
+                    <ul class="genre-ul">
+                        <li class="genre-li">
+                            <span>·</span>
+                            <a class="genre" href="#">전체글</a>
+                        </li>
+                        <li class="genre-li">
+                            <span>·</span>
+                            <a class="genre" href="#">공지</a>
+                        </li>
+                        <!-- dropdown -->
+                        <li class="genre-li">
+                            <span>·</span> <span onclick="view1()">장르</span>
+                            <ul class="dropdown" id="hidden1">
+                                <li>
+                                    <a href="#">asd</a>
+                                </li>
+                                <li>
+                                    <a href="#">asd</a>
+                                </li>
+                                <li>
+                                    <a href="#">asd</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="genre-li">
+                            <span>·</span> <span onclick="view2()">악기</span>
+                            <ul class="dropdown" id="hidden2">
+                                <li>
+                                    <a href="#">asd</a>
+                                </li>
+                                <li>
+                                    <a href="#">asd</a>
+                                </li>
+                                <li>
+                                    <a href="#">asd</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="genre-li">
+                            <span>·</span> <span onclick="view3()">뮤지션</span>
+                            <ul class="dropdown" id="hidden3">
+                                <li>
+                                    <a href="#">asd</a>
+                                </li>
+                                <li>
+                                    <a href="#">asd</a>
+                                </li>
+                                <li>
+                                    <a href="#">asd</a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="board"></div>
+        </div>
+    </div>
+    <footer class="footer">
+        <div class="footer-container">
+            <p class="footer-text">A Person Who Made Project</p>
+            <p class="person">박진국, 이수원, 김승용, 김영진</p>
+            <p class="phone">불만있는 새끼 전화 걸어라 010-5543-1787</p>
+        </div>
+    </footer>
+</body>
+</html>
