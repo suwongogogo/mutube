@@ -1,5 +1,10 @@
 package User.Service;
 
+import java.sql.Connection;
+import java.sql.SQLException;
+
+import Connection.ConnectionProvider;
+import User.DAO.UserDAO;
 import User.Model.User;
 
 public class LoginService {
@@ -9,7 +14,11 @@ public class LoginService {
 		return instance;
 	}
 	
-	public void login(User user) {
+	public void login(User user) throws SQLException {
+		UserDAO userDAO = UserDAO.getInstance();
 		
+		try(Connection conn = ConnectionProvider.getConnection()){
+			userDAO.selectByLoginId(conn, user.getLoginId());
+		}
 	}
 }

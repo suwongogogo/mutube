@@ -1,3 +1,6 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,14 +15,20 @@
             <form action="#" method="post">
                 <p>아이디</p>
                 <input type="text" name="loginId" class="signup" placeholder="아이디">
+                <c:if test="${errors.loginId }">아이디를 입력하세요</c:if>
                 <p>이름</p>
                 <input type="text" name="name" class="signup" placeholder="이름">
+                <c:if test="${errors.name }">이름을 입력하세요</c:if>
                 <p>비밀번호</p>
                 <input type="password" name="password" class="signup" placeholder="비밀번호">
+                <c:if test="${errors.password }">비밀번호를 입력하세요</c:if>
                 <p>비밀번호 확인</p>
                 <input type="password" name="confirmPassword" class="signup" placeholder="비밀번호 확인">
+                <c:if test="${errors.confirmPassword }">확인 비밀번호를 입력하세요</c:if>
                 <p>이메일</p>
                 <input type="text" name="email" class="signup" placeholder="이메일"> <br>
+                <c:if test="${errors.email }">이메일을 입력하세요</c:if>
+                
                 <input type="submit" value="회원가입">
             </form>
         </div>

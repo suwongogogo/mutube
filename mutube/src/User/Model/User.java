@@ -15,6 +15,11 @@ public class User {
 	
 	public User() {};
 	
+	public User(String loginId, String password) {
+		this.loginId = loginId;
+		this.password = password;
+	}
+	
 	public User(int userId, String loginId, String password, String email, String name, LocalDateTime register_date,
 			boolean authority) {
 		this.userId = userId;

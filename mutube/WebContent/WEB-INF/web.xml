@@ -24,15 +24,16 @@
 	<!-- 컨트롤러 서블릿 -->
 	<servlet>
 		<servlet-name>Controller</servlet-name>
-		<servlet-class>Common.Controller.CommandController</servlet-class>
+		<servlet-class>CommandController</servlet-class>
 		<init-param>
 			<param-name>configFile</param-name>
-			<param-value>/WEB-INF/handlerConfig/commandHandler.properties</param-value>
+			<param-value>/WEB-INF/config/commandHandler.properties</param-value>
 		</init-param>
 		<load-on-startup>1</load-on-startup>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>Controller</servlet-name>
-		<url-pattern></url-pattern>
+		<url-pattern>/register</url-pattern>
+		<url-pattern>/login</url-pattern>
 	</servlet-mapping>
 </web-app>

@@ -1,9 +1,11 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>우리의 프로젝트</title>
-    <link rel="stylesheet" type="text/css" href="CSS/main.css" />
+    <link rel="stylesheet" type="text/css" href="main.css" />
     <script src="JavaScript/main.js"></script>
 </head>
 <body oncontextmenu="return false" onselectstart="return false" ondragstart="return false">
@@ -23,12 +25,12 @@
         <div class="middle">
             <div class="nav">
                 <div class="user-container">
-                    <a href="loginForm.html">
+                    <a href="login">
                         <p class="login">로그인</p>
                     </a>
                     <ul class="information">
                         <li class="sub-font">
-                            <a href="registerForm.jsp">회원가입</a>
+                            <a href="register">회원가입</a>
                         </li>
                         <span class="sub-font"> / </span>
                         <li class="sub-font">
