@@ -17,7 +17,7 @@ public class UserDAO {
 	}
 	
 	public void insert(Connection conn, String loginId, String password, String email, String name) throws SQLException {
-		String sql = "insert into User(loginId, password, email, name) values(?,?,?,?)";
+		String sql = "insert into User(loginId, password, email, name) values(?,  HEX(aes_encrypt(?,'mutube')) , ?, ?)";
 		
 		try(PreparedStatement pst = conn.prepareStatement(sql)){
 			pst.setString(1, loginId);
