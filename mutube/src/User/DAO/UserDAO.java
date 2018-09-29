@@ -25,7 +25,7 @@ public class UserDAO {
 			pst.setString(3, email);
 			pst.setString(4, name);
 			
-			pst.executeQuery();
+			pst.executeUpdate();
 		}
 	}
 	
