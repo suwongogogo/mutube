@@ -19,7 +19,7 @@ public class PostDAO {
 	public Post insert(Connection conn, Post post) throws SQLException {
 		String sql = "insert into post(userId, title, genre, musician, instrument, write_date) values(?,?,?,?,?,now())";
 		try (PreparedStatement pst = conn.prepareStatement(sql)) {
-			pst.setInt(1, post.getUserid());
+			pst.setInt(1, post.getWriter().getUserId());
 			pst.setString(2, post.getTitle());
 			pst.setString(3, post.getGenre());
 			pst.setString(4, post.getMusician());
@@ -31,6 +31,15 @@ public class PostDAO {
 			} else {
 				return null;
 			}
+		}
+	}
+	
+	public int update(Connection conn,String title , int postId) throws SQLException {
+		String sql = "update post set title = ? where postId = ?";
+		try(PreparedStatement pst = conn.prepareStatement(sql)){
+			pst.setString(1, title);
+			pst.setInt(2, postId);
+			return pst.executeUpdate();
 		}
 	}
 

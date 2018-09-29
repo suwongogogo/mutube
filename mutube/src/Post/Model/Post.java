@@ -1,10 +1,11 @@
 package Post.Model;
 
+
 import java.time.LocalDateTime;
 
 public class Post {
 	private int postId;
-	private int userid;
+	private Writer writer;
 	private String title;
 	private String genre;
 	private String musician;
@@ -13,11 +14,11 @@ public class Post {
 	private LocalDateTime update_date;
 	private int views;
 
-	public Post(int postId, int userid, String title, String genre, String musician, String instrument,
+	public Post(int postId, Writer writer, String title, String genre, String musician, String instrument,
 			LocalDateTime write_date, LocalDateTime update_date, int views) {
 		super();
 		this.postId = postId;
-		this.userid = userid;
+		this.writer = writer;
 		this.title = title;
 		this.genre = genre;
 		this.musician = musician;
@@ -27,6 +28,17 @@ public class Post {
 		this.views = views;
 	}
 
+	public Post(Writer writer, String title, String genre, String musician, String instrument) {
+		super();
+		this.writer = writer;
+		this.title = title;
+		this.genre = genre;
+		this.musician = musician;
+		this.instrument = instrument;
+	}
+
+
+
 	public int getPostId() {
 		return postId;
 	}
@@ -35,12 +47,12 @@ public class Post {
 		this.postId = postId;
 	}
 
-	public int getUserid() {
-		return userid;
+	public Writer getWriter() {
+		return writer;
 	}
 
-	public void setUserid(int userid) {
-		this.userid = userid;
+	public void setUserid(Writer writer) {
+		this.writer = writer;
 	}
 
 	public String getTitle() {

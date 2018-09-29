@@ -18,7 +18,7 @@ public class LoginService {
 		UserDAO userDAO = UserDAO.getInstance();
 		
 		try(Connection conn = ConnectionProvider.getConnection()){
-			userDAO.selectByLoginId(conn, user.getLoginId());
+			User checkUser = userDAO.selectByLoginId(conn, user.getLoginId());
 		}
 	}
 }
