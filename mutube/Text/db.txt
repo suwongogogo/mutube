@@ -1,0 +1,44 @@
+DB
+테이블
+
+// 게시글의 정보를 담고있다.
+- Post(
+postId int auto_increment primary key not null,
+userId int not null,
+name varchar(20) not null,
+title varchar(50) not null,
+genre varchar(20) not null,
+musician varchar(50) not null,
+instrument varchar(20) not null,
+write_date datetime current_timestamp,
+update_date datetime current_timestamp on update current_timestamp,
+views int null default 0
+)
+
+// 게시글의 내용
+- Post_content(
+postId int primary key not null,
+able int not null,
+content text
+)
+
+// 게시글의 댓글
+- Post_comment(
+postId int primary key not null,
+userId int not null,
+comment text
+)
+
+// 유저 정보를 담고있는 TABLE
+- User(
+userId int auto_increment primary key not null,
+loginId varchar(30) not null,
+password varchar(30) not null,
+email varchar(30) not null,
+name varchar(20) not null,
+register_date datetime current_timestamp,
+authority int default 0,
+)
+
+
+
