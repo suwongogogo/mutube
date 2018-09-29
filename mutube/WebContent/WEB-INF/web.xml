@@ -24,7 +24,7 @@
 	<!-- 컨트롤러 서블릿 -->
 	<servlet>
 		<servlet-name>Controller</servlet-name>
-		<servlet-class>CommandController</servlet-class>
+		<servlet-class>Controller.CommandController</servlet-class>
 		<init-param>
 			<param-name>configFile</param-name>
 			<param-value>/WEB-INF/config/commandHandler.properties</param-value>
