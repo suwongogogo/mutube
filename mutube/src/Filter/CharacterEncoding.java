@@ -20,10 +20,8 @@ public class CharacterEncoding implements Filter{
 	@Override
 	public void doFilter(ServletRequest req, ServletResponse resp, FilterChain chain)
 			throws IOException, ServletException {
-		System.out.println("Encoding filter start");
 		req.setCharacterEncoding(encoding);
-		chain.doFilter(req, resp);
-		System.out.println("Encoding filter end");
+		chain.doFilter(req, resp);	
 	}
 
 	@Override

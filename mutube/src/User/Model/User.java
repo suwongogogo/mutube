@@ -6,10 +6,33 @@ public class User {
 	private int userId;
 	private String loginId;
 	private String password;
+	private String confirm_password;
 	private String email;
 	private String name;
 	private LocalDateTime register_date;
 	private boolean authority;
+	
+	
+	public User() {};
+	
+	public User(int userId, String loginId, String password, String email, String name, LocalDateTime register_date,
+			boolean authority) {
+		this.userId = userId;
+		this.loginId = loginId;
+		this.password = password;
+		this.email = email;
+		this.name = name;
+		this.register_date = register_date;
+		this.authority = authority;
+	}
+	
+	public String getConfirm_password() {
+		return confirm_password;
+	}
+	public void setConfirm_password(String confirm_password) {
+		this.confirm_password = confirm_password;
+	}
+	
 	
 	public int getUserId() {
 		return userId;
@@ -52,6 +75,10 @@ public class User {
 	}
 	public void setAuthority(boolean authority) {
 		this.authority = authority;
+	}
+	
+	public boolean matchPassword() {
+		return password.equals("confirmPassword");
 	}
 	
 }
