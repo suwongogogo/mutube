@@ -31,7 +31,7 @@
                 <c:if test="${errors.email }">이메일을 입력하세요</c:if><br>
                 
                 
-                <input type="submit" value="회원가입">
+                <input type="submit" onclick="check()" value="회원가입">
             </form>
         </div>
     </div>
