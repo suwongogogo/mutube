@@ -11,7 +11,7 @@ import Handler.CommandHandler;
 import User.Model.User;
 import User.Service.RegisterService;
 
-public class ReigsterHandler implements CommandHandler{
+public class RegisterHandler implements CommandHandler{
 
 	private static final String FORM_VIEW = "/WEB-INF/view/registerForm.jsp";
 	

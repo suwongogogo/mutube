@@ -10,7 +10,26 @@ public class User {
 	private String email;
 	private String name;
 	private LocalDateTime register_date;
+	private boolean authority;
 	
+	
+	public User() {};
+	
+	public User(String loginId, String password) {
+		this.loginId = loginId;
+		this.password = password;
+	}
+	
+	public User(int userId, String loginId, String password, String email, String name, LocalDateTime register_date,
+			boolean authority) {
+		this.userId = userId;
+		this.loginId = loginId;
+		this.password = password;
+		this.email = email;
+		this.name = name;
+		this.register_date = register_date;
+		this.authority = authority;
+	}
 	
 	public String getConfirm_password() {
 		return confirm_password;
@@ -18,7 +37,7 @@ public class User {
 	public void setConfirm_password(String confirm_password) {
 		this.confirm_password = confirm_password;
 	}
-	private boolean authority;
+	
 	
 	public int getUserId() {
 		return userId;

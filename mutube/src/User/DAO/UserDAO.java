@@ -2,7 +2,10 @@ package User.DAO;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+
+import User.Model.User;
 
 public class UserDAO {
 	private static UserDAO instance = new UserDAO();
@@ -23,6 +26,23 @@ public class UserDAO {
 			pst.setString(4, name);
 			
 			pst.executeQuery();
+		}
+	}
+	
+	public User selectByLoginId(Connection conn, String loginId) throws SQLException {
+		String sql = "select * from User where loginId = ?";
+		try(PreparedStatement pst = conn.prepareStatement(sql)){
+			pst.setString(1, loginId);
+			
+			try(ResultSet rs = pst.executeQuery()){
+				User user = null;
+				if(rs.next()) {
+					user = new User(rs.getInt("userId"), rs.getString("loginId"), rs.getString("password"), 
+							rs.getString("email"), rs.getString("name"), rs.getTimestamp("register_date").toLocalDateTime(),
+							rs.getBoolean("authority"));
+				}
+				return user;
+			}
 		}
 	}
 }
