@@ -6,4 +6,6 @@ public class PostDAO {
 	public static PostDAO getInstance() {
 		return instance;
 	}
+	
+	
 }
