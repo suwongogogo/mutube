@@ -20,7 +20,7 @@ import org.apache.commons.pool2.PooledObjectFactory;
 import org.apache.commons.pool2.impl.GenericObjectPool;
 import org.apache.commons.pool2.impl.GenericObjectPoolConfig;
 
-public class DBCPInitListener implements ServletContextListener {
+public class JDBC implements ServletContextListener {
 
 	// 시작할 때 우리의 디비 커넥션 풀을 셋팅하도록 해보자
 	@Override
