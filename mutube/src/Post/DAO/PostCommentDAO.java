@@ -17,10 +17,11 @@ public class PostCommentDAO {
 	}
 
 	public PostComment insert(Connection conn, PostComment postComment) throws SQLException {
-		String sql = "insert into post_comment(postId, comment) values(?, ?)";
+		String sql = "insert into post_comment(postId, userId , comment, write_date) values(?, ?, ?, now())";
 		try (PreparedStatement pst = conn.prepareStatement(sql)) {
 			pst.setInt(1, postComment.getPostId());
-			pst.setString(2, postComment.getComment());
+			pst.setInt(2, postComment.getUserId());
+			pst.setString(3, postComment.getComment());
 			int insertCnt = pst.executeUpdate();
 
 			if (insertCnt > 0) {
@@ -28,6 +29,15 @@ public class PostCommentDAO {
 			} else {
 				return null;
 			}
+		}
+	}
+	
+	public int update(Connection conn,String comment , int postId) throws SQLException {
+		String sql = "update post_comment set comment = ? where postId = ?";
+		try(PreparedStatement pst = conn.prepareStatement(sql)){
+			pst.setString(1, comment);
+			pst.setInt(2, postId);
+			return pst.executeUpdate();
 		}
 	}
 }

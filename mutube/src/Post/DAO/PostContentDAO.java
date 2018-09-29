@@ -31,4 +31,13 @@ public class PostContentDAO {
 			}
 		}
 	}
+	
+	public int update(Connection conn,String content , int postId) throws SQLException {
+		String sql = "update post_content set content = ? where postId = ?";
+		try(PreparedStatement pst = conn.prepareStatement(sql)){
+			pst.setString(1, content);
+			pst.setInt(2, postId);
+			return pst.executeUpdate();
+		}
+	}
 }
