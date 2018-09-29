@@ -6,9 +6,18 @@ public class User {
 	private int userId;
 	private String loginId;
 	private String password;
+	private String confirm_password;
 	private String email;
 	private String name;
 	private LocalDateTime register_date;
+	
+	
+	public String getConfirm_password() {
+		return confirm_password;
+	}
+	public void setConfirm_password(String confirm_password) {
+		this.confirm_password = confirm_password;
+	}
 	private boolean authority;
 	
 	public int getUserId() {
@@ -52,6 +61,10 @@ public class User {
 	}
 	public void setAuthority(boolean authority) {
 		this.authority = authority;
+	}
+	
+	public boolean matchPassword() {
+		return password.equals("confirmPassword");
 	}
 	
 }
