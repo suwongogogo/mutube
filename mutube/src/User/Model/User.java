@@ -83,7 +83,7 @@ public class User {
 	}
 	
 	public boolean matchPassword() {
-		return password.equals("confirmPassword");
+		return password.equals(confirm_password);
 	}
 	
 }

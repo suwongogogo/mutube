@@ -50,8 +50,8 @@ public class JDBC implements ServletContextListener {
 	private void InitConnectionPool(Properties prop) {
 		// 디비 접속 정보를 스트링으로 받아 봄.
 		String connectURI = prop.getProperty("jdbcURI");
-		String User = prop.getProperty("User");
-		String Pwd = prop.getProperty("Pwd");
+		String User = prop.getProperty("dbUser");
+		String Pwd = prop.getProperty("dbPwd");
 		try {
 			// 디비 접속정보를 인자로 넣고 커넥션을 만들어 주는 팩토리 객체를 생성.
 			ConnectionFactory connFactory = new DriverManagerConnectionFactory(connectURI, User, Pwd);

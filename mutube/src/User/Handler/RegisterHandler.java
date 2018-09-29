@@ -49,12 +49,13 @@ public class RegisterHandler implements CommandHandler{
 		
 		RegisterService registerService = RegisterService.getInstance();
 		
-		if(!user.matchPassword()) {
-			errors.put("notMatch", true);
-			return FORM_VIEW;
-		}
+		
 		registerService.validate(errors, user);
 		if(!errors.isEmpty()) {
+			return FORM_VIEW;
+		}
+		if(!user.matchPassword()) {
+			errors.put("notMatch", true);
 			return FORM_VIEW;
 		}
 		
