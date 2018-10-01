@@ -30,14 +30,15 @@ public class UserDAO {
 	}
 	
 	public User selectByLoginId(Connection conn, String loginId) throws SQLException {
-		String sql = "select * from User where loginId = ?";
+		String sql = "select userId, loginId, cast(aes_decrypt(unhex(password),'mutube') as char(50)) as password, email, name, register_date, authority"
+				+ " from User where loginId = ?";
 		try(PreparedStatement pst = conn.prepareStatement(sql)){
 			pst.setString(1, loginId);
 			
 			try(ResultSet rs = pst.executeQuery()){
 				User user = null;
 				if(rs.next()) {
-					user = new User(rs.getInt("userId"), rs.getString("loginId"), rs.getString("password"), 
+					user = new User(rs.getInt("userId"), rs.getString("loginId"), rs.getString("password").trim(), 
 							rs.getString("email"), rs.getString("name"), rs.getTimestamp("register_date").toLocalDateTime(),
 							rs.getBoolean("authority"));
 				}

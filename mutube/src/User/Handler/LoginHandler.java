@@ -1,5 +1,6 @@
 package User.Handler;
 
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
@@ -33,29 +34,30 @@ public class LoginHandler implements CommandHandler{
 		return FORM_VIEW;
 	}
 
-	private String processSubmit(HttpServletRequest req, HttpServletResponse resp) {
+	private String processSubmit(HttpServletRequest req, HttpServletResponse resp) throws IOException {
 		
 		
 		String loginId = req.getParameter("loginId");
 		String password = req.getParameter("password");
 		
-		System.out.println(loginId +", "+ password);
 		User user = new User(loginId, password);
-		
 		
 		Map<String, Boolean> errors = new HashMap<>();
 		req.setAttribute("errors", errors);
-		user.validate(errors);
 		
-		if(errors!=null||!errors.isEmpty()) {
+		user.loginValidate(errors);
+		if( !errors.isEmpty()) {
 			return FORM_VIEW;
 		}
-		LoginService loginService = LoginService.getInstance();
 		
 		try {
+			LoginService loginService = LoginService.getInstance();
+			
 			loginService.login(user);
 			
 			req.getSession().setAttribute("loginUser", user);
+			
+			resp.sendRedirect(req.getContextPath() + "/Main.jsp");
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -66,7 +68,7 @@ public class LoginHandler implements CommandHandler{
 			
 		}
 		
-		return "/Main.jsp";
+		return null;
 	}
 
 }

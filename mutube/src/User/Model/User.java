@@ -104,4 +104,12 @@ public class User {
 			errors.put("name", true);
 		}
 	}
+	public void loginValidate(Map<String, Boolean> errors) {
+		if(loginId==null || loginId.isEmpty()) {
+			errors.put("loginId", true);
+		}
+		if(password==null || password.isEmpty()) {
+			errors.put("password", true);
+		}
+	}
 }

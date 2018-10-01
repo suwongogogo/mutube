@@ -18,12 +18,12 @@
             <p>비밀번호</p>
             <input type="password" name="password" class="signin" placeholder="비밀번호"> 
             <span class="error"> 
-            	<c:if test="${errors.loginId }">비밀번호를 입력하세요.</c:if><br>
-            	<c:if test="${errors.passwordNotMatch }">아이디 또는 비밀번호가 일치하지 않습니다.</c:if>
+            	<c:if test="${errors.password }">비밀번호를 입력하세요.</c:if><br>
+            	<c:if test="${errors.passwordNotMatch }">아이디 또는 비밀번호가 올바르지 않습니다.</c:if>
             </span> <br>
             
-            <a href="register" class="register">로그인</a> <br>
-            <input type="submit" onclick="check()" value="로그인" class="submit">
+            <a href="register" class="register">회원가입 하기</a> <br>
+            <input type="submit" value="로그인" class="submit">
         </form>
     </div>  
 </body>

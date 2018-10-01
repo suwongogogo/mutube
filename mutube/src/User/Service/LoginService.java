@@ -23,8 +23,7 @@ public class LoginService {
 			
 			User checkUser = userDAO.selectByLoginId(conn, user.getLoginId());
 			
-			if(user.getPassword() != checkUser.getPassword()) {
-				
+			if(!user.getPassword().equals(checkUser.getPassword())) {
 				throw new PasswordNotMatchException("올바르지 않은 패스워드");
 			}
 			

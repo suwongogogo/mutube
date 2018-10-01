@@ -70,18 +70,11 @@ public class CommandController extends HttpServlet {
 
 	// 실제로 동작하는 부분!!
 	private void process(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		// 명령을 cmd 파라미터로 받고.
+		
 		String command = req.getRequestURI();
-		System.out.println(command);
-		// /day0914/command 로 반환을 하는데!
-		// 이 부분으로만 각각의 명령을 처리하게 바꾸면 된다.
-		// 즉!! URI부분을 각각의 명령에 따라 다르게하면 된다.
-
-		// 프로젝트 부분을 잘라낼 것!
 		if (command.indexOf(req.getContextPath()) == 0) {
 			command = command.substring(req.getContextPath().length());
 		}
-		System.out.println("수정 후 :" + command);
 
 		// 결과를 보여줄 화면주소
 		String viewPage = null;
