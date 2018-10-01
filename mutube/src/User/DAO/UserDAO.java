@@ -72,4 +72,24 @@ public class UserDAO {
 			}
 		}
 	}
+	
+	public User findPassword(Connection conn, String name, String email, String loginId) throws SQLException {
+		String sql = "select userId, loginId, cast(aes_decrypt(unhex(password),'mutube') as char(50)) as password, email, name, register_date, authority"
+				+ " from User where name = ? and email = ? and loginId = ?";
+		try(PreparedStatement pst = conn.prepareStatement(sql)){
+			pst.setString(1, name);
+			pst.setString(2, email);
+			pst.setString(3, loginId);
+			try(ResultSet rs = pst.executeQuery()){
+				User user = null;
+				if(rs.next()) {
+					user = new User(rs.getInt("userId"), rs.getString("loginId"), rs.getString("password").trim(), 
+							rs.getString("email"), rs.getString("name"), rs.getTimestamp("register_date").toLocalDateTime(),
+							rs.getBoolean("authority"));
+				}
+				
+				return user;
+			}
+		}
+	}
 }
