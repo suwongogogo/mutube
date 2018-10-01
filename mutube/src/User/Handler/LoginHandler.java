@@ -58,6 +58,7 @@ public class LoginHandler implements CommandHandler{
 			e.printStackTrace();
 			errors.put("passwordNotMatch", true);
 			return FORM_VIEW;
+			
 		}
 		
 		return null;
