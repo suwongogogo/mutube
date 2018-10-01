@@ -10,6 +10,9 @@
 <title>로그인</title>
 </head>
 <body>
+	<div class="logo">
+		<a href="/main.jsp"><img src="/mutube/Image/수원이얼굴.jpg"></a>
+	</div>
 	<div class="loginForm-container">
         <form action="login" method="post">
             <div class="login" class="input-container">
@@ -26,7 +29,7 @@
                     <span class="error"></span>
                 </div>
                 <div>
-                    <a href="registerForm.jsp" class="register">회원가입 하기</a> <br>
+                    <a href="register" class="register">회원가입 하기</a> <br>
                 </div>
                 <input type="submit" value="로그인" class="submit">
             </div>
