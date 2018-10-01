@@ -9,9 +9,12 @@
 <title>Insert title here</title>
 </head>
 <body>
+	<c:set var="loginIdList" value="${loginIdList}" />
 	회원님이 가지고 있는 ID
-	<c:forEach var="userIdlist" items="${userIdList }" begin="0" end="${fn:length(userIdList)" >
-	아이디 : ${userIdList }
+	<c:forEach var="loginIdList" items="${loginIdList }" begin="0" end="${fn:length(loginIdList) }" >
+	아이디 : ${loginIdList.loginId }
 	</c:forEach>
+	
+	<!-- 회원님이 가지고 있는 ID : "아이디" -->
 </body>
 </html>

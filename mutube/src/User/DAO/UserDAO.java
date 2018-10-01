@@ -55,6 +55,7 @@ public class UserDAO {
 		String sql = "select * from User where name = ? and email = ?";
 		try(PreparedStatement pst = conn.prepareStatement(sql)){
 			pst.setString(1, name);
+			pst.setString(2, email);
 			try(ResultSet rs = pst.executeQuery()){
 				User user = null;
 				List<User> list = new ArrayList<>();

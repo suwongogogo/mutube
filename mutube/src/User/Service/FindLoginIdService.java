@@ -27,6 +27,8 @@ public class FindLoginIdService {
 				throw new UserNotFoundException("유저를 찾을수 없습니다.");
 			}
 		
+			System.out.println(user.get(0).getLoginId());
+			
 			return user;
 			
 		} catch (SQLException e) {
