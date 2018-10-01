@@ -51,7 +51,7 @@ public class RegisterHandler implements CommandHandler{
 		RegisterService registerService = RegisterService.getInstance();
 		
 		
-		registerService.validate(errors, user);
+		user.validate(errors);
 		if(!errors.isEmpty()) {
 			return FORM_VIEW;
 		}

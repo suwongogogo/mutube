@@ -1,6 +1,7 @@
 package User.Model;
 
 import java.time.LocalDateTime;
+import java.util.Map;
 
 public class User {
 	private int userId;
@@ -86,4 +87,21 @@ public class User {
 		return password.equals(confirm_password);
 	}
 	
+	public void validate(Map<String, Boolean> errors) {
+		if(loginId==null || loginId.isEmpty()) {
+			errors.put("loginId", true);
+		}
+		if(password==null || password.isEmpty()) {
+			errors.put("password", true);
+		}
+		if(confirm_password==null ||confirm_password.isEmpty()) {
+			errors.put("confirmPassword", true);
+		}				
+		if(email==null|| email.isEmpty()) {
+			errors.put("email", true);
+		}
+		if(name==null || name.isEmpty()) {
+			errors.put("name", true);
+		}
+	}
 }

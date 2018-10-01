@@ -5,7 +5,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>우리의 프로젝트</title>
-    <link rel="stylesheet" type="text/css" href="main.css" />
+    <link rel="stylesheet" type="text/css" href="/main.css" />
     <script src="JavaScript/main.js"></script>
 </head>
 <body oncontextmenu="return false" onselectstart="return false" ondragstart="return false">
