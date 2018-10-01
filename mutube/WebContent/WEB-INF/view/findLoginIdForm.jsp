@@ -8,7 +8,7 @@
 </head>
 <body>
 	<div class="logo">
-		<a href="/main.jsp"><img src="/mutube/Image/수원이얼굴.jpg"></a>
+		<a href="mutube/Main.jsp"><img src="/mutube/Image/수원이얼굴.jpg"></a>
 	</div>
 	<div class="findForm-container" style="height: 220px">
 		<form action="#" method="post">
