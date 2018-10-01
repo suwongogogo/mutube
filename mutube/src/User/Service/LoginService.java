@@ -19,6 +19,10 @@ public class LoginService {
 		
 		try(Connection conn = ConnectionProvider.getConnection()){
 			User checkUser = userDAO.selectByLoginId(conn, user.getLoginId());
+			
+			if(user.getLoginId() == checkUser.getLoginId()) {
+				
+			}
 		}
 	}
 }
