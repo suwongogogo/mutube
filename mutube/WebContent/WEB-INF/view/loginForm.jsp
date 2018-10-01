@@ -3,23 +3,21 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8" />
-    <title>Page Title</title>
-    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
-    <script src="main.js"></script>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" media="screen" href="/mutube/CSS/loginForm.css" />
+<script src="CSS/loginForm.js"></script>
+<title>로그인</title>
 </head>
 <body>
-  	<form>
-  		<table>
-  			<tr>
-  				<td>ID</td>
-  				<td><input type="text" name="id" placeholder="아이디를 입력해주세요"></td>
-  			</tr>
-  			<tr>
-  				<td>비밀번호</td>
-  				<td><input type="password" name="password" placeholder="비밀번호를 입력해주세요"></td>
-  			</tr>
-  		</table>
-  	</form>
+	<div class="loginForm-container">
+        <form action="#" method="post" onsubmit="return false">
+            <p>아이디</p>
+            <input type="text" name="loginId" class="signin" placeholder="아이디"> <span class="error"></span>
+            <p>비밀번호</p>
+            <input type="password" name="password" class="signin" placeholder="비밀번호"> <span class="error"></span> <br>
+            <a href="loginForm.html" class="register">회원가입 하기</a> <br>
+            <input onclick="check()" type="submit" value="회원가입" class="submit">
+        </form>
+    </div>  
 </body>
 </html>
