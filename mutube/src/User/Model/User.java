@@ -20,7 +20,7 @@ public class User {
 		this.loginId = loginId;
 		this.password = password;
 	}
-	
+
 	public User(int userId, String loginId, String password, String email, String name, LocalDateTime register_date,
 			boolean authority) {
 		this.userId = userId;
@@ -112,4 +112,5 @@ public class User {
 			errors.put("password", true);
 		}
 	}
+
 }

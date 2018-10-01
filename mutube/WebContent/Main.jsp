@@ -34,7 +34,7 @@
                         </li>
                         <span class="sub-font"> / </span>
                         <li class="sub-font">
-                            <a href="#">아이디 찾기</a>
+                            <a href="findLoginId">아이디 찾기</a>
                         </li>
                         <span class="sub-font"> / </span>
                         <li class="sub-font">

@@ -4,6 +4,10 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
 
 import User.Model.User;
 
@@ -43,6 +47,27 @@ public class UserDAO {
 							rs.getBoolean("authority"));
 				}
 				return user;
+			}
+		}
+	}
+	
+	public List<User> selectByName(Connection conn, String name, String email) throws SQLException {
+		String sql = "select * from User where name = ? and email = ?";
+		try(PreparedStatement pst = conn.prepareStatement(sql)){
+			pst.setString(1, name);
+			try(ResultSet rs = pst.executeQuery()){
+				User user = null;
+				List<User> list = new ArrayList<>();
+				if(rs.next()) {
+					
+					user = new User(rs.getInt("userId"), rs.getString("loginId"), rs.getString("password").trim(), 
+							rs.getString("email"), rs.getString("name"), rs.getTimestamp("register_date").toLocalDateTime(),
+							rs.getBoolean("authority"));
+					list.add(user);
+				}else {
+					list = Collections.emptyList();
+				}
+				return list;
 			}
 		}
 	}
