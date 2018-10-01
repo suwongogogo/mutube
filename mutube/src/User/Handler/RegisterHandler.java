@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import Handler.CommandHandler;
+import User.Exception.UserAlreadyExistException;
 import User.Model.User;
 import User.Service.RegisterService;
 
@@ -63,6 +64,10 @@ public class RegisterHandler implements CommandHandler{
 			registerService.register(user);		
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} catch (UserAlreadyExistException e) {
+			e.printStackTrace();
+			errors.put("userExist", true);
+			return FORM_VIEW;
 		}
 		
 		return "/WEB-INF/view/loginForm.jsp";

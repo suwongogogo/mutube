@@ -6,12 +6,13 @@
 <head>
     <meta charset="utf-8" />
     <title>회원가입</title>
-    <link rel="stylesheet" type="text/css" media="screen" href="/CSS/registerForm.css" />
-    <script src="JavaScript/registerForm.js"></script>
+    <link rel="stylesheet" type="text/css" media="screen" href="/mutube/CSS/registerForm.css" />
+    <script src="/mutube/JavaScript/registerForm.js"></script>
 </head>
 <body>
     <div class="register-container">
         <div class="register">
+        	<c:if test="${errors.userExist }">이미 존재하는 아이디입니다.</c:if>
             <form action="register" method="post" onsubmit="return false" id="form">
                 <p>아이디</p>
                 <input type="text" name="loginId" class="signup" placeholder="아이디" value="${param.loginId }"> <span class="error"></span>

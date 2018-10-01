@@ -16,7 +16,7 @@ public class RegisterService {
 		return instance;
 	}
 	
-	public void register(User user) throws SQLException {
+	public void register(User user) throws SQLException, UserAlreadyExistException {
 		
 		// 아이디가 이미 있는지 검사하고 회원가입 진행
 		try(Connection conn = ConnectionProvider.getConnection()){
@@ -34,8 +34,6 @@ public class RegisterService {
 			
 			userDAO.insert(conn, user.getLoginId(), user.getPassword(), user.getEmail(), user.getName());
 			conn.commit();
-		}catch(UserAlreadyExistException e) {
-			System.out.println(e);
 		}
 	}
 	
