@@ -12,7 +12,7 @@
 <body>
     <div class="register-container">
         <div class="register">
-            <form action="register" method="post" onsubmit="return false">
+            <form action="register" method="post">
                 <div class="form-contents">
                     <div class="input-container">
                         <p>아이디</p>
@@ -49,7 +49,7 @@
                     <div>
                         <a href="login" class="login">로그인 하기</a>
                     </div>
-                    <input onclick="check()" type="submit" value="회원가입" class="submit">
+                    <input  type="submit" value="회원가입" class="submit">
                 </div>
             </form>
         </div>
