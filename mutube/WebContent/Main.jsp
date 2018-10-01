@@ -47,11 +47,11 @@
                     <ul class="genre-ul">
                         <li class="genre-li">
                             <span>·</span>
-                            <a class="genre" href="#">전체글</a>
+                            <a class="genre" href="list">전체글</a>
                         </li>
                         <li class="genre-li">
                             <span>·</span>
-                            <a class="genre" href="#">공지</a>
+                            <a class="genre" href="notice">공지</a>
                         </li>
                         <!-- dropdown -->
                         <li class="genre-li">
@@ -104,8 +104,8 @@
     </div>
     <footer class="footer">
         <div class="footer-container">
-            <p class="footer-text">A Person Who Made Project</p>
-            <p class="person">박진국, 이수원, 김승용, 김영진</p>
+            <p class="footer-text">People Who Made Project</p>
+            <p class="people">박진국, 이수원, 김승용, 김영진</p>
             <p class="phone">불만있는 새끼 전화 걸어라 010-5543-1787</p>
         </div>
     </footer>
