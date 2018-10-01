@@ -70,7 +70,7 @@ public class RegisterHandler implements CommandHandler{
 			return FORM_VIEW;
 		}
 		
-		return "/WEB-INF/view/loginForm.jsp";
+		return "/Main.jsp";
 	}
 
 	

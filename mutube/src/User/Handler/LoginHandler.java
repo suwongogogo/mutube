@@ -39,7 +39,9 @@ public class LoginHandler implements CommandHandler{
 		String loginId = req.getParameter("loginId");
 		String password = req.getParameter("password");
 		
+		System.out.println(loginId +", "+ password);
 		User user = new User(loginId, password);
+		
 		
 		Map<String, Boolean> errors = new HashMap<>();
 		req.setAttribute("errors", errors);
@@ -48,7 +50,6 @@ public class LoginHandler implements CommandHandler{
 		if(errors!=null||!errors.isEmpty()) {
 			return FORM_VIEW;
 		}
-		
 		LoginService loginService = LoginService.getInstance();
 		
 		try {
