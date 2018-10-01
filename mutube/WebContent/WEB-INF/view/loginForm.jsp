@@ -11,7 +11,7 @@
 </head>
 <body>
 	<div class="loginForm-container">
-        <form action="#" method="post" onsubmit="return false">
+        <form action="login" method="post">
             <div class="login" class="input-container">
                 <div class="input-container">
                     <p>아이디</p>
@@ -28,7 +28,7 @@
                 <div>
                     <a href="registerForm.jsp" class="register">회원가입 하기</a> <br>
                 </div>
-                <input onclick="check()" type="submit" value="로그인" class="submit">
+                <input type="submit" value="로그인" class="submit">
             </div>
         </form>
     </div>  
