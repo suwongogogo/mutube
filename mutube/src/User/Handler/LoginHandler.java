@@ -50,8 +50,12 @@ public class LoginHandler implements CommandHandler{
 		}
 		
 		LoginService loginService = LoginService.getInstance();
+		
 		try {
 			loginService.login(user);
+			
+			req.getSession().setAttribute("loginUser", user);
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} catch (PasswordNotMatchException e) {
@@ -61,7 +65,7 @@ public class LoginHandler implements CommandHandler{
 			
 		}
 		
-		return null;
+		return "/Main.jsp";
 	}
 
 }
