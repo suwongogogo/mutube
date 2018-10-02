@@ -22,7 +22,7 @@
                         <span class="error"></span>
                     </div>
                     <div class="input-container">
-                        <p>이름</p>
+                        <p>이름</p>
                         <input type="text" name="name" class="find" placeholder="이름을 입력해주세요">
                         <div class="underline"></div>
                         <span class="error"></span>
