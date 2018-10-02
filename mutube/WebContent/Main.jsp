@@ -38,9 +38,20 @@
                         </li>
                         <span class="sub-font"> / </span>
                         <li class="sub-font">
-                            <a href="findPassword">비밀번호 찾기</a>
+                            <a href="#">비밀번호 찾기</a>
                         </li>
                     </ul>
+                    <%--
+                    <a href="login">
+                        <p class="logout">로그아웃</p>
+                    </a>
+                    <div class="login-container">
+                        <p class="welcome font14">
+                            <span class="name">진국</span><span>님, 환영합니다.</span>
+                        </p>
+                        <a href="#" class="myPage font14">마이페이지</a>
+                    </div>
+                     --%>
                 </div>
                 <!-- 보기 -->
                 <div class="genre-container">

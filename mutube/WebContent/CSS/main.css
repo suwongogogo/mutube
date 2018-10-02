@@ -121,3 +121,22 @@ header {
     margin-bottom: 4px;
 }
 /* footer end */
+/* login */
+.welcome {
+    display: inline-block;
+    font-size: 17px;
+}
+.myPage {
+    padding-top: 7px;
+    float: right;
+    color: gray;
+    font-size: 14px;
+    height: 23px;
+}
+.login-container {
+    margin: 12px 0px; 
+}
+.name {
+    color: blue;
+}
+/* login end */
