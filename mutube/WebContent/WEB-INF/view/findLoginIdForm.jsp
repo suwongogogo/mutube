@@ -14,7 +14,7 @@
 		<a href="mutube/Main.jsp"><img src="/mutube/Image/수원이얼굴.jpg"></a>
 	</div>
 	<div class="findForm-container" style="height: 220px">
-		<form action="#" method="post">
+		<form action="findLoginId" method="post">
 			<div class="findLoginId" class="input-container">
 				<div class="input-container">
 					<p>ID</p>

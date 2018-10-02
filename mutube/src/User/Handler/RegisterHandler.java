@@ -1,5 +1,6 @@
 package User.Handler;
 
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
@@ -33,7 +34,7 @@ public class RegisterHandler implements CommandHandler{
 		return FORM_VIEW;
 	}
 
-	private String processSubmit(HttpServletRequest req, HttpServletResponse resp) {
+	private String processSubmit(HttpServletRequest req, HttpServletResponse resp) throws IOException {
 		// errors 맵을 이용해 무결성 검사
 		// RegisterService 객체를 이용해 회원가입 진행
 		// 회원가입 성공 시 로그인 화면으로 전환.
@@ -69,8 +70,8 @@ public class RegisterHandler implements CommandHandler{
 			errors.put("userExist", true);
 			return FORM_VIEW;
 		}
-		
-		return "/Main.jsp";
+		resp.sendRedirect("/Login");
+		return null;
 	}
 
 	

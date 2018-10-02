@@ -13,7 +13,7 @@
 		<a href="mutube/Main.jsp"><img src="/mutube/Image/ììì´ì¼êµ´.jpg"></a>
 	</div>
 	<div class="findForm-container" style="height: 305px">
-            <form action="#" method="post">
+            <form action="findPassword" method="post">
                 <div class="findForm" class="input-container">
                     <div class="input-container">
                         <p>ID</p>
