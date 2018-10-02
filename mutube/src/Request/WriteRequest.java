@@ -2,54 +2,43 @@ package Request;
 
 import java.util.Map;
 
+import Post.Model.Post;
+import Post.Model.PostContent;
 import Post.Model.Writer;
 
 public class WriteRequest {
 	private Writer writer;
-	private String title;
-	private String content;
-	private String genre;
-	private String musician;
-	private String instrument;
-
-	public WriteRequest(Writer writer, String title, String content, String genre, String musician, String instrument) {
-		super();
-		this.writer = writer;
-		this.title = title;
-		this.content = content;
-		this.genre = genre;
-		this.musician = musician;
-		this.instrument = instrument;
-	}
-
-	public String getGenre() {
-		return genre;
-	}
-
-	public String getMusician() {
-		return musician;
-	}
-
-	public String getInstrument() {
-		return instrument;
-	}
+	private Post post;
+	private PostContent postContent;
 
 	public Writer getWriter() {
 		return writer;
 	}
 
-	public String getTitle() {
-		return title;
+	public void setWriter(Writer writer) {
+		this.writer = writer;
 	}
 
-	public String getContent() {
-		return content;
+	public Post getPost() {
+		return post;
+	}
+
+	public void setPost(Post post) {
+		this.post = post;
+	}
+
+	public PostContent getPostContent() {
+		return postContent;
+	}
+
+	public void setPostContent(PostContent postContent) {
+		this.postContent = postContent;
+	}
+
+	public WriteRequest(Post post, PostContent postContent) {
+		this.post = post;
+		this.postContent= postContent;
 	}
 	
-	public void validate(Map<String, Boolean> errors) {
-		if(title == null || title.trim().isEmpty()) {
-			errors.put("title", true);
-		}
-	}
 
 }

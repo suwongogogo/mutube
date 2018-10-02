@@ -24,16 +24,17 @@ public class WritePostService {
 		try(Connection conn = ConnectionProvider.getConnection()){
 			conn.setAutoCommit(false);
 			
-			Post post = new Post(writeReq.getWriter(), writeReq.getTitle(), writeReq.getGenre(),
-					writeReq.getMusician(), writeReq.getInstrument());
+			Post post = writeReq.getPost();
 			Post savedPost = postDAO.insert(conn, post);
 			if(savedPost == null) {
+				conn.rollback();
 				throw new RuntimeException("게시글 삽입 실패");
 			}
 			
-			PostContent postContent = new PostContent(savedPost.getPostId(), writeReq.getContent());
+			PostContent postContent = new PostContent(savedPost.getPostId(), writeReq.getPostContent().getContent(), writeReq.getPostContent().getVideo_link());
 			PostContent savedPostContent = contentDAO.insert(conn, postContent);
 			if(savedPostContent == null) {
+				conn.rollback();
 				throw new RuntimeException("Content 삽입 실패");
 			}
 			

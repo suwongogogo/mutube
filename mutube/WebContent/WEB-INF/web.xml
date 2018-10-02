@@ -35,6 +35,7 @@
 		<servlet-name>Controller</servlet-name>
 		<url-pattern>/register</url-pattern>
 		<url-pattern>/login</url-pattern>
+		<url-pattern>/logout</url-pattern>
 		<url-pattern>/findLoginId</url-pattern>
 		<url-pattern>/findPassword</url-pattern>
 	</servlet-mapping>

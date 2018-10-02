@@ -4,7 +4,6 @@ public class Writer {
 	private int userId;
 	private String name;
 	public Writer(int userId, String name) {
-		super();
 		this.userId = userId;
 		this.name = name;
 	}

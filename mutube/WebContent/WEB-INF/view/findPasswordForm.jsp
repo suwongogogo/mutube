@@ -10,7 +10,7 @@
 </head>
 <body>
 	<div class="logo">
-		<a href="mutube/Main.jsp"><img src="/mutube/Image/ììì´ì¼êµ´.jpg"></a>
+		<a href="mutube/Main.jsp"><img src="/mutube/Image/수원이얼굴.jpg"></a>
 	</div>
 	<div class="findForm-container" style="height: 305px">
             <form action="findPassword" method="post">
@@ -33,7 +33,7 @@
                         <div class="underline"></div>
                         <span class="error"></span>
                     </div>
-                    <input type="submit" value="ìì´ë ì°¾ê¸°" class="submit">
+                    <input type="submit" value="비밀번호 찾기" class="submit">
                 </div>
             </form>
         </div>

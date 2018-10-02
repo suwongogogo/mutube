@@ -2,6 +2,7 @@ package Post.Model;
 
 
 import java.time.LocalDateTime;
+import java.util.Map;
 
 public class Post {
 	private int postId;
@@ -16,7 +17,6 @@ public class Post {
 
 	public Post(int postId, Writer writer, String title, String genre, String musician, String instrument,
 			LocalDateTime write_date, LocalDateTime update_date, int views) {
-		super();
 		this.postId = postId;
 		this.writer = writer;
 		this.title = title;
@@ -29,12 +29,26 @@ public class Post {
 	}
 
 	public Post(Writer writer, String title, String genre, String musician, String instrument) {
-		super();
 		this.writer = writer;
 		this.title = title;
 		this.genre = genre;
 		this.musician = musician;
 		this.instrument = instrument;
+	}
+	
+	public void writeValidate(Map<String, Boolean> errors) {
+		if(title==null||title.isEmpty()) {
+			errors.put("title", true);
+		}
+		if(genre==null||genre.isEmpty()) {
+			errors.put("genre", true);
+		}
+		if(musician==null||musician.isEmpty()) {
+			errors.put("musician", true);
+		}
+		if(instrument==null||instrument.isEmpty()) {
+			errors.put("instrument", true);
+		}
 	}
 
 

@@ -48,6 +48,7 @@ public class FindPasswordHandler implements CommandHandler{
 	private String processSubmit(HttpServletRequest req, HttpServletResponse resp) throws UserNotFoundException, SQLException {
 		
 		System.out.println("들어옴.");
+		
 		String loginId = req.getParameter("loginId");
 		String name = req.getParameter("name");
 		String email = req.getParameter("email");
