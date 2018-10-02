@@ -26,7 +26,7 @@ public class LoginCheckFilter implements Filter {
 		HttpSession session = request.getSession();
 		
 		//세션이 없다면 로그인 페이지로 이동		
-		if(session==null || session.getAttribute("authUser")==null) {
+		if(session==null || session.getAttribute("loginUser")==null) {
 			HttpServletResponse response = (HttpServletResponse) resp;
 			response.sendRedirect(request.getContextPath()+"/login");
 		}else {
