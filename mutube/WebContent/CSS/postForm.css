@@ -1,0 +1,79 @@
+body,p {
+    margin: 0px;
+}
+.postForm-container {
+    width: 1250px;
+    height: 700px;
+    padding: 30px;
+    position: absolute;
+    top: 150px;
+    left: 500px;
+    border: 1px solid #dddddd;
+    border-radius: 10px;
+    box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14),
+                0 3px 1px -2px rgba(0,0,0,0.12),
+                0 1px 5px 0 rgba(0,0,0,0.2);
+}
+.title-form,p,.genre-form,.musician-form,.video-container {
+    display: inline-block;
+}
+.title-form,.select-container,.video-container {
+    margin-bottom: 25px;
+}
+.title {
+    font-weight: bold;
+    margin-right: 10px;
+    font-size: 19px;
+}
+.content-title {
+    margin-bottom: 10px;
+}
+.input {
+    width: 1190px;
+    height: 25px;
+    font-size: 14px;
+}
+.video-input {
+    width: 1146px;
+    height: 25px;
+    font-size: 14px;
+}
+.genre-form {
+    margin-right: 13px;
+}
+.musician-form {
+    margin-left: 13px;
+}
+.select {
+    text-align: center;
+    width: 339px;
+    height: 30px;
+    font-size: 15px;
+    padding-bottom: 3px;
+}
+.textarea {
+    display: block;
+    width: 1242px;
+    height: 450px;
+    font-size: 16px;
+}
+.button-container {
+    margin-top: 14px;
+    float: right;
+}
+.button {
+    width: 77px;
+    height: 42px;
+    text-align: center;
+    font-size: 15px;
+    border-radius: 4px;
+}
+.submit {
+    background-color: #1a73e8;
+    border: 1px solid #1a73e8;
+    color: white;
+}
+.cancle {
+    border: 1px solid #bbbbbb;
+    background-color: white;
+}
