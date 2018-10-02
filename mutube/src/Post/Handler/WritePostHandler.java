@@ -1,5 +1,7 @@
 package Post.Handler;
 
+import java.io.IOException;
+import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -7,6 +9,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import Handler.CommandHandler;
+import Post.Model.Post;
+import Post.Model.PostContent;
+import Post.Model.Writer;
+import Post.Service.WritePostService;
+import Request.WriteRequest;
+import User.Model.User;
 
 public class WritePostHandler implements CommandHandler {
 	private static final String FORM_VIEW = "/WEB-INF/view/writeForm.jsp";
@@ -26,16 +34,40 @@ public class WritePostHandler implements CommandHandler {
 		return FORM_VIEW;
 	}
 
-	private String processSubmit(HttpServletRequest req, HttpServletResponse resp) {
+	private String processSubmit(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+		
+		
+		// 세션에 있는 유저의 정보와 파라미터로 값을 받고
+		User loginUser = (User)req.getSession().getAttribute("loginUser");
+		
+		// 글 정보는 Post, 내용은 PostContent 객체에 담아 WriteRequest를 생성.
+		Post post = new Post(new Writer(loginUser.getUserId(),loginUser.getName()),req.getParameter("title"),req.getParameter("genre"),req.getParameter("musician"),req.getParameter("instrument"));
+		PostContent postContent = new PostContent(req.getParameter("content"),req.getParameter("video_link"));
+		WriteRequest writeReq = new WriteRequest(post, postContent);
+		
+		// WriteRequest의 무결성 검사를 진행하고 이상있으면 다시 FORM_VIEW로 이동
 		Map<String, Boolean> errors = new HashMap<String, Boolean>();
 		req.setAttribute("errors", errors);
-		// 세션에 있는 유저의 정보와 파라미터로 받을 Content와 Title값을 WriteRequest에 담는다.
 		
-		// WriteRequest에 있는 오류체크를 해 이상있으면 다시 FORM_VIEW로 이동
+		post.writeValidate(errors);
 		
+		if(!errors.isEmpty()) {
+			return FORM_VIEW;
+		}
+
 		// WriteService를 이용한다.
+		WritePostService writePostService = WritePostService.getInstance();
+		int postId = 0;
+		try {
+			
+			postId = writePostService.write(writeReq);
+		} catch (SQLException e) {			
+			e.printStackTrace();
+			resp.sendRedirect(req.getContextPath() + "/postList.jsp");
+		}
+		resp.sendRedirect("/view?no="+postId);
 		
-		return "/WEB-INF/view/writeSuccess.jsp";
+		return null;
 	}
 
 }
