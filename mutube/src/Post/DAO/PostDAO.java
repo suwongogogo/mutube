@@ -91,7 +91,7 @@ public class PostDAO {
 
 	
 	public int delete(Connection conn, int postId) throws SQLException{ 
-		String query = "delete from Post where postId=?";
+		String query = "update post set able=0 where postId=?";
 		try(PreparedStatement pst = conn.prepareStatement(query)){
 			pst.setInt(1, postId);
 			return pst.executeUpdate();

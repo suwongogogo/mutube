@@ -105,7 +105,7 @@ public class UserDAO {
 	
 	public User selectByPassword(Connection conn, String password) throws SQLException {
 		String sql = "select userId, loginId, cast(aes_decrypt(unhex(password),'mutube') as char(50)) as password, email, name, register_date, authority"
-				+ " from User where password = ?";
+				+ " from User where userId = ? , password = ?";
 		try (PreparedStatement pst = conn.prepareStatement(sql)) {
 			pst.setString(1, password);
 			try (ResultSet rs = pst.executeQuery()) {
@@ -117,7 +117,8 @@ public class UserDAO {
 			}
 		}
 	}
-	
+
+		
 	public User findPassword(Connection conn, User user) throws SQLException {
 		String sql = "select userId, loginId, cast(aes_decrypt(unhex(password),'mutube') as char(50)) as password, email, name, register_date, authority"
 				+ " from User where name = ? and email = ? and loginId = ?";

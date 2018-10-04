@@ -26,28 +26,34 @@ public class ConfirmUserByPasswordHandler implements CommandHandler{
 	}
 
 	private String processForm(HttpServletRequest req, HttpServletResponse resp) {
+		System.out.println("폼");
 		return FORM_VIEW;
 	}
 
 	private String processSubmit(HttpServletRequest req, HttpServletResponse resp) throws PasswordNotMatchException, UserNotFoundException {
-		
+		System.out.println("실행이당.");
 		String password = req.getParameter("password");
 		User sessionUser = (User) req.getSession().getAttribute("loginUser");
 		
+		System.out.println(password + ", " + sessionUser.getPassword());
+		
 		ConfirmUserByPasswordService confirmService = ConfirmUserByPasswordService.getInstance();
 		try {
-			if(!password.equals(sessionUser.getPassword())) {
+			if(!sessionUser.getPassword().equals(password)) {
 				throw new PasswordNotMatchException("비밀번호가 일치하지 않습니다.");
 			}
 			
 			User user = confirmService.confirmUser(password);
+	
+			req.setAttribute("user", user);
 			
-			req.setAttribute("User", user);
+			return "/WEB-INF/view/myPage.jsp";
 		}catch(SQLException e) {
 			throw new RuntimeException(e);
+		}catch(PasswordNotMatchException e) {
+			return FORM_VIEW;
 		}
 		
-		return "/WEB-INF/view/myPage.jsp";
 	}
 	
 }
