@@ -109,7 +109,7 @@ public class PostDAO {
 	}
 	
 	public Post selectById(Connection conn, int postId) throws SQLException {
-		String query = "select * from Post where postId= ?";
+		String query = "select * from Post where postId= ? and able = 1";
 		try(PreparedStatement pst = conn.prepareStatement(query);){
 			pst.setInt(1, postId);
 			try(ResultSet rs = pst.executeQuery()){

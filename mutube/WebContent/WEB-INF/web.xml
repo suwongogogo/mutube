@@ -54,6 +54,7 @@
 		<url-pattern>/write</url-pattern>
 		<url-pattern>/update</url-pattern>
 		<url-pattern>/delete</url-pattern>
+		<url-pattern>/view</url-pattern>
 		<url-pattern>/confirmUserByPassword</url-pattern>
 	</servlet-mapping>
 </web-app>
