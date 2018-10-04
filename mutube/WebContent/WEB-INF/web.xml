@@ -29,6 +29,7 @@
 	<filter-mapping>
 		<filter-name>LoginFilter</filter-name>
 		<url-pattern>/write</url-pattern>
+		<url-pattern>/update</url-pattern>
 	</filter-mapping>
 	
 	<!-- 컨트롤러 서블릿 -->
@@ -49,5 +50,6 @@
 		<url-pattern>/findLoginId</url-pattern>
 		<url-pattern>/findPassword</url-pattern>
 		<url-pattern>/write</url-pattern>
+		<url-pattern>/update</url-pattern>
 	</servlet-mapping>
 </web-app>
