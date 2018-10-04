@@ -114,7 +114,6 @@ public class FindPasswordHandler implements CommandHandler {
 			msg.setContent(content, "text/html;charset=UTF-8");
 			Transport.send(msg);
 
-
 			System.out.println("메일 전송 완료");
 
 			req.setAttribute("userPassword", user.getPassword());
