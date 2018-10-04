@@ -86,8 +86,8 @@ public class FindPasswordHandler implements CommandHandler {
 			String from = "fltndnjs1234@gmail.com";
 			String to = email;
 			String subject = "너의 비밀번호를 찾아라!";
-			String content = "링크로 들어가서 비밀번호를 찾으세요" +
-				"<a href='" + host + "passwordConfirmForm.jsp?email=" + to + "'>비밀번호 확인</a>";
+			String content = "비밀 번호는 : " + user.getPassword();
+				
 
 			// SMTP에 접속하기 위한 정보를 기입합니다.
 
