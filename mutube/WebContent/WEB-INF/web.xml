@@ -32,6 +32,7 @@
 		<url-pattern>/update</url-pattern>
 		<url-pattern>/delete</url-pattern>
 		<url-pattern>/confirmUserByPassword</url-pattern>
+		<url-pattern>/changePassword</url-pattern>
 	</filter-mapping>
 	
 	<!-- 컨트롤러 서블릿 -->
@@ -56,5 +57,6 @@
 		<url-pattern>/delete</url-pattern>
 		<url-pattern>/view</url-pattern>
 		<url-pattern>/confirmUserByPassword</url-pattern>
+		<url-pattern>/changePassword</url-pattern>
 	</servlet-mapping>
 </web-app>

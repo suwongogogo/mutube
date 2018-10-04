@@ -11,19 +11,15 @@
 		<table>
 			<tr>
 				<td>아이디</td>
-				<td><input type="text" name="id" value="${user.getId }" ></td>
-			</tr>
-			<tr>
-				<td>비밀번호</td>
-				<td><input type="text" name="id" value="${user.getPassword }"></td>
+				<td><input type="text" name="loginId" value="${user.loginId }" ></td>
 			</tr>
 			<tr>
 				<td>이름</td>
-				<td><input type="text" name="id" value="${user.getName }"></td>
+				<td><input type="text" name="name" value="${user.name }"></td>
 			</tr>
 			<tr>
 				<td>이메일</td>
-				<td><input type="text" name="id" value="${user.getEmail }"></td>
+				<td><input type="text" name="email" value="${user.email }"></td>
 			</tr>
 			<tr>
 				<td><input type="submit" value="수정"></td>

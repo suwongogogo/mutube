@@ -18,12 +18,21 @@ public class UserUpdateService {
 	public void update(User user) throws SQLException, UserNotFoundException {
 		try(Connection conn = ConnectionProvider.getConnection()){
 			UserDAO userDAO = UserDAO.getInstance();
-			user = userDAO.update(conn, user);
+			
+			userDAO.update(conn, user);
+		}
+	}
+	
+	public User selectByUserId(int userId) throws SQLException, UserNotFoundException {
+		try(Connection conn = ConnectionProvider.getConnection()){
+			UserDAO userDAO = UserDAO.getInstance();
+			User user = userDAO.selectByUserId(conn, userId);
 			
 			if(user == null) {
 				throw new UserNotFoundException("없는 유저입니다.");
 			}
 			
+			return user;
 		}
 	}
 }

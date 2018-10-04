@@ -30,40 +30,33 @@ public class UserUpdateHandler implements CommandHandler{
 	}
 
 	private String processForm(HttpServletRequest req, HttpServletResponse resp) throws SQLException, UserNotFoundException {
-	
-		UserDAO userDAO = UserDAO.getInstance();
+		System.out.println("수정폼");
 		int userId = Integer.parseInt(req.getParameter("userId"));
 		
-		try(Connection conn = ConnectionProvider.getConnection()) {
-			User user = userDAO.selectByUserId(conn, userId);
-		}
+		UserUpdateService updateService = UserUpdateService.getInstance();
+		User user = updateService.selectByUserId(userId);
 		
-		req.setAttribute("user", userId);
+		req.setAttribute("user", user);
 		return FORM_VIEW;
 	}
 
 	private String processSubmit(HttpServletRequest req, HttpServletResponse resp) throws SQLException, UserNotFoundException {
+		System.out.println("수정 시작");
 		
-		String loginId = req.getParameter("loginId");
-		String password = req.getParameter("password");
-		String name = req.getParameter("name");
-		String email = req.getParameter("email");
-		
-		User user = new User();
-		
-		user.setLoginId(loginId);
-		user.setPassword(password);
-		user.setName(name);
-		user.setEmail(email);
+		String loginId = (String)req.getParameter("loginId");
+		String name = (String)req.getParameter("name");
+		String email = (String)req.getParameter("email");
+
+		User savedUser = new User();
+		savedUser.setLoginId(loginId);
+		savedUser.setName(name);
+		savedUser.setEmail(email);
 		
 		Map<String, Boolean> errors = new HashMap<String, Boolean>();
 		req.setAttribute("errors", errors);
 		
 		if(loginId.isEmpty() || loginId == null) {
 			errors.put("loginid", true);
-		}
-		if(password.isEmpty() || password == null) {
-			errors.put("password", true);
 		}
 		if(name.isEmpty() || name == null) {
 			errors.put("name", true);
@@ -74,8 +67,11 @@ public class UserUpdateHandler implements CommandHandler{
 		
 		try {
 			UserUpdateService updateService = UserUpdateService.getInstance();
-			updateService.update(user);
+			updateService.update(savedUser);
 			
+			System.out.println("수정완료");
+			
+			req.setAttribute("user", savedUser);
 			// 업데이트를 완료하면 다시 내 정보를 볼 수 있는 MyPage로.
 			return "/WEB-INF/view/myPage.jsp";
 		}catch(UserNotFoundException e) {

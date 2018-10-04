@@ -102,22 +102,6 @@ public class UserDAO {
 			}
 		}
 	}
-	
-	public User selectByPassword(Connection conn, String password) throws SQLException {
-		String sql = "select userId, loginId, cast(aes_decrypt(unhex(password),'mutube') as char(50)) as password, email, name, register_date, authority"
-				+ " from User where userId = ? , password = ?";
-		try (PreparedStatement pst = conn.prepareStatement(sql)) {
-			pst.setString(1, password);
-			try (ResultSet rs = pst.executeQuery()) {
-				User user = null;
-				if (rs.next()) {
-					user = getUserModel(rs);
-				}
-				return user;
-			}
-		}
-	}
-
 		
 	public User findPassword(Connection conn, User user) throws SQLException {
 		String sql = "select userId, loginId, cast(aes_decrypt(unhex(password),'mutube') as char(50)) as password, email, name, register_date, authority"
@@ -135,22 +119,23 @@ public class UserDAO {
 			}
 		}
 	}
-
-	public User update(Connection conn, User user) throws SQLException {
-		String sql = "update user set loginId = ? , password = ? , email = ? , name = ? where userId = ?";
+	
+	public void changePwd(Connection conn, String password , String loginId) throws SQLException {
+		String sql = "update user set password = HEX(aes_encrypt(?,'mutube')) where loginId = ?";
+		try(PreparedStatement pst = conn.prepareStatement(sql)){
+			pst.setString(1, password);
+			pst.setString(2, loginId);
+		}
+	}
+	
+	public void update(Connection conn, User user) throws SQLException {
+		String sql = "update user set loginId = ? , email = ? , name = ? where loginId = ?";
 		try(PreparedStatement pst = conn.prepareStatement(sql)){
 			pst.setString(1, user.getLoginId());
-			pst.setString(2, user.getPassword());
-			pst.setString(3, user.getEmail());
-			pst.setString(4, user.getName());
-			pst.setInt(5, user.getUserId());
-			try(ResultSet rs = pst.executeQuery()){
-				user = null;
-				if(rs.next()) {
-					user = getUserModel(rs);
-				}
-				return user;
-			}
+			pst.setString(2, user.getEmail());
+			pst.setString(3, user.getName());
+			pst.setString(4, user.getLoginId());
+			pst.executeUpdate();
 		}
 	}
 	

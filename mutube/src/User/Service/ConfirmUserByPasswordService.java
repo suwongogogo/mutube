@@ -18,10 +18,10 @@ public class ConfirmUserByPasswordService {
 		return instance;
 	}
 
-	public User confirmUser(String password) throws SQLException, UserNotFoundException {
+	public User confirmUser(String loginId) throws SQLException, UserNotFoundException {
 		UserDAO userDAO = UserDAO.getInstance();
 		try (Connection conn = ConnectionProvider.getConnection()) {
-			User user = userDAO.selectByPassword(conn, password);
+			User user = userDAO.selectByLoginId(conn, loginId);
 			return user;
 		}
 	}
