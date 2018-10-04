@@ -1,8 +1,6 @@
+<%@page import="User.DAO.UserDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<% 
-	
-%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -52,7 +50,7 @@
                         <p class="welcome font14">
                             <span class="name">진국</span><span>님, 환영합니다.</span>
                         </p>
-                        <a href="/myPage.jsp?userId=${userId}" class="myPage font14">마이페이지</a>
+                        <a href="myPage" class="myPage font14">마이페이지</a>
                     </div>
                      --%>
                 </div>

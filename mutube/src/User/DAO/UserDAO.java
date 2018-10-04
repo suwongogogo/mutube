@@ -9,6 +9,8 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
+import com.mysql.cj.xdevapi.Result;
+
 import User.Model.User;
 
 public class UserDAO {
@@ -35,13 +37,13 @@ public class UserDAO {
 		}
 	}
 	
-	public User selectByUserId(Connection conn, User user) throws SQLException {
+	public User selectByUserId(Connection conn, int userId) throws SQLException {
 		String sql = "select userId, loginId, cast(aes_decrypt(unhex(password),'mutube') as char(50)) as password, email, name, register_date, authority"
 				+ " from User where userId = ?";
 		try (PreparedStatement pst = conn.prepareStatement(sql)) {
-			pst.setInt(1, user.getUserId());
+			pst.setInt(1, userId);
 			try (ResultSet rs = pst.executeQuery()) {
-				user = null;
+				User user = null;
 				if (rs.next()) {
 					user = getUserModel(rs);
 				}
@@ -100,7 +102,22 @@ public class UserDAO {
 			}
 		}
 	}
-
+	
+	public User selectByPassword(Connection conn, String password) throws SQLException {
+		String sql = "select userId, loginId, cast(aes_decrypt(unhex(password),'mutube') as char(50)) as password, email, name, register_date, authority"
+				+ " from User where password = ?";
+		try (PreparedStatement pst = conn.prepareStatement(sql)) {
+			pst.setString(1, password);
+			try (ResultSet rs = pst.executeQuery()) {
+				User user = null;
+				if (rs.next()) {
+					user = getUserModel(rs);
+				}
+				return user;
+			}
+		}
+	}
+	
 	public User findPassword(Connection conn, User user) throws SQLException {
 		String sql = "select userId, loginId, cast(aes_decrypt(unhex(password),'mutube') as char(50)) as password, email, name, register_date, authority"
 				+ " from User where name = ? and email = ? and loginId = ?";
@@ -133,6 +150,15 @@ public class UserDAO {
 				}
 				return user;
 			}
+		}
+	}
+	
+	public int delete(Connection conn, int userId) throws SQLException {
+		String sql = "delete from user where userId = ?";
+		try(PreparedStatement pst = conn.prepareStatement(sql)){
+			pst.setInt(1, userId);
+			int count = pst.executeUpdate();
+			return count;
 		}
 	}
 

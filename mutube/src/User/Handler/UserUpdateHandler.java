@@ -32,13 +32,13 @@ public class UserUpdateHandler implements CommandHandler{
 	private String processForm(HttpServletRequest req, HttpServletResponse resp) throws SQLException, UserNotFoundException {
 	
 		UserDAO userDAO = UserDAO.getInstance();
-		User user = new User();
+		int userId = Integer.parseInt(req.getParameter("userId"));
 		
 		try(Connection conn = ConnectionProvider.getConnection()) {
-			user = userDAO.selectByUserId(conn, user);
+			User user = userDAO.selectByUserId(conn, userId);
 		}
 		
-		req.setAttribute("user", user);
+		req.setAttribute("user", userId);
 		return FORM_VIEW;
 	}
 
