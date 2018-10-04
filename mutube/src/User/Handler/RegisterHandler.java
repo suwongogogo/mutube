@@ -70,8 +70,8 @@ public class RegisterHandler implements CommandHandler{
 			errors.put("userExist", true);
 			return FORM_VIEW;
 		}
-		resp.sendRedirect("/Login");
-		return null;
+	
+		return "/WEB-INF/view/loginForm.jsp";
 	}
 
 	

@@ -13,83 +13,134 @@ import User.Model.User;
 
 public class UserDAO {
 	private static UserDAO instance = new UserDAO();
-	
-	private UserDAO() {}
-	
+
+	private UserDAO() {
+	}
+
 	public static UserDAO getInstance() {
 		return instance;
 	}
-	
-	public void insert(Connection conn, String loginId, String password, String email, String name) throws SQLException {
+
+	public void insert(Connection conn, String loginId, String password, String email, String name)
+			throws SQLException {
 		String sql = "insert into User(loginId, password, email, name) values(?,  HEX(aes_encrypt(?,'mutube')) , ?, ?)";
-		
-		try(PreparedStatement pst = conn.prepareStatement(sql)){
+
+		try (PreparedStatement pst = conn.prepareStatement(sql)) {
 			pst.setString(1, loginId);
 			pst.setString(2, password);
 			pst.setString(3, email);
 			pst.setString(4, name);
-			
+
 			pst.executeUpdate();
+		}
+	}
+	
+	public User selectByUserId(Connection conn, User user) throws SQLException {
+		String sql = "select userId, loginId, cast(aes_decrypt(unhex(password),'mutube') as char(50)) as password, email, name, register_date, authority"
+				+ " from User where userId = ?";
+		try (PreparedStatement pst = conn.prepareStatement(sql)) {
+			pst.setInt(1, user.getUserId());
+			try (ResultSet rs = pst.executeQuery()) {
+				user = null;
+				if (rs.next()) {
+					user = getUserModel(rs);
+				}
+				return user;
+			}
 		}
 	}
 	
 	public User selectByLoginId(Connection conn, String loginId) throws SQLException {
 		String sql = "select userId, loginId, cast(aes_decrypt(unhex(password),'mutube') as char(50)) as password, email, name, register_date, authority"
 				+ " from User where loginId = ?";
-		try(PreparedStatement pst = conn.prepareStatement(sql)){
+		try (PreparedStatement pst = conn.prepareStatement(sql)) {
 			pst.setString(1, loginId);
-			
-			try(ResultSet rs = pst.executeQuery()){
+
+			try (ResultSet rs = pst.executeQuery()) {
 				User user = null;
-				if(rs.next()) {
-					user = new User(rs.getInt("userId"), rs.getString("loginId"), rs.getString("password").trim(), 
-							rs.getString("email"), rs.getString("name"), rs.getTimestamp("register_date").toLocalDateTime(),
-							rs.getBoolean("authority"));
+				if (rs.next()) {
+					user = getUserModel(rs);
 				}
 				return user;
 			}
 		}
 	}
-	
+
 	public List<User> selectByName(Connection conn, String name, String email) throws SQLException {
 		String sql = "select * from User where name = ? and email = ?";
-		try(PreparedStatement pst = conn.prepareStatement(sql)){
+		try (PreparedStatement pst = conn.prepareStatement(sql)) {
 			pst.setString(1, name);
 			pst.setString(2, email);
-			try(ResultSet rs = pst.executeQuery()){
+			try (ResultSet rs = pst.executeQuery()) {
 				User user = null;
 				List<User> list = new ArrayList<>();
-				if(rs.next()) {
-					
-					user = new User(rs.getInt("userId"), rs.getString("loginId"), rs.getString("password").trim(), 
-							rs.getString("email"), rs.getString("name"), rs.getTimestamp("register_date").toLocalDateTime(),
-							rs.getBoolean("authority"));
+				if (rs.next()) {
+
+					user = getUserModel(rs);
 					list.add(user);
-				}else {
+				} else {
 					list = Collections.emptyList();
 				}
 				return list;
 			}
 		}
 	}
-	
-	public User findPassword(Connection conn, String name, String email, String loginId) throws SQLException {
+
+	public User selectByEmail(Connection conn, String email) throws SQLException {
 		String sql = "select userId, loginId, cast(aes_decrypt(unhex(password),'mutube') as char(50)) as password, email, name, register_date, authority"
-				+ " from User where name = ? and email = ? and loginId = ?";
-		try(PreparedStatement pst = conn.prepareStatement(sql)){
-			pst.setString(1, name);
-			pst.setString(2, email);
-			pst.setString(3, loginId);
-			try(ResultSet rs = pst.executeQuery()){
+				+ " from User where email = ?";
+		try (PreparedStatement pst = conn.prepareStatement(sql)) {
+			pst.setString(1, email);
+			try (ResultSet rs = pst.executeQuery()) {
 				User user = null;
-				if(rs.next()) {
-					user = new User(rs.getInt("userId"), rs.getString("loginId"), rs.getString("password").trim(), 
-							rs.getString("email"), rs.getString("name"), rs.getTimestamp("register_date").toLocalDateTime(),
-							rs.getBoolean("authority"));
+				if (rs.next()) {
+					user = getUserModel(rs);
 				}
-				
 				return user;
 			}
 		}
+	}
+
+	public User findPassword(Connection conn, User user) throws SQLException {
+		String sql = "select userId, loginId, cast(aes_decrypt(unhex(password),'mutube') as char(50)) as password, email, name, register_date, authority"
+				+ " from User where name = ? and email = ? and loginId = ?";
+		try (PreparedStatement pst = conn.prepareStatement(sql)) {
+			pst.setString(1, user.getName());
+			pst.setString(2, user.getEmail());
+			pst.setString(3, user.getLoginId());
+			try (ResultSet rs = pst.executeQuery()) {
+				user = null;
+				if (rs.next()) {
+					user = getUserModel(rs);
+				}
+				return user;
+			}
+		}
+	}
+
+	public User update(Connection conn, User user) throws SQLException {
+		String sql = "update user set loginId = ? , password = ? , email = ? , name = ? where userId = ?";
+		try(PreparedStatement pst = conn.prepareStatement(sql)){
+			pst.setString(1, user.getLoginId());
+			pst.setString(2, user.getPassword());
+			pst.setString(3, user.getEmail());
+			pst.setString(4, user.getName());
+			pst.setInt(5, user.getUserId());
+			try(ResultSet rs = pst.executeQuery()){
+				user = null;
+				if(rs.next()) {
+					user = getUserModel(rs);
+				}
+				return user;
+			}
+		}
+	}
+
+	private User getUserModel(ResultSet rs) throws SQLException {
+		User user = new User(rs.getInt("userId"), rs.getString("loginId"), rs.getString("password").trim(),
+				rs.getString("email"), rs.getString("name"), rs.getTimestamp("register_date").toLocalDateTime(),
+				rs.getBoolean("authority"));
+
+		return user;
 	}
 }

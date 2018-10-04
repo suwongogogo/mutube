@@ -16,10 +16,10 @@ public class FindPasswordService {
 		return instance;
 	}
 	
-	public User findPwd(String name, String email, String loginId) throws UserNotFoundException, SQLException {
+	public User findPwd(User user) throws UserNotFoundException, SQLException {
 		UserDAO userDAO = UserDAO.getInstance();
 		try(Connection conn = ConnectionProvider.getConnection()){
-			User savedUser = userDAO.findPassword(conn, name, email, loginId);
+			User savedUser = userDAO.findPassword(conn, user);
 			if(savedUser == null) {
 				throw new UserNotFoundException("User를 찾을 수 없다");
 			}

@@ -39,7 +39,7 @@
 						<span class="error"><c:if test="${errors.password }">비밀번호를 입력하세요.</c:if></span>
 					</div>
 					<div class="input-container">
-						<p>비밀번호 확인</p>.
+						<p>비밀번호 확인</p>
 						<input type="password" name="confirmPassword" class="signup"
 							placeholder="비밀번호 확인">
 						<div class="underline"></div>

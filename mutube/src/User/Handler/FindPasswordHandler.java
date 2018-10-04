@@ -79,10 +79,10 @@ public class FindPasswordHandler implements CommandHandler {
 
 		FindPasswordService passwordService = FindPasswordService.getInstance();
 		try {
-			user = passwordService.findPwd(name, email, loginId);
+			user = passwordService.findPwd(user);
 
 			// 이메일보내기에 필요한 정보들
-			String host = "http://localhost:8080/mutube/";
+			String host = "http://localhost:8085/mutube/";
 			String from = "fltndnjs1234@gmail.com";
 			String to = email;
 			String subject = "너의 비밀번호를 찾아라!";
