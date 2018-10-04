@@ -11,6 +11,13 @@
 <title>Insert title here</title>
 </head>
 <body>
+	<div class="findId-container">
+        <P>회원님이 가지고 있는 ID</P>
+        <p>아이디 : ${loginIdList.loginId }</p>
+        <button class="check">
+            <a href="login">확인</a>
+        </button>
+    </div>
 	<c:if test="<%= password != null %>">
 		<script>
 			setTimeout(function() {
