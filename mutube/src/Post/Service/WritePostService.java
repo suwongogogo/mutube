@@ -8,7 +8,7 @@ import Post.DAO.PostContentDAO;
 import Post.DAO.PostDAO;
 import Post.Model.Post;
 import Post.Model.PostContent;
-import Request.WriteRequest;
+import Post.Model.PostData;
 
 public class WritePostService {
 	private static WritePostService instance = new WritePostService();
@@ -17,7 +17,7 @@ public class WritePostService {
 		return instance;
 	}
 	
-	public int write(WriteRequest writeReq) throws SQLException {
+	public int write(PostData writeReq) throws SQLException {
 		PostDAO postDAO = PostDAO.getInstance();
 		PostContentDAO contentDAO = PostContentDAO.getInstance();
 		

@@ -18,7 +18,7 @@ public class PostContent {
 		this.video_link= video_link;
 	}
 
-	public String trimLink(String video_link) {
+	public String trimLink() {
 		if(video_link.length() < 18) {
 			video_link = null;
 		}else if(video_link.length() < 50) {

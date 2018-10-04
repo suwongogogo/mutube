@@ -11,13 +11,13 @@ import javax.servlet.http.HttpServletResponse;
 import Handler.CommandHandler;
 import Post.Model.Post;
 import Post.Model.PostContent;
+import Post.Model.PostData;
 import Post.Model.Writer;
 import Post.Service.WritePostService;
-import Request.WriteRequest;
 import User.Model.User;
 
 public class WritePostHandler implements CommandHandler {
-	private static final String FORM_VIEW = "/WEB-INF/view/writeForm.jsp";
+	private static final String FORM_VIEW = "/WEB-INF/view/writePostForm.jsp";
 
 	public String process(HttpServletRequest req, HttpServletResponse resp) throws Exception {
 		if (req.getMethod().equalsIgnoreCase("GET")) {
@@ -44,7 +44,8 @@ public class WritePostHandler implements CommandHandler {
 		Post post = new Post(new Writer(loginUser.getUserId(),loginUser.getName()),req.getParameter("title"),req.getParameter("genre"),req.getParameter("musician"),req.getParameter("instrument"));
 		
 		PostContent postContent = new PostContent(req.getParameter("content"),req.getParameter("video_link"));
-		WriteRequest writeReq = new WriteRequest(post, postContent);
+		postContent.trimLink();
+		PostData writeReq = new PostData(post, postContent);
 		
 
 		// WriteRequest의 무결성 검사를 진행하고 이상있으면 다시 FORM_VIEW로 이동
