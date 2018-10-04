@@ -53,9 +53,10 @@ public class LoginHandler implements CommandHandler{
 		try {
 			LoginService loginService = LoginService.getInstance();
 			
-			loginService.login(user);
+			User loginUser = loginService.login(user);
+			System.out.println("로그인 성공"+loginUser.getName());
 			
-			req.getSession().setAttribute("loginUser", user);
+			req.getSession().setAttribute("loginUser", loginUser);
 			
 			resp.sendRedirect(req.getContextPath() + "/Main.jsp");
 			

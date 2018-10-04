@@ -16,7 +16,7 @@
 			<form action="write" method="post">
 				<div class="title-form">
 					<p class="title">제목</p>
-					<input class="input" type="text">
+					<input class="input" name="title" type="text">
 				</div>
 				<c:if test="${errors.genre }"><script>
 					alert("장르를 선택하세요");

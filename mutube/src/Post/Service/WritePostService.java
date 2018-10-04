@@ -25,21 +25,23 @@ public class WritePostService {
 			conn.setAutoCommit(false);
 			
 			Post post = writeReq.getPost();
-			Post savedPost = postDAO.insert(conn, post);
-			if(savedPost == null) {
+			postDAO.insert(conn, post);
+			
+			int postId = postDAO.selectLatestPostId(conn);
+			if(postId == 0) {
 				conn.rollback();
 				throw new RuntimeException("게시글 삽입 실패");
 			}
 			
-			PostContent postContent = new PostContent(savedPost.getPostId(), writeReq.getPostContent().getContent(), writeReq.getPostContent().getVideo_link());
-			PostContent savedPostContent = contentDAO.insert(conn, postContent);
-			if(savedPostContent == null) {
+			PostContent postContent = new PostContent(postId, writeReq.getPostContent().getContent(), writeReq.getPostContent().getVideo_link());
+			int ret = contentDAO.insert(conn, postContent);
+			if(ret == 0) {
 				conn.rollback();
 				throw new RuntimeException("Content 삽입 실패");
 			}
 			
 			conn.commit();
-			return savedPost.getPostId();
+			return postId;
 		}catch(SQLException e) {
 			throw new RuntimeException(e);
 		}

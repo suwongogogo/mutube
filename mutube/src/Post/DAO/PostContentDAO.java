@@ -17,18 +17,13 @@ public class PostContentDAO {
 		return instance;
 	}
 
-	public PostContent insert(Connection conn, PostContent postContent) throws SQLException {
+	public int insert(Connection conn, PostContent postContent) throws SQLException {
 		String sql = "insert into post_content(postId ,content) values(?, ?)";
 		try (PreparedStatement pst = conn.prepareStatement(sql)) {
 			pst.setInt(1, postContent.getPostId());
 			pst.setString(2, postContent.getContent());
-			int insertCnt = pst.executeUpdate();
-
-			if (insertCnt > 0) {
-				return postContent;
-			} else {
-				return null;
-			}
+			return pst.executeUpdate();
+			
 		}
 	}
 	

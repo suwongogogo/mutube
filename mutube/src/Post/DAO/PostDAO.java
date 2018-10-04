@@ -22,13 +22,14 @@ public class PostDAO {
 	}
 
 	public Post insert(Connection conn, Post post) throws SQLException {
-		String sql = "insert into post(userId, title, genre, musician, instrument, write_date) values(?,?,?,?,?,now())";
+		String sql = "insert into post(userId, name, title, genre, musician, instrument) values(?,?,?,?,?,?)";
 		try (PreparedStatement pst = conn.prepareStatement(sql)) {
 			pst.setInt(1, post.getWriter().getUserId());
-			pst.setString(2, post.getTitle());
-			pst.setString(3, post.getGenre());
-			pst.setString(4, post.getMusician());
-			pst.setString(5, post.getInstrument());
+			pst.setString(2, post.getWriter().getName());
+			pst.setString(3, post.getTitle());
+			pst.setString(4, post.getGenre());
+			pst.setString(5, post.getMusician());
+			pst.setString(6, post.getInstrument());
 			int writeCnt = pst.executeUpdate();
 
 			if (writeCnt > 0) {
@@ -38,7 +39,7 @@ public class PostDAO {
 			}
 		}
 	}
-	
+	 
 	public int update(Connection conn,String title , int postId) throws SQLException {
 		String sql = "update post set title = ? where postId = ?";
 		try(PreparedStatement pst = conn.prepareStatement(sql)){
@@ -75,6 +76,17 @@ public class PostDAO {
 				return postList;
 			}
 		}
+	}
+	
+	public int selectLatestPostId(Connection conn) throws SQLException {
+		String query="select postId from post order by write_date desc limit 1";
+		try(Statement pst = conn.createStatement()){
+			ResultSet rs = pst.executeQuery(query);
+			if(rs.next()) {
+			return rs.getInt(1);
+			}
+		}
+		return 0;
 	}
 
 	

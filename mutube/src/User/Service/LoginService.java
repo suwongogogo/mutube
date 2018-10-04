@@ -15,11 +15,10 @@ public class LoginService {
 		return instance;
 	}
 	
-	public void login(User user) throws SQLException, PasswordNotMatchException {
+	public User login(User user) throws SQLException, PasswordNotMatchException {
 		UserDAO userDAO = UserDAO.getInstance();
 		
 		try(Connection conn = ConnectionProvider.getConnection()){
-			conn.setAutoCommit(false);
 			
 			User checkUser = userDAO.selectByLoginId(conn, user.getLoginId());
 			
@@ -27,6 +26,7 @@ public class LoginService {
 				throw new PasswordNotMatchException("올바르지 않은 패스워드");
 			}
 			
+			return checkUser;
 		}
 	}
 }

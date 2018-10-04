@@ -42,16 +42,16 @@ public class WritePostHandler implements CommandHandler {
 		
 		// 글 정보는 Post, 내용은 PostContent 객체에 담아 WriteRequest를 생성.
 		Post post = new Post(new Writer(loginUser.getUserId(),loginUser.getName()),req.getParameter("title"),req.getParameter("genre"),req.getParameter("musician"),req.getParameter("instrument"));
+		
 		PostContent postContent = new PostContent(req.getParameter("content"),req.getParameter("video_link"));
 		WriteRequest writeReq = new WriteRequest(post, postContent);
 		
-		System.out.println("writeReq 생성"+writeReq.getPost().getMusician());
+
 		// WriteRequest의 무결성 검사를 진행하고 이상있으면 다시 FORM_VIEW로 이동
 		Map<String, Boolean> errors = new HashMap<String, Boolean>();
 		req.setAttribute("errors", errors);
 		
 		post.writeValidate(errors);
-		
 		if(!errors.isEmpty()) {
 			return FORM_VIEW;
 		}
@@ -60,14 +60,14 @@ public class WritePostHandler implements CommandHandler {
 		WritePostService writePostService = WritePostService.getInstance();
 		int postId = 0;
 		try {
-			
 			postId = writePostService.write(writeReq);
+			resp.sendRedirect(req.getContextPath()+"/view?no="+postId);
+			
 		} catch (RuntimeException | SQLException e) {			
 			e.printStackTrace();
-			resp.sendRedirect(req.getContextPath() + "/postList.jsp");
+			return FORM_VIEW;
 		}
-		resp.sendRedirect("/view?no="+postId);
-		
+	
 		return null;
 	}
 

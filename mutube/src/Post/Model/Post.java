@@ -49,6 +49,7 @@ public class Post {
 		if(instrument==null||instrument.isEmpty()) {
 			errors.put("instrument", true);
 		}
+		
 	}
 
 
