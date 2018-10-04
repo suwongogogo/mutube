@@ -6,7 +6,9 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>아이디 찾기</title>
+<link rel="stylesheet" type="text/css" media="screen"
+	href="/mutube/CSS/findIdSuccess.css" />
 </head>
 <body>
 	<c:set var="loginIdList" value="${loginIdList}" />
@@ -14,7 +16,13 @@
 	<c:forEach var="loginIdList" items="${loginIdList }" begin="0" end="${fn:length(loginIdList) }" >
 	아이디 : ${loginIdList.loginId }
 	</c:forEach>
-	
+	<div class="findId-container">
+        <P>회원님이 가지고 있는 ID</P>
+        <p>아이디 : ${loginIdList.loginId }</p>
+        <button class="check">
+            <a href="login">확인</a>
+        </button>
+    </div>
 	<!-- 회원님이 가지고 있는 ID : "아이디" -->
 </body>
 </html>
