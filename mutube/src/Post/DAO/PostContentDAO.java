@@ -44,11 +44,12 @@ public class PostContentDAO {
 		return postContent;
 	}
 
-	public int update(Connection conn, String content, int postId) throws SQLException {
-		String sql = "update post_content set content = ? where postId = ?";
+	public int update(Connection conn, PostContent postContent, int postId) throws SQLException {
+		String sql = "update post_content set content = ?, set video_link= ? where postId = ?";
 		try (PreparedStatement pst = conn.prepareStatement(sql)) {
-			pst.setString(1, content);
-			pst.setInt(2, postId);
+			pst.setString(1, postContent.getContent());
+			pst.setString(2, postContent.getVideo_link());
+			pst.setInt(3, postId);
 			return pst.executeUpdate();
 		}
 	}

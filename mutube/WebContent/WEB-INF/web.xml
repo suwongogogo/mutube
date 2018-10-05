@@ -33,6 +33,8 @@
 		<url-pattern>/delete</url-pattern>
 		<url-pattern>/confirmUserByPassword</url-pattern>
 		<url-pattern>/changePassword</url-pattern>
+		<url-pattern>/updatePost</url-pattern>
+		<url-pattern>/deletePost</url-pattern>
 	</filter-mapping>
 	
 	<!-- 컨트롤러 서블릿 -->

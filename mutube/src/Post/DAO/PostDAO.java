@@ -40,11 +40,14 @@ public class PostDAO {
 		}
 	}
 	 
-	public int update(Connection conn,String title , int postId) throws SQLException {
-		String sql = "update post set title = ? where postId = ?";
+	public int update(Connection conn, Post post) throws SQLException {
+		String sql = "update post set title = ?, genre=?, musician=?, instrument=? where postId = ?";
 		try(PreparedStatement pst = conn.prepareStatement(sql)){
-			pst.setString(1, title);
-			pst.setInt(2, postId);
+			pst.setString(1, post.getTitle());
+			pst.setString(2, post.getGenre());
+			pst.setString(3, post.getMusician());
+			pst.setString(4, post.getInstrument());
+			pst.setInt(5, post.getPostId());
 			return pst.executeUpdate();
 		}
 	}

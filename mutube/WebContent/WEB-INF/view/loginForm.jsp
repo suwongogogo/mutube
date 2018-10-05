@@ -18,10 +18,12 @@
             <div class="login" class="input-container">
                 <div class="input-container">
                     <p>아이디</p>
-                    <input type="text" name="loginId" class="signin" placeholder="아이디">
+                    <input type="text" name="loginId" class="signin" placeholder="아이디" value="${param.loginId }">
                     <div class="underline"></div>
                     <span class="error"><c:if test="${errors.loginId }">아이디를 입력하세요.</c:if>
-                    <c:if test="${errors.passwordNotMatch }">아이디 또는 비밀번호가 올바르지 않습니다.</c:if></span>
+                    <c:if test="${errors.userNotFound }">존재하지 않는 유저입니다.</c:if>
+                    <c:if test="${errors.passwordNotMatch }">아이디 또는 비밀번호가 올바르지 않습니다.</c:if>
+                    </span>
                 </div>
                 <div class="input-container">
                     <p>비밀번호</p>

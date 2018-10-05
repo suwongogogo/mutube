@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import Handler.CommandHandler;
 import User.Exception.PasswordNotMatchException;
+import User.Exception.UserNotFoundException;
 import User.Model.User;
 import User.Service.LoginService;
 
@@ -65,6 +66,10 @@ public class LoginHandler implements CommandHandler{
 		} catch (PasswordNotMatchException e) {
 			e.printStackTrace();
 			errors.put("passwordNotMatch", true);
+			return FORM_VIEW;
+		} catch (UserNotFoundException e) {
+			e.printStackTrace();
+			errors.put("userNotFound",true);
 			return FORM_VIEW;
 		}
 		
