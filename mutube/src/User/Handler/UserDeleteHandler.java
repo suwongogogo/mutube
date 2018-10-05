@@ -43,14 +43,14 @@ public class UserDeleteHandler implements CommandHandler{
 		try {
 			UserDeleteService deleteService = UserDeleteService.getInstance();
 			deleteService.delete(sessionUser.getUserId());
-			
-			resp.sendRedirect(req.getContextPath() + "/myPage.jsp");
+						
+			req.setAttribute("success", true);
+			return "/WEB-INF/view/deleteSuccess.jsp";
 		}catch(UserNotFoundException e) {
 			req.setAttribute("success", false);
 			e.printStackTrace();
 		}
-		req.setAttribute("success", true);
-		return "/WEB-INF/view/deleteSuccess.jsp";
+		return null;
 	}
 	
 	

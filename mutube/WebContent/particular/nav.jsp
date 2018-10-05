@@ -26,7 +26,7 @@
                     </li>
                     <span class="sub-font"> / </span>
                     <li class="sub-font">
-                        <a href="#">비밀번호 찾기</a>
+                        <a href="findPassword">비밀번호 찾기</a>
                     </li>
                 </ul>
                 </c:if>
