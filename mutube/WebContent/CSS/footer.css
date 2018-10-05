@@ -1,0 +1,17 @@
+.footer-p {
+	display: block !important;
+}
+.footer {
+    width: 100%;
+    background-color: #212121;
+    color: white;
+}
+.footer-container {
+    width: 1440px;
+    padding: 30px 120px;
+}
+.footer-text {
+    font-size: 22px;
+    font-weight: bold;
+    margin-bottom: 4px;
+}
