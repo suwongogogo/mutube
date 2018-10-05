@@ -8,10 +8,11 @@ import javax.servlet.http.HttpServletResponse;
 
 import Handler.CommandHandler;
 import User.Exception.UserNotFoundException;
+import User.Model.User;
 import User.Service.UserDeleteService;
 
 public class UserDeleteHandler implements CommandHandler{
-	private static final String FORM_VIEW = "/WEB-INF/view/deleteSuccess.jsp";
+	private static final String FORM_VIEW = "/WEB-INF/view/userDeleteForm.jsp";
 
 	@Override
 	public String process(HttpServletRequest req, HttpServletResponse resp) throws Exception {
@@ -37,17 +38,19 @@ public class UserDeleteHandler implements CommandHandler{
 
 	private String processSubmit(HttpServletRequest req, HttpServletResponse resp) throws SQLException, IOException {
 		
-		int userId = Integer.parseInt((String) req.getAttribute("userId"));
+		User sessionUser = (User)req.getSession().getAttribute("loginUser");
 		
 		try {
 			UserDeleteService deleteService = UserDeleteService.getInstance();
-			deleteService.delete(userId);
+			deleteService.delete(sessionUser.getUserId());
 			
 			resp.sendRedirect(req.getContextPath() + "/myPage.jsp");
 		}catch(UserNotFoundException e) {
+			req.setAttribute("success", false);
 			e.printStackTrace();
 		}
-		return null;
+		req.setAttribute("success", true);
+		return "/WEB-INF/view/deleteSuccess.jsp";
 	}
 	
 	
