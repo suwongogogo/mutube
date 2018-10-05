@@ -11,8 +11,8 @@
     <div class="nav">
         <div class="left-padding">
             <div class="user-container">
-                <a href="login">
-                    <p class="login">로그인</p>
+                <!-- <a href="login">
+                    <p class="loginout">로그인</p>
                 </a>
                 <ul class="information">
                     <li class="sub-font">
@@ -26,7 +26,18 @@
                     <li class="sub-font">
                         <a href="#">비밀번호 찾기</a>
                     </li>
-                </ul>
+                </ul> -->
+                <a href="logout">
+                	<p class="loginout">로그아웃</p>
+                </a>
+                <ul>
+	                <li>
+	                	<span class="id">진국</span>님, 환영합니다. 
+	                </li>
+	                <li class="sub-font" class="right">
+	                	<a href="#">마이페이지</a>
+	                </li>
+               	</ul>
             </div>
             <ul class="drop-ul">
                 <li class="drop-li">
