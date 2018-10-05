@@ -27,7 +27,7 @@ public class ChangePasswordHandler implements CommandHandler {
 	}
 
 	private String processForm(HttpServletRequest req, HttpServletResponse resp) throws SQLException {
-		System.out.println("수정폼");
+		System.out.println("비밀번호 수정폼");
 		int userId = Integer.parseInt(req.getParameter("userId"));
 		
 		ChangePasswordService changePassword = ChangePasswordService.getInstance();
@@ -38,11 +38,13 @@ public class ChangePasswordHandler implements CommandHandler {
 	}
 
 	private String processSubmit(HttpServletRequest req, HttpServletResponse resp) {
-		
+		System.out.println("비밀번호 변경 실행");
 		String password = (String)req.getParameter("password");
-		String loginId = (String)req.getParameter("loginId");
+		User sessionUser = (User)req.getSession().getAttribute("loginUser");
 		
-		User user = new User(loginId, password);
+		System.out.println(password);
+		
+		User user = new User(sessionUser.getLoginId(), password);
 		
 		Map<String, Boolean> errors = new HashMap<String, Boolean>();
 		if(user.getLoginId().isEmpty() || user.getLoginId() == null) {
@@ -53,10 +55,11 @@ public class ChangePasswordHandler implements CommandHandler {
 		}
 		
 		try {
+			int integerPassword = Integer.parseInt(password);
 			ChangePasswordService changePassword = ChangePasswordService.getInstance();
-			changePassword.changePwd(password, loginId);
+			user = changePassword.changePwd(integerPassword, sessionUser.getLoginId());
 			
-		
+			req.setAttribute("user", user);
 			return "/WEB-INF/view/myPage.jsp";
 		}catch(SQLException e) {
 			throw new RuntimeException(e);

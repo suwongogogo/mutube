@@ -11,15 +11,15 @@
 		<table>
 			<tr>
 				<td>아이디</td>
-				<td><input type="text" name="loginId" value="${user.loginId }" ></td>
+				<td><input type="text" name="loginId" value="${loginUser.loginId }" ></td>
 			</tr>
 			<tr>
 				<td>이름</td>
-				<td><input type="text" name="name" value="${user.name }"></td>
+				<td><input type="text" name="name" value="${loginUser.name }"></td>
 			</tr>
 			<tr>
 				<td>이메일</td>
-				<td><input type="text" name="email" value="${user.email }"></td>
+				<td><input type="text" name="email" value="${loginUser.email }"></td>
 			</tr>
 			<tr>
 				<td><input type="submit" value="수정"></td>
