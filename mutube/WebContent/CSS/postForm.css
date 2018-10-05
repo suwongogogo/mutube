@@ -1,13 +1,16 @@
 body,p {
     margin: 0px;
 }
+.center {
+	display: flex;
+}
 .postForm-container {
     width: 1250px;
     height: 700px;
     padding: 30px;
     position: absolute;
     top: 150px;
-    left: 500px;
+    left: 450px;
     border: 1px solid #dddddd;
     border-radius: 10px;
     box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14),
@@ -20,7 +23,7 @@ body,p {
 .title-form,.select-container,.video-container {
     margin-bottom: 25px;
 }
-.title {
+.write-title {
     font-weight: bold;
     margin-right: 10px;
     font-size: 19px;
