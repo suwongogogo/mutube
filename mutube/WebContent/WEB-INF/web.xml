@@ -52,11 +52,14 @@
 		<url-pattern>/logout</url-pattern>
 		<url-pattern>/findLoginId</url-pattern>
 		<url-pattern>/findPassword</url-pattern>
-		<url-pattern>/write</url-pattern>
-		<url-pattern>/update</url-pattern>
-		<url-pattern>/delete</url-pattern>
-		<url-pattern>/view</url-pattern>
+		<url-pattern>/updateUser</url-pattern>
+		<url-pattern>/deleteUser</url-pattern>
 		<url-pattern>/confirmUserByPassword</url-pattern>
 		<url-pattern>/changePassword</url-pattern>
+		
+		<url-pattern>/writePost</url-pattern>
+		<url-pattern>/viewPost</url-pattern>
+		<url-pattern>/updatePost</url-pattern>
+		<url-pattern>/deletePost</url-pattern>
 	</servlet-mapping>
 </web-app>

@@ -15,7 +15,7 @@
     	<div class="center">
         	<jsp:include page="/particular/nav.jsp"></jsp:include>
 		   	<div class="board">
-		   		
+		   		세긋
 		   	</div>
     	</div>
     	<jsp:include page="/particular/footer.jsp"></jsp:include>

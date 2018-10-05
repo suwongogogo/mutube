@@ -35,7 +35,7 @@ public class Post {
 		this.musician = musician;
 		this.instrument = instrument;
 	}
-	
+
 	public void writeValidate(Map<String, Boolean> errors) {
 		if(title==null||title.isEmpty()) {
 			errors.put("title", true);

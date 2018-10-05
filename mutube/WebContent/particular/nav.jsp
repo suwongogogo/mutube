@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,7 +12,8 @@
     <div class="nav">
         <div class="left-padding">
             <div class="user-container">
-                <!-- <a href="login">
+                <c:if test="${loginUser==null }">
+                <a href="login">
                     <p class="loginout">로그인</p>
                 </a>
                 <ul class="information">
@@ -26,7 +28,9 @@
                     <li class="sub-font">
                         <a href="#">비밀번호 찾기</a>
                     </li>
-                </ul> -->
+                </ul>
+                </c:if>
+                <c:if test="${loginUser!=null }">
                 <a href="logout">
                 	<p class="loginout">로그아웃</p>
                 </a>
@@ -38,6 +42,7 @@
 	                	<a href="#" style="display: block;">마이페이지</a>
 	                </li>
                	</ul>
+               	</c:if>
             </div>
             <ul class="drop-ul">
                 <li class="drop-li">
