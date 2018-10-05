@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import Handler.CommandHandler;
+import User.Exception.UserNotFoundException;
 import User.Model.User;
 import User.Service.ChangePasswordService;
 
@@ -39,29 +40,31 @@ public class ChangePasswordHandler implements CommandHandler {
 	}
 
 	private String processSubmit(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-		System.out.println("비밀번호 변경 실행");
-		String password = (String)req.getParameter("password");
-		User sessionUser = (User)req.getSession().getAttribute("loginUser");
-		
-		System.out.println(password);
-		
-		User user = new User(sessionUser.getLoginId(), password);
-		
-		Map<String, Boolean> errors = new HashMap<String, Boolean>();
-		if(user.getLoginId().isEmpty() || user.getLoginId() == null) {
-			errors.put("loginId", true);
-		}
-		if(user.getPassword().isEmpty() || user.getPassword() == null) {
-			errors.put("password", true);
-		}
-		
 		try {
+			System.out.println("비밀번호 변경 실행");
+			String password = req.getParameter("password");
+			User sessionUser = (User)req.getSession().getAttribute("loginUser");
+			
+			System.out.println(sessionUser.getLoginId());
+			
+			Map<String, Boolean> errors = new HashMap<String, Boolean>();
+			if(sessionUser == null) {
+				throw new UserNotFoundException("없는 유저입니다.");
+			}
+			if(password.isEmpty() || password == null) {
+				errors.put("password", true);
+			}
+			
 			ChangePasswordService changePassword = ChangePasswordService.getInstance();
-			user = changePassword.changePwd(user.getPassword(), sessionUser.getLoginId());
+			User user = changePassword.changePwd(password, sessionUser.getLoginId());
+			
+			sessionUser.setPassword(user.getPassword());
 			
 			resp.sendRedirect(req.getContextPath()+"/myPage.jsp");
 		}catch(SQLException e) {
 			throw new RuntimeException(e);
+		} catch (UserNotFoundException e) {
+			e.printStackTrace();
 		}
 		return null;
 	}

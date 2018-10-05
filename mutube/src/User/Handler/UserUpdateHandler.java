@@ -1,5 +1,6 @@
 package User.Handler;
 
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.HashMap;
@@ -40,7 +41,7 @@ public class UserUpdateHandler implements CommandHandler{
 		return FORM_VIEW;
 	}
 
-	private String processSubmit(HttpServletRequest req, HttpServletResponse resp) throws SQLException, UserNotFoundException {
+	private String processSubmit(HttpServletRequest req, HttpServletResponse resp) throws SQLException, IOException {
 		System.out.println("수정 시작");
 		
 		String loginId = (String)req.getParameter("loginId");
@@ -71,13 +72,11 @@ public class UserUpdateHandler implements CommandHandler{
 			
 			System.out.println("수정완료");
 			
-			req.setAttribute("user", savedUser);
-			// 업데이트를 완료하면 다시 내 정보를 볼 수 있는 MyPage로.
-			return "/WEB-INF/view/myPage.jsp";
+			resp.sendRedirect(req.getContextPath()+"/myPage.jsp");
 		}catch(UserNotFoundException e) {
-			throw new UserNotFoundException("없는 유저입니다.");
+			e.printStackTrace();
 		}
-		
+		return null;
 	}
 		
 }

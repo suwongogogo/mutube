@@ -1,5 +1,6 @@
 package User.Handler;
 
+import java.io.IOException;
 import java.sql.SQLException;
 
 import javax.servlet.http.HttpServletRequest;
@@ -34,7 +35,7 @@ public class UserDeleteHandler implements CommandHandler{
 		return FORM_VIEW;
 	}
 
-	private String processSubmit(HttpServletRequest req, HttpServletResponse resp) throws SQLException, UserNotFoundException {
+	private String processSubmit(HttpServletRequest req, HttpServletResponse resp) throws SQLException, IOException {
 		
 		int userId = Integer.parseInt((String) req.getAttribute("userId"));
 		
@@ -42,10 +43,11 @@ public class UserDeleteHandler implements CommandHandler{
 			UserDeleteService deleteService = UserDeleteService.getInstance();
 			deleteService.delete(userId);
 			
-			return "/WEB-INF/view/deleteSuccess.jsp";
+			resp.sendRedirect(req.getContextPath() + "/myPage.jsp");
 		}catch(UserNotFoundException e) {
-			throw new UserNotFoundException("없는 유저입니다.");
+			e.printStackTrace();
 		}
+		return null;
 	}
 	
 	

@@ -22,6 +22,11 @@ public class ConfirmUserByPasswordService {
 		UserDAO userDAO = UserDAO.getInstance();
 		try (Connection conn = ConnectionProvider.getConnection()) {
 			User user = userDAO.selectByLoginId(conn, loginId);
+			
+			if(user == null) {
+				throw new UserNotFoundException("없는 유저입니다.");
+			}
+			
 			return user;
 		}
 	}

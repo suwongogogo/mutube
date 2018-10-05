@@ -125,6 +125,7 @@ public class UserDAO {
 		try(PreparedStatement pst = conn.prepareStatement(sql)){
 			pst.setString(1, password);
 			pst.setString(2, loginId);
+			pst.executeUpdate();
 		}
 	}
 	

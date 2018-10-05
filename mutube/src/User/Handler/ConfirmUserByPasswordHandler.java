@@ -1,5 +1,6 @@
 package User.Handler;
 
+import java.io.IOException;
 import java.sql.SQLException;
 
 import javax.servlet.http.HttpServletRequest;
@@ -30,27 +31,31 @@ public class ConfirmUserByPasswordHandler implements CommandHandler{
 		return FORM_VIEW;
 	}
 
-	private String processSubmit(HttpServletRequest req, HttpServletResponse resp) throws PasswordNotMatchException, UserNotFoundException, SQLException {
+	private String processSubmit(HttpServletRequest req, HttpServletResponse resp) throws SQLException, IOException {
 		System.out.println("실행이당.");
 		ConfirmUserByPasswordService confirmService = ConfirmUserByPasswordService.getInstance();
 		String password = req.getParameter("password");
-		User sessionUser = (User) req.getSession().getAttribute("loginUser");
-		User user = confirmService.confirmUser(sessionUser.getLoginId());
 		
-		System.out.println(password + ", " + sessionUser.getPassword());
 		
 		try {
+			User sessionUser = (User) req.getSession().getAttribute("loginUser");
+			User user = confirmService.confirmUser(sessionUser.getLoginId());
+			
+			System.out.println(password + ", " + sessionUser.getPassword());
+			
 			if(!user.getPassword().equals(password) &&!sessionUser.getPassword().equals(password)) {
 				throw new PasswordNotMatchException("비밀번호가 일치하지 않습니다.");
 			}
-		
-			req.setAttribute("user", user);
 			
-			return "/WEB-INF/view/myPage.jsp";
+			resp.sendRedirect(req.getContextPath()+"/myPage.jsp");
 		}catch(PasswordNotMatchException e) {
+			e.printStackTrace();
+			return FORM_VIEW;
+		}catch(UserNotFoundException e) {
+			e.printStackTrace();
 			return FORM_VIEW;
 		}
-		
+		return null;
 	}
 	
 }
