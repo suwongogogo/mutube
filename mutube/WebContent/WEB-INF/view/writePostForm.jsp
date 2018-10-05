@@ -41,7 +41,6 @@
 									<option value="balad" class="option">발라드</option>
 									<option value="pop" class="option">팝</option>
 									<option value="musical" class="option">뮤지컬</option>
-									<option value="strings" class="option">현악</option>
 									<option value="orchestra" class="option">오케스트라</option>
 								</select>
 							</div>

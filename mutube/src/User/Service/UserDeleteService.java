@@ -15,7 +15,7 @@ public class UserDeleteService {
 		return instance;
 	}
 	
-	public void delete(int userId) throws SQLException, UserNotFoundException {
+	public int delete(int userId) throws SQLException, UserNotFoundException {
 		UserDAO userDAO = UserDAO.getInstance();
 		try (Connection conn = ConnectionProvider.getConnection()){
 			User user = userDAO.selectByUserId(conn, userId);
@@ -24,7 +24,7 @@ public class UserDeleteService {
 				throw new UserNotFoundException("없는 유저입니다.");
 			}
 			
-			userDAO.delete(conn, userId);
+			return userDAO.delete(conn, userId);
 		}
 		
 	}

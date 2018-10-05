@@ -39,7 +39,7 @@
 	                	<span class="id">${loginUser.name }</span>님, 환영합니다. 
 	                </li>
 	                <li class="sub-font mypage" style="float: right;">
-	                	<a href="#" style="display: block;">마이페이지</a>
+	                	<a href="confirmUserByPassword" style="display: block;">마이페이지</a>
 	                </li>
                	</ul>
                	</c:if>
@@ -63,13 +63,25 @@
                         <span class="droplist" onclick="openTest(this,'장르')">장르</span>
                         <ul class="dropdown" id="hidden1">
                             <li>
-                                <a href="#" class="title droplist">asd</a>
+                                <a href="#" class="title droplist">${jazz }</a>
                             </li>
                             <li>
-                                <a href="#" class="title droplist">asd</a>
+                                <a href="#" class="title droplist">${blues }</a>
                             </li>
                             <li>
-                                <a href="#" class="title droplist">asd</a>
+                                <a href="#" class="title droplist">${rock }</a>
+                            </li>
+                            <li>
+                                <a href="#" class="title droplist">${ballad }</a>
+                            </li>
+                            <li>
+                                <a href="#" class="title droplist">${pop }</a>
+                            </li>
+                            <li>
+                                <a href="#" class="title droplist">${musical }</a>
+                            </li>
+                            <li>
+                                <a href="#" class="title droplist">${orchestra }</a>
                             </li>
                         </ul>
                     </div>
@@ -80,13 +92,25 @@
                         <span class="droplist" onclick="openTest(this,'악기')">악기</span>
                         <ul class="dropdown" id="hidden1">
                             <li>
-                                <a href="#" class="title droplist">asd</a>
+                                <a href="#" class="title droplist">${vocal }</a>
                             </li>
                             <li>
-                                <a href="#" class="title droplist">asd</a>
+                                <a href="#" class="title droplist">${guitar }</a>
                             </li>
                             <li>
-                                <a href="#" class="title droplist">asd</a>
+                                <a href="#" class="title droplist">${piano }</a>
+                            </li>
+                            <li>
+                                <a href="#" class="title droplist">${violin }</a>
+                            </li>
+                            <li>
+                                <a href="#" class="title droplist">${cello }</a>
+                            </li>
+                            <li>
+                                <a href="#" class="title droplist">${trumpet }</a>
+                            </li>
+                            <li>
+                                <a href="#" class="title droplist">${trombone }</a>
                             </li>
                         </ul>
                     </div>
@@ -97,13 +121,19 @@
                         <span class="droplist" onclick="openTest(this,'뮤지션')">뮤지션</span>
                         <ul class="dropdown" id="hidden1">
                             <li>
-                                <a href="#" class="title droplist">asd</a>
+                                <a href="#" class="title droplist">${america }</a>
                             </li>
                             <li>
-                                <a href="#" class="title droplist">asd</a>
+                                <a href="#" class="title droplist">${korea }</a>
                             </li>
                             <li>
-                                <a href="#" class="title droplist">asd</a>
+                                <a href="#" class="title droplist">${japen }</a>
+                            </li>
+                            <li>
+                                <a href="#" class="title droplist">${england }</a>
+                            </li>
+                            <li>
+                                <a href="#" class="title droplist">${europe }</a>
                             </li>
                         </ul>
                     </div>

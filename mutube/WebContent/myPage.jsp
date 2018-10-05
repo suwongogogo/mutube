@@ -26,8 +26,8 @@
 			<td><input type="text" name="email" value="${loginUser.email }" readonly></td>
 		</tr>
 	</table>
-	<a href="update?userId=${loginUser.userId }">회원 수정</a>
+	<a href="updateUser?userId=${loginUser.userId }">회원 수정</a>
 	<a href="changePassword?userId=${loginUser.userId }">비밀번호 수정</a>
-	<a href="delete?userId=${loginUser.userId }">회원 탈퇴</a>
+	<a href="deleteUser?userId=${loginUser.userId }">회원 탈퇴</a>
 </body>
 </html>
