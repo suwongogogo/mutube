@@ -15,6 +15,9 @@ public class Post {
 	private LocalDateTime update_date;
 	private int views;
 
+	public Post() {
+		
+	}
 	public Post(int postId, Writer writer, String title, String genre, String musician, String instrument,
 			LocalDateTime write_date, LocalDateTime update_date, int views) {
 		this.postId = postId;
