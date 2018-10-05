@@ -32,13 +32,18 @@ a {
     text-align: center;
     color: blue;
 }
-.id {
+.logout-ul {
+	margin-top: 5px;
+}
+.font {
 	display: inline-block;
-	color: blue;
 	font-size: 17px;
 }
-.right {
-	float: right;
+.id {
+	color: blue;
+}
+.mypage {
+	line-height: 24px;
 }
 .information {
     margin-left: 8px;

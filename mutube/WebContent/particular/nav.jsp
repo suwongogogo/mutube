@@ -30,12 +30,12 @@
                 <a href="logout">
                 	<p class="loginout">로그아웃</p>
                 </a>
-                <ul>
-	                <li>
+                <ul class="logout-ul">
+	                <li class="font">
 	                	<span class="id">진국</span>님, 환영합니다. 
 	                </li>
-	                <li class="sub-font" class="right">
-	                	<a href="#">마이페이지</a>
+	                <li class="sub-font mypage" style="float: right;">
+	                	<a href="#" style="display: block;">마이페이지</a>
 	                </li>
                	</ul>
             </div>
