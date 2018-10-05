@@ -36,7 +36,7 @@
                 </a>
                 <ul class="logout-ul">
 	                <li class="font">
-	                	<span class="id">진국</span>님, 환영합니다. 
+	                	<span class="id">${loginUser.name }</span>님, 환영합니다. 
 	                </li>
 	                <li class="sub-font mypage" style="float: right;">
 	                	<a href="#" style="display: block;">마이페이지</a>
