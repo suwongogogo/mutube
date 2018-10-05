@@ -49,8 +49,8 @@ public class UserDeleteHandler implements CommandHandler{
 		}catch(UserNotFoundException e) {
 			req.setAttribute("success", false);
 			e.printStackTrace();
+			return "/WEB-INF/view/deleteSuccess.jsp";
 		}
-		return null;
 	}
 	
 	

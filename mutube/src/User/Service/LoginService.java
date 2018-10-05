@@ -19,13 +19,13 @@ public class LoginService {
 		UserDAO userDAO = UserDAO.getInstance();
 		
 		try(Connection conn = ConnectionProvider.getConnection()){
-			
 			User checkUser = userDAO.selectByLoginId(conn, user.getLoginId());
 			
+			System.out.println(checkUser.getUserId());
 			if(!user.getPassword().equals(checkUser.getPassword())) {
 				throw new PasswordNotMatchException("올바르지 않은 패스워드");
 			}
-			
+			System.out.println(checkUser.getLoginId());
 			return checkUser;
 		}
 	}
