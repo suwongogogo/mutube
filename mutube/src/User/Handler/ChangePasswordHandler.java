@@ -1,5 +1,6 @@
 package User.Handler;
 
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
@@ -37,7 +38,7 @@ public class ChangePasswordHandler implements CommandHandler {
 		return FORM_VIEW;
 	}
 
-	private String processSubmit(HttpServletRequest req, HttpServletResponse resp) {
+	private String processSubmit(HttpServletRequest req, HttpServletResponse resp) throws IOException {
 		System.out.println("비밀번호 변경 실행");
 		String password = (String)req.getParameter("password");
 		User sessionUser = (User)req.getSession().getAttribute("loginUser");
@@ -55,16 +56,14 @@ public class ChangePasswordHandler implements CommandHandler {
 		}
 		
 		try {
-			int integerPassword = Integer.parseInt(password);
 			ChangePasswordService changePassword = ChangePasswordService.getInstance();
-			user = changePassword.changePwd(integerPassword, sessionUser.getLoginId());
+			user = changePassword.changePwd(user.getPassword(), sessionUser.getLoginId());
 			
-			req.setAttribute("user", user);
-			return "/WEB-INF/view/myPage.jsp";
+			resp.sendRedirect(req.getContextPath()+"/myPage.jsp");
 		}catch(SQLException e) {
 			throw new RuntimeException(e);
 		}
-		
+		return null;
 	}
 
 }

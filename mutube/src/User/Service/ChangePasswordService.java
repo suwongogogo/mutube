@@ -14,7 +14,7 @@ public class ChangePasswordService {
 		return instance;
 	}
 	
-	public User changePwd(int password, String loginId) throws SQLException {
+	public User changePwd(String password, String loginId) throws SQLException {
 		UserDAO userDAO = UserDAO.getInstance();
 		try(Connection conn = ConnectionProvider.getConnection()){
 			userDAO.changePwd(conn, password, loginId);

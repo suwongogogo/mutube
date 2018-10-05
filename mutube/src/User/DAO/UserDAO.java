@@ -120,10 +120,10 @@ public class UserDAO {
 		}
 	}
 	
-	public void changePwd(Connection conn, int password , String loginId) throws SQLException {
+	public void changePwd(Connection conn, String password , String loginId) throws SQLException {
 		String sql = "update user set password = HEX(aes_encrypt(?,'mutube')) where loginId = ?";
 		try(PreparedStatement pst = conn.prepareStatement(sql)){
-			pst.setInt(1, password);
+			pst.setString(1, password);
 			pst.setString(2, loginId);
 		}
 	}
