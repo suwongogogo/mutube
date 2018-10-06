@@ -62,7 +62,7 @@ public class WritePostHandler implements CommandHandler {
 		int postId = 0;
 		try {
 			postId = writePostService.write(writeReq);
-			resp.sendRedirect(req.getContextPath()+"/view?no="+postId);
+			resp.sendRedirect(req.getContextPath()+"/viewPost?no="+postId);
 			
 		} catch (RuntimeException | SQLException e) {			
 			e.printStackTrace();

@@ -12,7 +12,7 @@ import Post.Service.DeletePostService;
 
 public class DeletePostHandler implements CommandHandler {
 
-	private static final String FORM_VIEW = "/WEB-INF/view/deletePostForm.jsp";
+	
 	@Override
 	public String process(HttpServletRequest req, HttpServletResponse resp) throws Exception {
 		if (req.getMethod().equalsIgnoreCase("GET")) {
@@ -32,39 +32,45 @@ public class DeletePostHandler implements CommandHandler {
 		}
 		try {
 			if(postId==0) {
+				resp.sendRedirect(req.getContextPath() + "/list");
 				throw new PostNotFoundException("잘못된 게시글번호");
 			}
-			resp.sendRedirect(req.getContextPath() + "/list");
-			
 		} catch(PostNotFoundException e) {
 			e.printStackTrace();
+			return null;
 		}
-		return FORM_VIEW;
+		
+		return "/WEB-INF/view/deletePostForm.jsp?no="+postId;
 	}
 
 	private String processSubmit(HttpServletRequest req, HttpServletResponse resp) throws IOException {
 		if(req.getParameter("submit").equals("아니오")) {
 			resp.sendRedirect(req.getContextPath()+"/Main.jsp");
+			return null;
 		}
 		
-		int postId = 0;
-		if(req.getParameter("no")!=null) {
-			postId = Integer.parseInt(req.getParameter("no"));
-		}
 		try {
+			int postId = 0;
+			if(req.getParameter("no")!=null) {
+				postId = Integer.parseInt(req.getParameter("no"));
+			}
 			if(postId==0) {
 				throw new PostNotFoundException("잘못된 게시글번호");
 			}
 			DeletePostService deletePostService = DeletePostService.getInstance();
 			deletePostService.delete(postId);
 			
+			System.out.println("삭제끝@");
 			resp.sendRedirect(req.getContextPath() + "/list");
+			return null;
 		} catch(PostNotFoundException e) {
 			e.printStackTrace();
+			return null;
 		} catch (SQLException e) {
 			e.printStackTrace();
+			return null;
 		}
-		return null;
+		
 	}
 
 }
