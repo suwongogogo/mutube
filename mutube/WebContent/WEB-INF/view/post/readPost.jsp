@@ -31,7 +31,6 @@
 						</tr>
 						<tr>
 							<td colspan="6" class="text-none">
-								<div class="line"></div>
 								<div class="view-content-container">
 									<div class="margin-right">
 										<c:if test="${postData.postContent.video_link != null }">
@@ -40,9 +39,8 @@
 												frameborder="0" allow="autoplay; encrypted-media"
 												allowfullscreen></iframe>
 										</c:if>
-										
-										${postData.postContent.content }
 									</div>
+										<div>${postData.postContent.content }</div>
 									<c:if
 										test="${loginUser!=null && loginUser.userId== postData.post.writer.userId }">
 										<div class="view-button-container margin-right">

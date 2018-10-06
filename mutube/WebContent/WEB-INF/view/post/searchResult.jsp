@@ -15,6 +15,9 @@
 				<td>${postList.postId }</td>
 				<td>${postList.title }</td>
 				<td>${postList.writer.name }</td>
+				<td>${postList.genre }</td>
+				<td>${postList.instrument }</td>
+				<td>${postList.country }</td>
 				<td>${postList.write_date }</td>
 			</tr>
 		</c:forEach>
