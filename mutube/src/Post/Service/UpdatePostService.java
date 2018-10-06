@@ -42,13 +42,13 @@ public class UpdatePostService {
 			int updateCnt = postDAO.update(conn, postData.getPost());
 			if(updateCnt==0) {
 				conn.rollback();
-				throw new UpdatePostFailExcpetion("게시글 삽입 실패");
+				throw new UpdatePostFailExcpetion("게시글 수정 실패");
 			}
 			
 			postContentDAO.update(conn, postData.getPostContent(), postData.getPost().getPostId());
 			if(updateCnt==0) {
 				conn.rollback();
-				throw new UpdatePostFailExcpetion("내용 삽입 실패");
+				throw new UpdatePostFailExcpetion("내용 수정 실패");
 			}
 			
 			conn.commit();

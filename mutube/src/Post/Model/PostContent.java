@@ -19,12 +19,12 @@ public class PostContent {
 	}
 
 	public String trimLink() {
-		if(video_link.length() < 18) {
+		if(video_link.length() < 20) {
 			video_link = null;
-		}else if(video_link.length() < 50) {
-			video_link = video_link.substring(video_link.lastIndexOf('/'));
+		}else if(video_link.length() < 40) {
+			video_link = video_link.substring(video_link.lastIndexOf('/')+1);
 		}else {
-			video_link = video_link.substring(video_link.lastIndexOf('='));
+			video_link = video_link.substring(video_link.lastIndexOf('=')+1);
 		}
 		return video_link;
 	}
