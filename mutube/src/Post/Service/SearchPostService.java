@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
 
+import Admin.Service.PostPageINF;
 import Connection.ConnectionProvider;
 import Post.DAO.PostDAO;
 import Post.Exception.PostNotFoundException;
@@ -16,16 +17,22 @@ public class SearchPostService {
 		return instance;
 	}
 	
-	public List<Post> searchPost(String keyword) throws SQLException {
+	private int size = 10;
+	private int blockSize = 6;
+	
+	public PostPage searchPost(String keyword, int pageNum) throws SQLException {
 		try(Connection conn = ConnectionProvider.getConnection()){
 			PostDAO postDAO = PostDAO.getInstance();
-			List<Post> postList = postDAO.searchPostList(conn, keyword);
+			
+			int total = postDAO.searchPostCount(conn, keyword);
+			
+			List<Post> postList = postDAO.searchPostList(conn, keyword, (pageNum - 1) * size, size);
 			
 			if(postList == null) {
 				throw new PostNotFoundException("검색된 게시글이 없습니다.");
 			}
 			
-			return postList;
+			return new PostPage(postList, pageNum, total, size, blockSize);
 		}
 	}
 }

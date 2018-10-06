@@ -81,10 +81,12 @@ public class PostDAO {
 		}
 	}
 	
-	public List<Post> searchPostList(Connection conn, String keyword) throws SQLException{
-		String query = "select * from Post where title like ? order by write_date desc";
+	public List<Post> searchPostList(Connection conn, String keyword, int startRow, int size) throws SQLException{
+		String query = "select * from Post where title like ? order by write_date desc limit ?, ?";
 		try(PreparedStatement pst = conn.prepareStatement(query)){
 			pst.setString(1, keyword);
+			pst.setInt(2, startRow);
+			pst.setInt(3, size);
 			try(ResultSet rs = pst.executeQuery()){
 				List<Post> postList = new ArrayList<Post>();
 				while(rs.next()) {
@@ -92,6 +94,19 @@ public class PostDAO {
 				}
 				return postList;
 			}
+		}
+	}
+	
+	public int searchPostCount(Connection conn, String keyword) throws SQLException {
+		String query = "select count(*) from post where title like ?";
+		try(PreparedStatement pst = conn.prepareStatement(query)){
+			pst.setString(1, keyword);
+			try(ResultSet rs = pst.executeQuery()){
+				if(rs.next()) {
+					return rs.getInt(1);
+				}
+			}
+			return 0;
 		}
 	}
 	
