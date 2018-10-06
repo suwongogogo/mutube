@@ -63,5 +63,6 @@
 		<url-pattern>/viewPost</url-pattern>
 		<url-pattern>/updatePost</url-pattern>
 		<url-pattern>/deletePost</url-pattern>
+		<url-pattern>/list</url-pattern>
 	</servlet-mapping>
 </web-app>
