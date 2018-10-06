@@ -8,7 +8,6 @@
 </head>
 <body>
     <div class="middle">
-        <!-- 헤더 -->
         <header class="header">
             <div class="search-container">
                 <form action="/mutube/post/search" method="get">
