@@ -20,9 +20,9 @@ public class ListPostHandler implements Handler.CommandHandler{
 			pageNum = Integer.parseInt(pageNumStr);
 		}
 		PostPage postPage = postService.getArticlePage(pageNum);
-		req.setAttribute("articlePage", postPage);
+		req.setAttribute("postPage", postPage);
 		
-		return "/WEB-INF/view/listArticle.jsp";
+		return "/WEB-INF/view/list.jsp";
 	}
 	
 }

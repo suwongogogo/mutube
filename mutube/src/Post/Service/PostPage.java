@@ -41,7 +41,7 @@ public class PostPage {
 			}
 		}
 
-	}public boolean hasPosts() {
+	}public boolean hasPost() {
 		return total > 0;
 	}
 	public List<Post> getPostList() {
