@@ -41,7 +41,7 @@ public class WritePostHandler implements CommandHandler {
 		
 		
 		// 글 정보는 Post, 내용은 PostContent 객체에 담아 WriteRequest를 생성.
-		Post post = new Post(new Writer(loginUser.getUserId(),loginUser.getName()),req.getParameter("title"),req.getParameter("genre"),req.getParameter("musician"),req.getParameter("instrument"));
+		Post post = new Post(new Writer(loginUser.getUserId(),loginUser.getName()),req.getParameter("title"),req.getParameter("genre"),req.getParameter("country"),req.getParameter("instrument"));
 		
 		PostContent postContent = new PostContent(req.getParameter("content"),req.getParameter("video_link"));
 		postContent.trimLink();

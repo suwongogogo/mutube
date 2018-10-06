@@ -22,13 +22,13 @@ public class PostDAO {
 	}
 
 	public Post insert(Connection conn, Post post) throws SQLException {
-		String sql = "insert into post(userId, name, title, genre, musician, instrument) values(?,?,?,?,?,?)";
+		String sql = "insert into post(userId, name, title, genre, country, instrument) values(?,?,?,?,?,?)";
 		try (PreparedStatement pst = conn.prepareStatement(sql)) {
 			pst.setInt(1, post.getWriter().getUserId());
 			pst.setString(2, post.getWriter().getName());
 			pst.setString(3, post.getTitle());
 			pst.setString(4, post.getGenre());
-			pst.setString(5, post.getMusician());
+			pst.setString(5, post.getCountry());
 			pst.setString(6, post.getInstrument());
 			int writeCnt = pst.executeUpdate();
 
@@ -41,11 +41,11 @@ public class PostDAO {
 	}
 	 
 	public int update(Connection conn, Post post) throws SQLException {
-		String sql = "update post set title = ?, genre=?, musician=?, instrument=? where postId = ?";
+		String sql = "update post set title = ?, genre=?, country=?, instrument=? where postId = ?";
 		try(PreparedStatement pst = conn.prepareStatement(sql)){
 			pst.setString(1, post.getTitle());
 			pst.setString(2, post.getGenre());
-			pst.setString(3, post.getMusician());
+			pst.setString(3, post.getCountry());
 			pst.setString(4, post.getInstrument());
 			pst.setInt(5, post.getPostId());
 			return pst.executeUpdate();
@@ -104,7 +104,7 @@ public class PostDAO {
 	// ResultSet으로 나온 결과를 Post객체로 생성해 담는 역할
 	private Post toPost(ResultSet rs) throws SQLException {
 		Post post = new Post(rs.getInt("postId"), new Writer(rs.getInt("userId"),rs.getString("name")),
-				rs.getString("title"), rs.getString("genre"), rs.getString("musician"), rs.getString("instrument")
+				rs.getString("title"), rs.getString("genre"), rs.getString("country"), rs.getString("instrument")
 				, rs.getTimestamp("write_date").toLocalDateTime(), rs.getTimestamp("update_date").toLocalDateTime(), rs.getInt("views"));
 
 		return post;

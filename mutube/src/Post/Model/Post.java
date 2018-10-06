@@ -9,7 +9,7 @@ public class Post {
 	private Writer writer;
 	private String title;
 	private String genre;
-	private String musician;
+	private String country;
 	private String instrument;
 	private LocalDateTime write_date;
 	private LocalDateTime update_date;
@@ -18,24 +18,24 @@ public class Post {
 	public Post() {
 		
 	}
-	public Post(int postId, Writer writer, String title, String genre, String musician, String instrument,
+	public Post(int postId, Writer writer, String title, String genre, String country, String instrument,
 			LocalDateTime write_date, LocalDateTime update_date, int views) {
 		this.postId = postId;
 		this.writer = writer;
 		this.title = title;
 		this.genre = genre;
-		this.musician = musician;
+		this.country = country;
 		this.instrument = instrument;
 		this.write_date = write_date;
 		this.update_date = update_date;
 		this.views = views;
 	}
 
-	public Post(Writer writer, String title, String genre, String musician, String instrument) {
+	public Post(Writer writer, String title, String genre, String country, String instrument) {
 		this.writer = writer;
 		this.title = title;
 		this.genre = genre;
-		this.musician = musician;
+		this.country = country;
 		this.instrument = instrument;
 	}
 
@@ -46,8 +46,8 @@ public class Post {
 		if(genre==null||genre.isEmpty()) {
 			errors.put("genre", true);
 		}
-		if(musician==null||musician.isEmpty()) {
-			errors.put("musician", true);
+		if(country==null||country.isEmpty()) {
+			errors.put("country", true);
 		}
 		if(instrument==null||instrument.isEmpty()) {
 			errors.put("instrument", true);
@@ -89,12 +89,12 @@ public class Post {
 		this.genre = genre;
 	}
 
-	public String getMusician() {
-		return musician;
+	public String getCountry() {
+		return country;
 	}
 
-	public void setMusician(String musician) {
-		this.musician = musician;
+	public void setCountry(String country) {
+		this.country = country;
 	}
 
 	public String getInstrument() {
