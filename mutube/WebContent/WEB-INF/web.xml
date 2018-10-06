@@ -49,22 +49,22 @@
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>Controller</servlet-name>
-		<url-pattern>/register</url-pattern>
-		<url-pattern>/login</url-pattern>
-		<url-pattern>/logout</url-pattern>
-		<url-pattern>/findLoginId</url-pattern>
-		<url-pattern>/findPassword</url-pattern>
-		<url-pattern>/updateUser</url-pattern>
-		<url-pattern>/deleteUser</url-pattern>
-		<url-pattern>/confirmUserByPassword</url-pattern>
-		<url-pattern>/changePassword</url-pattern>
+		<url-pattern>/user/register</url-pattern>
+		<url-pattern>/user/login</url-pattern>
+		<url-pattern>/user/logout</url-pattern>
+		<url-pattern>/user/findLoginId</url-pattern>
+		<url-pattern>/user/findPassword</url-pattern>
+		<url-pattern>/user/update</url-pattern>
+		<url-pattern>/user/delete</url-pattern>
+		<url-pattern>/user/confirmUserByPassword</url-pattern>
+		<url-pattern>/user/changePassword</url-pattern>
 		
-		<url-pattern>/writePost</url-pattern>
-		<url-pattern>/viewPost</url-pattern>
-		<url-pattern>/updatePost</url-pattern>
-		<url-pattern>/deletePost</url-pattern>
-		<url-pattern>/list</url-pattern>
+		<url-pattern>/post/write</url-pattern>
+		<url-pattern>/post/view</url-pattern>
+		<url-pattern>/post/update</url-pattern>
+		<url-pattern>/post/delete</url-pattern>
+		<url-pattern>/post/list</url-pattern>
 		
-		<url-pattern>/userManagement</url-pattern>
+		<url-pattern>/admin/userManagement</url-pattern>
 	</servlet-mapping>
 </web-app>
