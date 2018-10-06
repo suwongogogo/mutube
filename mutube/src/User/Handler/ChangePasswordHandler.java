@@ -14,7 +14,7 @@ import User.Model.User;
 import User.Service.ChangePasswordService;
 
 public class ChangePasswordHandler implements CommandHandler {
-	private static final String FORM_VIEW = "/WEB-INF/view/changePassword.jsp";
+	private static final String FORM_VIEW = "/WEB-INF/view/user/changePassword.jsp";
 
 	@Override
 	public String process(HttpServletRequest req, HttpServletResponse resp) throws Exception {
@@ -60,7 +60,7 @@ public class ChangePasswordHandler implements CommandHandler {
 			
 			sessionUser.setPassword(user.getPassword());
 			
-			resp.sendRedirect(req.getContextPath()+"/myPage.jsp");
+			resp.sendRedirect(req.getContextPath()+"/user/myPage.jsp");
 		}catch(SQLException e) {
 			throw new RuntimeException(e);
 		} catch (UserNotFoundException e) {

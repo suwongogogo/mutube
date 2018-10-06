@@ -26,7 +26,7 @@ public class ReadPostHandler implements CommandHandler {
 			PostData postData = readPostService.getPost(postId);
 			
 			req.setAttribute("postData", postData);
-			return "/WEB-INF/view/readPost.jsp";
+			return "/WEB-INF/view/post/readPost.jsp";
 
 		} catch (PostNotFoundException e) {
 			e.printStackTrace();

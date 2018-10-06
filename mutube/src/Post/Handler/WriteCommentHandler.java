@@ -11,7 +11,7 @@ import Post.Model.PostComment;
 import User.Model.User;
 
 public class WriteCommentHandler implements CommandHandler {
-	private static final String FORM_VIEW = "/WEB-INF/view/writeComment.jsp";
+	private static final String FORM_VIEW = "/WEB-INF/view/post/writeComment.jsp";
 
 	public String process(HttpServletRequest req, HttpServletResponse resp) throws Exception {
 		if (req.getMethod().equalsIgnoreCase("GET")) {

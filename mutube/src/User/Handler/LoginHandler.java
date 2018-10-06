@@ -16,7 +16,7 @@ import User.Service.LoginService;
 
 public class LoginHandler implements CommandHandler{
 
-	public static final String FORM_VIEW = "/WEB-INF/view/loginForm.jsp";
+	public static final String FORM_VIEW = "/WEB-INF/view/user/loginForm.jsp";
 	@Override
 	public String process(HttpServletRequest req, HttpServletResponse resp) throws Exception {
 		if(req.getMethod().equalsIgnoreCase("GET")) {

@@ -28,7 +28,7 @@ import User.Model.User;
 import User.Service.FindPasswordService;
 
 public class FindPasswordHandler implements CommandHandler {
-	private static final String FORM_VIEW = "/WEB-INF/view/findPasswordForm.jsp";
+	private static final String FORM_VIEW = "/WEB-INF/view/user/findPasswordForm.jsp";
 
 	@Override
 	public String process(HttpServletRequest req, HttpServletResponse resp) throws Exception {
@@ -118,7 +118,7 @@ public class FindPasswordHandler implements CommandHandler {
 
 			req.setAttribute("userPassword", user.getPassword());
 
-			return "/WEB-INF/view/findPasswordSuccess.jsp";
+			return "/WEB-INF/view/user/findPasswordSuccess.jsp";
 		} catch (UserNotFoundException e) {
 			throw new UserNotFoundException("없는 유저 입니다.");
 		} catch (MessagingException e) {

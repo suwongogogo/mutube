@@ -22,7 +22,7 @@ public class ListPostHandler implements Handler.CommandHandler{
 		PostPage postPage = postService.getArticlePage(pageNum);
 		req.setAttribute("postPage", postPage);
 		
-		return "/WEB-INF/view/list.jsp";
+		return "/WEB-INF/view/post/list.jsp";
 	}
 	
 }

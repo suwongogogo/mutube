@@ -13,25 +13,25 @@
         <div class="left-padding">
             <div class="user-container">
                 <c:if test="${loginUser==null }">
-                <a href="/user/login">
+                <a href="user/login">
                     <p class="loginout">로그인</p>
                 </a>
                 <ul class="information">
                     <li class="sub-font">
-                        <a href="/user/register">회원가입</a>
+                        <a href="user/register">회원가입</a>
                     </li>
                     <span class="sub-font"> / </span>
                     <li class="sub-font">
-                        <a href="/user/findLoginId">아이디 찾기</a>
+                        <a href="user/findLoginId">아이디 찾기</a>
                     </li>
                     <span class="sub-font"> / </span>
                     <li class="sub-font">
-                        <a href="/user/findPassword">비밀번호 찾기</a>
+                        <a href="user/findPassword">비밀번호 찾기</a>
                     </li>
                 </ul>
                 </c:if>
                 <c:if test="${loginUser!=null }">
-                <a href="/user/logout">
+                <a href="user/logout">
                 	<p class="loginout">로그아웃</p>
                 </a>
                 <ul class="logout-ul">
@@ -39,7 +39,7 @@
 	                	<span class="id">${loginUser.name }</span>님, 환영합니다. 
 	                </li>
 	                <li class="sub-font mypage" style="float: right;">
-	                	<a href="/user/confirmUserByPassword" style="display: block;">마이페이지</a>
+	                	<a href="user/confirmUserByPassword" style="display: block;">마이페이지</a>
 	                </li>
                	</ul>
                	</c:if>
@@ -48,13 +48,13 @@
                 <li class="drop-li">
                     <div class="clicked"></div>
                     <div class="list-container">
-                        <a class="droplist" href="/post/list">전체글</a>
+                        <a class="droplist" href="post/list">전체글</a>
                     </div>
                 </li>
                 <li class="drop-li">
                     <div class="clicked"></div>
                     <div class="list-container">
-                        <a class="droplist" href="/post/notice">공지</a>
+                        <a class="droplist" href="post/notice">공지</a>
                     </div>
                 </li>
                 <li class="drop-li">

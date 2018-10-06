@@ -13,7 +13,7 @@ import User.Model.User;
 import User.Service.ConfirmUserByPasswordService;
 
 public class ConfirmUserByPasswordHandler implements CommandHandler{
-	private static final String FORM_VIEW = "/WEB-INF/view/confirmUserByPassword.jsp";
+	private static final String FORM_VIEW = "/WEB-INF/view/user/confirmUserByPassword.jsp";
 	@Override
 	public String process(HttpServletRequest req, HttpServletResponse resp) throws Exception {
 		if(req.getMethod().equalsIgnoreCase("GET")) {
@@ -47,7 +47,7 @@ public class ConfirmUserByPasswordHandler implements CommandHandler{
 				throw new PasswordNotMatchException("비밀번호가 일치하지 않습니다.");
 			}
 			
-			resp.sendRedirect(req.getContextPath()+"/myPage.jsp");
+			resp.sendRedirect(req.getContextPath()+"/user/myPage.jsp");
 		}catch(PasswordNotMatchException e) {
 			e.printStackTrace();
 			return FORM_VIEW;

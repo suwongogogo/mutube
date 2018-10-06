@@ -17,7 +17,7 @@ import User.Model.User;
 import User.Service.UserUpdateService;
 
 public class UserUpdateHandler implements CommandHandler{
-	private static final String FORM_VIEW = "/WEB-INF/view/userUpdateForm.jsp";
+	private static final String FORM_VIEW = "/WEB-INF/view/user/userUpdateForm.jsp";
 	@Override
 	public String process(HttpServletRequest req, HttpServletResponse resp) throws Exception {
 		if(req.getMethod().equalsIgnoreCase("GET")) {
@@ -69,9 +69,7 @@ public class UserUpdateHandler implements CommandHandler{
 		try {
 			UserUpdateService updateService = UserUpdateService.getInstance();
 			updateService.update(savedUser);
-			
-			System.out.println("수정완료");
-			
+
 			resp.sendRedirect(req.getContextPath()+"/myPage.jsp");
 		}catch(UserNotFoundException e) {
 			e.printStackTrace();

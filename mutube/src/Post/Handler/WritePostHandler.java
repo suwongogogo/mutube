@@ -17,7 +17,7 @@ import Post.Service.WritePostService;
 import User.Model.User;
 
 public class WritePostHandler implements CommandHandler {
-	private static final String FORM_VIEW = "/WEB-INF/view/writePostForm.jsp";
+	private static final String FORM_VIEW = "/WEB-INF/view/post/writePostForm.jsp";
 
 	public String process(HttpServletRequest req, HttpServletResponse resp) throws Exception {
 		if (req.getMethod().equalsIgnoreCase("GET")) {
@@ -62,7 +62,7 @@ public class WritePostHandler implements CommandHandler {
 		int postId = 0;
 		try {
 			postId = writePostService.write(writeReq);
-			resp.sendRedirect(req.getContextPath()+"/view?no="+postId);
+			resp.sendRedirect(req.getContextPath()+"/post/view?no="+postId);
 			
 		} catch (RuntimeException | SQLException e) {			
 			e.printStackTrace();

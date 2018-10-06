@@ -48,7 +48,7 @@ public class UserDeleteHandler implements CommandHandler{
 			return "/WEB-INF/view/deleteSuccess.jsp";
 		}catch(UserNotFoundException e) {
 			e.printStackTrace();
-			resp.sendRedirect("/myPage.jsp");
+			resp.sendRedirect(req.getContextPath()+"/myPage.jsp");
 		}
 		return null;
 	}

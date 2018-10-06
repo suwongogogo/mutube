@@ -18,7 +18,7 @@ import User.Model.User;
 import User.Service.FindLoginIdService;
 
 public class FindLoginIdHandler implements CommandHandler {
-	private static final String FORM_VIEW = "/WEB-INF/view/findLoginIdForm.jsp";
+	private static final String FORM_VIEW = "/WEB-INF/view/user/findLoginIdForm.jsp";
 
 	public String process(HttpServletRequest req, HttpServletResponse resp) throws Exception {
 		if (req.getMethod().equalsIgnoreCase("GET")) {
@@ -64,7 +64,7 @@ public class FindLoginIdHandler implements CommandHandler {
 
 			req.setAttribute("loginIdList", userList);
 			
-			return "/WEB-INF/view/findIdSuccess.jsp";
+			return "/WEB-INF/view/user/findIdSuccess.jsp";
 		} catch (UserNotFoundException e) {
 			e.printStackTrace();
 		}

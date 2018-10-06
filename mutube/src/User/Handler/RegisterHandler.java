@@ -15,7 +15,7 @@ import User.Service.RegisterService;
 
 public class RegisterHandler implements CommandHandler{
 
-	private static final String FORM_VIEW = "/WEB-INF/view/registerForm.jsp";
+	private static final String FORM_VIEW = "/WEB-INF/view/user/registerForm.jsp";
 	
 	@Override
 	public String process(HttpServletRequest req, HttpServletResponse resp) throws Exception {
@@ -71,7 +71,7 @@ public class RegisterHandler implements CommandHandler{
 			return FORM_VIEW;
 		}
 	
-		return "/WEB-INF/view/loginForm.jsp";
+		return "/WEB-INF/view/user/loginForm.jsp";
 	}
 
 	
