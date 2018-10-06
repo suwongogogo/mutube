@@ -8,13 +8,13 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<c:if test="${errors.postList }">검색한 게시글을 찾을 수 없스니다.</c:if>
+	<c:if test="${errors.postList }">검색한 게시글을 찾을 수 없습니다.</c:if>
 	<table>
 		<c:forEach var="postList" items="${postList }">
 			<tr>
 				<td>${postList.postId }</td>
 				<td>${postList.title }</td>
-				<td>${postList.name }</td>
+				<td>${postList.writer.name }</td>
 				<td>${postList.write_date }</td>
 			</tr>
 		</c:forEach>

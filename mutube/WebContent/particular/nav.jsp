@@ -63,25 +63,25 @@
                         <span class="droplist" onclick="openTest(this,'장르')">장르</span>
                         <ul class="dropdown" id="hidden1">
                             <li>
-                                <a href="#" class="title droplist">${jazz }</a>
+                                <a href="/mutube/post/searchgerne=jazz" class="title droplist">Jazz</a>
                             </li>
                             <li>
-                                <a href="#" class="title droplist">${blues }</a>
+                                <a href="/mutube/post/searchgerne=blues" class="title droplist">Blues</a>
                             </li>
                             <li>
-                                <a href="#" class="title droplist">${rock }</a>
+                                <a href="/mutube/post/searchgerne=rock" class="title droplist">Rock</a>
                             </li>
                             <li>
-                                <a href="#" class="title droplist">${ballad }</a>
+                                <a href="/mutube/post/searchgerne=ballad" class="title droplist">Ballad</a>
                             </li>
                             <li>
-                                <a href="#" class="title droplist">${pop }</a>
+                                <a href="/mutube/post/searchgerne=pop" class="title droplist">POP</a>
                             </li>
                             <li>
-                                <a href="#" class="title droplist">${musical }</a>
+                                <a href="/mutube/post/searchgerne=musical" class="title droplist">Musical</a>
                             </li>
                             <li>
-                                <a href="#" class="title droplist">${orchestra }</a>
+                                <a href="/mutube/post/search?gerne=orchestra" class="title droplist">Orchestra</a>
                             </li>
                         </ul>
                     </div>
@@ -92,25 +92,25 @@
                         <span class="droplist" onclick="openTest(this,'악기')">악기</span>
                         <ul class="dropdown" id="hidden1">
                             <li>
-                                <a href="#" class="title droplist">${vocal }</a>
+                                <a href="/mutube/post/search?instrument=vocal" class="title droplist">Vocal</a>
                             </li>
                             <li>
-                                <a href="#" class="title droplist">${guitar }</a>
+                                <a href="/mutube/post/search?instrument=guitar" class="title droplist">Guitar</a>
                             </li>
                             <li>
-                                <a href="#" class="title droplist">${piano }</a>
+                                <a href="/mutube/post/search?instrument=piano" class="title droplist">Piano</a>
                             </li>
                             <li>
-                                <a href="#" class="title droplist">${violin }</a>
+                                <a href="/mutube/post/search?instrument=violin" class="title droplist">Violin</a>
                             </li>
                             <li>
-                                <a href="#" class="title droplist">${cello }</a>
+                                <a href="/mutube/post/search?instrument=cello" class="title droplist">Cello</a>
                             </li>
                             <li>
-                                <a href="#" class="title droplist">${trumpet }</a>
+                                <a href="/mutube/post/search?instrument=trumpet" class="title droplist">Trumpet</a>
                             </li>
                             <li>
-                                <a href="#" class="title droplist">${trombone }</a>
+                                <a href="/mutube/post/search?instrument=trombone" class="title droplist">Trombone</a>
                             </li>
                         </ul>
                     </div>
@@ -121,19 +121,19 @@
                         <span class="droplist" onclick="openTest(this,'뮤지션')">뮤지션</span>
                         <ul class="dropdown" id="hidden1">
                             <li>
-                                <a href="#" class="title droplist">${america }</a>
+                                <a href="/mutube/post/search?country=america" class="title droplist">America </a>
                             </li>
                             <li>
-                                <a href="#" class="title droplist">${korea }</a>
+                                <a href="/mutube/post/search?country=korea" class="title droplist">Korea</a>
                             </li>
                             <li>
-                                <a href="#" class="title droplist">${japen }</a>
+                                <a href="/mutube/post/search?country=japen" class="title droplist">Japen</a>
                             </li>
                             <li>
-                                <a href="#" class="title droplist">${england }</a>
+                                <a href="/mutube/post/search?country=england" class="title droplist">England</a>
                             </li>
                             <li>
-                                <a href="#" class="title droplist">${europe }</a>
+                                <a href="/mutube/post/search?country=europe" class="title droplist">Europe</a>
                             </li>
                         </ul>
                     </div>

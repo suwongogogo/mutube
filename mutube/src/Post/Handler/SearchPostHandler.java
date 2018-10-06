@@ -29,7 +29,7 @@ public class SearchPostHandler implements CommandHandler {
 			Map<String, Boolean> errors = new HashMap<String, Boolean>();
 			req.setAttribute("errors", errors);
 			
-			if(postList == null) {
+			if(postList == null || postList.isEmpty()) {
 				errors.put("postList", true);
 			}
 			

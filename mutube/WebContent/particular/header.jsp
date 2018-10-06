@@ -11,7 +11,7 @@
         <!-- 헤더 -->
         <header class="header">
             <div class="search-container">
-                <form action="post/search" method="get">
+                <form action="/mutube/post/search" method="get">
                     <div class="">
                         <input class="search" type="text" name="keyword">
                         <button class="search-button">검색</button>
