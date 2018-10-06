@@ -20,7 +20,7 @@ import User.Model.User;
 
 public class UpdatePostHandler implements Handler.CommandHandler {
 
-	private static final String FORM_VIEW = "/WEB-INF/view/updatePostForm.jsp";
+	private static final String FORM_VIEW = "/WEB-INF/view/post/updatePostForm.jsp";
 
 	@Override
 	public String process(HttpServletRequest req, HttpServletResponse resp) throws Exception {

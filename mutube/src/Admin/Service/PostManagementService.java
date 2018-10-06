@@ -15,8 +15,8 @@ public class PostManagementService {
 		return instance;
 	}
 	
-	private int blockSize = 7;
-	private int size = 6;
+	private int size = 7;
+	private int blockSize = 6;
 	
 	public PostPageINF getPostList(int pageNum) throws SQLException{
 		try (Connection conn = ConnectionProvider.getConnection()){

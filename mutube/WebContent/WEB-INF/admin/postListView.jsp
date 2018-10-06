@@ -44,17 +44,17 @@
 		<c:if test="${postPageINF.hasUser() }">
 			<tr>
 				<td colspan="7">
-					<a href="userManagementPage?pageNum=1">[처음으로]</a>
+					<a href="userManagement?pageNum=1">[처음으로]</a>
 					<c:if test="${postPageINF.startPage > 6 }">
-						<a href="userManagementPage?pageNum=${postPageINF.startPage - 6 }">[이전으로]</a>
+						<a href="userManagement?pageNum=${postPageINF.startPage - 6 }">[이전으로]</a>
 					</c:if>
 					<c:forEach var="pageNum" begin="${postPageINF.startPage }" end="${postPageINF.endPage }">
-						<a href="userManagementPage?pageNum=${pageNum }">[${pageNum }]</a>
+						<a href="userManagement?pageNum=${pageNum }">[${pageNum }]</a>
 					</c:forEach>
 					<c:if test="${postPageINF.endPage < postPageINF.totalPage }">
-						<a href="userManagementPage?pageNum=${postPageINF.startPage + 6 }">[다음]</a>
+						<a href="userManagement?pageNum=${postPageINF.startPage + 6 }">[다음]</a>
 					</c:if> 
-					<a href="userManagementPage?pageNum=${postPageINF.totalPage }">[마지막으로]</a>
+					<a href="userManagement?pageNum=${postPageINF.totalPage }">[마지막으로]</a>
 				</td>
 			</tr>
 		</c:if>

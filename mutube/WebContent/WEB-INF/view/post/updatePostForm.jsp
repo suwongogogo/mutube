@@ -13,7 +13,7 @@
 	<input type="text" name="content" value="${postData.postContent.content }">
 	<input type="text" name="video_link" value="${postData.postContent.video_link }">
 	<input type="text" name="genre" value="${postData.post.genre }">
-	<input type="text" name="musician" value="${postData.post.musician }">
+	<input type="text" name="country" value="${postData.post.country }">
 	<input type="text" name="instrument" value="${postData.post.instrument }">
 	<input type="submit" value="수정하기">
 </form>

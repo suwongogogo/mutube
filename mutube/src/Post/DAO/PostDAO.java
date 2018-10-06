@@ -81,6 +81,20 @@ public class PostDAO {
 		}
 	}
 	
+	public List<Post> searchPostList(Connection conn, String keyword) throws SQLException{
+		String query = "select * from Post where title like ? order by write_date desc";
+		try(PreparedStatement pst = conn.prepareStatement(query)){
+			pst.setString(1, keyword);
+			try(ResultSet rs = pst.executeQuery()){
+				List<Post> postList = new ArrayList<Post>();
+				while(rs.next()) {
+					postList.add(toPost(rs));
+				}
+				return postList;
+			}
+		}
+	}
+	
 	public int selectLatestPostId(Connection conn) throws SQLException {
 		String query="select postId from post order by write_date desc limit 1";
 		try(Statement pst = conn.createStatement()){

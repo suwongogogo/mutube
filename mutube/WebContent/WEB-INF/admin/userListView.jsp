@@ -35,17 +35,17 @@
 		<c:if test="${userpageINF.hasUser() }">
 			<tr>
 				<td colspan="7">
-					<a href="userManagementPage?pageNum=1">[처음으로]</a>
+					<a href="userManagement?pageNum=1">[처음으로]</a>
 					<c:if test="${pageINF.startPage > 6 }">
-						<a href="userManagementPage?pageNum=${userpageINF.startPage - 6 }">[이전으로]</a>
+						<a href="userManagement?pageNum=${userpageINF.startPage - 6 }">[이전으로]</a>
 					</c:if>
-					<c:forEach var="pageNum" begin="${pageINF.startPage }" end="${userpageINF.endPage }">
-						<a href="userManagementPage?pageNum=${pageNum }">[${pageNum }]</a>
+					<c:forEach var="pageNum" begin="${userpageINF.startPage }" end="${userpageINF.endPage }">
+						<a href="userManagement?pageNum=${pageNum }">[${pageNum }]</a>
 					</c:forEach>
 					<c:if test="${pageINF.endPage < pageINF.totalPage }">
-						<a href="userManagementPage?pageNum=${userpageINF.startPage + 6 }">[다음]</a>
+						<a href="userManagement?pageNum=${userpageINF.startPage + 6 }">[다음]</a>
 					</c:if> 
-					<a href="userManagementPage?pageNum=${userpageINF.totalPage }">[마지막으로]</a>
+					<a href="userManagement?pageNum=${userpageINF.totalPage }">[마지막으로]</a>
 				</td>
 			</tr>
 		</c:if>

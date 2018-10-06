@@ -47,7 +47,7 @@ public class ConfirmUserByPasswordHandler implements CommandHandler{
 				throw new PasswordNotMatchException("비밀번호가 일치하지 않습니다.");
 			}
 			
-			resp.sendRedirect(req.getContextPath()+"/user/myPage.jsp");
+			resp.sendRedirect(req.getContextPath()+"/myPage.jsp");
 		}catch(PasswordNotMatchException e) {
 			e.printStackTrace();
 			return FORM_VIEW;
