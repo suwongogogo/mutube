@@ -19,10 +19,11 @@ public class PostContentDAO {
 	}
 
 	public int insert(Connection conn, PostContent postContent) throws SQLException {
-		String sql = "insert into post_content(postId ,content) values(?, ?)";
+		String sql = "insert into post_content(postId ,content, video_link) values(?, ?, ?)";
 		try (PreparedStatement pst = conn.prepareStatement(sql)) {
 			pst.setInt(1, postContent.getPostId());
 			pst.setString(2, postContent.getContent());
+			pst.setString(3, postContent.getVideo_link());
 			return pst.executeUpdate();
 
 		}
