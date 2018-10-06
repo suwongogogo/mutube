@@ -28,13 +28,14 @@
 	</filter>
 	<filter-mapping>
 		<filter-name>LoginFilter</filter-name>
-		<url-pattern>/write</url-pattern>
-		<url-pattern>/update</url-pattern>
-		<url-pattern>/delete</url-pattern>
-		<url-pattern>/confirmUserByPassword</url-pattern>
-		<url-pattern>/changePassword</url-pattern>
-		<url-pattern>/updatePost</url-pattern>
-		<url-pattern>/deletePost</url-pattern>
+		<url-pattern>/user/update</url-pattern>
+		<url-pattern>/user/delete</url-pattern>
+		<url-pattern>/user/confirmUserByPassword</url-pattern>
+		<url-pattern>/user/changePassword</url-pattern>
+		
+		<url-pattern>/post/write</url-pattern>
+		<url-pattern>/post/updatePost</url-pattern>
+		<url-pattern>/post/deletePost</url-pattern>
 	</filter-mapping>
 	
 	<!-- 컨트롤러 서블릿 -->
