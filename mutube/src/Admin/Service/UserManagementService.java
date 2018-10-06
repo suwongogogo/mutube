@@ -20,13 +20,13 @@ public class UserManagementService {
 	private int size = 7;
 	private int blockSize = 6;
 	
-	public PageINF getUserList(int pageNum) throws SQLException {
+	public UserPageINF getUserList(int pageNum) throws SQLException {
 		try(Connection conn = ConnectionProvider.getConnection()){
 			AdminDAO adminDAO = AdminDAO.getInstance();
-			int total = adminDAO.userCount(conn);
+			int total = adminDAO.getUserCount(conn);
 			List<User> userList = adminDAO.userList(conn, (pageNum - 1)*size, size);
 			
-			return new PageINF(userList, pageNum, total, size, blockSize);
+			return new UserPageINF(userList, pageNum, total, size, blockSize);
 		}
 	}
 }

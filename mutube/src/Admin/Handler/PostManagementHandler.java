@@ -4,13 +4,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import Admin.Exception.YourNotAdminException;
-import Admin.Service.UserPageINF;
+import Admin.Service.PostManagementService;
+import Admin.Service.PostPageINF;
 import Admin.Service.UserManagementService;
+import Admin.Service.UserPageINF;
 import Handler.CommandHandler;
 import User.Model.User;
 
-public class UserManagementHandler implements CommandHandler {
-	private static final String FORM_VIEW = "/WEB-INF/admin/userListView.jsp";
+public class PostManagementHandler implements CommandHandler{
+	private static final String FORM_VIEW = "/WEB-INF/admin/postListView.jsp";
 
 	public String process(HttpServletRequest req, HttpServletResponse resp) throws Exception {
 		try {
@@ -20,15 +22,15 @@ public class UserManagementHandler implements CommandHandler {
 				throw new YourNotAdminException("권한이 없습니다.");
 			}
 
-			UserManagementService managementService = UserManagementService.getInstance();
+			PostManagementService managementService = PostManagementService.getInstance();
 			String pageNumStr = req.getParameter("pageNum");
 			int pageNum = 1;
 			if (pageNumStr != null) {
 				pageNum = Integer.parseInt(pageNumStr);
 			}
-			UserPageINF userPageINF = managementService.getUserList(pageNum);
+			PostPageINF postPageINF = managementService.getPostList(pageNum);
 			
-			req.setAttribute("userpageINF", userPageINF);
+			req.setAttribute("postPageINF", postPageINF);
 
 			return FORM_VIEW;
 		} catch (YourNotAdminException e) {
@@ -36,5 +38,4 @@ public class UserManagementHandler implements CommandHandler {
 			return "/Main.jsp";
 		}
 	}
-
 }

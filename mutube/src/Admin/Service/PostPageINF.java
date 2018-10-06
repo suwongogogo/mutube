@@ -2,19 +2,20 @@ package Admin.Service;
 
 import java.util.List;
 
+import Post.Model.Post;
 import User.Model.User;
 
-public class PageINF {
-	private List<User> userList;
+public class PostPageINF {
+	private List<Post> postList;
 	private int currentPage;
 	private int totalPage;
 	private int total;
 	private int startPage;
 	private int endPage;
 	
-	public PageINF(List<User> userList, int currentPage, int total, int size, int blockSize) {
+	public PostPageINF(List<Post> postList, int currentPage, int total, int size, int blockSize) {
 		super();
-		this.userList = userList;
+		this.postList = postList;
 		this.currentPage = currentPage;
 		this.total = total;
 		if(total == 0) {
@@ -47,8 +48,8 @@ public class PageINF {
 		return total > 0;
 	}
 
-	public List<User> getUserList() {
-		return userList;
+	public List<Post> getPostList() {
+		return postList;
 	}
 
 	public int getCurrentPage() {

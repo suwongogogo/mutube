@@ -21,7 +21,7 @@
 			<td>register_date</td>
 			<td>authority</td>
 		</tr>
-		<c:forEach var="user" items="${pageINF.userList }">
+		<c:forEach var="user" items="${userpageINF.userList }">
 			<tr>
 				<td>${user.userId }</td>
 				<td>${user.loginId }</td>
@@ -32,20 +32,20 @@
 				<td>${user.authority }</td>
 			</tr>
 		</c:forEach>
-		<c:if test="${pageINF.hasUser() }">
+		<c:if test="${userpageINF.hasUser() }">
 			<tr>
 				<td colspan="7">
 					<a href="userManagementPage?pageNum=1">[처음으로]</a>
 					<c:if test="${pageINF.startPage > 6 }">
-						<a href="userManagementPage?pageNum=${pageINF.startPage - 6 }">[이전으로]</a>
+						<a href="userManagementPage?pageNum=${userpageINF.startPage - 6 }">[이전으로]</a>
 					</c:if>
-					<c:forEach var="pageNum" begin="${pageINF.startPage }" end="${pageINF.endPage }">
+					<c:forEach var="pageNum" begin="${pageINF.startPage }" end="${userpageINF.endPage }">
 						<a href="userManagementPage?pageNum=${pageNum }">[${pageNum }]</a>
 					</c:forEach>
 					<c:if test="${pageINF.endPage < pageINF.totalPage }">
-						<a href="userManagementPage?pageNum=${pageINF.startPage + 6 }">[다음]</a>
+						<a href="userManagementPage?pageNum=${userpageINF.startPage + 6 }">[다음]</a>
 					</c:if> 
-					<a href="userManagementPage?pageNum=${pageINF.totalPage }">[마지막으로]</a>
+					<a href="userManagementPage?pageNum=${userpageINF.totalPage }">[마지막으로]</a>
 				</td>
 			</tr>
 		</c:if>
