@@ -55,7 +55,7 @@ public class UpdatePostHandler implements Handler.CommandHandler {
 			Post post = new Post();
 			post.setTitle(req.getParameter("title"));
 			post.setGenre(req.getParameter("genre"));
-			post.setCountry(req.getParameter("musician"));
+			post.setCountry(req.getParameter("country"));
 			post.setInstrument(req.getParameter("instrument"));
 			post.setPostId(postId);
 			post.writeValidate(errors);

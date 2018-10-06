@@ -54,7 +54,7 @@
 		   					</td>
 		   				</tr>
 		   			</table>
-					<c:if test="${!postDate.postContent.video_link eq null }">
+					<c:if test="${!postData.postContent.video_link eq null }">
 						<iframe src="${postData.postContent.video_link }">
 						</iframe>
 					</c:if>
