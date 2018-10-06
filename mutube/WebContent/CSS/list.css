@@ -1,0 +1,6 @@
+.center {
+	display: flex;
+}
+.board-list {
+	min-width: 1612px;
+}
