@@ -25,7 +25,7 @@
 						<c:if test="${errors.genre }"><script>
 							alert("장르를 선택하세요");
 						</script></c:if>
-						<c:if test="${errors.musician }"><script>
+						<c:if test="${errors.country }"><script>
 							alert("가수를 선택하세요");
 						</script></c:if>
 						<c:if test="${errors.instrument }"><script>
@@ -45,9 +45,9 @@
 								</select>
 							</div>
 							<div class="musician-form">
-								<p class="write-title">뮤지션</p>
-								<select name="musician" class="select">
-									<option value="park" selected class="option">박진국</option>
+								<p class="write-title">나라</p>
+								<select name="country" class="select">
+									<option value="korea" selected class="option">때한민꾺</option>
 								</select>
 							</div>
 							<div class="musician-form">

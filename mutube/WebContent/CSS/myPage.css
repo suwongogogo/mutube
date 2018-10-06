@@ -5,7 +5,7 @@
 	display: flex;
 }
 .mypage-container {
-	margin: 255px 518px;
+	margin: 245px 518px;
 }
 .mypage {
 	height: 100%;
@@ -19,7 +19,6 @@
 .outline {
 	border: none;
 	outline: none;
-	width: 100%;
 }
 .mypage-button {
 	font-size: 15px;
