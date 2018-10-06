@@ -14,50 +14,63 @@
     	<div class="center">
         	<jsp:include page="/particular/nav.jsp"></jsp:include>
 		   	<div class="board-list">
-		  		<table border="1">
-					<tr>
-						<th>번호</th>
-						<th>제목</th>
-						<th>작성자</th>
-						<th>조회수</th>
-					</tr>
-					<!-- 게시글이 없을 때 -->
-					<c:if test="${!postPage.hasPost()}">
-						<tr>
-							<td colspan="4">게시글이 없습니다.</td>
+		   		<div class="board-list-container">
+			  		<table>
+						<tr class="line-bottom font18">
+							<td class="table-title list-postid">번호</td>
+							<td class="interval"></td>
+							<td class="table-title list-title">제목</td>
+							<td class="interval"></td>
+							<td class="table-title list-author">작성자</td>
+							<td class="interval"></td>
+							<td class="table-title list-counter">조회수</td>
 						</tr>
-					</c:if>
-					
-					<!-- 게시글이 있을 때 -->
-					<c:forEach var="post" items="${postPage.postList}">
-						<tr>
-							<td>${post.postId }</td>
-							<td><a href="view?no=${post.postId }&pageNum=${postPage.currentPage}">${post.title }</a></td>
-							<td>${post.writer.name }</td>
-							<td>${post.views}</td>
-						</tr>
-					</c:forEach>
-				
-					<!-- 게시글이 있다면 베이지 블럭도 표시 -->
-					<c:if test="${postPage.hasPost()}">
-						<tr>
-							<td colspan="4">
-								<c:if test="${postPage.startPage > 5}">
-									<a href="list?pageNum=${postPage.startPage-5 }">[이전]</a>
-								</c:if>
-								<c:forEach var="pNum" begin="${postPage.startPage }" end="${postPage.endPage }">
-									<a href="list?pageNum=${pNum }">[${pNum }]</a>
-								</c:forEach>
-								<c:if test="${postPage.endPage < postPage.totalPages }">
-									<a href="list?pageNum=${postPage.startPage+5 }">[다음]</a>
-								</c:if>
+						<!-- 게시글이 없을 때 -->
+						<c:if test="${!postPage.hasPost()}">
+							<tr>
+								<td colspan="4">게시글이 없습니다.</td>
+							</tr>
+						</c:if>
+						
+						<!-- 게시글이 있을 때 -->
+						<c:forEach var="post" items="${postPage.postList}">
+							<tr class="list-tr">
+								<td class="tc">${post.postId }</td>
+								<td></td>
+								<td><a href="view?no=${post.postId }&pageNum=${postPage.currentPage}">${post.title }</a></td>
+								<td></td>
+								<td class="tc">${post.writer.name }</td>
+								<td></td>
+								<td class="tc">${post.views}</td>
+							</tr>
+						</c:forEach>
+						<tr class="line-top line-bottom write-tr">
+							<td colspan="7" class="write">
+								<a href="write">
+									<button class="wrtie-button">게시글 쓰기</button>
+								</a>
 							</td>
 						</tr>
-					</c:if>
-					<tr>
-						<td colspan="4"><a href="write">[게시글 쓰기]</a></td>
-					</tr>
-				</table> 		
+						<!-- 게시글이 있다면 베이지 블럭도 표시 -->
+						<c:if test="${postPage.hasPost()}">
+							<tr class="tc">
+								<td colspan="7">
+									<c:if test="${postPage.startPage > 5}">
+										<a href="list?pageNum=${postPage.startPage-5 }"><span class="arrow">◀</span><span class="prev">이전</span></a>
+									</c:if>
+									<c:forEach var="pNum" begin="${postPage.startPage }" end="${postPage.endPage }">
+										<div class="inline pagination-border">
+											<a href="list?pageNum=${pNum }" class="pagenation">${pNum }</a>
+										</div>
+									</c:forEach>
+									<c:if test="${postPage.endPage < postPage.totalPages }">
+										<a href="list?pageNum=${postPage.startPage+5 }"><span class="next">다음</span><span class="arrow">▶</span></a>
+									</c:if>
+								</td>
+							</tr>
+						</c:if>
+					</table>
+				</div>		
 		   	</div>
     	</div>
     	<jsp:include page="/particular/footer.jsp"></jsp:include>

@@ -7,7 +7,7 @@
 <meta charset="utf-8" />
 <title>아이디 찾기</title>
 <link rel="stylesheet" type="text/css" media="screen"
-	href="CSS/findForm.css" />
+	href="/mutube/CSS/findForm.css" />
 </head>
 <body>
 	<div class="logo">
