@@ -60,7 +60,6 @@ public class DeletePostHandler implements CommandHandler {
 			DeletePostService deletePostService = DeletePostService.getInstance();
 			deletePostService.delete(postId);
 			
-			System.out.println("삭제끝@");
 			resp.sendRedirect(req.getContextPath() + "/list");
 			return null;
 		} catch(PostNotFoundException e) {

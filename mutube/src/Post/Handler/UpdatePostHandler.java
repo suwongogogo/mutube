@@ -71,7 +71,7 @@ public class UpdatePostHandler implements Handler.CommandHandler {
 
 			updatePostService.update(postData);
 			
-			resp.sendRedirect(req.getContextPath()+"/viewPost?no="+postId);
+			resp.sendRedirect(req.getContextPath()+"/view?no="+postId);
 		} catch( UpdatePostFailExcpetion e) {
 			e.printStackTrace();
 		} catch (SQLException e) {

@@ -19,7 +19,7 @@
 			<th>조회수</th>
 		</tr>
 	<!-- 게시글이 없을 때 -->
-	<c:if test="${!articlePage.hasArticles()}">
+	<c:if test="${!postPage.hasPost()}">
 		<tr>
 			<td colspan="4">게시글이 없습니다.</td>
 		</tr>
@@ -29,7 +29,7 @@
 	<c:forEach var="post" items="${postPage.postList}">
 		<tr>
 			<td>${post.postId }</td>
-			<td><a href="read?no=${post.postId }&pageNum=${postPage.currentPage}">${post.title }</a></td>
+			<td><a href="viewPost?no=${post.postId }&pageNum=${postPage.currentPage}">${post.title }</a></td>
 			<td>${post.writer.name }</td>
 			<td>${post.views}</td>
 		</tr>
