@@ -55,7 +55,7 @@
 		   				</tr>
 		   			</table>
 					<c:if test="${!postData.postContent.video_link eq null }">
-						<iframe src="${postData.postContent.video_link }">
+						<iframe src="https://www.youtube.com/embed/${postData.postContent.video_link }">
 						</iframe>
 					</c:if>
 				</div> 		
