@@ -38,6 +38,14 @@ public class PageINF {
 			endPage = totalPage;
 		}
 	}
+	
+	public boolean hasNoUser() {
+		return total == 0;
+	}
+	
+	public boolean hasUser() {
+		return total > 0;
+	}
 
 	public List<User> getUserList() {
 		return userList;

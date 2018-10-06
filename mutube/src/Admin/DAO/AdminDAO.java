@@ -18,7 +18,8 @@ public class AdminDAO {
 	}
 	
 	public List<User> userList(Connection conn, int startrow, int size) throws SQLException{
-		String sql = "select * from user order by userId desc limit ?, ?";
+		String sql = "select userId, loginId, cast(aes_decrypt(unhex(password),'mutube') as char(50)) as password, email, name, register_date, authority"
+				+ " from user order by userId desc limit ?, ?";
 		try(PreparedStatement pst = conn.prepareStatement(sql)){
 			pst.setInt(1, startrow);
 			pst.setInt(2, size);

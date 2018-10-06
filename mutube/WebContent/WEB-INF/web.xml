@@ -35,6 +35,7 @@
 		<url-pattern>/changePassword</url-pattern>
 		<url-pattern>/updatePost</url-pattern>
 		<url-pattern>/deletePost</url-pattern>
+		<url-pattern>/userManagement</url-pattern>
 	</filter-mapping>
 	
 	<!-- 컨트롤러 서블릿 -->
@@ -63,5 +64,7 @@
 		<url-pattern>/viewPost</url-pattern>
 		<url-pattern>/updatePost</url-pattern>
 		<url-pattern>/deletePost</url-pattern>
+		
+		<url-pattern>/userManagement</url-pattern>
 	</servlet-mapping>
 </web-app>

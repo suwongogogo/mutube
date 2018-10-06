@@ -6,6 +6,7 @@ import java.util.List;
 
 import Admin.DAO.AdminDAO;
 import Connection.ConnectionProvider;
+import User.DAO.UserDAO;
 import User.Model.User;
 import User.Service.ChangePasswordService;
 
@@ -24,6 +25,7 @@ public class UserManagementService {
 			AdminDAO adminDAO = AdminDAO.getInstance();
 			int total = adminDAO.userCount(conn);
 			List<User> userList = adminDAO.userList(conn, (pageNum - 1)*size, size);
+			
 			return new PageINF(userList, pageNum, total, size, blockSize);
 		}
 	}
