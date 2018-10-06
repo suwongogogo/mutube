@@ -13,7 +13,7 @@
         <div class="left-padding">
             <div class="user-container">
                 <c:if test="${loginUser==null }">
-                <a href="user/login">
+                <a href="/mutube/user/login">
                     <p class="loginout">로그인</p>
                 </a>
                 <ul class="information">
@@ -31,7 +31,7 @@
                 </ul>
                 </c:if>
                 <c:if test="${loginUser!=null }">
-                <a href="user/logout">
+                <a href="/mutube/user/logout">
                 	<p class="loginout">로그아웃</p>
                 </a>
                 <ul class="logout-ul">
@@ -48,13 +48,13 @@
                 <li class="drop-li">
                     <div class="clicked"></div>
                     <div class="list-container">
-                        <a class="droplist" href="post/list">전체글</a>
+                        <a class="droplist" href="/mutube/post/list">전체글</a>
                     </div>
                 </li>
                 <li class="drop-li">
                     <div class="clicked"></div>
                     <div class="list-container">
-                        <a class="droplist" href="post/notice">공지</a>
+                        <a class="droplist" href="/mutube/post/notice">공지</a>
                     </div>
                 </li>
                 <li class="drop-li">

@@ -15,8 +15,8 @@ public class ListPostService {
 		return instance;
 	}
 	
-	private int size = 15;
-	private int blockSize = 5;
+	private int size = 20;
+	private int blockSize = 10;
 	
 	public PostPage getArticlePage(int pageNum) {
 		try(Connection conn = ConnectionProvider.getConnection();){
