@@ -37,7 +37,7 @@
 							<tr class="list-tr">
 								<td class="tc">${post.postId }</td>
 								<td></td>
-								<td><a href="view?no=${post.postId }&pageNum=${postPage.currentPage}">${post.title }</a></td>
+								<td class="pointer"><a href="view?no=${post.postId }&pageNum=${postPage.currentPage}">${post.title }</a></td>
 								<td></td>
 								<td class="tc">${post.writer.name }</td>
 								<td></td>

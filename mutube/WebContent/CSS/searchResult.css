@@ -6,6 +6,9 @@ table {
 .inline {
 	display: inline-block;
 }
+.pointer {
+	cursor: pointer;
+}
 .pagination-border {
 	padding: 1px 3px;
 	margin: 5px 0px;
@@ -15,14 +18,14 @@ table {
 .center {
 	display: flex;
 }
-.pointer {
-	cursor: pointer;
-}
 .board-list {
 	min-width: 1612px;
 }
 .board-list-container {
 	padding: 73px 212px;
+}
+.line-top {
+	border-top: 1px solid black;
 }
 .line-bottom {
 	border-bottom: 1px solid black;
@@ -53,11 +56,14 @@ table {
 .list-title {
 	width: 700px;
 }
-.list-author {
+.list-public {
 	width: 120px;
 }
-.list-counter {
-	width: 83px;
+.list-date {
+	width: 271px;
+}
+.height {
+	height: 30px;
 }
 .interval {
 	padding: 0px 20px;	
@@ -66,7 +72,9 @@ table {
 	background-color: white;
 	border: 1px solid #dddddd;
 	border-radius: 3px;
-	padding: 7px 10px;
+	box-shadow: 2px 2px 4px #dddddd;
+	padding: 4px 5px;
+    height: 28px;
 }
 .list-tr {
 	height: 30px;
@@ -74,6 +82,9 @@ table {
 }
 .list-tr:LAST-CHILD {
 	border-bottom: none !important;
+}
+.write-tr {
+	height: 45px;
 }
 .pagenation {
 	color: black;
