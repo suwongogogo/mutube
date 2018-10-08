@@ -72,9 +72,6 @@ table {
 .list-tr:LAST-CHILD {
 	border-bottom: none !important;
 }
-.write-tr {
-	height: 45px;
-}
 .pagenation {
 	color: black;
 }

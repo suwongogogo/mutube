@@ -54,13 +54,13 @@
 						<!-- 게시글이 있다면 베이지 블럭도 표시 -->
 						<c:if test="${postPage.hasPost()}">
 							<tr class="tc">
-								<td colspan="7">
+								<td class="paging" colspan="7">
 									<c:if test="${postPage.startPage > 5}">
 										<a href="list?pageNum=${postPage.startPage-5 }"><span class="arrow">◀</span><span class="prev">이전</span></a>
 									</c:if>
-									<c:forEach var="pNum" begin="${postPage.startPage }" end="${postPage.endPage }">
+									<c:forEach var="pageNum" begin="${postPage.startPage }" end="${postPage.endPage }">
 										<div class="inline pagination-border">
-											<a href="list?pageNum=${pNum }" class="pagenation">${pNum }</a>
+											<a href="list?pageNum=${pageNum }" class="pagenation">${pageNum }</a>
 										</div>
 									</c:forEach>
 									<c:if test="${postPage.endPage < postPage.totalPages }">
