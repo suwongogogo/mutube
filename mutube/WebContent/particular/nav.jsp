@@ -6,6 +6,27 @@
 <head>
     <meta charset="utf-8" />
     <link rel="stylesheet" type="text/css" media="screen" href="/mutube/CSS/nav.css" />
+    <script>
+    	var url_pattern = window.location.href;
+    	console.log(url_pattern);
+    	var url = new URL(url_pattern);
+    	console.log(url);
+    	var param = url.search.split('?')[1].split("=");
+    	var key = param[0];
+    	var value = param[1];
+    	console.log(key);
+    	console.log(value);
+    	
+    	switch(key){
+    	case "genre":
+    		switch(value){
+    		case "jazz":
+    			var a = document.getEle
+    		}
+    		
+    	}
+    	
+    </script>
     <script src="/mutube/JavaScript/nav.js"></script>
 </head>
 <body>
@@ -63,22 +84,22 @@
                         <span class="droplist" onclick="openTest(this,'장르')">장르</span>
                         <ul class="dropdown" id="hidden1">
                             <li>
-                                <a href="/mutube/post/searchgerne=jazz" class="title droplist">Jazz</a>
+                                <a href="/mutube/post/search?gerne=jazz" class="title droplist">Jazz</a>
                             </li>
                             <li>
-                                <a href="/mutube/post/searchgerne=blues" class="title droplist">Blues</a>
+                                <a href="/mutube/post/search?gerne=blues" class="title droplist">Blues</a>
                             </li>
                             <li>
-                                <a href="/mutube/post/searchgerne=rock" class="title droplist">Rock</a>
+                                <a href="/mutube/post/search?gerne=rock" class="title droplist">Rock</a>
                             </li>
                             <li>
-                                <a href="/mutube/post/searchgerne=ballad" class="title droplist">Ballad</a>
+                                <a href="/mutube/post/search?gerne=ballad" class="title droplist">Ballad</a>
                             </li>
                             <li>
-                                <a href="/mutube/post/searchgerne=pop" class="title droplist">POP</a>
+                                <a href="/mutube/post/search?gerne=pop" class="title droplist">POP</a>
                             </li>
                             <li>
-                                <a href="/mutube/post/searchgerne=musical" class="title droplist">Musical</a>
+                                <a href="/mutube/post/search?gerne=musical" class="title droplist">Musical</a>
                             </li>
                             <li>
                                 <a href="/mutube/post/search?gerne=orchestra" class="title droplist">Orchestra</a>
