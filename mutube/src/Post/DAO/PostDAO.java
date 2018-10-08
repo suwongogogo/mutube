@@ -53,7 +53,7 @@ public class PostDAO {
 	}
 	
 	public int selectCount(Connection conn) throws SQLException {
-		String query = "select count(*) from post";
+		String query = "select count(*) from post where able=1";
 		int cnt = 0;
 		try (Statement st = conn.createStatement()) {
 			ResultSet rs = st.executeQuery(query);
@@ -67,7 +67,7 @@ public class PostDAO {
 
 	// 리미트를 이용한 리스트를 가져오는 쿼리
 	public List<Post> select(Connection conn, int startRow, int size) throws SQLException {
-		String query = "select  * from Post order by postId desc limit ?, ?";
+		String query = "select  * from Post where able=1 order by postId desc limit ?, ?";
 		try (PreparedStatement pst = conn.prepareStatement(query)) {
 			pst.setInt(1, startRow);
 			pst.setInt(2, size);

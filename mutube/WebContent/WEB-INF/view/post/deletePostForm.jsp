@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<form action="deletePost" method="post">
+	<form action="delete" method="post">
 		<input type="hidden" name="no" value="${param.no }">
 		<p>
 			정말 삭제하시겠습니까??<br>

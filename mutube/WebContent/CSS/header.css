@@ -10,6 +10,7 @@ header {
     margin-left: 500px;
 }
 .search {
+	outline: none;
     width: 800px;
     height: 35px;
     font-size: 18px;

@@ -63,9 +63,7 @@ table {
 	background-color: white;
 	border: 1px solid #dddddd;
 	border-radius: 3px;
-	box-shadow: 2px 2px 4px #dddddd;
-	padding: 4px 5px;
-    height: 28px;
+	padding: 7px 10px;
 }
 .list-tr {
 	height: 30px;
