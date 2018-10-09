@@ -1,0 +1,11 @@
+.center {
+	display: flex;
+}
+.list-line {
+	height: 1px;
+	background-color: #dddddd;
+	margin: 30px 0px !important;
+}
+.col-xs-9 {
+	width: 100% !important;
+}

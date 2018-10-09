@@ -10,12 +10,14 @@ a {
     color: black;
     text-decoration: none;
 }
+a:hover {
+	text-decoration: none;
+}
 .nav {
-	overflow: auto;
     display: inline-block;
     border-right: 1px solid #cccccc;
     border-bottom: 1px solid #cccccc;
-    height: 866px;
+    min-height: 866px;
 }
 .drop-ul {
     font-size: 18px;
@@ -25,7 +27,6 @@ a {
     border-bottom: 1px solid #dddddd;
 }
 .loginout {
-    width: 64px;
     padding: 12px 100px;
     border: 1px solid #dddddd;
     border-radius: 5px;
@@ -69,11 +70,8 @@ a {
     padding: 10px 0px 10px 20px;
     cursor: pointer;
 }
-.title {
-    padding-left: 60px;
-}
-.title:hover {
-    color: red;
+.drop-li:hover > .clicked {
+	background-color: red;
 }
 .clicked {
     width: 10px;
@@ -82,10 +80,4 @@ a {
 }
 .list-container {
     width: 263px;
-}
-#hidden1 {
-    display: none;
-}
-#red {
-    color: red;
 }

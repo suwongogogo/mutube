@@ -6,28 +6,6 @@
 <head>
     <meta charset="utf-8" />
     <link rel="stylesheet" type="text/css" media="screen" href="/mutube/CSS/nav.css" />
-    <script>
-    	var url_pattern = window.location.href;
-    	console.log(url_pattern);
-    	var url = new URL(url_pattern);
-    	console.log(url);
-    	var param = url.search.split('?')[1].split("=");
-    	var key = param[0];
-    	var value = param[1];
-    	console.log(key);
-    	console.log(value);
-    	
-    	switch(key){
-    	case "genre":
-    		switch(value){
-    		case "jazz":
-    			var a = document.getEle
-    		}
-    		
-    	}
-    	
-    </script>
-    <script src="/mutube/JavaScript/nav.js"></script>
 </head>
 <body>
     <div class="nav">
@@ -81,82 +59,19 @@
                 <li class="drop-li">
                     <div class="clicked"></div>
                     <div class="list-container">
-                        <span class="droplist" onclick="openTest(this,'장르')">장르</span>
-                        <ul class="dropdown" id="hidden1">
-                            <li>
-                                <a href="/mutube/post/search?gerne=jazz" class="title droplist">Jazz</a>
-                            </li>
-                            <li>
-                                <a href="/mutube/post/search?gerne=blues" class="title droplist">Blues</a>
-                            </li>
-                            <li>
-                                <a href="/mutube/post/search?gerne=rock" class="title droplist">Rock</a>
-                            </li>
-                            <li>
-                                <a href="/mutube/post/search?gerne=ballad" class="title droplist">Ballad</a>
-                            </li>
-                            <li>
-                                <a href="/mutube/post/search?gerne=pop" class="title droplist">POP</a>
-                            </li>
-                            <li>
-                                <a href="/mutube/post/search?gerne=musical" class="title droplist">Musical</a>
-                            </li>
-                            <li>
-                                <a href="/mutube/post/search?gerne=orchestra" class="title droplist">Orchestra</a>
-                            </li>
-                        </ul>
+                        <a class="droplist" href="">장르</a>
                     </div>
                 </li>
                 <li class="drop-li">
                     <div class="clicked"></div>
                     <div class="list-container">
-                        <span class="droplist" onclick="openTest(this,'악기')">악기</span>
-                        <ul class="dropdown" id="hidden1">
-                            <li>
-                                <a href="/mutube/post/search?instrument=vocal" class="title droplist">Vocal</a>
-                            </li>
-                            <li>
-                                <a href="/mutube/post/search?instrument=guitar" class="title droplist">Guitar</a>
-                            </li>
-                            <li>
-                                <a href="/mutube/post/search?instrument=piano" class="title droplist">Piano</a>
-                            </li>
-                            <li>
-                                <a href="/mutube/post/search?instrument=violin" class="title droplist">Violin</a>
-                            </li>
-                            <li>
-                                <a href="/mutube/post/search?instrument=cello" class="title droplist">Cello</a>
-                            </li>
-                            <li>
-                                <a href="/mutube/post/search?instrument=trumpet" class="title droplist">Trumpet</a>
-                            </li>
-                            <li>
-                                <a href="/mutube/post/search?instrument=trombone" class="title droplist">Trombone</a>
-                            </li>
-                        </ul>
+                        <a class="droplist" href="">악기</a>
                     </div>
                 </li>
                 <li class="drop-li">
                     <div class="clicked"></div>
                     <div class="list-container">
-                        <span class="droplist" onclick="openTest(this,'뮤지션')">뮤지션</span>
-                        <ul class="dropdown" id="hidden1">
-                            <li>
-                                <a href="/mutube/post/search?country=america" class="title droplist">America </a>
-                            </li>
-                            <li>
-                                <a href="/mutube/post/search?country=korea" class="title droplist">Korea</a>
-                            </li>
-                            <li>
-                                <a href="/mutube/post/search?country=japen" class="title droplist">Japen</a>
-                            </li>
-                            <li>
-                                <a href="/mutube/post/search?country=england" class="title droplist">England</a>
-                            </li>
-                            <li>
-                                <a href="/mutube/post/search?country=europe" class="title droplist">Europe</a>
-                            </li>
-                        </ul>
+                        <a class="droplist" href="">뮤지션</a>
                     </div>
                 </li>
             </ul>
