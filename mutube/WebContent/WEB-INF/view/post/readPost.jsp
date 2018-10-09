@@ -66,16 +66,16 @@
 						</tr>
 						<tr>
 							<td colspan="6">
-								<form action="comment" method="post">
+								<form action="writeComment" method="post">
+									<input type="hidden" name="postId" value="${postData.post.postId }">
 									<div class="comment">
-										<textarea  rows="6"></textarea>
+										<textarea  rows="6" name="comment"></textarea>
 										<input type="submit" value="작성">
 									</div>
 								</form>
 							</td>
 						</tr>
 					</table>
-
 				</div>
 			</div>
 		</div>

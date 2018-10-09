@@ -15,13 +15,14 @@ public class PostCommentDAO {
 	public static PostCommentDAO getInstance() {
 		return instance;
 	}
-
+	
 	public PostComment insert(Connection conn, PostComment postComment) throws SQLException {
-		String sql = "insert into post_comment(postId, userId , comment, write_date) values(?, ?, ?, now())";
+		String sql = "insert into post_comment(postId, userId , name, comment, write_date) values(?, ?, ?, ?, now())";
 		try (PreparedStatement pst = conn.prepareStatement(sql)) {
 			pst.setInt(1, postComment.getPostId());
 			pst.setInt(2, postComment.getUserId());
-			pst.setString(3, postComment.getComment());
+			pst.setString(3, postComment.getName());
+			pst.setString(4, postComment.getComment());
 			int insertCnt = pst.executeUpdate();
 
 			if (insertCnt > 0) {

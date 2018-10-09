@@ -36,6 +36,7 @@
 		<url-pattern>/post/write</url-pattern>
 		<url-pattern>/post/updatePost</url-pattern>
 		<url-pattern>/post/deletePost</url-pattern>
+		<url-pattern>/post/writeComment</url-pattern>
 	</filter-mapping>
 	
 	<!-- 컨트롤러 서블릿 -->

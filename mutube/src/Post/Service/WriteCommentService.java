@@ -5,9 +5,13 @@ import java.sql.SQLException;
 
 import Connection.ConnectionProvider;
 import Post.DAO.PostCommentDAO;
+import Post.DAO.PostDAO;
+import Post.Exception.FailWriteCommentException;
+import Post.Exception.PostNotFoundException;
 import Post.Model.Post;
 import Post.Model.PostComment;
 import Post.Model.PostContent;
+import Post.Model.PostData;
 
 public class WriteCommentService {
 	private static WriteCommentService instance = new WriteCommentService();
@@ -16,17 +20,27 @@ public class WriteCommentService {
 		return instance;
 	}
 	
-	public void writeComment(PostComment postComment) throws SQLException {
+	public void writeComment(PostComment postComment) throws SQLException, FailWriteCommentException {
 		PostCommentDAO commentDAO = PostCommentDAO.getInstance();
 		try(Connection conn = ConnectionProvider.getConnection()){
-						
-			PostComment savedpostComment = new PostComment(postComment.getPostId(), postComment.getUserId()
-					, postComment.getName(), postComment.getComment());
+			PostComment savedpostComment = commentDAO.insert(conn, postComment);
+			
 			if(savedpostComment == null) {
-				throw new RuntimeException("댓글 작성 실패");
+				throw new FailWriteCommentException("댓글 작성 실패");
 			}
 			 
-			conn.commit();
+		}
+	}
+	
+	public Post selectById(int postId) throws SQLException {
+		PostDAO postDAO = PostDAO.getInstance();
+		try(Connection conn = ConnectionProvider.getConnection()){
+			Post post = postDAO.selectById(conn, postId);
+			if(post == null) {
+				throw new PostNotFoundException("게시글을 찾을 수 없음.");
+			}
+			
+			return post;
 		}
 	}
 }
