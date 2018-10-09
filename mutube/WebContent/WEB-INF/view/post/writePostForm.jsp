@@ -67,6 +67,10 @@
 							<p class="write-title">영상 링크</p>
 							<input type="text" name="video_link" class="video-input">
 						</div>
+						<div class="video-container">
+							<p class="write-title">이미지 첨부하기</p>
+							<input type="text" name="video_link" class="video-input">
+						</div>
 						<div class="content">
 							<p class="write-title content-title">내용</p>
 							<textarea name="content" class="textarea"></textarea>
