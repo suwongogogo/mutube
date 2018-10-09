@@ -59,19 +59,19 @@
                 <li class="drop-li">
                     <div class="clicked"></div>
                     <div class="list-container">
-                        <a class="droplist" href="">장르</a>
+                        <a class="droplist" href="/mutube/genre.jsp">장르</a>
                     </div>
                 </li>
                 <li class="drop-li">
                     <div class="clicked"></div>
                     <div class="list-container">
-                        <a class="droplist" href="">악기</a>
+                        <a class="droplist" href="/mutube/instrument.jsp">악기</a>
                     </div>
                 </li>
                 <li class="drop-li">
                     <div class="clicked"></div>
                     <div class="list-container">
-                        <a class="droplist" href="">뮤지션</a>
+                        <a class="droplist" href="/mutube/country.jsp">국가</a>
                     </div>
                 </li>
             </ul>

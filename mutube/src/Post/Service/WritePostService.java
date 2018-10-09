@@ -4,8 +4,10 @@ import java.sql.Connection;
 import java.sql.SQLException;
 
 import Connection.ConnectionProvider;
+import File.DAO.FileDAO;
 import Post.DAO.PostContentDAO;
 import Post.DAO.PostDAO;
+import Post.Model.File;
 import Post.Model.Post;
 import Post.Model.PostContent;
 import Post.Model.PostData;
@@ -20,7 +22,7 @@ public class WritePostService {
 	public int write(PostData writeReq) throws SQLException {
 		PostDAO postDAO = PostDAO.getInstance();
 		PostContentDAO contentDAO = PostContentDAO.getInstance();
-		
+		FileDAO fileDAO = FileDAO.getInstance();
 		try(Connection conn = ConnectionProvider.getConnection()){
 			conn.setAutoCommit(false);
 			
@@ -33,12 +35,16 @@ public class WritePostService {
 				throw new RuntimeException("게시글 삽입 실패");
 			}
 			
-			PostContent postContent = new PostContent(postId, writeReq.getPostContent().getContent(), writeReq.getPostContent().getVideo_link());
+			PostContent postContent = new PostContent(postId, writeReq.getPostContent().getContent(), writeReq.getPostContent().getVideo_link(), writeReq.getImage().getFileName());
 			int ret = contentDAO.insert(conn, postContent);
 			if(ret == 0) {
 				conn.rollback();
 				throw new RuntimeException("Content 삽입 실패");
 			}
+			File image = writeReq.getImage();
+			
+			fileDAO.upload(conn, image);
+			
 			
 			conn.commit();
 			return postId;
