@@ -1,3 +1,7 @@
+table{
+	border: 1px solid black;
+	border-collapse: collapse;
+}
 .center {
 	display: flex;
 }
@@ -43,7 +47,8 @@
 }
 .view-button-container {
 	position: relative;
-    top: 480px;
+    bottom: 473px;
+    left: 32px;
     text-align: end;
 }
 .view-button {
@@ -53,4 +58,16 @@
     border: 1px solid #1a73e8;
     color: white;
     padding: 5px 5px;
+}
+.comment > textarea{	
+	width: 80%;
+	margin-top: 6px;
+}
+.comment{
+	width: 1100px;
+}
+.comment > input{
+	position: relative;
+	bottom: 45px;
+	left: 55px;
 }

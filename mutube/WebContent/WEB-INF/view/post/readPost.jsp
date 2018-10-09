@@ -16,7 +16,7 @@
 			<jsp:include page="/particular/nav.jsp"></jsp:include>
 			<div class="board-container">
 				<div class="board">
-					<table class="view-table">
+					<table class="view-table" border="1">
 						<tr>
 							<td class="view-title">제목</td>
 							<td colspan="5">${postData.post.title }</td>
@@ -40,7 +40,7 @@
 												allowfullscreen></iframe>
 										</c:if>
 									</div>
-										<div>${postData.postContent.content }</div>
+									<div>${postData.postContent.content }</div>
 									<c:if
 										test="${loginUser!=null && loginUser.userId== postData.post.writer.userId }">
 										<div class="view-button-container margin-right">
@@ -54,6 +54,17 @@
 								</div>
 							</td>
 						</tr>
+						<tr>
+							<td colspan="6">
+								<form action="comment" method="post">
+									<div class="comment">
+										<textarea rows="6"></textarea>
+										<input type="submit" value="작성">
+									</div>
+								</form>
+							</td>
+						</tr>
+						
 					</table>
 
 				</div>
