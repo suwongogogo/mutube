@@ -4,11 +4,22 @@ import java.util.Map;
 
 import com.oreilly.servlet.MultipartRequest;
 
+import Post.Service.CommentPage;
+
 //원래 WriteRequest였음
 public class PostData {
 	private Post post;
 	private PostContent postContent;
+	private CommentPage commentPage;
 	private File image;
+	
+	public CommentPage getCommentPage() {
+		return commentPage;
+	}
+
+	public void setCommentPage(CommentPage commentPage) {
+		this.commentPage = commentPage;
+	}
 
 	public Post getPost() {
 		return post;
@@ -43,6 +54,9 @@ public class PostData {
 		this.post = post;
 		this.postContent= postContent;
 	}
+
+	public PostData() {}
+
 	
 
 }

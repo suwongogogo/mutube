@@ -20,25 +20,21 @@ public class WriteCommentHandler implements CommandHandler {
 	public String process(HttpServletRequest req, HttpServletResponse resp) throws Exception {
 		WriteCommentService writeComment = WriteCommentService.getInstance();
 		try {
-			PostData postData = (PostData) req.getAttribute("postData");
-			System.out.println("댓글 쓰기");
 			int postId = Integer.parseInt(req.getParameter("postId"));
+			int pageNum = Integer.parseInt(req.getParameter("pageNum"));
 			String comment = req.getParameter("comment");
 			User sessionUser = (User) req.getSession().getAttribute("loginUser");
 			Post post = writeComment.selectById(postId);
-			
 			if(sessionUser == null) {
 				throw new UserNotFoundException("로그인하지 않으셨습니다.");
 			}
 			
 			PostComment postComment = new PostComment(post.getPostId(), sessionUser.getUserId(), sessionUser.getName(), comment);
-			
+		
 			writeComment.writeComment(postComment);
 			
-			req.setAttribute("comment", postComment);
-			req.setAttribute("postData", postData);
 			
-			return "/WEB-INF/view/post/readPost.jsp";
+			resp.sendRedirect(req.getContextPath()+"/post/view?no="+postId+"&pageNum="+pageNum);
 		}catch(FailWriteCommentException e) {
 			e.printStackTrace();
 			return "/WEB-INF/view/post/readPost.jsp";
@@ -49,6 +45,7 @@ public class WriteCommentHandler implements CommandHandler {
 			e.printStackTrace();
 			return "/WEB-INF/view/user/loginForm.jsp";
 		}
+		return null;
 	}
 
 }

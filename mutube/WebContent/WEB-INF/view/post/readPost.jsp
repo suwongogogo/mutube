@@ -45,8 +45,8 @@
 										<c:if test="${postData.postContent.imageName != null }">
 											<img src="${postData.postContent.imageName }">
 											<%
-												PostData postData = (PostData)request.getAttribute("postData");
-												out.print(postData.getPostContent().getImageName());
+												PostData postData = (PostData) request.getAttribute("postData");
+													out.print(postData.getPostContent().getImageName());
 											%>
 										</c:if>
 									</div>
@@ -65,16 +65,33 @@
 							</td>
 						</tr>
 						<tr>
-							<td colspan="6">
+							<td>
+								${loginUser.loginId }
+							</td>
+							<td colspan="5">
 								<form action="writeComment" method="post">
-									<input type="hidden" name="postId" value="${postData.post.postId }">
+									<input type="hidden" name="pageNum"
+										value="<%=request.getParameter("pageNum")%>"> <input
+										type="hidden" name="postId" value="${postData.post.postId }">
 									<div class="comment">
-										<textarea  rows="6" name="comment"></textarea>
+										<textarea rows="4" name="comment"></textarea>
 										<input type="submit" value="작성">
 									</div>
 								</form>
 							</td>
 						</tr>
+						<c:forEach var="comment"
+							items="${postData.commentPage.commentList }">
+							<tr>
+								<td colspan="2">${postData.commentPage.commentList.userId }
+								</td>
+								<td colspan="3">${postData.commentPage.commentList.comment }
+								</td>
+								<td>[답변]<br> [수정]<br> [삭제]
+								</td>
+							</tr>
+						</c:forEach>
+
 					</table>
 				</div>
 			</div>
