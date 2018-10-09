@@ -26,10 +26,10 @@
 								<hr class="list-line">
 								<table class="genre">
 									<tr>
-										<td><a href="buttonAction.jsp?cat=genre&value=blues"><img src="Image/genre/blues.jpg" alt="sorry" name="value"></a></td>
-										<td><a href="buttonAction.jsp?cat=genre&value=rock"><img src="Image/genre/rock.jpg" alt="sorry" name="value"></a></td>
-										<td><a href="buttonAction.jsp?cat=genre&value=jazz"><img src="Image/genre/jazz.png" alt="sorry" name="value"></a></td>
-										<td><a href="buttonAction.jsp?cat=genre&value=R&B"><img src="Image/genre/R&B.png" alt="sorry" name="value"></a></td>
+										<td><a href="/post/search?keyword=blues&category=genre"><img src="Image/genre/blues.jpg" alt="sorry"></a></td>
+										<td><a href="/post/search?keyword=rock&category=genre"><img src="Image/genre/rock.jpg" alt="sorry"></a></td>
+										<td><a href="/post/search?keyword=jazz&category=genre"><img src="Image/genre/jazz.png" alt="sorry"></a></td>
+										<td><a href="/post/search?keyword=R&B&category=genre"><img src="Image/genre/R&B.png" alt="sorry"></a></td>
 									</tr>
 									<tr>
 										<td>Blues</td>
@@ -41,10 +41,10 @@
 								<br> <br> <br> <br>
 								<table class="genre">
 									<tr>
-										<td><a href="buttonAction.jsp?cat=genre&value=funk"><img src="Image/genre/funk.jpg" alt="sorry" name="value"></a></td>
-										<td><a href="buttonAction.jsp?cat=genre&value=hiphop"><img src="Image/genre/hiphop.jpg" alt="sorry" name="value"></a></td>
-										<td><a href="buttonAction.jsp?cat=genre&value=metal"><img src="Image/genre/metal.jpg" alt="sorry" name="value"></a></td>
-										<td><a href="buttonAction.jsp?cat=genre&value=edm"><img src="Image/genre/edm.jpg" alt="sorry" name="value"></a></td>
+										<td><a href="/post/search?keyword=funk&category=genre"><img src="Image/genre/funk.jpg" alt="sorry"></a></td>
+										<td><a href="/post/search?keyword=hiphop&category=genre"><img src="Image/genre/hiphop.jpg" alt="sorry"></a></td>
+										<td><a href="/post/search?keyword=metal&category=genre"><img src="Image/genre/metal.jpg" alt="sorry"></a></td>
+										<td><a href="/post/search?keyword=edm&category=genre"><img src="Image/genre/edm.jpg" alt="sorry"></a></td>
 									</tr>
 									<tr>
 										<td>Funk</td>
@@ -56,10 +56,10 @@
 								<br> <br> <br> <br>
 								<table class="genre">
 									<tr>
-										<td><a href="buttonAction.jsp?cat=genre&value=classic"><img src="Image/genre/classic.jpg" alt="sorry" name="value"></a></td>
-										<td><a href="buttonAction.jsp?cat=genre&value=gospel"><img src="Image/genre/gospel.jpg" alt="sorry" name="value"></a></td>
-										<td><a href="buttonAction.jsp?cat=genre&value=band"><img src="Image/genre/band.jpg" alt="sorry" name="value"></a></td>
-										<td><a href="buttonAction.jsp?cat=genre&value=fusion jazz"><img src="Image/genre/fusion_jazz.jpg" alt="sorry" name="value"></a></td>
+										<td><a href="/post/search?keyword=classic&category=genre"><img src="Image/genre/classic.jpg" alt="sorry"></a></td>
+										<td><a href="/post/search?keyword=gospel&category=genre"><img src="Image/genre/gospel.jpg" alt="sorry"></a></td>
+										<td><a href="/post/search?keyword=band&category=genre"><img src="Image/genre/band.jpg" alt="sorry"></a></td>
+										<td><a href="/post/search?keyword=fusion jazz&category=genre jazz"><img src="Image/genre/fusion_jazz.jpg" alt="sorry"></a></td>
 									</tr>
 									<tr>
 										<td>Classic</td>

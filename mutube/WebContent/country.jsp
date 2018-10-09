@@ -26,10 +26,10 @@
 							<hr class="list-line">
 							<table class="country">
 								<tr>
-									<td><a href="buttonAction.jsp?cat=country&value=korea"><img src="Image/country/south_korea.png" alt="sorry" country="value"></a></td>
-									<td><a href="buttonAction.jsp?cat=country&value=japan"><img src="Image/country/japan.png" alt="sorry" country="value"></a></td>
-									<td><a href="buttonAction.jsp?cat=country&value=USA"><img src="Image/country/USA.png" alt="sorry" country="value"></a></td>
-									<td><a href="buttonAction.jsp?cat=country&value=germany"><img src="Image/country/germany.png" alt="sorry" country="value"></a></td>
+									<td><a href="/post/search?keyword=korea&category=country"><img src="Image/country/south_korea.png" alt="sorry"></a></td>
+									<td><a href="/post/search?keyword=japan&category=country"><img src="Image/country/japan.png" alt="sorry"></a></td>
+									<td><a href="/post/search?keyword=USA&category=country"><img src="Image/country/USA.png" alt="sorry"></a></td>
+									<td><a href="/post/search?keyword=germanty&category=country"><img src="Image/country/germany.png" alt="sorry"></a></td>
 								</tr>
 								<tr>
 									<td>대한민국</td>
@@ -41,10 +41,10 @@
 							<br> <br> <br> <br>
 							<table class="country">
 								<tr>
-									<td><a href="buttonAction.jsp?cat=country&value=china"><img src="Image/country/china.png" alt="sorry" country="value"></a></td>
-									<td><a href="buttonAction.jsp?cat=country&value=spain"><img src="Image/country/spain.png" alt="sorry" country="value"></a></td>
-									<td><a href="buttonAction.jsp?cat=country&value=england"><img src="Image/country/England.jpg" alt="sorry" country="value"></a></td>
-									<td><a href="buttonAction.jsp?cat=country&value=france"><img src="Image/country/france.png" alt="sorry" country="value"></a></td>
+									<td><a href="/post/search?keyword=china&category=country"><img src="Image/country/china.png" alt="sorry"></a></td>
+									<td><a href="/post/search?keyword=spain&category=country"><img src="Image/country/spain.png" alt="sorry"></a></td>
+									<td><a href="/post/search?keyword=england&category=country"><img src="Image/country/England.jpg" alt="sorry"></a></td>
+									<td><a href="/post/search?keyword=france&category=country"><img src="Image/country/france.png" alt="sorry"></a></td>
 								</tr>
 								<tr>
 									<td>중국</td>
@@ -56,7 +56,7 @@
 							<br> <br> <br> <br>
 							<table class="country">
 								<tr>
-									<td><a href="buttonAction.jsp?cat=country&value=russia"><img src="Image/country/russia.png" alt="sorry" country="value"></a></td>
+									<td><a href="/post/search?keyword=russia&category=country"><img src="Image/country/russia.png" alt="sorry"></a></td>
 								</tr>
 								<tr>
 									<td>러시아</td>

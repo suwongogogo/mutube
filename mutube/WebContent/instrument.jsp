@@ -26,10 +26,10 @@
 								<hr class="">
 								<table class="instrument">
 									<tr>
-										<td><a href="buttonAction.jsp?cat=instrument&value=guitar"><img src="Image/instrument/guitar.jpg" alt="sorry" name="value"></a></td>
-										<td><a href="buttonAction.jsp?cat=instrument&value=bass"><img src="Image/instrument/bass.jpg" alt="sorry" name="value"></a></td>
-										<td><a href="buttonAction.jsp?cat=instrument&value=vocal"><img src="Image/instrument/vocal.jpg" alt="sorry" name="value"></a></td>
-										<td><a href="buttonAction.jsp?cat=instrument&value=drum"><img src="Image/instrument/drum.jpg" alt="sorry" name="value"></a></td>
+										<td><a href="/post/search?keyword=guitar&category=instrument"><img src="Image/instrument/guitar.jpg" alt="sorry"></a></td>
+										<td><a href="/post/search?keyword=bass&category=instrument"><img src="Image/instrument/bass.jpg" alt="sorry"></a></td>
+										<td><a href="/post/search?keyword=vocal&category=instrument"><img src="Image/instrument/vocal.jpg" alt="sorry"></a></td>
+										<td><a href="/post/search?keyword=drum&category=instrument"><img src="Image/instrument/drum.jpg" alt="sorry"></a></td>
 									</tr>
 									<tr>
 										<td>Guitar</td>
@@ -41,10 +41,10 @@
 								<br> <br> <br> <br>
 								<table class="instrument">
 									<tr>
-										<td><a href="buttonAction.jsp?cat=instrument&value=piano"><img src="Image/instrument/piano.jpg" alt="sorry" name="value"></a></td>
-										<td><a href="buttonAction.jsp?cat=instrument&value=trumpet"><img src="Image/instrument/trumpet.jpg" alt="sorry" name="value"></a></td>
-										<td><a href="buttonAction.jsp?cat=instrument&value=saxophone"><img src="Image/instrument/saxophone.jpg" alt="sorry" name="value"></a></td>
-										<td><a href="buttonAction.jsp?cat=instrument&value=trombone"><img src="Image/instrument/trombone.jpg" alt="sorry" name="value"></a></td>
+										<td><a href="/post/search?keyword=piano&category=instrument"><img src="Image/instrument/piano.jpg" alt="sorry"></a></td>
+										<td><a href="/post/search?keyword=trumpet&category=instrument"><img src="Image/instrument/trumpet.jpg" alt="sorry"></a></td>
+										<td><a href="/post/search?keyword=saxophone&category=instrument"><img src="Image/instrument/saxophone.jpg" alt="sorry"></a></td>
+										<td><a href="/post/search?keyword=trombone&category=instrument"><img src="Image/instrument/trombone.jpg" alt="sorry"></a></td>
 									</tr>
 									<tr>
 										<td>Piano</td>
@@ -56,8 +56,8 @@
 								<br> <br> <br> <br>
 								<table class="instrument">
 									<tr>
-										<td><a href="buttonAction.jsp?cat=instrument&value=acoustic guitar"><img src="Image/instrument/acoustic_guitar.jpg" alt="sorry" name="value"></a></td>
-										<td><a href="buttonAction.jsp?cat=instrument&value=contrabass"><img src="Image/instrument/Contrabass.jpg" alt="sorry" name="value"></a></td>
+										<td><a href="/post/search?keyword=acoustic guitar&category=instrument"><img src="Image/instrument/acoustic_guitar.jpg" alt="sorry"></a></td>
+										<td><a href="/post/search?keyword=contrabass&category=instrument"><img src="Image/instrument/Contrabass.jpg" alt="sorry"></a></td>
 									</tr>
 									<tr>
 										<td>Acoustic Guitar</td>
