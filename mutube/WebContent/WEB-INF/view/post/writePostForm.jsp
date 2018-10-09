@@ -17,7 +17,7 @@
 			<jsp:include page="/particular/nav.jsp"></jsp:include>
 			<div class="postForm-container">
 				<div class="title-container">
-					<form action="write" method="post">
+					<form action="write" method="post" enctype="multipart/form-data">
 						<div class="title-form">
 							<p class="write-title">제목</p>
 							<input class="input" name="title" type="text">
@@ -69,7 +69,7 @@
 						</div>
 						<div class="video-container">
 							<p class="write-title">이미지 첨부하기</p>
-							<input type="text" name="video_link" class="video-input">
+							<input type="file" name="image" class="image-input" size="10">
 						</div>
 						<div class="content">
 							<p class="write-title content-title">내용</p>

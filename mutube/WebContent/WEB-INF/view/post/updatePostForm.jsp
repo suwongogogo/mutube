@@ -8,7 +8,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<form action="update" method="post">
+<form action="update" method="post" enctype="multipart/form-data">
 	<input type="hidden" name="no" value="${postData.post.postId }">
 	<input type="text" name="title" value="${postData.post.title }">
 	<c:if test="${errors.title }">제목이 비어있습니다.</c:if>

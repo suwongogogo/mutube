@@ -24,7 +24,9 @@ public class SearchPostHandler implements CommandHandler {
 			if(pageNumStr != null) {
 				pageNum = Integer.parseInt(pageNumStr);
 			}
-
+			if(keyword != null) {
+				keyword = "%"+keyword+"%";
+			}
 			SearchPostService searchService = SearchPostService.getInstance();
 			PostPage postList = searchService.searchPost(keyword, pageNum);
 		

@@ -70,4 +70,6 @@
 		<url-pattern>/admin/userManagement</url-pattern>
 		<url-pattern>/admin/postManagement</url-pattern>
 	</servlet-mapping>
+	
+
 </web-app>
