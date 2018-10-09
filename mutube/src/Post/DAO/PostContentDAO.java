@@ -47,7 +47,7 @@ public class PostContentDAO {
 	}
 
 	public int update(Connection conn, PostContent postContent, int postId) throws SQLException {
-		String sql = "update post_content set content = ?, video_link= ?, imageName=? where postId = ?";
+		String sql = "update post_content set content = ?, video_link= ?, imageName= ? where postId = ?";
 		try (PreparedStatement pst = conn.prepareStatement(sql)) {
 			pst.setString(1, postContent.getContent());
 			pst.setString(2, postContent.getVideo_link());

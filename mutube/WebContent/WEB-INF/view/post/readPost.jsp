@@ -1,4 +1,5 @@
 
+<%@page import="Post.Model.PostData"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -38,6 +39,15 @@
 												src="https://www.youtube.com/embed/${postData.postContent.video_link }"
 												frameborder="0" allow="autoplay; encrypted-media"
 												allowfullscreen></iframe>
+										</c:if>
+									</div>
+									<div class="margin-right">
+										<c:if test="${postData.postContent.imageName != null }">
+											<img src="${postData.postContent.imageName }">
+											<%
+												PostData postData = (PostData)request.getAttribute("postData");
+												out.print(postData.getPostContent().getImageName());
+											%>
 										</c:if>
 									</div>
 									<div>${postData.postContent.content }</div>
