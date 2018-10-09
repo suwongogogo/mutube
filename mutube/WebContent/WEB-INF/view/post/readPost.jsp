@@ -58,13 +58,12 @@
 							<td colspan="6">
 								<form action="comment" method="post">
 									<div class="comment">
-										<textarea rows="6"></textarea>
+										<textarea  rows="6"></textarea>
 										<input type="submit" value="작성">
 									</div>
 								</form>
 							</td>
 						</tr>
-						
 					</table>
 
 				</div>

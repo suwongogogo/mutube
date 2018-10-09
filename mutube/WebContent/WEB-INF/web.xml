@@ -66,6 +66,7 @@
 		<url-pattern>/post/delete</url-pattern>
 		<url-pattern>/post/list</url-pattern>
 		<url-pattern>/post/search</url-pattern>
+		<url-pattern>/post/writeComment</url-pattern>
 		
 		<url-pattern>/admin/userManagement</url-pattern>
 		<url-pattern>/admin/postManagement</url-pattern>
