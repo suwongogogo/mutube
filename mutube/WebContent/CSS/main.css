@@ -1,3 +1,33 @@
 .center {
 	display: flex;
 }
+.main-board{
+	position: relative;
+	left: 160px;
+	top: 50px;
+	height: 700px;
+	width: 1240px;
+	border: 1px solid darkgray;
+	border-radius: 5px;
+}
+.song{
+	text-align: center;
+	position: relative;
+	top: 50px;
+}
+.song > iframe{
+	width: 600px;
+	height: 400px;
+}
+.song > p{
+	font-size: 25px;
+	margin: 7px;
+}
+.song-comment{
+	text-align: center;
+	position: relative;
+	top: 110px;
+}
+.song-comment > p{
+	font-size: 20px;
+}
