@@ -16,7 +16,7 @@
         	<jsp:include page="/particular/nav.jsp"></jsp:include>
 		   	<div class="board">
 		   		
-		   	</div>
+		   	</div>	
     	</div>
     	<jsp:include page="/particular/footer.jsp"></jsp:include>
     </div>
