@@ -86,7 +86,7 @@
 									<div class="view-comment-container">
 										<div class="id-inline">
 											<p>${comment.name }<br>
-											   <font size="2" color="gray">(${comment.loginId })</font></p>
+											<font size="2" color="gray">(${comment.loginId })</font></p>
 										</div>
 										<c:if test="${loginUser != null && loginUser.userId == comment.userId}">
 										<div class="comment-control-div">
