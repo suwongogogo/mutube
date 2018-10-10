@@ -14,6 +14,7 @@
 	    	<div class="center">
 	        	<jsp:include page="/particular/nav.jsp"></jsp:include>
 			   	<div class="board-list">
+			   		<div class="address">검색결과를 써용 ㅎㅎ</div> 
 			   		<div class="board-list-container">
 				   		<c:if test="${errors.postList }">검색한 게시글을 찾을 수 없습니다.</c:if>
 							<table>

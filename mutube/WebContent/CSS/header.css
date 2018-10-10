@@ -5,10 +5,11 @@ header {
     padding: 30px 0px;
     border-bottom: 1px solid #dddddd;
     display: flex;
+    height: 50px;
 }
 .search-container {
     width: 846px;
-    margin-left: 500px;
+    margin-left: 360px;
 }
 .search {
     outline: none;
@@ -19,10 +20,11 @@ header {
 .search-button {
     margin-left: -7px;
    	position: relative;
-    height: 37px;
-    bottom: 2px;
+    height: 43px;
+    bottom: -0.6px;
 }
 .logo {
 	position: relative;
     top: -23px;
+    margin-left: 42px;
 }
