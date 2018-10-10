@@ -10,7 +10,7 @@
     <div class="middle">
         <header class="header">
         	<div class="logo">
-        		<a href="/mutube/main.jsp">
+        		<a href="/mutube/Main.jsp">
         			<img src="/mutube/Image/logo.jpg" width="200" height="100">
         		</a>
         	</div>

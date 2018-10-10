@@ -22,7 +22,7 @@ table {
 	min-width: 1612px;
 }
 .board-list-container {
-	padding: 73px 212px;
+	padding-left: 212px;
 }
 .line-top {
 	border-top: 1px solid black;
@@ -54,10 +54,10 @@ table {
 	width: 70px;
 }
 .list-title {
-	width: 256px;
+	width: 308px;
 }
 .list-public {
-	width: 120px;
+	width: 80px;
 }
 .list-date {
 	width: 155px;
@@ -97,4 +97,9 @@ table {
 }
 .next,.prev {
 	font-size: 17px;
+}
+.address {
+	font-size: 36px;
+    font-weight: bold;
+    margin: 10px 0px 15px 209px;
 }
