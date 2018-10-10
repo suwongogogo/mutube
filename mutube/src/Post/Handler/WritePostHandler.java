@@ -21,6 +21,7 @@ import Post.Model.PostData;
 import Post.Model.Writer;
 import Post.Service.WritePostService;
 import User.Model.User;
+
 public class WritePostHandler implements CommandHandler {
 	private static final String FORM_VIEW = "/WEB-INF/view/post/writePostForm.jsp";
 
@@ -56,13 +57,19 @@ public class WritePostHandler implements CommandHandler {
 		// 글 정보는 Post, 내용은 PostContent 객체에 담아 WriteRequest를 생성.
 		Post post = new Post(new Writer(loginUser.getUserId(),loginUser.getName()),multipartRequest.getParameter("title"),multipartRequest.getParameter("genre"),multipartRequest.getParameter("country"),multipartRequest.getParameter("instrument"));
 		
-		File image = new File();
+		PostContent postContent = null;
+		File image = null;
+		if(multipartRequest.getFile("image")!= null ) {
+			image = new File();
 		
-		image.setFileName(multipartRequest.getOriginalFileName("image"));
-		image.setFileRealName(multipartRequest.getFile("image").getAbsolutePath());
+			image.setFileName(multipartRequest.getOriginalFileName("image"));
+			image.setFileRealName(multipartRequest.getFile("image").getAbsolutePath());
 		
+			postContent = new PostContent(multipartRequest.getParameter("content"),multipartRequest.getParameter("video_link"), image.getFileName());
+		}else{
 		
-		PostContent postContent = new PostContent(multipartRequest.getParameter("content"),multipartRequest.getParameter("video_link"), image.getFileName());
+			postContent = new PostContent(multipartRequest.getParameter("content"),multipartRequest.getParameter("video_link"));
+		}
 		postContent.trimLink();
 		
 		

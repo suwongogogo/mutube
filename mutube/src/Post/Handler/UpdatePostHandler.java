@@ -78,11 +78,19 @@ public class UpdatePostHandler implements Handler.CommandHandler {
 				return FORM_VIEW;
 			}
 			
-			File image = new File();
+			PostContent postContent = null;
+			File image = null;
+			if(multipartRequest.getFile("image")!= null ) {
+				image = new File();
 			
-			image.setFileName(multipartRequest.getOriginalFileName("image"));
-			image.setFileRealName(multipartRequest.getFilesystemName("image"));
-			PostContent postContent = new PostContent(multipartRequest.getParameter("content"), multipartRequest.getParameter("video_link"), image.getFileName());
+				image.setFileName(multipartRequest.getOriginalFileName("image"));
+				image.setFileRealName(multipartRequest.getFile("image").getAbsolutePath());
+			
+				postContent = new PostContent(multipartRequest.getParameter("content"),multipartRequest.getParameter("video_link"), image.getFileName());
+			}else{
+			
+				postContent = new PostContent(multipartRequest.getParameter("content"),multipartRequest.getParameter("video_link"));
+			}
 			postContent.trimLink();
 
 			PostData postData = new PostData(post, postContent);

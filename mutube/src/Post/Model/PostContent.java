@@ -14,6 +14,11 @@ public class PostContent {
 		this.video_link = video_link;
 		this.imageName = imageName;
 	}
+	public PostContent(int postId, String content, String video_link) {
+		this.postId = postId;
+		this.content = content;
+		this.video_link = video_link;
+	}
 	public PostContent(String content, String video_link, String imageName) {
 		this.content = content;
 		this.video_link = video_link;

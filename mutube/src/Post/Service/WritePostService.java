@@ -35,15 +35,24 @@ public class WritePostService {
 				throw new RuntimeException("게시글 삽입 실패");
 			}
 			
-			PostContent postContent = new PostContent(postId, writeReq.getPostContent().getContent(), writeReq.getPostContent().getVideo_link(), writeReq.getImage().getFileName());
+			PostContent postContent = null;
+			if( writeReq.getImage()!= null) {
+				postContent = new PostContent(postId, writeReq.getPostContent().getContent(), writeReq.getPostContent().getVideo_link(), writeReq.getImage().getFileName());
+			}else {
+				postContent = new PostContent(postId, writeReq.getPostContent().getContent(), writeReq.getPostContent().getVideo_link());
+			}
 			int ret = contentDAO.insert(conn, postContent);
 			if(ret == 0) {
 				conn.rollback();
 				throw new RuntimeException("Content 삽입 실패");
 			}
-			File image = writeReq.getImage();
 			
-			fileDAO.upload(conn, image);
+			File image = null;
+			if(writeReq.getImage()!= null) {
+				image = writeReq.getImage();
+				fileDAO.upload(conn, image);
+			}
+			
 			
 			
 			conn.commit();
