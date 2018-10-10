@@ -32,13 +32,13 @@
 						<input class="font30 outline" value="${loginUser.email }" readonly="readonly">
 					</div>
 					<div class="button-container">
-						<a href="update?userId=${loginUser.userId }">
+						<a href="/mutube/user/update?userId=${loginUser.userId }">
 							<button class="submit input">회원 수정</button>
 						</a>
-						<a href="delete?userId=${loginUser.userId }">
+						<a href="/mutube/user/delete?userId=${loginUser.userId }">
 							<button class="submit input">회원 탈퇴</button>
 						</a>
-						<a href="changePassword?userId=${loginUser.userId }">
+						<a href="/mutube/user/changePassword?userId=${loginUser.userId }">
 							<button class="submit input">비밀번호 수정</button>
 						</a>
 					</div>

@@ -3,6 +3,7 @@ package Post.Handler;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -13,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 import com.sun.glass.ui.Application;
+import com.sun.jmx.snmp.Enumerated;
 
 import Handler.CommandHandler;
 import Post.Model.File;
@@ -60,13 +62,23 @@ public class WritePostHandler implements CommandHandler {
 		
 		PostContent postContent = null;
 		ArrayList<String> imageNames = new ArrayList<>();
+		
+		Enumeration names = multipartRequest.getFileNames();
+		while(names.hasMoreElements()) {
+			String fname = (String)names.nextElement();
+			String sysFname = multipartRequest.getFilesystemName(fname);
+			System.out.println(fname);
+			multipartRequest.getFile(sysFname);
+		}
+		
 		if(multipartRequest.getFile("image")!= null ) {
-			System.out.println(multipartRequest.getFile("image"));
-
-			postContent = new PostContent(multipartRequest.getParameter("content"),multipartRequest.getParameter("video_link"), imageNames);
+			String imageName = multipartRequest.getOriginalFileName("image");
+			System.out.println(imageName);
+		
+//			postContent = new PostContent(multipartRequest.getParameter("content"),multipartRequest.getParameter("video_link"), imageNames);
 		}else{
 		
-			postContent = new PostContent(multipartRequest.getParameter("content"),multipartRequest.getParameter("video_link"));
+//			postContent = new PostContent(multipartRequest.getParameter("content"),multipartRequest.getParameter("video_link"));
 		}
 		postContent.trimLink();
 		
