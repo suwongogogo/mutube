@@ -22,7 +22,7 @@ table {
 	min-width: 1612px;
 }
 .board-list-container {
-	padding: 73px 212px;
+	padding: 0px 212px 69px;
 }
 .line-bottom {
 	border-bottom: 1px solid black;
@@ -67,6 +67,8 @@ table {
 	border: 1px solid #dddddd;
 	border-radius: 3px;
 	padding: 7px 10px;
+	margin: 10px 0px;
+	cursor: pointer;
 }
 .list-tr {
 	height: 30px;
@@ -86,4 +88,9 @@ table {
 }
 .next,.prev {
 	font-size: 17px;
+}
+.address {
+	font-size: 36px;
+    font-weight: bold;
+    margin: 10px 0px 15px 209px;
 }

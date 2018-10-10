@@ -14,6 +14,7 @@
     	<div class="center">
         	<jsp:include page="/particular/nav.jsp"></jsp:include>
 		   	<div class="board-list">
+		   		<div class="address">전체글</div> 
 		   		<div class="board-list-container">
 			  		<table>
 						<tr class="line-bottom font18">

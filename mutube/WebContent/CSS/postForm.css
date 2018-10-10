@@ -89,9 +89,11 @@ body, p {
 	background-color: #1a73e8;
 	border: 1px solid #1a73e8;
 	color: white;
+	cursor: pointer;
 }
 
 .cancle {
 	border: 1px solid #bbbbbb;
 	background-color: white;
+	cursor: pointer;
 }
