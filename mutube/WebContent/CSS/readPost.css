@@ -29,7 +29,7 @@ table{
 }
 .text-none {
 	text-align: start;
-	height: 360px;
+	height: 500px;
 }
 .line {
 	position: absolute;
@@ -43,13 +43,13 @@ table{
     margin-left: 30px;
 }
 .margin-right {
-	margin-right: 30px;
+	position: relative;
+	bottom: 50px;
 	text-align: center;
 }
 .view-button-container {
 	position: relative;
-    bottom: 473px;
-    left: 32px;
+    bottom: 370px;
     text-align: end;
 }
 .view-button {
@@ -80,31 +80,38 @@ a,a:hover {
 	text-decoration: none;
 }	
 .comment-textarea {
-	width: 720px;
+	position: relative;
+	left: 108px;
+	width: 904px;
 	outline: none;
-	margin-left: 32px;
 }
 .submit {
 	height: 81px;
     position: relative;
     top: -35px;
-    left: -5px;
+    left: 104px;
 }
 .view-comment-container {
 	padding: 10px 0px;
 	border-top: 1px solid #bbbbbb;
 	border-bottom: 1px solid #bbbbbb;
 	overflow: hidden;
-}
+	height: 59px;
+} 
 .inline {
 	display: inline-block;
 }
 .comment-control-div {
 	float: right;
+	display: grid;
+	position: relative;
+	right: 18px;
+	bottom: -6px;
 }
 .comment-control-div > a {
-	color: gray;
 	font-size: 15px;
+	border: 1px solid black;
+	margin-bottom: 5px;
 }
 .id {
 	font-weight: bold;
@@ -117,11 +124,36 @@ a,a:hover {
 	display: table;	
 	position: absolute;
 	height: 81px;
-	width: 146px;
-	left: 31px;
-	bottom: 145px;
+	width: 213px;
 }
 .userInf p{
+	display: table-cell;
+	text-align: center;
+	vertical-align: middle;
+}
+.id-inline{
+	position: absolute;
+	display: table;
+	height: 80px;
+	width: 212px;
+	bottom: -83px;
+	border-right: 1px solid darkgray;
+}
+.id-inline p{
+	display: table-cell;
+	text-align: center;
+	vertical-align: middle;
+}
+.comment-inline{
+	position: relative;
+	left: 213px;
+	bottom: 11px;
+	display:table;
+	height: 81px;
+	width: 910px;
+	border-right: 1px solid darkgray;
+}
+.comment-inline p{
 	display: table-cell;
 	text-align: center;
 	vertical-align: middle;

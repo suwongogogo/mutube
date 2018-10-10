@@ -23,7 +23,6 @@ public class CommentListHandler implements CommandHandler{
 		PostData postData = new PostData();
 		postData.setCommentPage(commentPage);
 		
-		req.setAttribute("postData", postData);
 		resp.sendRedirect(req.getContextPath()+"/post/view?no="+postId+"&pageNum="+pageNum);
 		
 		return null;

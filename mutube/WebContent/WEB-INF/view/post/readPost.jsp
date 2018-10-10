@@ -43,7 +43,7 @@
 									</div>
 									<div class="margin-right">
 										<c:if test="${postData.postContent.imageName != null }">
-											<img src="${postData.postContent.imageName }">
+											<img src="/img/${postData.postContent.imageName }">
 											<%
 												PostData postData = (PostData) request.getAttribute("postData");
 													out.print(postData.getPostContent().getImageName());
@@ -67,14 +67,20 @@
 						<tr>
 							<td colspan="6">
 								<div class="comment-container">
-									<div class="userInf">
-										<p>${loginUser.name }<br>
-										<font size="2" color="gray">(${loginUser.loginId })</font></p>
-									</div>
+									<c:if test="${loginUser == null }">
+									</c:if>
+									<c:if test="${loginUser != null }">
+										<div class="userInf">
+											<p>${loginUser.name }<br>
+											<font size="2" color="gray">(${loginUser.loginId })</font></p>
+										</div>
+									</c:if>
 									<div class="comment-form">
 										<form action="writeComment" method="post">
+											<input type="hidden" name="pageNum" value="${param.pageNum }">
+											<input type="hidden" name="postId" value="${param.no }">
 											<div class="form">
-												<textarea rows="5" class="comment-textarea"></textarea>
+												<textarea rows="5" class="comment-textarea" name="comment"></textarea>
 												<input type="submit" value="댓글 작성" class="submit">
 											</div>
 										</form>
@@ -82,19 +88,27 @@
 								</div>
 							</td>
 						</tr>
+						<c:if test="${postData.commentPage.commentList == null }"></c:if>
+						<c:if test="${postData.commentPage.commentList != null }">
 						<tr>
 							<td colspan="6">
 								<div class="view-comment-container">
-									<div class="id-container">
-										<div class="id inline">아이디</div>
-										<div class="comment-control-div">
-											<a href="#">수정</a> <a href="#">삭제</a>
-										</div>
+									<div class="id-inline">
+										<p>이름<br>
+										ID</p>
 									</div>
-									<div class="comment inline">라라라라~라라라라라라랄~그냥 게임 하자~</div>
+									<c:if test="${loginUser != null && loginUser.userId == postData.commentPage.commentList.userId}">
+									<div class="comment-control-div">
+										<a href="#">수정</a> <a href="#">삭제</a>
+									</div>
+									</c:if>
+									<div class="comment-inline">
+										<p>라라라라~라라라라라라랄~그냥 게임 하자~</p>
+									</div>
 								</div>
 							</td>
 						</tr>
+						</c:if>
 					</table>
 				</div>
 			</div>
