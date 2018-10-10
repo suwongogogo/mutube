@@ -13,7 +13,7 @@
             <div class="login" class="input-container">
                 <div class="input-container">
                     <p>비밀번호</p>
-                    <input type="text" name="password" class="password-input" placeholder="비밀번호를 입력하세요">
+                    <input type="password" name="password" class="password-input" placeholder="비밀번호를 입력하세요">
                     <%-- <span class="error"><c:if test="${errors.password }">비밀번호를 입력하세요.</c:if></span> --%>
                 </div>
                 <input type="submit" value="확인" class="submit">

@@ -12,7 +12,6 @@
         <div class="footer-container">
             <p class="footer-text footer-p">People Who Made Project</p>
             <p class="people footer-p">박진국, 이수원, 김승용, 김영진</p>
-            <p class="phone footer-p">불만있는 새끼 전화 걸어라 010-5543-1787</p>
         </div>
     </footer>
 </body>
