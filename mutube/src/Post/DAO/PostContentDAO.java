@@ -26,7 +26,6 @@ public class PostContentDAO {
 			pst.setString(3, postContent.getVideo_link());
 			return pst.executeUpdate();
 
-			
 		}
 	}
 
