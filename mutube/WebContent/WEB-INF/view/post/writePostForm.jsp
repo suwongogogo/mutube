@@ -22,6 +22,9 @@
 							<p class="write-title">제목</p>
 							<input class="input" name="title" type="text">
 						</div>
+						<c:if test="${errors.title }"><script>
+							alert("제목을 입력하세요");
+						</script></c:if>
 						<c:if test="${errors.genre }"><script>
 							alert("장르를 선택하세요");
 						</script></c:if>
@@ -69,7 +72,7 @@
 						</div>
 						<div class="video-container">
 							<p class="write-title">이미지 첨부하기</p>
-							<input type="file" name="image" multiple="multiple" class="image-input">
+							<input type="file" name="image[]" multiple="multiple" class="image-input">
 						</div>
 						<div class="content">
 							<p class="write-title content-title">내용</p>

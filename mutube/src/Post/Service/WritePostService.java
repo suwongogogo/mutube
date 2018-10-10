@@ -36,8 +36,15 @@ public class WritePostService {
 			}
 			
 			PostContent postContent = null;
-			if( writeReq.getImage()!= null) {
-				postContent = new PostContent(postId, writeReq.getPostContent().getContent(), writeReq.getPostContent().getVideo_link());
+			if( writeReq.getPostContent().getImageNames()!= null) {
+				String imageName = "";
+				for(int i = 0; i < writeReq.getPostContent().getImageNames().size(); i++) {
+					imageName += writeReq.getPostContent().getImageNames().get(i);
+					if(i<writeReq.getPostContent().getImageNames().size()-1) {
+						imageName+=",";
+					}
+				}
+				postContent = new PostContent(postId, writeReq.getPostContent().getContent(), writeReq.getPostContent().getVideo_link(), imageName );
 			}else {
 				postContent = new PostContent(postId, writeReq.getPostContent().getContent(), writeReq.getPostContent().getVideo_link());
 			}
@@ -46,15 +53,7 @@ public class WritePostService {
 				conn.rollback();
 				throw new RuntimeException("Content 삽입 실패");
 			}
-			
-			File image = null;
-			if(writeReq.getImage()!= null) {
-				image = writeReq.getImage();
-				fileDAO.upload(conn, image);
-			}
-			
-			
-			
+
 			conn.commit();
 			return postId;
 		}catch(SQLException e) {

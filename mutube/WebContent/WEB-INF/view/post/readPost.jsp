@@ -41,6 +41,13 @@
 												allowfullscreen></iframe>
 										</c:if>
 									</div>
+									<div class="margin-right">
+										<c:if test="${postData.postContent.video_link != null }">
+											<c:forEach var="imageName" items="${ postData.postContent.imageNames}">
+												<img src="/img/${imageName }">
+											</c:forEach>
+										</c:if>
+									</div>
 									<div>${postData.postContent.content }</div>
 									<c:if
 										test="${loginUser!=null && loginUser.userId== postData.post.writer.userId }">

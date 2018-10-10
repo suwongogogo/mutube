@@ -19,7 +19,7 @@ public class PostContentDAO {
 	}
 
 	public int insert(Connection conn, PostContent postContent) throws SQLException {
-		String sql = "insert into post_content(postId ,content, video_link) values(?, ?, ?)";
+		String sql = "insert into post_content(postId ,content, video_link, imageName) values(?, ?, ?, ?)";
 		try (PreparedStatement pst = conn.prepareStatement(sql)) {
 			pst.setInt(1, postContent.getPostId());
 			pst.setString(2, postContent.getContent());
@@ -37,7 +37,7 @@ public class PostContentDAO {
 
 			try (ResultSet rs = pst.executeQuery()) {
 				if (rs.next()) {
-					postContent = new PostContent(rs.getInt("postId"), rs.getString("content"), rs.getString(3));
+					postContent = new PostContent(rs.getInt("postId"), rs.getString("content"), rs.getString(3), rs.getString("imageName"));
 				}
 			}
 		}
