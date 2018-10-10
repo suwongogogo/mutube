@@ -32,7 +32,7 @@
                     <span class="error"><c:if test="${errors.password }">이메일을 입력하세요.</c:if></span>
                 </div>
                 <input type="submit" value="수정" class="submit">
-                <a href="/mutube/user/myPage">
+                <a href="/mutube/myPage.jsp">
                 	<button class="submit">취소</button>
                 </a>
             </div>

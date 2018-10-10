@@ -10,6 +10,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" type="text/css" href="CSS/myPage.css" />
+<script type="text/javascript" src="JavaScript/myPage.js"></script>
 <title>마이페이지</title>
 </head>
 <body>
@@ -35,9 +36,9 @@
 						<a href="/mutube/user/update?userId=${loginUser.userId }">
 							<button class="submit input">회원 수정</button>
 						</a>
-						<a href="/mutube/user/delete?userId=${loginUser.userId }">
+						<span onclick="userOut()">
 							<button class="submit input">회원 탈퇴</button>
-						</a>
+						</span>
 						<a href="/mutube/user/changePassword?userId=${loginUser.userId }">
 							<button class="submit input">비밀번호 수정</button>
 						</a>
