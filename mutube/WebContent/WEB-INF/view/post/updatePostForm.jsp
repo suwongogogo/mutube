@@ -28,7 +28,7 @@
 					<c:if test="${errors.country }">국가가 비어있습니다.</c:if>
 					<input type="text" name="instrument" value="${postData.post.instrument }">
 					<c:if test="${errors.insrument }">악기가 비어있습니다.</c:if>
-					<input type="submit" value="수정하기">
+					<input type="submit" value="수정">
 				</form>
 		   	</div>	
     	</div>
