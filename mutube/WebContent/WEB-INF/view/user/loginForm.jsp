@@ -10,9 +10,6 @@
 <title>로그인</title>
 </head>
 <body>
-	<div class="logo">
-		<a href="/mutube/Main.jsp"><img src="/mutube/Image/수원이얼굴.jpg"></a>
-	</div>
 	<div class="loginForm-container">
         <form action="login" method="post">
             <div class="login" class="input-container">
