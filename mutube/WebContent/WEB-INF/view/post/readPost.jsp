@@ -24,11 +24,11 @@
 						</tr>
 						<tr>
 							<td class="view-title">장르</td>
-							<td>오케스뚜라</td>
+							<td>${postData.post.genre }</td>
 							<td class="view-title">국가</td>
-							<td>방글라데시</td>
+							<td>${postData.post.country }</td>
 							<td class="view-title">악기</td>
-							<td>탬버린</td>
+							<td>${postData.post.instrument }</td>
 						</tr>
 						<tr>
 							<td colspan="6" class="text-none">
@@ -65,33 +65,36 @@
 							</td>
 						</tr>
 						<tr>
-							<td>
-								${loginUser.loginId }
-							</td>
-							<td colspan="5">
-								<form action="writeComment" method="post">
-									<input type="hidden" name="pageNum"
-										value="<%=request.getParameter("pageNum")%>"> <input
-										type="hidden" name="postId" value="${postData.post.postId }">
-									<div class="comment">
-										<textarea rows="4" name="comment"></textarea>
-										<input type="submit" value="작성">
+							<td colspan="6">
+								<div class="comment-container">
+									<div class="userInf">
+										<p>${loginUser.name }<br>
+										<font size="2" color="gray">(${loginUser.loginId })</font></p>
 									</div>
-								</form>
+									<div class="comment-form">
+										<form action="writeComment" method="post">
+											<div class="form">
+												<textarea rows="5" class="comment-textarea"></textarea>
+												<input type="submit" value="댓글 작성" class="submit">
+											</div>
+										</form>
+									</div>
+								</div>
 							</td>
 						</tr>
-						<c:forEach var="comment"
-							items="${postData.commentPage.commentList }">
-							<tr>
-								<td colspan="2">${postData.commentPage.commentList.userId }
-								</td>
-								<td colspan="3">${postData.commentPage.commentList.comment }
-								</td>
-								<td>[답변]<br> [수정]<br> [삭제]
-								</td>
-							</tr>
-						</c:forEach>
-
+						<tr>
+							<td colspan="6">
+								<div class="view-comment-container">
+									<div class="id-container">
+										<div class="id inline">아이디</div>
+										<div class="comment-control-div">
+											<a href="#">수정</a> <a href="#">삭제</a>
+										</div>
+									</div>
+									<div class="comment inline">라라라라~라라라라라라랄~그냥 게임 하자~</div>
+								</div>
+							</td>
+						</tr>
 					</table>
 				</div>
 			</div>

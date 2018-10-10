@@ -29,6 +29,7 @@ table{
 }
 .text-none {
 	text-align: start;
+	height: 360px;
 }
 .line {
 	position: absolute;
@@ -70,4 +71,58 @@ table{
 	position: relative;
 	bottom: 45px;
 	left: 55px;
+}
+
+.comment-container {
+	height: 80px;
+}
+a,a:hover {
+	text-decoration: none;
+}	
+.comment-textarea {
+	width: 720px;
+	outline: none;
+	margin-left: 32px;
+}
+.submit {
+	height: 81px;
+    position: relative;
+    top: -35px;
+    left: -5px;
+}
+.view-comment-container {
+	padding: 10px 0px;
+	border-top: 1px solid #bbbbbb;
+	border-bottom: 1px solid #bbbbbb;
+	overflow: hidden;
+}
+.inline {
+	display: inline-block;
+}
+.comment-control-div {
+	float: right;
+}
+.comment-control-div > a {
+	color: gray;
+	font-size: 15px;
+}
+.id {
+	font-weight: bold;
+}
+.comment {
+	font-size: 15px;
+	word-break: break-all;
+}
+.userInf{
+	display: table;	
+	position: absolute;
+	height: 81px;
+	width: 146px;
+	left: 31px;
+	bottom: 145px;
+}
+.userInf p{
+	display: table-cell;
+	text-align: center;
+	vertical-align: middle;
 }
