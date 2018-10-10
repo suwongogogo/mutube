@@ -2,6 +2,7 @@ package Post.Handler;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -58,14 +59,11 @@ public class WritePostHandler implements CommandHandler {
 		Post post = new Post(new Writer(loginUser.getUserId(),loginUser.getName()),multipartRequest.getParameter("title"),multipartRequest.getParameter("genre"),multipartRequest.getParameter("country"),multipartRequest.getParameter("instrument"));
 		
 		PostContent postContent = null;
-		File image = null;
+		ArrayList<String> imageNames = new ArrayList<>();
 		if(multipartRequest.getFile("image")!= null ) {
-			image = new File();
-		
-			image.setFileName(multipartRequest.getOriginalFileName("image"));
-			image.setFileRealName(multipartRequest.getFile("image").getAbsolutePath());
-		
-			postContent = new PostContent(multipartRequest.getParameter("content"),multipartRequest.getParameter("video_link"), image.getFileName());
+			System.out.println(multipartRequest.getFile("image"));
+
+			postContent = new PostContent(multipartRequest.getParameter("content"),multipartRequest.getParameter("video_link"), imageNames);
 		}else{
 		
 			postContent = new PostContent(multipartRequest.getParameter("content"),multipartRequest.getParameter("video_link"));
@@ -73,7 +71,7 @@ public class WritePostHandler implements CommandHandler {
 		postContent.trimLink();
 		
 		
-		PostData writeReq = new PostData(post, postContent, image);
+		PostData writeReq = new PostData(post, postContent);
 		
 
 		// WriteRequest의 무결성 검사를 진행하고 이상있으면 다시 FORM_VIEW로 이동

@@ -1,35 +1,36 @@
 package Post.Model;
 
+import java.util.ArrayList;
 import java.util.Map;
 
 public class PostContent {
 	private int postId;
 	private String content;
 	private String video_link;
-	private String imageName;
+	private ArrayList<String> imageNames;
 
-	public PostContent(int postId, String content, String video_link, String imageName) {
+	public PostContent(int postId, String content, String video_link, ArrayList<String> imageNames) {
 		this.postId = postId;
 		this.content = content;
 		this.video_link = video_link;
-		this.imageName = imageName;
+		this.imageNames = imageNames;
 	}
 	public PostContent(int postId, String content, String video_link) {
 		this.postId = postId;
 		this.content = content;
 		this.video_link = video_link;
 	}
-	public PostContent(String content, String video_link, String imageName) {
+	public PostContent(String content, String video_link, ArrayList<String> imageNames) {
 		this.content = content;
 		this.video_link = video_link;
-		this.imageName = imageName ;
+		this.imageNames = imageNames ;
 	}
 
-	public String getImageName() {
-		return imageName;
+	public ArrayList<String> getImageNames() {
+		return imageNames;
 	}
 	public void setImageName(String imageName) {
-		this.imageName = imageName;
+		this.imageNames = imageNames;
 	}
 	public PostContent(String content, String video_link) {
 		this.content = content;

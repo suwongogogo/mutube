@@ -42,13 +42,13 @@ public class ReadPostService {
 			}
 			postDAO.increaseReadCount(conn, postId);
 			
-			if(postContent.getImageName()!=null) {
-				FileDAO fileDAO = FileDAO.getInstance();
-				String imageRealPath = fileDAO.getRealPath(conn, postContent.getImageName());
-			
-				postContent.setImageName(imageRealPath);
-				System.out.println(postContent.getImageName());
-			}
+//			if(postContent.getImageName()!=null) {
+//				FileDAO fileDAO = FileDAO.getInstance();
+//				String imageRealPath = fileDAO.getRealPath(conn, postContent.getImageName());
+//			
+//				postContent.setImageName(imageRealPath);
+//				System.out.println(postContent.getImageName());
+//			}
 			conn.commit();
 			
 			postData = new PostData(post, postContent);

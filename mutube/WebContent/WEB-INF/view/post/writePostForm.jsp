@@ -69,7 +69,7 @@
 						</div>
 						<div class="video-container">
 							<p class="write-title">이미지 첨부하기</p>
-							<input type="file" name="image" class="image-input" size="10">
+							<input type="file" name="image" multiple="multiple" class="image-input">
 						</div>
 						<div class="content">
 							<p class="write-title content-title">내용</p>
