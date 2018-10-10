@@ -6,28 +6,31 @@ public class PostComment {
 
 	private int postId;
 	private int userId;
+	private String loginId;
 	private String name;
-	private String Comment;
+	private String comment;
 	private LocalDateTime write_date;
 	private LocalDateTime update_date;
 	
-	public PostComment(int postId, int userId, String name, String comment, LocalDateTime write_date,
+	public PostComment(int postId, int userId, String loginId, String name, String comment, LocalDateTime write_date,
 			LocalDateTime update_date) {
 		super();
 		this.postId = postId;
 		this.userId = userId;
+		this.loginId = loginId;
 		this.name = name;
-		Comment = comment;
+		this.comment = comment;
 		this.write_date = write_date;
 		this.update_date = update_date;
 	}
 
-	public PostComment(int postId, int userId, String name, String comment) {
+	public PostComment(int postId, int userId, String loginId, String name, String comment) {
 		super();
 		this.postId = postId;
 		this.userId = userId;
+		this.loginId = loginId;
 		this.name = name;
-		this.Comment = comment;
+		this.comment = comment;
 	}
 
 	public int getPostId() {
@@ -38,12 +41,16 @@ public class PostComment {
 		return userId;
 	}
 	
+	public String getLoginId() {
+		return loginId;
+	}
+
 	public String getName() {
 		return name;
 	}
 
 	public String getComment() {
-		return Comment;
+		return comment;
 	}
 
 	public LocalDateTime getWrite_date() {

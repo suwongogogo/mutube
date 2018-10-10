@@ -29,7 +29,7 @@ public class WriteCommentHandler implements CommandHandler {
 				throw new UserNotFoundException("로그인하지 않으셨습니다.");
 			}
 			
-			PostComment postComment = new PostComment(post.getPostId(), sessionUser.getUserId(), sessionUser.getName(), comment);
+			PostComment postComment = new PostComment(post.getPostId(), sessionUser.getUserId(), sessionUser.getLoginId(), sessionUser.getName(), comment);
 		
 			writeComment.writeComment(postComment);
 			

@@ -37,7 +37,7 @@ public class WritePostService {
 			
 			PostContent postContent = null;
 			if( writeReq.getImage()!= null) {
-				postContent = new PostContent(postId, writeReq.getPostContent().getContent(), writeReq.getPostContent().getVideo_link(), writeReq.getImage().getFileName());
+				postContent = new PostContent(postId, writeReq.getPostContent().getContent(), writeReq.getPostContent().getVideo_link());
 			}else {
 				postContent = new PostContent(postId, writeReq.getPostContent().getContent(), writeReq.getPostContent().getVideo_link());
 			}

@@ -20,12 +20,13 @@ public class PostCommentDAO {
 	}
 	
 	public PostComment insert(Connection conn, PostComment postComment) throws SQLException {
-		String sql = "insert into post_comment(postId, userId , name, comment, write_date) values(?, ?, ?, ?, now())";
+		String sql = "insert into post_comment(postId, userId , loginId, name, comment, write_date) values(?, ?, ?, ?, ?, now())";
 		try (PreparedStatement pst = conn.prepareStatement(sql)) {
 			pst.setInt(1, postComment.getPostId());
 			pst.setInt(2, postComment.getUserId());
-			pst.setString(3, postComment.getName());
-			pst.setString(4, postComment.getComment());
+			pst.setString(3, postComment.getLoginId());
+			pst.setString(4, postComment.getName());
+			pst.setString(5, postComment.getComment());
 			int insertCnt = pst.executeUpdate();
 
 			if (insertCnt > 0) {
@@ -54,8 +55,8 @@ public class PostCommentDAO {
 			pst.setInt(3, size);
 			try(ResultSet rs = pst.executeQuery()){
 				List<PostComment> commentList = new ArrayList<PostComment>();
-				if(rs.next()) {
-					PostComment postComment = new PostComment(rs.getInt("postId"), rs.getInt("userId"), rs.getString("name"), 
+				while(rs.next()) {
+					PostComment postComment = new PostComment(rs.getInt("postId"), rs.getInt("userId"), rs.getString("loginId"), rs.getString("name"), 
 							rs.getString("comment"), rs.getTimestamp("write_date").toLocalDateTime(), rs.getTimestamp("update_date").toLocalDateTime());
 					commentList.add(postComment);
 				}
@@ -65,7 +66,7 @@ public class PostCommentDAO {
 	}
 	
 	public int commentCount(Connection conn, int postId) throws SQLException {
-		String sql ="select count(*) from post_comment where = ?";
+		String sql ="select count(*) from post_comment where postId = ?";
 		try(PreparedStatement pst = conn.prepareStatement(sql)){
 			pst.setInt(1, postId);
 			try(ResultSet rs = pst.executeQuery()){

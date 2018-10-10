@@ -86,7 +86,7 @@ public class UpdatePostHandler implements Handler.CommandHandler {
 				image.setFileName(multipartRequest.getOriginalFileName("image"));
 				image.setFileRealName(multipartRequest.getFile("image").getAbsolutePath());
 			
-				postContent = new PostContent(multipartRequest.getParameter("content"),multipartRequest.getParameter("video_link"), image.getFileName());
+				postContent = new PostContent(multipartRequest.getParameter("content"),multipartRequest.getParameter("video_link"));
 			}else{
 			
 				postContent = new PostContent(multipartRequest.getParameter("content"),multipartRequest.getParameter("video_link"));

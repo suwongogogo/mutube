@@ -1,9 +1,5 @@
 package Post.Model;
 
-import java.util.Map;
-
-import com.oreilly.servlet.MultipartRequest;
-
 import Post.Service.CommentPage;
 
 //원래 WriteRequest였음
