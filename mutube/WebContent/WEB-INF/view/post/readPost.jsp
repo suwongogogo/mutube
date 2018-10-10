@@ -63,7 +63,7 @@
 									<c:if test="${loginUser != null }">
 										<div class="userInf">
 											<p>${loginUser.name }<br>
-											<font size="2" color="gray">(${loginUser.loginId })</font></p>
+											 <font size="2" color="gray">(${loginUser.loginId })</font></p>
 										</div>
 									</c:if>
 									<div class="comment-form">
