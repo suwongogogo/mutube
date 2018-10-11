@@ -31,11 +31,9 @@ public class ReadPostHandler implements CommandHandler {
 			ReadPostService readPostService = ReadPostService.getInstance();
 			PostData postData = readPostService.getPost(postId);
 			
-			
-			
-//			CommentListService commentList = CommentListService.getInstance();
-//			CommentPage commentPage = commentList.commentList(pageNum, postId);
-//			postData.setCommentPage(commentPage);
+			CommentListService commentList = CommentListService.getInstance();
+			CommentPage commentPage = commentList.commentList(pageNum, postId);
+			postData.setCommentPage(commentPage);
 			
 			
 			req.setAttribute("postData", postData);
