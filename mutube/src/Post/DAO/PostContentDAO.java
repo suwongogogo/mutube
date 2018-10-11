@@ -24,6 +24,7 @@ public class PostContentDAO {
 			pst.setInt(1, postContent.getPostId());
 			pst.setString(2, postContent.getContent());
 			pst.setString(3, postContent.getVideo_link());
+			pst.setString(4, postContent.getImageNamesStr());
 			return pst.executeUpdate();
 
 		}

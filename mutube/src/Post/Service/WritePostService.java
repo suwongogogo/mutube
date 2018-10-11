@@ -44,6 +44,7 @@ public class WritePostService {
 						imageName+=",";
 					}
 				}
+				System.out.println(imageName);
 				postContent = new PostContent(postId, writeReq.getPostContent().getContent(), writeReq.getPostContent().getVideo_link(), imageName );
 			}else {
 				postContent = new PostContent(postId, writeReq.getPostContent().getContent(), writeReq.getPostContent().getVideo_link());
