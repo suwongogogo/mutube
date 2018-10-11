@@ -59,7 +59,7 @@
 										<td><a href="/mutube/post/search?keyword=classic&category=genre"><img src="Image/genre/classic.jpg" alt="sorry"></a></td>
 										<td><a href="/mutube/post/search?keyword=gospel&category=genre"><img src="Image/genre/gospel.jpg" alt="sorry"></a></td>
 										<td><a href="/mutube/post/search?keyword=band&category=genre"><img src="Image/genre/band.jpg" alt="sorry"></a></td>
-										<td><a href="/mutube/post/search?keyword=fusion jazz&category=genre jazz"><img src="Image/genre/fusion_jazz.jpg" alt="sorry"></a></td>
+										<td><a href="/mutube/post/search?keyword=fusion&category=genre"><img src="Image/genre/fusion_jazz.jpg" alt="sorry"></a></td>
 									</tr>
 									<tr>
 										<td>Classic</td>

@@ -62,39 +62,52 @@ public class WritePostHandler implements CommandHandler {
 
 		// 넘겨받은 이미지 파일에 대한 정보를 저장
 		String directory = req.getServletContext().getRealPath("/upload/");
-		int maxSize = 1024* 1024*5;
+		int maxSize = 1024 * 1024 * 5;
 		String encoding = "utf-8";
-		
+
 		ArrayList<String> imageNames = new ArrayList<>();
 		Map<String, String> params = new HashMap<>();
-		
+
+		Map<String, Boolean> errors = new HashMap<String, Boolean>();
+		req.setAttribute("errors", errors);
+
 		if (ServletFileUpload.isMultipartContent(req)) {
 			try {
 				List<FileItem> multiparts = new ServletFileUpload(new DiskFileItemFactory()).parseRequest(req);
 				SimpleDateFormat sdf = new SimpleDateFormat("yyMMddHHmmss");
 
 				for (FileItem item : multiparts) {
-					if (!item.isFormField()) {//파일일때..
+					if (!item.isFormField()) {// 파일일때..
 						String name = item.getName();
-						String date = sdf.format(new Date());
-						item.write(new File(directory + date + name));
-						imageNames.add(date + name);
-					}else {
+						if (!name.equals("")) {
+							if (!name.endsWith(".jpg") || !name.endsWith(".png") || !name.endsWith(".gif")
+									|| !name.endsWith(".jpeg")) {
+								errors.put("imageType", true);
+							}
+							String date = sdf.format(new Date());
+							item.write(new File(directory + date + name));
+							imageNames.add(date + name);
+						}
+					} else {
 						String name = item.getFieldName();
 						String value = item.getString("UTF-8");
 						params.put(name, value);
-						System.out.println(name+", "+value);
+						System.out.println(name + ", " + value);
 					}
 				}
-				
+
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		}
-	
+
+		if (params.get("title").trim().equals("")) {
+			errors.put("title", true);
+			return FORM_VIEW;
+		}
 		// 글 정보는 Post, 내용은 PostContent 객체에 담아 WriteRequest를 생성.
 		Post post = new Post(new Writer(loginUser.getUserId(), loginUser.getName()), params.get("title"),
-				params.get("genre"), params.get("country"),params.get("instrument"));
+				params.get("genre"), params.get("country"), params.get("instrument"));
 
 		PostContent postContent = null;
 		if (!imageNames.isEmpty()) {
@@ -109,10 +122,8 @@ public class WritePostHandler implements CommandHandler {
 		PostData writeReq = new PostData(post, postContent);
 
 		// WriteRequest의 무결성 검사를 진행하고 이상있으면 다시 FORM_VIEW로 이동
-		Map<String, Boolean> errors = new HashMap<String, Boolean>();
-		req.setAttribute("errors", errors);
 
-//		post.writeValidate(errors);
+		// post.writeValidate(errors);
 		if (!errors.isEmpty()) {
 			return FORM_VIEW;
 		}
@@ -122,7 +133,7 @@ public class WritePostHandler implements CommandHandler {
 		int postId = 0;
 		try {
 			postId = writePostService.write(writeReq);
-			resp.sendRedirect(req.getContextPath() + "/post/view?no=" + postId);
+			resp.sendRedirect(req.getContextPath() + "/post/list");
 
 		} catch (RuntimeException | SQLException e) {
 			e.printStackTrace();

@@ -1,36 +1,48 @@
-table{
+table {
 	border: 1px solid black;
 	border-collapse: collapse;
 }
+
 .center {
 	display: flex;
 }
+
 .inline {
 	display: inline-block;
 }
+
 .font20 {
 	font-size: 20px;
 	font-weight: bold;
 }
+
 .board-container {
-	width: 1200px;
-	height: 650px;
-    position: relative;
-    top: 100px;
-    left: 200px;
+	width: 1611px;
+	min-height: 650px;
+	padding: 25px;
 }
+
+.board {
+	width: 1200px;
+	margin: auto;
+}
+
 .view-table {
 	width: 1200px;
 	text-align: center;
 }
+
 .view-title {
 	font-size: 22px;
 	font-weight: bold;
 }
+
 .text-none {
 	text-align: start;
 	height: 500px;
+	padding-bottom: 30px;
 }
+
 .line {
 	position: absolute;
 	top: 72px;
@@ -38,36 +50,46 @@ table{
 	right: 0px;
 	border-bottom: 1px solid darkgray;
 }
+
 .view-content-container {
 	margin-top: 30px;
-    margin-left: 30px;
+	margin-left: 30px;
 }
+
+.content {
+	width: 1000px;
+	margin: auto;
+}
+
 .margin-right {
-	position: relative;
-	bottom: 50px;
 	text-align: center;
 }
+
 .view-button-container {
 	position: relative;
-    bottom: 370px;
-    text-align: end;
+	bottom: 370px;
+	text-align: end;
 }
+
 .view-button {
-    font-size: 15px;
-    border-radius: 4px;
-    background-color: #1a73e8;
-    border: 1px solid #1a73e8;
-    color: white;
-    padding: 5px 5px;
+	font-size: 15px;
+	border-radius: 4px;
+	background-color: #1a73e8;
+	border: 1px solid #1a73e8;
+	color: white;
+	padding: 5px 5px;
 }
-.comment > textarea{	
+
+.comment>textarea {
 	width: 80%;
 	margin-top: 6px;
 }
-.comment{
+
+.comment {
 	width: 1100px;
 }
-.comment > input{
+
+.comment>input {
 	position: relative;
 	bottom: 45px;
 	left: 55px;
@@ -76,31 +98,37 @@ table{
 .comment-container {
 	height: 80px;
 }
-a,a:hover {
+
+a, a:hover {
 	text-decoration: none;
-}	
+}
+
 .comment-textarea {
 	position: relative;
 	left: 108px;
 	width: 904px;
 	outline: none;
 }
+
 .submit {
 	height: 81px;
-    position: relative;
-    top: -35px;
-    left: 104px;
+	position: relative;
+	top: -35px;
+	left: 104px;
 }
+
 .view-comment-container {
 	padding: 10px 0px;
 	border-top: 1px solid #bbbbbb;
 	border-bottom: 1px solid #bbbbbb;
 	overflow: hidden;
 	height: 59px;
-} 
+}
+
 .inline {
 	display: inline-block;
 }
+
 .comment-control-div {
 	float: right;
 	display: grid;
@@ -108,30 +136,36 @@ a,a:hover {
 	right: 18px;
 	bottom: -6px;
 }
-.comment-control-div > a {
+
+.comment-control-div>a {
 	font-size: 15px;
 	border: 1px solid black;
 	margin-bottom: 5px;
 }
+
 .id {
 	font-weight: bold;
 }
+
 .comment {
 	font-size: 15px;
 	word-break: break-all;
 }
-.userInf{
-	display: table;	
+
+.userInf {
+	display: table;
 	position: absolute;
 	height: 81px;
 	width: 213px;
 }
-.userInf p{
+
+.userInf p {
 	display: table-cell;
 	text-align: center;
 	vertical-align: middle;
 }
-.id-inline{
+
+.id-inline {
 	position: absolute;
 	display: table;
 	height: 80px;
@@ -139,21 +173,24 @@ a,a:hover {
 	bottom: -83px;
 	border-right: 1px solid darkgray;
 }
-.id-inline p{
+
+.id-inline p {
 	display: table-cell;
 	text-align: center;
 	vertical-align: middle;
 }
-.comment-inline{
+
+.comment-inline {
 	position: relative;
 	left: 213px;
 	bottom: 11px;
-	display:table;
+	display: table;
 	height: 81px;
 	width: 910px;
 	border-right: 1px solid darkgray;
 }
-.comment-inline p{
+
+.comment-inline p {
 	display: table-cell;
 	text-align: center;
 	vertical-align: middle;

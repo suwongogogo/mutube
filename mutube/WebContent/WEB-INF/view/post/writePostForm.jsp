@@ -38,31 +38,48 @@
 							<div class="genre-form">
 								<p class="write-title">장르</p>
 								<select name="genre" class="select">
-									<option value="jazz" selected class="option">재즈</option>
-									<option value="blues" class="option">블루스</option>
+									<option value="blues" selected class="option">블루스</option>
 									<option value="rock" class="option">락</option>
-									<option value="balad" class="option">발라드</option>
-									<option value="pop" class="option">팝</option>
-									<option value="musical" class="option">뮤지컬</option>
-									<option value="orchestra" class="option">오케스트라</option>
+									<option value="jazz" class="option">재즈</option>
+									<option value="r&b" class="option">R&B</option>
+									<option value="funk" class="option">Funk</option>
+									<option value="hiphop" class="option">힙합</option>
+									<option value="metal" class="option">메탈</option>
+									<option value="edm" class="option">EDM</option>
+									<option value="classic" class="option">클래식</option>
+									<option value="gospel" class="option">GOSPEL</option>
+									<option value="band" class="option">밴드</option>
+									<option value="fusion" class="option">퓨전 재즈</option>
+									
 								</select>
 							</div>
 							<div class="musician-form">
 								<p class="write-title">나라</p>
 								<select name="country" class="select">
-									<option value="korea" selected class="option">때한민꾺</option>
+									<option value="korea"%> class="option">대한민국</option>
+									<option value="japan" class="option">일본</option>
+									<option value="usa" class="option">미국</option>
+									<option value="germany" class="option">독일</option>
+									<option value="china" class="option">중국</option>
+									<option value="spain" class="option">스페인</option>
+									<option value="england" class="option">영국</option>
+									<option value="france" class="option">프랑스</option>
+									<option value="russia"  class="option">러시아</option>
 								</select>
 							</div>
 							<div class="musician-form">
 								<p class="write-title">악기</p>
 								<select name="instrument" class="select">
-									<option value="vocal" selected class="option">보컬</option>
 									<option value="guitar" class="option">기타</option>
+									<option value="bass" class="option">베이스</option>
+									<option value="vocal" class="option">보컬</option>
+									<option value="drum" class="option">드럼</option>
 									<option value="piano" class="option">피아노</option>
-									<option value="violin" class="option">바이올린</option>
-									<option value="chello" class="option">첼로</option>
 									<option value="trumpet" class="option">트럼펫</option>
+									<option value="saxophone" class="option">섹소폰</option>
 									<option value="trombone" class="option">트롬본</option>
+									<option value="acoustic" class="option">어쿠스틱 기타</option>
+									<option value="etc" class="option">etc...</option>
 								</select>
 							</div>
 						</div>

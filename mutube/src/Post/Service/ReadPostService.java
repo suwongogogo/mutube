@@ -51,6 +51,9 @@ public class ReadPostService {
 					System.out.println(name);
 				}
 				postContent.setImageNames(imageNames);
+			}else {
+				postContent.setImageNames(null);
+				System.out.println("이미지가 업떠요");
 			}
 			
 			conn.commit();
