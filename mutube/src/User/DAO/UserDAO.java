@@ -129,13 +129,13 @@ public class UserDAO {
 		}
 	}
 	
-	public void update(Connection conn, User user) throws SQLException {
-		String sql = "update user set loginId = ? , email = ? , name = ? where loginId = ?";
+	public void update(Connection conn, User user, int userId) throws SQLException {
+		String sql = "update user set loginId = ? , email = ? , name = ? where userId = ?";
 		try(PreparedStatement pst = conn.prepareStatement(sql)){
 			pst.setString(1, user.getLoginId());
 			pst.setString(2, user.getEmail());
 			pst.setString(3, user.getName());
-			pst.setString(4, user.getLoginId());
+			pst.setInt(4, userId);
 			pst.executeUpdate();
 		}
 	}
