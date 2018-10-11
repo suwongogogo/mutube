@@ -26,10 +26,10 @@
 								<hr class="list-line">
 								<table class="genre">
 									<tr>
-										<td><a href="/post/search?keyword=blues&category=genre"><img src="Image/genre/blues.jpg" alt="sorry"></a></td>
-										<td><a href="/post/search?keyword=rock&category=genre"><img src="Image/genre/rock.jpg" alt="sorry"></a></td>
-										<td><a href="/post/search?keyword=jazz&category=genre"><img src="Image/genre/jazz.png" alt="sorry"></a></td>
-										<td><a href="/post/search?keyword=R&B&category=genre"><img src="Image/genre/R&B.png" alt="sorry"></a></td>
+										<td><a href="/mutube/post/search?keyword=blues&category=genre"><img src="Image/genre/blues.jpg" alt="sorry"></a></td>
+										<td><a href="/mutube/post/search?keyword=rock&category=genre"><img src="Image/genre/rock.jpg" alt="sorry"></a></td>
+										<td><a href="/mutube/post/search?keyword=jazz&category=genre"><img src="Image/genre/jazz.png" alt="sorry"></a></td>
+										<td><a href="/mutube/post/search?keyword=R&B&category=genre"><img src="Image/genre/R&B.png" alt="sorry"></a></td>
 									</tr>
 									<tr>
 										<td>Blues</td>
@@ -41,10 +41,10 @@
 								<br> <br> <br> <br>
 								<table class="genre">
 									<tr>
-										<td><a href="/post/search?keyword=funk&category=genre"><img src="Image/genre/funk.jpg" alt="sorry"></a></td>
-										<td><a href="/post/search?keyword=hiphop&category=genre"><img src="Image/genre/hiphop.jpg" alt="sorry"></a></td>
-										<td><a href="/post/search?keyword=metal&category=genre"><img src="Image/genre/metal.jpg" alt="sorry"></a></td>
-										<td><a href="/post/search?keyword=edm&category=genre"><img src="Image/genre/edm.jpg" alt="sorry"></a></td>
+										<td><a href="/mutube/post/search?keyword=funk&category=genre"><img src="Image/genre/funk.jpg" alt="sorry"></a></td>
+										<td><a href="/mutube/post/search?keyword=hiphop&category=genre"><img src="Image/genre/hiphop.jpg" alt="sorry"></a></td>
+										<td><a href="/mutube/post/search?keyword=metal&category=genre"><img src="Image/genre/metal.jpg" alt="sorry"></a></td>
+										<td><a href="/mutube/post/search?keyword=edm&category=genre"><img src="Image/genre/edm.jpg" alt="sorry"></a></td>
 									</tr>
 									<tr>
 										<td>Funk</td>
@@ -56,16 +56,25 @@
 								<br> <br> <br> <br>
 								<table class="genre">
 									<tr>
-										<td><a href="/post/search?keyword=classic&category=genre"><img src="Image/genre/classic.jpg" alt="sorry"></a></td>
-										<td><a href="/post/search?keyword=gospel&category=genre"><img src="Image/genre/gospel.jpg" alt="sorry"></a></td>
-										<td><a href="/post/search?keyword=band&category=genre"><img src="Image/genre/band.jpg" alt="sorry"></a></td>
-										<td><a href="/post/search?keyword=fusion jazz&category=genre jazz"><img src="Image/genre/fusion_jazz.jpg" alt="sorry"></a></td>
+										<td><a href="/mutube/post/search?keyword=classic&category=genre"><img src="Image/genre/classic.jpg" alt="sorry"></a></td>
+										<td><a href="/mutube/post/search?keyword=gospel&category=genre"><img src="Image/genre/gospel.jpg" alt="sorry"></a></td>
+										<td><a href="/mutube/post/search?keyword=band&category=genre"><img src="Image/genre/band.jpg" alt="sorry"></a></td>
+										<td><a href="/mutube/post/search?keyword=fusion jazz&category=genre jazz"><img src="Image/genre/fusion_jazz.jpg" alt="sorry"></a></td>
 									</tr>
 									<tr>
 										<td>Classic</td>
 										<td>Gospel</td>
 										<td>Band</td>
 										<td>Fusion Jazz</td>
+									</tr>
+								</table>
+								<br><br><br><br>
+								<table class="genre">
+									<tr>
+										<td><a href="/mutube/post/search?keyword=etc&category=country"><img src="Image/etc.gif" alt="sorry"></a></td>
+									</tr>
+									<tr>
+										<td>etc</td>
 									</tr>
 								</table>
 							</div>

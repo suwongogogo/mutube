@@ -97,6 +97,54 @@ public class PostDAO {
 		}
 	}
 	
+	public List<Post> searchGenreList(Connection conn, String keyword, int startRow, int size) throws SQLException{
+		String query = "select * from Post where genre like ? order by write_date desc limit ?, ?";
+		try(PreparedStatement pst = conn.prepareStatement(query)){
+			pst.setString(1, keyword);
+			pst.setInt(2, startRow);
+			pst.setInt(3, size);
+			try(ResultSet rs = pst.executeQuery()){
+				List<Post> postList = new ArrayList<Post>();
+				while(rs.next()) {
+					postList.add(toPost(rs));
+				}
+				return postList;
+			}
+		}
+	}
+	
+	public List<Post> searchCountryList(Connection conn, String keyword, int startRow, int size) throws SQLException{
+		String query = "select * from Post where country like ? order by write_date desc limit ?, ?";
+		try(PreparedStatement pst = conn.prepareStatement(query)){
+			pst.setString(1, keyword);
+			pst.setInt(2, startRow);
+			pst.setInt(3, size);
+			try(ResultSet rs = pst.executeQuery()){
+				List<Post> postList = new ArrayList<Post>();
+				while(rs.next()) {
+					postList.add(toPost(rs));
+				}
+				return postList;
+			}
+		}
+	}
+	
+	public List<Post> searchInstrumentList(Connection conn, String keyword, int startRow, int size) throws SQLException{
+		String query = "select * from Post where instrument like ? order by write_date desc limit ?, ?";
+		try(PreparedStatement pst = conn.prepareStatement(query)){
+			pst.setString(1, keyword);
+			pst.setInt(2, startRow);
+			pst.setInt(3, size);
+			try(ResultSet rs = pst.executeQuery()){
+				List<Post> postList = new ArrayList<Post>();
+				while(rs.next()) {
+					postList.add(toPost(rs));
+				}
+				return postList;
+			}
+		}
+	}
+	
 	public int searchPostCount(Connection conn, String keyword) throws SQLException {
 		String query = "select count(*) from post where title like ?";
 		try(PreparedStatement pst = conn.prepareStatement(query)){
