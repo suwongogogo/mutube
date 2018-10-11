@@ -31,12 +31,11 @@ public class ReadPostHandler implements CommandHandler {
 			ReadPostService readPostService = ReadPostService.getInstance();
 			PostData postData = readPostService.getPost(postId);
 			
-			System.out.println(pageNum);
-			System.out.println("배열 수 " + postData.getCommentPage().getCommentList().size());
 			
-			CommentListService commentList = CommentListService.getInstance();
-			CommentPage commentPage = commentList.commentList(pageNum, postId);
-			postData.setCommentPage(commentPage);
+			
+//			CommentListService commentList = CommentListService.getInstance();
+//			CommentPage commentPage = commentList.commentList(pageNum, postId);
+//			postData.setCommentPage(commentPage);
 			
 			
 			req.setAttribute("postData", postData);

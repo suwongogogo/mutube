@@ -20,12 +20,13 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
+import org.apache.commons.fileupload.servlet.ServletRequestContext;
 
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 import com.oreilly.servlet.multipart.MultipartParser;
 import com.sun.glass.ui.Application;
-import com.sun.jmx.snmp.Enumerated;
+import com.sun.net.httpserver.HttpsParameters;
 
 import java.io.File;
 import Handler.CommandHandler;
@@ -65,40 +66,43 @@ public class WritePostHandler implements CommandHandler {
 		String encoding = "utf-8";
 		
 		ArrayList<String> imageNames = new ArrayList<>();
+		Map<String, String> params = new HashMap<>();
 		
 		if (ServletFileUpload.isMultipartContent(req)) {
 			try {
 				List<FileItem> multiparts = new ServletFileUpload(new DiskFileItemFactory()).parseRequest(req);
-				String names = "";
-
 				SimpleDateFormat sdf = new SimpleDateFormat("yyMMddHHmmss");
 
 				for (FileItem item : multiparts) {
-					if (!item.isFormField()) {
+					if (!item.isFormField()) {//파일일때..
 						String name = item.getName();
 						String date = sdf.format(new Date());
 						item.write(new File(directory + date + name));
-						imageNames.add(directory + date + name);
+						imageNames.add(date + name);
+					}else {
+						String name = item.getFieldName();
+						String value = item.getString("UTF-8");
+						params.put(name, value);
+						System.out.println(name+", "+value);
 					}
 				}
+				
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		}
-		
-		MultipartRequest mp = new MultipartRequest(req, directory);
-		
+	
 		// 글 정보는 Post, 내용은 PostContent 객체에 담아 WriteRequest를 생성.
-		Post post = new Post(new Writer(loginUser.getUserId(), loginUser.getName()), mp.getParameter("title"),
-				mp.getParameter("genre"), mp.getParameter("country"), mp.getParameter("instrument"));
+		Post post = new Post(new Writer(loginUser.getUserId(), loginUser.getName()), params.get("title"),
+				params.get("genre"), params.get("country"),params.get("instrument"));
 
 		PostContent postContent = null;
 		if (!imageNames.isEmpty()) {
 
-			postContent = new PostContent(mp.getParameter("content"), mp.getParameter("video_link"), imageNames);
+			postContent = new PostContent(params.get("content"), params.get("video_link"), imageNames);
 		} else {
 
-			postContent = new PostContent(mp.getParameter("content"), mp.getParameter("video_link"));
+			postContent = new PostContent(params.get("content"), params.get("video_link"));
 		}
 		postContent.trimLink();
 

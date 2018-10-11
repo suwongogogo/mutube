@@ -42,12 +42,13 @@
 										</c:if>
 									</div>
 									<div class="margin-right">
-										<c:if test="${postData.postContent.video_link != null }">
-											<c:forEach var="imageName" items="${ postData.postContent.imageNames}">
-												<img src="/img/${imageName }">
+										<c:if test="${!postData.postContent.imageNames.isEmpty() }">
+											<c:forEach var="i" begin="0" end="${postData.postContent.imageNames.size()-1 }">
+												<img src="/img/${postData.postContent.imageNames.get(i) }" width="600" height="460">
 											</c:forEach>
 										</c:if>
 									</div>
+									
 									<div>${postData.postContent.content }</div>
 									<c:if
 										test="${loginUser!=null && loginUser.userId== postData.post.writer.userId }">
