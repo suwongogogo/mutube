@@ -32,23 +32,19 @@ public class UserUpdateHandler implements CommandHandler{
 
 	private String processForm(HttpServletRequest req, HttpServletResponse resp) throws SQLException, UserNotFoundException {
 		System.out.println("수정폼");
-		int userId = Integer.parseInt(req.getParameter("userId"));
-		
-		UserUpdateService updateService = UserUpdateService.getInstance();
-		User user = updateService.selectByUserId(userId);
-		
-		req.setAttribute("user", user);
 		return FORM_VIEW;
 	}
 
 	private String processSubmit(HttpServletRequest req, HttpServletResponse resp) throws SQLException, IOException {
 		System.out.println("수정 시작");
 		
+		int userId = Integer.parseInt(req.getParameter("userId"));
 		String loginId = (String)req.getParameter("loginId");
 		String name = (String)req.getParameter("name");
 		String email = (String)req.getParameter("email");
 
 		User savedUser = new User();
+		savedUser.setUserId(userId);
 		savedUser.setLoginId(loginId);
 		savedUser.setName(name);
 		savedUser.setEmail(email);
@@ -68,8 +64,12 @@ public class UserUpdateHandler implements CommandHandler{
 		
 		try {
 			UserUpdateService updateService = UserUpdateService.getInstance();
-			updateService.update(savedUser);
-
+			updateService.update(savedUser, userId);
+			
+			req.getSession().setAttribute("loginUser", savedUser);
+			
+			System.out.println(savedUser.getLoginId());
+			
 			resp.sendRedirect(req.getContextPath()+"/myPage.jsp");
 		}catch(UserNotFoundException e) {
 			e.printStackTrace();

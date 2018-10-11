@@ -60,7 +60,7 @@ public class ChangePasswordHandler implements CommandHandler {
 			
 			sessionUser.setPassword(user.getPassword());
 			
-			resp.sendRedirect(req.getContextPath()+"/user/myPage.jsp");
+			resp.sendRedirect(req.getContextPath()+"/myPage.jsp");
 		}catch(SQLException e) {
 			throw new RuntimeException(e);
 		} catch (UserNotFoundException e) {

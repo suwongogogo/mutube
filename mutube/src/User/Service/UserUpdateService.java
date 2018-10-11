@@ -15,11 +15,11 @@ public class UserUpdateService {
 		return instance;
 	}
 	
-	public void update(User user) throws SQLException, UserNotFoundException {
+	public void update(User user, int userId) throws SQLException, UserNotFoundException {
 		try(Connection conn = ConnectionProvider.getConnection()){
 			UserDAO userDAO = UserDAO.getInstance();
 			
-			userDAO.update(conn, user);
+			userDAO.update(conn, user, userId);
 		}
 	}
 	

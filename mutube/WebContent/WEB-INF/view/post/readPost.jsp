@@ -34,6 +34,15 @@
 							<td colspan="6" class="text-none">
 								<div class="view-content-container">
 									<div class="margin-right">
+										<c:if test="${postData.postContent.imageNames != null }">
+											<c:forEach var="i" begin="0"
+												end="${postData.postContent.imageNames.size()-1 }">
+												<img src="/img/${postData.postContent.imageNames.get(i) }"
+													width="600" height="460">
+											</c:forEach>
+										</c:if>
+									</div>
+									<div class="margin-right">
 										<c:if test="${postData.postContent.video_link != null }">
 											<iframe width="560" height="315"
 												src="https://www.youtube.com/embed/${postData.postContent.video_link }"
@@ -41,14 +50,8 @@
 												allowfullscreen></iframe>
 										</c:if>
 									</div>
-									<div class="margin-right">
-										<c:if test="${postData.postContent.video_link != null }">
-											<c:forEach var="imageName" items="${ postData.postContent.imageNames}">
-												<img src="/img/${imageName }">
-											</c:forEach>
-										</c:if>
-									</div>
-									<div>${postData.postContent.content }</div>
+
+									<div class="content">${postData.postContent.content }</div>
 									<c:if
 										test="${loginUser!=null && loginUser.userId== postData.post.writer.userId }">
 										<div class="view-button-container margin-right">
@@ -69,8 +72,9 @@
 									</c:if>
 									<c:if test="${loginUser != null }">
 										<div class="userInf">
-											<p>${loginUser.name }<br>
-											 <font size="2" color="gray">(${loginUser.loginId })</font></p>
+											<p>${loginUser.name }<br> <font size="2"
+													color="gray">(${loginUser.loginId })</font>
+											</p>
 										</div>
 									</c:if>
 									<div class="comment-form">
@@ -86,28 +90,18 @@
 								</div>
 							</td>
 						</tr>
-						<c:if test="${!postData.commentPage.hasComment()}"></c:if>
-						<c:forEach var="comment" items="${postData.commentPage.commentList }">
-							<tr>
-								<td colspan="6">
-									<div class="view-comment-container">
-										<div class="id-inline">
-											<p>${comment.name }<br>
-											<font size="2" color="gray">(${comment.loginId })</font></p>
-										</div>
-										<c:if test="${loginUser != null && loginUser.userId == comment.userId}">
-										<div class="comment-control-div">
-											<a href="#">수정</a> <a href="#">삭제</a>
-										</div>
-										</c:if>
-										<div class="comment-inline">
-											<p>${comment.comment }</p>
-										</div>
-									</div>
-								</td>
-							</tr>
-						</c:forEach>
 					</table>
+
+						<table class="comment-table">
+							<c:forEach var="comment" 
+								items="${postData.commentPage.commentList }">
+								<tr>
+									<td class="name">이름</td>
+									<td class="comment">댓글</td>
+									<td class="util">수정 삭ㅈ</td>
+								</tr>
+							</c:forEach>
+						</table>
 				</div>
 			</div>
 		</div>

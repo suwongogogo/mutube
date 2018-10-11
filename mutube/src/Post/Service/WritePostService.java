@@ -41,9 +41,10 @@ public class WritePostService {
 				for(int i = 0; i < writeReq.getPostContent().getImageNames().size(); i++) {
 					imageName += writeReq.getPostContent().getImageNames().get(i);
 					if(i<writeReq.getPostContent().getImageNames().size()-1) {
-						imageName+=",";
+						imageName+="?";
 					}
 				}
+				System.out.println(imageName);
 				postContent = new PostContent(postId, writeReq.getPostContent().getContent(), writeReq.getPostContent().getVideo_link(), imageName );
 			}else {
 				postContent = new PostContent(postId, writeReq.getPostContent().getContent(), writeReq.getPostContent().getVideo_link());

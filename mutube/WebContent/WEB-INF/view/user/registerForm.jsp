@@ -11,9 +11,6 @@
 <script src="/mutube/JavaScript/registerForm.js"></script>
 </head>
 <body>
-	<div class="logo">
-		<a href="mutube/Main.jsp"><img src="/mutube/Image/수원이얼굴.jpg"></a>
-	</div>
 	<div class="register-container">
 		<div class="register">
 			<form action="register" method="post">

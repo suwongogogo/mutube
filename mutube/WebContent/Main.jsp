@@ -18,7 +18,7 @@
 		   		<div class="main-board">
 		   			<div class="song">
 		   				<p>오늘의 음악</p>
-		   				<iframe src="https://www.youtube.com/embed/iklTkWj1wiY"></iframe>
+		   				<iframe src="https://www.youtube.com/embed/iklTkWj1wiY" allowfullscreen></iframe>
 		   			</div>
 		   			<div class="song-comment">
 		   				<p>

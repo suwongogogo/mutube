@@ -10,7 +10,8 @@
 </head>
 <body>
 	<div class="loginForm-container" style="height: 360px;">
-        <form action="login" method="post">
+        <form action="update" method="post">
+        <input type="hidden" name="userId" value="${loginUser.userId }">
             <div class="login" class="input-container">
                 <div class="input-container">
                     <p>아이디</p>
@@ -27,7 +28,7 @@
                 </div>
                 <div class="input-container">
                     <p>이메일</p>
-                    <input type="email" name="email" class="signin" placeholder="이메일" value="${loginUser.name }"> 
+                    <input type="email" name="email" class="signin" placeholder="이메일" value="${loginUser.email }"> 
                     <div class="underline"></div>
                     <span class="error"><c:if test="${errors.password }">이메일을 입력하세요.</c:if></span>
                 </div>
