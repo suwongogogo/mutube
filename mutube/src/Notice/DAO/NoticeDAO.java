@@ -1,10 +1,12 @@
-package Post.DAO;
+package Notice.DAO;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 
-import Post.Model.Notice;
+import Notice.Model.Notice;
 
 public class NoticeDAO {
 	private static NoticeDAO instance = new NoticeDAO();
@@ -29,5 +31,16 @@ public class NoticeDAO {
 				return null;
 			}
 		}
+	}
+	
+	public int selectLatestNoticeId(Connection conn) throws SQLException {
+		String query="select noticeId from notice order by write_date desc limit 1";
+		try(Statement pst = conn.createStatement()){
+			ResultSet rs = pst.executeQuery(query);
+			if(rs.next()) {
+			return rs.getInt(1);
+			}
+		}
+		return 0;
 	}
 }

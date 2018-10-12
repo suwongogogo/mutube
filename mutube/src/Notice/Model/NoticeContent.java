@@ -1,4 +1,4 @@
-package Post.Model;
+package Notice.Model;
 
 import java.util.ArrayList;
 

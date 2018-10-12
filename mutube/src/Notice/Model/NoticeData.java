@@ -1,5 +1,6 @@
-package Post.Model;
+package Notice.Model;
 
+import Post.Model.File;
 import Post.Service.NoticeCommentPage;
 
 public class NoticeData {

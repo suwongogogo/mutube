@@ -1,4 +1,4 @@
-package Post.Handler;
+package Notice.Handler;
 
 public class WriteNoticeHandler {
 

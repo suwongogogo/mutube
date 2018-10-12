@@ -1,6 +1,8 @@
-package Post.Model;
+package Notice.Model;
 
 import java.time.LocalDateTime;
+
+import Post.Model.Writer;
 
 public class Notice {
 	private int noticeId;

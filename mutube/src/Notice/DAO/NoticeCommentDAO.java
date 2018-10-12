@@ -1,4 +1,4 @@
-package Post.DAO;
+package Notice.DAO;
 
 public class NoticeCommentDAO {
 	private static NoticeCommentDAO instance = new NoticeCommentDAO();
