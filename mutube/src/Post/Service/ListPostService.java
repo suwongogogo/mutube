@@ -7,6 +7,7 @@ import java.util.List;
 import Connection.ConnectionProvider;
 import Post.DAO.PostDAO;
 import Post.Model.Post;
+import Post.Model.PostPage;
 
 public class ListPostService {
 	private static ListPostService instance = new ListPostService();

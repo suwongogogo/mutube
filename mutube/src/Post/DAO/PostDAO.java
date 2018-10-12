@@ -224,7 +224,6 @@ public class PostDAO {
 				, rs.getTimestamp("write_date").toLocalDateTime(), rs.getTimestamp("update_date").toLocalDateTime(), rs.getInt("views"), rs.getBoolean("able"));
 
 		return post;
-
 	}
 	
 	public Post selectById(Connection conn, int postId) throws SQLException {

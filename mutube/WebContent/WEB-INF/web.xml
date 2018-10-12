@@ -70,6 +70,9 @@
 		<url-pattern>/post/writeComment</url-pattern>
 		<url-pattern>/post/commentList</url-pattern>
 		
+		<url-pattern>/notice/writeNotice</url-pattern>
+		<url-pattern>/notice/notice</url-pattern>
+		
 		<url-pattern>/admin/userManagement</url-pattern>
 		<url-pattern>/admin/postManagement</url-pattern>
 	</servlet-mapping>

@@ -7,16 +7,24 @@ import Post.Model.Writer;
 public class Notice {
 	private int noticeId;
 	private Writer wrtier;
+	private String title;
 	private LocalDateTime write_date;
 	private LocalDateTime update_date;
 	private int views;
 	private boolean able;
-	
-	public Notice(int noticeId, Writer wrtier, LocalDateTime write_date, LocalDateTime update_date, int views,
-			boolean able) {
+
+	public Notice(Writer wrtier, String title) {
+		super();
+		this.wrtier = wrtier;
+		this.title = title;
+	}
+
+	public Notice(int noticeId, Writer wrtier, String title, LocalDateTime write_date, LocalDateTime update_date,
+			int views, boolean able) {
 		super();
 		this.noticeId = noticeId;
 		this.wrtier = wrtier;
+		this.title = title;
 		this.write_date = write_date;
 		this.update_date = update_date;
 		this.views = views;

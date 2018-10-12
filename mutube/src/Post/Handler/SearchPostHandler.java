@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import Handler.CommandHandler;
 import Post.Exception.PostNotFoundException;
 import Post.Model.Post;
-import Post.Service.PostPage;
+import Post.Model.PostPage;
 import Post.Service.SearchPostService;
 
 public class SearchPostHandler implements CommandHandler {

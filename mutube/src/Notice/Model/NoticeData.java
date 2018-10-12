@@ -1,7 +1,7 @@
 package Notice.Model;
 
+import Notice.Service.NoticeCommentPage;
 import Post.Model.File;
-import Post.Service.NoticeCommentPage;
 
 public class NoticeData {
 	private Notice notice;

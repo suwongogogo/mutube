@@ -9,6 +9,7 @@ import Connection.ConnectionProvider;
 import Post.DAO.PostDAO;
 import Post.Exception.PostNotFoundException;
 import Post.Model.Post;
+import Post.Model.PostPage;
 
 public class SearchPostService {
 	private static SearchPostService instance = new SearchPostService();

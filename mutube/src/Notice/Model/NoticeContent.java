@@ -24,9 +24,20 @@ public class NoticeContent {
 		this.video_link = video_link;
 		this.imageNamesStr = imageNamesStr;
 	}
+	
+	public NoticeContent(String content, String video_link) {
+		super();
+		this.content = content;
+		this.video_link = video_link;
+	}
 
-	
-	
+	public NoticeContent(String content, String video_link, ArrayList<String> imageNames) {
+		super();
+		this.content = content;
+		this.video_link = video_link;
+		this.imageNames = imageNames;
+	}
+
 	public NoticeContent(int noticeId, String content, String video_link) {
 		super();
 		this.noticeId = noticeId;
@@ -34,6 +45,19 @@ public class NoticeContent {
 		this.video_link = video_link;
 	}
 
+	public String trimLink() {
+		if (video_link != null) {
+			if (video_link.length() < 20) {
+				video_link = null;
+			} else if (video_link.length() < 40) {
+				video_link = video_link.substring(video_link.lastIndexOf('/') + 1);
+			} else {
+				video_link = video_link.substring(video_link.lastIndexOf('=') + 1);
+			}
+		}
+		return video_link;
+	}
+		
 	public int getNoticeId() {
 		return noticeId;
 	}

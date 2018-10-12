@@ -9,6 +9,7 @@ public class NoticeComment {
 	private String comment;
 	private LocalDateTime write_date;
 	private LocalDateTime update_date;
+	
 	public NoticeComment(int commentId, int noticeId, int userId, String comment, LocalDateTime write_date,
 			LocalDateTime update_date) {
 		super();

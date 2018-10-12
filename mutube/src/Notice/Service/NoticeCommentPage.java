@@ -1,4 +1,4 @@
-package Post.Service;
+package Notice.Service;
 
 public class NoticeCommentPage {
 

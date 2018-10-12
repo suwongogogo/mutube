@@ -3,8 +3,8 @@ package Post.Handler;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import Post.Model.PostPage;
 import Post.Service.ListPostService;
-import Post.Service.PostPage;
 
 
 
