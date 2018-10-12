@@ -1,9 +1,6 @@
 package User.Handler;
 
-import java.io.UnsupportedEncodingException;
-import java.nio.file.attribute.UserPrincipalNotFoundException;
 import java.sql.SQLException;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
@@ -16,12 +13,10 @@ import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
-import javax.security.auth.message.callback.PrivateKeyCallback.Request;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import Email.Gmail;
-import Email.SHA256;
 import Handler.CommandHandler;
 import User.Exception.UserNotFoundException;
 import User.Model.User;
@@ -82,11 +77,11 @@ public class FindPasswordHandler implements CommandHandler {
 			user = passwordService.findPwd(user);
 
 			// 이메일보내기에 필요한 정보들
-			String host = "http://localhost:8085/mutube/";
 			String from = "fltndnjs1234@gmail.com";
 			String to = email;
-			String subject = "너의 비밀번호를 찾아라!";
-			String content = "비밀 번호는 : " + user.getPassword();
+			String subject = "Mutube:: 회원님의 비밀번호를 알려드립니다.";
+			String content = "비밀 번호는 : " + user.getPassword()+"<br>"
+					+ "보안 유지를 위해 로그인 후 꼭 비밀번호를 바꿔주시기 바랍니다.";
 				
 
 			// SMTP에 접속하기 위한 정보를 기입합니다.

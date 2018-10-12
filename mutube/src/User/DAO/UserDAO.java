@@ -96,7 +96,6 @@ public class UserDAO {
 				User user = null;
 				List<User> list = new ArrayList<>();
 				if (rs.next()) {
-
 					user = getUserModel(rs);
 					list.add(user);
 				} else {
