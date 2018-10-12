@@ -24,7 +24,7 @@ public class SearchPostService {
 		try(Connection conn = ConnectionProvider.getConnection()){
 			PostDAO postDAO = PostDAO.getInstance();
 			
-			int total = postDAO.searchPostCount(conn, keyword);
+			int total = postDAO.searchTitleCount(conn, keyword);
 			
 			List<Post> postList = postDAO.searchPostList(conn, keyword, (pageNum - 1) * size, size);
 			
@@ -40,7 +40,7 @@ public class SearchPostService {
 		try(Connection conn = ConnectionProvider.getConnection()){
 			PostDAO postDAO = PostDAO.getInstance();
 			
-			int total = postDAO.searchPostCount(conn, keyword);
+			int total = postDAO.searchGenreCount(conn, keyword);
 			
 			List<Post> postList = postDAO.searchGenreList(conn, keyword, (pageNum - 1) * size, size);
 			
@@ -56,7 +56,7 @@ public class SearchPostService {
 		try(Connection conn = ConnectionProvider.getConnection()){
 			PostDAO postDAO = PostDAO.getInstance();
 			
-			int total = postDAO.searchPostCount(conn, keyword);
+			int total = postDAO.searchCountryCount(conn, keyword);
 			
 			List<Post> postList = postDAO.searchCountryList(conn, keyword, (pageNum - 1) * size, size);
 			
@@ -72,7 +72,7 @@ public class SearchPostService {
 		try(Connection conn = ConnectionProvider.getConnection()){
 			PostDAO postDAO = PostDAO.getInstance();
 			
-			int total = postDAO.searchPostCount(conn, keyword);
+			int total = postDAO.searchInstrumentCount(conn, keyword);
 			
 			List<Post> postList = postDAO.searchInstrumentList(conn, keyword, (pageNum - 1) * size, size);
 			

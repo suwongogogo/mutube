@@ -25,6 +25,8 @@
 							<td class="table-title list-author">작성자</td>
 							<td class="interval"></td>
 							<td class="table-title list-counter">조회수</td>
+							<td class="interval"></td>
+							<td class="table-title list-counter">작성 일자</td>
 						</tr>
 						<!-- 게시글이 없을 때 -->
 						<c:if test="${!postPage.hasPost()}">
@@ -43,10 +45,12 @@
 								<td class="tc">${post.writer.name }</td>
 								<td></td>
 								<td class="tc">${post.views}</td>
+								<td></td>
+								<td class="tc">${post.write_date}</td>
 							</tr>
 						</c:forEach>
 						<tr class="line-top line-bottom write-tr">
-							<td colspan="7" class="write">
+							<td colspan="9" class="write">
 								<a href="write">
 									<button class="wrtie-button">게시글 쓰기</button>
 								</a>
@@ -55,7 +59,7 @@
 						<!-- 게시글이 있다면 베이지 블럭도 표시 -->
 						<c:if test="${postPage.hasPost()}">
 							<tr class="tc">
-								<td class="paging" colspan="7">
+								<td class="paging" colspan="9">
 									<c:if test="${postPage.startPage > 5}">
 										<a href="list?pageNum=${postPage.startPage-5 }"><span class="arrow">◀</span><span class="prev">이전</span></a>
 									</c:if>

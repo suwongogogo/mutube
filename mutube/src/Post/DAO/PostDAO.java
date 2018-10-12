@@ -145,8 +145,47 @@ public class PostDAO {
 		}
 	}
 	
-	public int searchPostCount(Connection conn, String keyword) throws SQLException {
+	public int searchTitleCount(Connection conn, String keyword) throws SQLException {
 		String query = "select count(*) from post where title like ?";
+		try(PreparedStatement pst = conn.prepareStatement(query)){
+			pst.setString(1, keyword);
+			try(ResultSet rs = pst.executeQuery()){
+				if(rs.next()) {
+					return rs.getInt(1);
+				}
+			}
+			return 0;
+		}
+	}
+	
+	public int searchInstrumentCount(Connection conn, String keyword) throws SQLException {
+		String query = "select count(*) from post where instrument like ?";
+		try(PreparedStatement pst = conn.prepareStatement(query)){
+			pst.setString(1, keyword);
+			try(ResultSet rs = pst.executeQuery()){
+				if(rs.next()) {
+					return rs.getInt(1);
+				}
+			}
+			return 0;
+		}
+	}
+	
+	public int searchGenreCount(Connection conn, String keyword) throws SQLException {
+		String query = "select count(*) from post where genre like ?";
+		try(PreparedStatement pst = conn.prepareStatement(query)){
+			pst.setString(1, keyword);
+			try(ResultSet rs = pst.executeQuery()){
+				if(rs.next()) {
+					return rs.getInt(1);
+				}
+			}
+			return 0;
+		}
+	}
+	
+	public int searchCountryCount(Connection conn, String keyword) throws SQLException {
+		String query = "select count(*) from post where country like ?";
 		try(PreparedStatement pst = conn.prepareStatement(query)){
 			pst.setString(1, keyword);
 			try(ResultSet rs = pst.executeQuery()){
