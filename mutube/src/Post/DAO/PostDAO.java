@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -67,7 +68,10 @@ public class PostDAO {
 
 	// 리미트를 이용한 리스트를 가져오는 쿼리
 	public List<Post> select(Connection conn, int startRow, int size) throws SQLException {
-		String query = "select  * from Post where able=1 order by postId desc limit ?, ?";
+		String query = "select postId, userId, name, title, genre, country, instrument, "
+				+ "date_format(write_date, '%Y-%m-%d %H:%i'), date_format(update_date, '%Y-%m-%d %H:%i'), "
+				+ "views, able from Post where able=1 order by postId desc limit ?, ?";
+		
 		try (PreparedStatement pst = conn.prepareStatement(query)) {
 			pst.setInt(1, startRow);
 			pst.setInt(2, size);
@@ -221,8 +225,7 @@ public class PostDAO {
 	private Post toPost(ResultSet rs) throws SQLException {
 		Post post = new Post(rs.getInt("postId"), new Writer(rs.getInt("userId"),rs.getString("name")),
 				rs.getString("title"), rs.getString("genre"), rs.getString("country"), rs.getString("instrument")
-				, rs.getTimestamp("write_date").toLocalDateTime(), rs.getTimestamp("update_date").toLocalDateTime(), rs.getInt("views"), rs.getBoolean("able"));
-
+				, rs.getString(8), rs.getString(9), rs.getInt("views"), rs.getBoolean("able"));
 		return post;
 	}
 	

@@ -20,13 +20,11 @@ public class PostCommentDAO {
 	}
 	
 	public PostComment insert(Connection conn, PostComment postComment) throws SQLException {
-		String sql = "insert into post_comment(postId, userId , loginId, name, comment, write_date) values(?, ?, ?, ?, ?, now())";
+		String sql = "insert into post_comment(postId, userId, comment) values(?, ?, ?)";
 		try (PreparedStatement pst = conn.prepareStatement(sql)) {
 			pst.setInt(1, postComment.getPostId());
 			pst.setInt(2, postComment.getUserId());
-			pst.setString(3, postComment.getLoginId());
-			pst.setString(4, postComment.getName());
-			pst.setString(5, postComment.getComment());
+			pst.setString(3, postComment.getComment());
 			int insertCnt = pst.executeUpdate();
 
 			if (insertCnt > 0) {
@@ -56,8 +54,8 @@ public class PostCommentDAO {
 			try(ResultSet rs = pst.executeQuery()){
 				List<PostComment> commentList = new ArrayList<PostComment>();
 				while(rs.next()) {
-					PostComment postComment = new PostComment(rs.getInt("postId"), rs.getInt("userId"), rs.getString("loginId"), rs.getString("name"), 
-							rs.getString("comment"), rs.getTimestamp("write_date").toLocalDateTime(), rs.getTimestamp("update_date").toLocalDateTime());
+					PostComment postComment = new PostComment(rs.getInt("postId"), rs.getInt("userId"),
+							rs.getString("comment"), rs.getString(4), rs.getString(5));
 					commentList.add(postComment);
 				}
 				return commentList;

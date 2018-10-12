@@ -1,16 +1,35 @@
 package User.DAO;
 
+import java.io.InputStream;
+import java.io.Reader;
+import java.math.BigDecimal;
+import java.net.URL;
+import java.sql.Array;
+import java.sql.Blob;
+import java.sql.Clob;
 import java.sql.Connection;
+import java.sql.Date;
+import java.sql.NClob;
+import java.sql.ParameterMetaData;
 import java.sql.PreparedStatement;
+import java.sql.Ref;
 import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
+import java.sql.RowId;
 import java.sql.SQLException;
+import java.sql.SQLWarning;
+import java.sql.SQLXML;
+import java.sql.Time;
+import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
 import com.mysql.cj.xdevapi.Result;
 
+import Post.Model.Writer;
 import User.Model.User;
 
 public class UserDAO {
@@ -146,6 +165,19 @@ public class UserDAO {
 			pst.setInt(1, userId);
 			int count = pst.executeUpdate();
 			return count;
+		}
+	}
+	
+	public Writer getWriter(Connection conn, int userId) throws SQLException {
+		String query = "select loginId, name from user where userId = ?"; 
+		try(PreparedStatement pst = conn.prepareStatement(query)) {
+			pst.setInt(1, userId);
+			try(ResultSet rs = pst.executeQuery()){
+				if(rs.next())
+					return new Writer(rs.getString("loginId"), rs.getString("name"));
+				else
+					return null;
+			}
 		}
 	}
 
