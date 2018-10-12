@@ -76,7 +76,7 @@ public class AdminDAO {
 					postList.add(new Post(rs.getInt("postId"), new Writer(rs.getInt("userId"), rs.getString("name")),
 							rs.getString("title"), rs.getString("genre"), rs.getString("country"),
 							rs.getString("instrument"), rs.getTimestamp("write_date").toLocalDateTime(),
-							rs.getTimestamp("update_date").toLocalDateTime(), rs.getInt("views")));
+							rs.getTimestamp("update_date").toLocalDateTime(), rs.getInt("views"), rs.getBoolean("able")));
 				}
 				return postList;
 			}

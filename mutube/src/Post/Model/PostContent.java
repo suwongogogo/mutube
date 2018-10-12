@@ -51,9 +51,7 @@ public class PostContent {
 	public ArrayList<String> getImageNames() {
 		return imageNames;
 	}
-	public void setImageName(String imageName) {
-		this.imageNames = imageNames;
-	}
+	
 	public PostContent(String content, String video_link) {
 		this.content = content;
 		this.video_link = video_link;

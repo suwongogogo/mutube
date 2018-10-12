@@ -33,9 +33,7 @@ public class WritePostService {
 			if(postId == 0) {
 				conn.rollback();
 				throw new WritePostFailException("게시글 삽입 실패");
-			}
-			System.out.println("게시글 삽입 성공");
-			
+			}	
 			PostContent postContent = null;
 			if( writeReq.getPostContent().getImageNames()!= null) {
 				String imageName = "";
@@ -46,14 +44,11 @@ public class WritePostService {
 						imageName+="?";
 					}
 				}
-				System.out.println(imageName);
 				postContent = new PostContent(postId, writeReq.getPostContent().getContent(), writeReq.getPostContent().getVideo_link(), imageName );
 			}else {
 				postContent = new PostContent(postId, writeReq.getPostContent().getContent(), writeReq.getPostContent().getVideo_link());
 			}
-			System.out.println("내용 삽입 시도");
 			int ret = contentDAO.insert(conn, postContent);
-			System.out.println("내용 삽입 성그옹");
 			if(ret == 0) {
 				conn.rollback();
 				throw new WritePostFailException("Content 삽입 실패");

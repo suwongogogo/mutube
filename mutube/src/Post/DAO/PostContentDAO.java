@@ -55,4 +55,15 @@ public class PostContentDAO {
 			return pst.executeUpdate();
 		}
 	}
+	
+	public int updateWithImage(Connection conn, PostContent postContent, int postId) throws SQLException {
+		String sql = "update post_content set content = ?, video_link= ?, imageName = ? where postId = ?";
+		try (PreparedStatement pst = conn.prepareStatement(sql)) {
+			pst.setString(1, postContent.getContent());
+			pst.setString(2, postContent.getVideo_link());
+			pst.setString(3, postContent.getImageNamesStr());
+			pst.setInt(4, postId);
+			return pst.executeUpdate();
+		}
+	}
 }
