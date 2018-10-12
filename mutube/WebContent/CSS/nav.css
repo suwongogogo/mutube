@@ -1,5 +1,6 @@
 body,p {
     margin: 0px;
+    font-family: "맑은 고딕" !important;
 }
 ul {
     list-style: none;
@@ -27,6 +28,7 @@ a:hover {
     border-bottom: 1px solid #dddddd;
 }
 .loginout {
+	width: 64px;
     padding: 12px 100px;
     border: 1px solid #dddddd;
     border-radius: 5px;
@@ -71,7 +73,7 @@ a:hover {
     cursor: pointer;
 }
 .drop-li:hover > .clicked {
-	background-color: red;
+	background-color: #1a73e8;
 }
 .clicked {
     width: 10px;

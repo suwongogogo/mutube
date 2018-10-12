@@ -57,10 +57,6 @@ public class PostContent {
 		return imageNames;
 	}
 
-	public void setImageName(String imageName) {
-		this.imageNames = imageNames;
-	}
-
 	public String trimLink() {
 		if (video_link != null) {
 			if (video_link.length() < 20) {

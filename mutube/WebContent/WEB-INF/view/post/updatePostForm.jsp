@@ -78,7 +78,7 @@
 						</div>
 						<div class="video-container">
 							<p class="write-title">영상 링크</p>
-							<input type="text" name="video_link" class="video-input">
+							<input type="text" name="video_link" class="video-input" value="">
 						</div>
 						<div class="video-container">
 							<p class="write-title">이미지 첨부하기</p>

@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>회원 수정</title>
-<link rel="stylesheet" type="text/css" href="CSS/loginForm.css" />
+<link rel="stylesheet" type="text/css" href="/mutube/CSS/loginForm.css" />
 </head>
 <body>
 	<div class="loginForm-container" style="height: 360px;">

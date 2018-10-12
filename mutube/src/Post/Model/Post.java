@@ -53,6 +53,15 @@ public class Post {
 		this.views = views;
 	}
 
+	public Post(int postId, Writer writer, String title, String genre, String country, String instrument) {
+		this.postId = postId;
+		this.writer = writer;
+		this.title = title;
+		this.genre = genre;
+		this.country = country;
+		this.instrument = instrument;
+	}
+	
 	public Post(Writer writer, String title, String genre, String country, String instrument) {
 		this.writer = writer;
 		this.title = title;

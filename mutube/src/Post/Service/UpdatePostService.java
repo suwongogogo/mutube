@@ -45,7 +45,23 @@ public class UpdatePostService {
 				throw new UpdatePostFailExcpetion("게시글 수정 실패");
 			}
 			
-			postContentDAO.update(conn, postData.getPostContent(), postData.getPost().getPostId());
+			PostContent postContent = null;
+			if( postData.getPostContent().getImageNames()!= null) {
+				String imageName = "";
+				for(int i = 0; i < postData.getPostContent().getImageNames().size(); i++) {
+					imageName += postData.getPostContent().getImageNames().get(i);
+					
+					if(i < postData.getPostContent().getImageNames().size()-1) {
+						imageName+="?";
+					}
+				}
+				postContent = new PostContent(postData.getPost().getPostId(), postData.getPostContent().getContent(), postData.getPostContent().getVideo_link(), imageName );
+				updateCnt = postContentDAO.updateWithImage(conn, postData.getPostContent(), postData.getPost().getPostId());
+			}else {
+				postContent = new PostContent(postData.getPost().getPostId(), postData.getPostContent().getContent(), postData.getPostContent().getVideo_link());
+				updateCnt = postContentDAO.update(conn, postData.getPostContent(), postData.getPost().getPostId());
+			}
+			
 			if(updateCnt==0) {
 				conn.rollback();
 				throw new UpdatePostFailExcpetion("내용 수정 실패");

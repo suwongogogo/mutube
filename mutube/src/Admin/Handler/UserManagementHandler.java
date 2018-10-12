@@ -17,8 +17,6 @@ public class UserManagementHandler implements CommandHandler {
 			User loginUser = (User) req.getSession().getAttribute("loginUser");
 
 			if (loginUser!=null && loginUser.isAuthority() == false) {
-				
-				resp.sendRedirect(req.getContextPath()+"/Main.jsp");
 				throw new YourNotAdminException("권한이 없습니다.");
 			}
 
@@ -35,7 +33,8 @@ public class UserManagementHandler implements CommandHandler {
 			return FORM_VIEW;
 		} catch (YourNotAdminException e) {
 			e.printStackTrace();
-			return "/Main.jsp";
+			resp.sendRedirect(req.getContextPath()+"/Main.jsp");
+			return null;
 		}
 	}
 
