@@ -40,9 +40,15 @@
 	                		<c:if test="${loginUser.name.length() <= 4 }">${loginUser.name} </c:if>
 	                	</span>님, 환영합니다. 
 	                </li>
-	                <li class="sub-font mypage" style="float: right;">
-	                	<a href="/mutube/user/confirmUserByPassword" style="display: block;">마이페이지</a>
-	                </li>
+	                	<li class="sub-font mypage" style="float: right;">
+	                		<a href="/mutube/user/confirmUserByPassword" style="display: block;">마이페이지</a>
+	                	</li>
+	                	<c:if test="${loginUser.authority == true }">
+	        	        	<li class="sub-font mypage" style="float: right;">
+	    	            		<a href="/mutube/user/confirmUserByPassword" style="display: block;
+		                		position: absolute; top: 188px; left: 191px;">관리자 페이지</a>
+	                		</li>
+	                	</c:if>
                	</ul>
                	</c:if>
             </div>
