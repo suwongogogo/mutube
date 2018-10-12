@@ -61,6 +61,7 @@ public class RegisterHandler implements CommandHandler{
 			return FORM_VIEW;
 		}
 		
+		
 		try {
 			registerService.register(user);		
 		} catch (SQLException e) {

@@ -13,7 +13,7 @@
 </head>
 <body>
 	<div class="wrapper">
-    	<jsp:include page="/particular/header2.jsp"></jsp:include>
+    	<jsp:include page="/particular/header.jsp"></jsp:include>
     	<div class="center">
         	<jsp:include page="/particular/nav.jsp"></jsp:include>
 		   	<div class="board">
