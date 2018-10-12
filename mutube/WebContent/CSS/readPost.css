@@ -1,74 +1,59 @@
+table {
+	border-collapse: collapse;
+}
+.padding-top-bottom-5 {
+	padding: 5px 0px;
+}
+.padding-bottom-5 {
+	padding: 0px 0px 5px 0px;
+}
+.padding-top-15 {
+	padding-top: 5px;
+}
+.read-post-contaienr {
+	width: 100%;
+}
+.bottom-line {
+	border-bottom: 1px solid #cccccc;
+}
 .center {
 	display: flex;
 }
-
-.inline {
-	display: inline-block;
-}
-
-.font20 {
-	font-size: 20px;
-	font-weight: bold;
-}
-
 .board-container {
 	width: 1611px;
 	min-height: 650px;
 	padding: 25px;
 }
-
+.tc {
+	text-align: center;
+}
 .board {
 	width: 1200px;
+	height: 100%;
 	margin: auto;
+	border-left: 1px solid #cccccc;
+	border-right: 1px solid #cccccc;
 }
-
-.view-table {
-	width: 1200px;
-	text-align: center;
-	border: 1px solid black;
-	border-collapse: collapse;
-}
-
-.view-title {
+.post-title {
 	font-size: 22px;
 	font-weight: bold;
 }
-
-.text-none {
-	text-align: start;
-	height: 500px;
-	padding-bottom: 30px;
+.post-subtitle {
+	font-size: 18px;
+	width: 33%;
 }
-
-.line {
-	position: absolute;
-	top: 72px;
-	left: 0px;
-	right: 0px;
-	border-bottom: 1px solid darkgray;
+.img-vedio-div {
+	margin-left: 280px;
 }
-
-.view-content-container {
-	margin-top: 30px;
-	margin-left: 30px;
-}
-
-.content {
-	width: 1000px;
-	margin: auto;
-	margin-top: 30px;
-}
-
 .margin-right {
 	text-align: center;
 }
-
 .view-button-container {
-	position: relative;
-	bottom: 370px;
 	text-align: end;
 }
-
+.content-div {
+	padding: 10px 0px;
+}
 .view-button {
 	font-size: 15px;
 	border-radius: 4px;
@@ -77,26 +62,12 @@
 	color: white;
 	padding: 5px 5px;
 }
-
-.comment>textarea {
-	width: 80%;
-	margin-top: 6px;
-}
-
-.comment {
-	width: 1100px;
-}
-
-.comment>input {
-	position: relative;
-	bottom: 45px;
-	left: 55px;
-}
-
 .comment-container {
 	height: 80px;
 }
-
+.img-div,.vedio-div {
+	padding: 10px 0px;
+}
 a, a:hover {
 	text-decoration: none;
 }
@@ -121,96 +92,4 @@ a, a:hover {
 	border-bottom: 1px solid #bbbbbb;
 	overflow: hidden;
 	height: 59px;
-}
-
-.inline {
-	display: inline-block;
-}
-
-.comment-control-div {
-	float: right;
-	display: grid;
-	position: relative;
-	right: 18px;
-	bottom: -6px;
-}
-
-.comment-control-div>a {
-	font-size: 15px;
-	border: 1px solid black;
-	margin-bottom: 5px;
-}
-
-.id {
-	font-weight: bold;
-}
-
-.comment {
-	font-size: 15px;
-	word-break: break-all;
-}
-
-.userInf {
-	display: table;
-	position: absolute;
-	height: 81px;
-	width: 213px;
-}
-
-.userInf p {
-	display: table-cell;
-	text-align: center;
-	vertical-align: middle;
-}
-
-.id-inline {
-	position: absolute;
-	display: table;
-	height: 80px;
-	width: 212px;
-	bottom: -83px;
-	border-right: 1px solid darkgray;
-}
-
-.id-inline p {
-	display: table-cell;
-	text-align: center;
-	vertical-align: middle;
-}
-
-.comment-inline {
-	position: relative;
-	left: 213px;
-	bottom: 11px;
-	display: table;
-	height: 81px;
-	width: 910px;
-	border-right: 1px solid darkgray;
-}
-
-.comment-inline p {
-	display: table-cell;
-	text-align: center;
-	vertical-align: middle;
-}
-
-.comment-table{
-	width: 1200px;
-	height: 162px;
-	text-align: center;
-	border-top: 0px solid darkgray;
-}
-.comment-table .name{
-	width: 254px;
-	border-right: 1px solid darkgray;
-}
-.comment-table .comment{
-	
-}
-.comment-table .util{
-	width: 83px;
-	border-left: 1px solid darkgray;
-}
-.comment-table tr{
-	border-bottom: 1px solid darkgray;
 }
