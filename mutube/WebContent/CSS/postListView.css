@@ -1,3 +1,6 @@
 .center {
 	display: flex;
 }
+.short-interval {
+	width: 100px;
+}

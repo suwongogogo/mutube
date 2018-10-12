@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link rel="stylesheet" type="text/css" href="/mutube/CSS/postListview.css" />
+<link rel="stylesheet" type="text/css" href="/mutube/CSS/postListView.css" />
 <title>글 정보</title>
 </head>
 <body>
@@ -37,14 +37,14 @@
 							<td class="short-interval">${post.postId }</td>
 							<td class="short-interval">${post.writer.userId }</td>
 							<td class="short-interval">${post.writer.name }</td>
-							<td>${post.title }</td>
-							<td>${post.genre }</td>
-							<td>${post.country }</td>
-							<td>${post.instrument }</td>
-							<td>${post.write_date }</td>
-							<td>${post.update_date }</td>
-							<td>${post.views }</td>
-							<td>${post.able }</td>
+							<td class="long-interval">${post.title }</td>
+							<td class="short-interval">${post.genre }</td>
+							<td class="short-interval">${post.country }</td>
+							<td class="short-interval">${post.instrument }</td>
+							<td class="short-interval">${post.write_date }</td>
+							<td class="short-interval">${post.update_date }</td>
+							<td class="short-interval">${post.views }</td>
+							<td class="short-interval">${post.able }</td>
 						</tr>
 					</c:forEach>
 					<c:if test="${postPageINF.hasUser() }">

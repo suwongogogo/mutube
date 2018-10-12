@@ -25,6 +25,21 @@ public class Post {
 	public Post() {
 		
 	}
+	
+	public Post(int postId, Writer writer, String title, String genre, String country, String instrument,
+			LocalDateTime write_date, LocalDateTime update_date, int views, boolean able) {
+		this.postId = postId;
+		this.writer = writer;
+		this.title = title;
+		this.genre = genre;
+		this.country = country;
+		this.instrument = instrument;
+		this.write_date = write_date;
+		this.update_date = update_date;
+		this.views = views;
+		this.able = able;
+	}
+	
 	public Post(int postId, Writer writer, String title, String genre, String country, String instrument,
 			LocalDateTime write_date, LocalDateTime update_date, int views) {
 		this.postId = postId;
