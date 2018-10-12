@@ -69,7 +69,7 @@
 									<option value="drum" <%if(postData.getPost().getInstrument().equals("drum")){ %> selected <% } %> class="option">드럼</option>
 									<option value="piano" <%if(postData.getPost().getInstrument().equals("piano")){ %> selected <% } %> class="option">피아노</option>
 									<option value="trumpet" <%if(postData.getPost().getInstrument().equals("trumpet")){ %> selected <% } %> class="option">트럼펫</option>
-									<option value="saxophone" <%if(postData.getPost().getInstrument().equals("saxophone")){ %> selected <% } %> class="option">섹소폰</option>
+									<option value="saxophone" <%if(postData.getPost().getInstrument().equals("saxophone")){ %> selected <% } %> class="option">색소폰</option>
 									<option value="trombone" <%if(postData.getPost().getInstrument().equals("trombone")){ %> selected <% } %> class="option">트롬본</option>
 									<option value="acoustic" <%if(postData.getPost().getInstrument().equals("acoustic")){ %> selected <% } %> class="option">어쿠스틱 기타</option>
 									<option value="etc" <%if(postData.getPost().getInstrument().equals("etc")){ %> selected <% } %> class="option">etc...</option>

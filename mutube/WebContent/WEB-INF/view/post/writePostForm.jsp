@@ -50,13 +50,14 @@
 									<option value="gospel" class="option">GOSPEL</option>
 									<option value="band" class="option">밴드</option>
 									<option value="fusion" class="option">퓨전 재즈</option>
+									<option value="etc"  class="option">etc...</option>
 									
 								</select>
 							</div>
 							<div class="musician-form">
 								<p class="write-title">나라</p>
 								<select name="country" class="select">
-									<option value="korea"%> class="option">대한민국</option>
+									<option value="korea" class="option">대한민국</option>
 									<option value="japan" class="option">일본</option>
 									<option value="usa" class="option">미국</option>
 									<option value="germany" class="option">독일</option>
@@ -65,6 +66,7 @@
 									<option value="england" class="option">영국</option>
 									<option value="france" class="option">프랑스</option>
 									<option value="russia"  class="option">러시아</option>
+									<option value="etc"  class="option">etc...</option>
 								</select>
 							</div>
 							<div class="musician-form">
@@ -76,7 +78,7 @@
 									<option value="drum" class="option">드럼</option>
 									<option value="piano" class="option">피아노</option>
 									<option value="trumpet" class="option">트럼펫</option>
-									<option value="saxophone" class="option">섹소폰</option>
+									<option value="saxophone" class="option">색소폰</option>
 									<option value="trombone" class="option">트롬본</option>
 									<option value="acoustic" class="option">어쿠스틱 기타</option>
 									<option value="etc" class="option">etc...</option>
