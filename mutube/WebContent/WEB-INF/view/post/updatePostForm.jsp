@@ -19,7 +19,8 @@
 			<jsp:include page="/particular/nav.jsp"></jsp:include>
 			<div class="postForm-container">
 				<div class="title-container">
-					<form action="write" method="post" enctype="multipart/form-data">
+					<form action="update" method="post" enctype="multipart/form-data">
+						<input type="hidden" name="no" value="${postData.post.postId }">
 						<div class="title-form">
 							<p class="write-title">제목</p>
 							<input class="input" name="title" type="text" value="${postData.post.title }">
@@ -78,7 +79,7 @@
 						</div>
 						<div class="video-container">
 							<p class="write-title">영상 링크</p>
-							<input type="text" name="video_link" class="video-input" value="">
+							<input type="text" name="video_link" class="video-input" value="${postData.postContent.video_link }">
 						</div>
 						<div class="video-container">
 							<p class="write-title">이미지 첨부하기</p>
@@ -86,7 +87,7 @@
 						</div>
 						<div class="content">
 							<p class="write-title content-title">내용</p>
-							<textarea name="content" class="textarea"></textarea>
+							<textarea name="content" class="textarea" >${postData.postContent.content }</textarea>
 						</div>
 						<div class="button-container">
 							<input type="submit" value="수정" class="submit button">

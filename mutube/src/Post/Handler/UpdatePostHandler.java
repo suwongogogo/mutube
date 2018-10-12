@@ -54,34 +54,22 @@ public class UpdatePostHandler implements Handler.CommandHandler {
 		UpdatePostService updatePostService = UpdatePostService.getInstance();
 		PostData postData = updatePostService.getPost(postId);
 		req.setAttribute("postData", postData);
-
+		System.out.println(postData.getPost().getPostId());
 		return FORM_VIEW;
 	}
 
 	private String processSubmit(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+		User loginUser = (User) req.getSession().getAttribute("loginUser");
+
+		String directory = req.getServletContext().getRealPath("/upload/");
+		
+		Map<String, Boolean> errors = new HashMap<>();
+		req.setAttribute("errors", errors);
+
+		ArrayList<String> imageNames = new ArrayList<>();
+		Map<String, String> params = new HashMap<>();
+		
 		try {
-			int postId = 0;
-
-			if (req.getParameter("no") != null) {
-				postId = Integer.parseInt(req.getParameter("no"));
-			}
-			if (postId == 0) {
-				throw new PostNotFoundException("올바르지 않은 게시글 번호");
-			}
-
-			User loginUser = (User) req.getSession().getAttribute("loginUser");
-
-			Map<String, Boolean> errors = new HashMap<>();
-			req.setAttribute("errors", errors);
-
-			ArrayList<String> imageNames = new ArrayList<>();
-			Map<String, String> params = new HashMap<>();
-
-			// 넘겨받은 이미지 파일에 대한 정보를 저장
-			String directory = req.getServletContext().getRealPath("/upload/");
-			int maxSize = 1024 * 1024 * 10;
-			String encoding = "utf-8";
-
 			if (ServletFileUpload.isMultipartContent(req)) {
 				try {
 					List<FileItem> multiparts = new ServletFileUpload(new DiskFileItemFactory()).parseRequest(req);
@@ -98,6 +86,7 @@ public class UpdatePostHandler implements Handler.CommandHandler {
 									imageNames.add(date + name);
 								}
 							}
+							System.out.println(name);
 						} else {
 							String name = item.getFieldName();
 							String value = item.getString("UTF-8");
@@ -110,9 +99,20 @@ public class UpdatePostHandler implements Handler.CommandHandler {
 					e.printStackTrace();
 				}
 			}
+			
+			int postId = 0;
+
+			if (params.get("no") != null) {
+				postId = Integer.parseInt(params.get("no"));
+			}
+			System.out.println(postId);
+			if (postId == 0) {
+				throw new PostNotFoundException("올바르지 않은 게시글 번호");
+			}
+	
 			Post post = new Post(postId, new Writer(loginUser.getUserId(), loginUser.getName()), params.get("title"),
 					params.get("genre"), params.get("country"), params.get("instrument"));
-
+			
 			
 			post.writeValidate(errors);
 			if (!errors.isEmpty()) {
@@ -122,12 +122,10 @@ public class UpdatePostHandler implements Handler.CommandHandler {
 			if(!imageNames.isEmpty()) {
 				postContent.setImageNames(imageNames);
 			}
-			
 			postContent.trimLink();
 
 			PostData postData = new PostData(post, postContent);
 			UpdatePostService updatePostService = UpdatePostService.getInstance();
-
 			updatePostService.update(postData);
 
 			resp.sendRedirect(req.getContextPath() + "/post/view?no=" + postId);

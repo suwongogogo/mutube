@@ -40,7 +40,7 @@
 							<tr class="list-tr">
 								<td class="tc">${post.postId }</td>
 								<td></td>
-								<td class="pointer"><a href="view?no=${post.postId }&pageNum=${postPage.currentPage}">${post.title }</a></td>
+								<td class="pointer"><a href="view?no=${post.postId }&pageNum=${postPage.currentPage}"><font size="2" color="darkgrey" >(${post.genre}, ${post.country}, ${post.instrument})</font> ${post.title }</a></td>
 								<td></td>
 								<td class="tc">${post.writer.name }</td>
 								<td></td>
