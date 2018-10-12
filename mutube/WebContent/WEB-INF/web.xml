@@ -72,6 +72,9 @@
 		
 		<url-pattern>/notice/writeNotice</url-pattern>
 		<url-pattern>/notice/notice</url-pattern>
+		<url-pattern>/notice/updateNotice</url-pattern>
+		<url-pattern>/notice/readNotice</url-pattern>
+		<url-pattern>/notice/deleteNotice</url-pattern>
 		
 		<url-pattern>/admin/userManagement</url-pattern>
 		<url-pattern>/admin/postManagement</url-pattern>

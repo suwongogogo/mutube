@@ -13,7 +13,7 @@
     	<div class="center">
         	<jsp:include page="/particular/nav.jsp"></jsp:include>
 		   	<div class="board-list">
-		   		<div class="address">전체글</div> 
+		   		<div class="address">공지 사항</div> 
 		   		<div class="board-list-container">
 			  		<table>
 						<tr class="line-bottom font18">
@@ -39,7 +39,7 @@
 							<tr class="list-tr">
 								<td class="tc">${notice.noticeId }</td>
 								<td></td>
-								<td class="pointer"><a href="view?no=${notice.postId }&pageNum=${noticePage.currentPage}">${notice.title }</a></td>
+								<td class="pointer"><a href="readNotice?noticeId=${notice.noticeId }&pageNum=${noticePage.currentPage}">${notice.title }</a></td>
 								<td></td>
 								<td class="tc">${notice.writer.name }</td>
 								<td></td>
