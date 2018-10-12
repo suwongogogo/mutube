@@ -26,6 +26,7 @@ public class DeleteNoticeService {
 				conn.rollback();
 				throw new PostNotFoundException("게시글 삭제 실패");
 			}
+			
 			conn.commit();
 		}
 	}

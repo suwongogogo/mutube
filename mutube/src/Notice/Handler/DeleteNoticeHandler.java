@@ -7,6 +7,7 @@ import Handler.CommandHandler;
 import Notice.Exception.NoticeNotFoundException;
 import Notice.Service.DeleteNoticeService;
 
+
 public class DeleteNoticeHandler implements CommandHandler{
 
 	@Override
@@ -24,7 +25,7 @@ public class DeleteNoticeHandler implements CommandHandler{
 		DeleteNoticeService deleteNoticeService = DeleteNoticeService.getInstance();
 		deleteNoticeService.deleteNotice(noticeId);
 		
-		resp.sendRedirect(req.getContextPath() + "/notice/noticeList.jsp");
+		resp.sendRedirect(req.getContextPath() + "/notice/notice");
 		
 		}catch(NoticeNotFoundException e) {
 			e.printStackTrace();

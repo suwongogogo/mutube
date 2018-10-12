@@ -147,7 +147,7 @@ public class WriteNoticeHandler implements CommandHandler{
 		int postId = 0;
 		try {
 			postId = writeNoticeService.writeNotice(writeReq);
-			resp.sendRedirect(req.getContextPath() + "/post/list");
+			resp.sendRedirect(req.getContextPath() + "/notice/notice");
 
 		} catch(WritePostFailException e) {
 			e.printStackTrace();
