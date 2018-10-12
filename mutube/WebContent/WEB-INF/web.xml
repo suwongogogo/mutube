@@ -78,6 +78,8 @@
 		
 		<url-pattern>/admin/userManagement</url-pattern>
 		<url-pattern>/admin/postManagement</url-pattern>
+		<url-pattern>/admin/deleteUser</url-pattern>
+		<url-pattern>/admin/deletePost</url-pattern>
 	</servlet-mapping>
 	
 

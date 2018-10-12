@@ -70,8 +70,7 @@
 									<td class="tc">${post.able }</td>
 									<td></td>
 									<td class="tc">
-										<form action="/mutube/delete">
-											<input type="hidden" value="${post.postId }">
+										<form action="/mutube/admin/deletePost?postId=${post.postId }" method="post">
 											<button>삭제</button>
 										</form>
 									</td>

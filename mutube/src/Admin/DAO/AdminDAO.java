@@ -82,4 +82,20 @@ public class AdminDAO {
 			}
 		}
 	}
+	
+	public int deleteUser(Connection conn, int userId) throws SQLException {
+		String sql = "delete from user where userId = ?";
+		try(PreparedStatement pst = conn.prepareStatement(sql)){
+			pst.setInt(1, userId);
+			return pst.executeUpdate();
+		}
+	}
+	
+	public int deletePost(Connection conn, int postId) throws SQLException {
+		String sql = "delete from post where postid = ?";
+		try(PreparedStatement pst = conn.prepareStatement(sql)){
+			pst.setInt(1, postId);
+			return pst.executeUpdate();
+		}
+	}
 }

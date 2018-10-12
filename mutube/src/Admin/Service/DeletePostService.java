@@ -1,0 +1,26 @@
+package Admin.Service;
+
+import java.sql.Connection;
+import java.sql.SQLException;
+
+import Admin.DAO.AdminDAO;
+import Connection.ConnectionProvider;
+import Post.Exception.PostNotFoundException;
+
+public class DeletePostService {
+	private static DeletePostService instance = new DeletePostService();
+	private DeletePostService() {}
+	public static DeletePostService getInstance() {
+		return instance;
+	}
+	
+	public void DeletePost(int postId) throws SQLException, PostNotFoundException {
+		try(Connection conn = ConnectionProvider.getConnection()){
+			AdminDAO adminDAO = AdminDAO.getInstance();
+			int count = adminDAO.deletePost(conn, postId);
+			if(count == 0) {
+				throw new PostNotFoundException("게시글을 찾을 수 없습니다.");
+			}
+		}
+	}
+}

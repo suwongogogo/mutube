@@ -54,8 +54,7 @@
 									<td class="tc">${user.authority }</td>
 									<td></td>
 									<td class="tc">
-										<form action="/mutube/delete">
-											<input type="hidden" value="${user.userId }">
+										<form action="/mutube/admin/deleteUser?userId=${user.userId }" method="post">
 											<button>삭제</button>
 										</form>
 									</td>
