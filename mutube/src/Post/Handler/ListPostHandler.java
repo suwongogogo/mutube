@@ -1,5 +1,8 @@
 package Post.Handler;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -19,7 +22,8 @@ public class ListPostHandler implements Handler.CommandHandler{
 		if(pageNumStr != null) {
 			pageNum = Integer.parseInt(pageNumStr);
 		}
-		PostPage postPage = postService.getArticlePage(pageNum);
+		PostPage postPage = postService.getPostPage(pageNum);
+		
 		req.setAttribute("postPage", postPage);
 		
 		return "/WEB-INF/view/post/list.jsp";

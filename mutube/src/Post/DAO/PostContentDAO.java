@@ -38,7 +38,7 @@ public class PostContentDAO {
 
 			try (ResultSet rs = pst.executeQuery()) {
 				if (rs.next()) {
-					postContent = new PostContent(rs.getInt("postId"), rs.getString("content"), rs.getString(3), rs.getString("imageName"));
+					postContent = new PostContent(rs.getInt("postId"), rs.getString("content"), rs.getString("video_link"), rs.getString("imageName"));
 				}
 			}
 		}

@@ -1,6 +1,5 @@
 package User.Service;
 
-import java.nio.file.attribute.UserPrincipalNotFoundException;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
@@ -26,9 +25,6 @@ public class FindLoginIdService {
 			if(user == null) {
 				throw new UserNotFoundException("유저를 찾을수 없습니다.");
 			}
-		
-			System.out.println(user.get(0).getLoginId());
-			
 			return user;
 			
 		} catch (SQLException e) {

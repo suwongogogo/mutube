@@ -23,10 +23,11 @@ public class NoticeDAO {
 	}
 	
 	public Notice insertNotice(Connection conn, Notice notice) throws SQLException {
-		String sql = "insert into notice(userId, name, write_date) values(?, ?, now())";
+		String sql = "insert into notice(userId, name, title ,write_date) values(?, ?, ?, now())";
 		try(PreparedStatement pst = conn.prepareStatement(sql)){
-			pst.setInt(1, notice.getWrtier().getUserId());
-			pst.setString(2, notice.getWrtier().getName());
+			pst.setInt(1, notice.getWriter().getUserId());
+			pst.setString(2, notice.getWriter().getName());
+			pst.setString(3, notice.getTitle());
 			int count = pst.executeUpdate();
 			
 			if(count > 0) {
@@ -34,6 +35,23 @@ public class NoticeDAO {
 			}else {
 				return null;
 			}
+		}
+	}
+	
+	public int updateNotice(Connection conn, Notice notice) throws SQLException {
+		String sql = "update notice set title = ? where noticeId = ?";
+		try(PreparedStatement pst = conn.prepareStatement(sql)){
+			pst.setString(1, notice.getTitle());
+			pst.setInt(2, notice.getNoticeId());
+			return pst.executeUpdate();
+		}
+	}
+	
+	public int deleteNotice(Connection conn, int noticeId) throws SQLException {
+		String sql = "update notice set able = 0 where noticeId = ?";
+		try(PreparedStatement pst = conn.prepareStatement(sql)){
+			pst.setInt(1, noticeId);
+			return pst.executeUpdate();
 		}
 	}
 	
@@ -80,5 +98,27 @@ public class NoticeDAO {
 				, rs.getInt("views"), rs.getBoolean("able"));
 
 		return notice;
+	}
+
+	public Notice selectById(Connection conn, int noticeId) throws SQLException {
+		String sql ="select * from notice where noticeId = ? and able = 1";
+		try(PreparedStatement pst = conn.prepareStatement(sql)){
+			pst.setInt(1, noticeId);
+			try(ResultSet rs = pst.executeQuery()){
+				if(rs.next()) {
+					return getNotice(rs);
+				}
+			}
+		}
+		return null;
+	}
+
+	public void increaseReadCount(Connection conn, int noticeId) throws SQLException {
+		String query = "update notice set views = views+1 where noticeId = ? ";
+		try(PreparedStatement pst = conn.prepareStatement(query)){
+			pst.setInt(1, noticeId);
+			pst.executeUpdate();
+		}
+		
 	}
 }

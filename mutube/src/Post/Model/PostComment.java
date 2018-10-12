@@ -6,30 +6,33 @@ public class PostComment {
 
 	private int postId;
 	private int userId;
-	private String loginId;
-	private String name;
+	private Writer writer;
 	private String comment;
 	private LocalDateTime write_date;
 	private LocalDateTime update_date;
+	private String wdateStr;
+	private String udateStr;
 	
-	public PostComment(int postId, int userId, String loginId, String name, String comment, LocalDateTime write_date,
+	public PostComment(int postId, int userId, String comment, LocalDateTime write_date,
 			LocalDateTime update_date) {
-		super();
 		this.postId = postId;
 		this.userId = userId;
-		this.loginId = loginId;
-		this.name = name;
 		this.comment = comment;
 		this.write_date = write_date;
 		this.update_date = update_date;
 	}
-
-	public PostComment(int postId, int userId, String loginId, String name, String comment) {
-		super();
+	public PostComment(int postId, int userId, String comment, String wdateStr,
+			String udateStr) {
 		this.postId = postId;
 		this.userId = userId;
-		this.loginId = loginId;
-		this.name = name;
+		this.comment = comment;
+		this.wdateStr = wdateStr;
+		this.udateStr = udateStr;
+	}
+
+	public PostComment(int postId, int userId, String comment) {
+		this.postId = postId;
+		this.userId = userId;
 		this.comment = comment;
 	}
 
@@ -40,15 +43,12 @@ public class PostComment {
 	public int getUserId() {
 		return userId;
 	}
-	
-	public String getLoginId() {
-		return loginId;
+	public Writer getWriter() {
+		return writer;
 	}
-
-	public String getName() {
-		return name;
+	public void setWriter(Writer writer) {
+		this.writer = writer;
 	}
-
 	public String getComment() {
 		return comment;
 	}

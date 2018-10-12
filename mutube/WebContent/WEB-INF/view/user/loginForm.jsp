@@ -34,8 +34,10 @@
 					<div class="underline"></div>
 					<span class="error"><c:if test="${errors.password }">비밀번호를 입력하세요.</c:if></span>
 				</div>
-				<div>
-					<a href="register" class="register">회원가입 하기</a> <br>
+				<div style="text-align:center;">
+					<a href="register" class="register" style="position: absolute !important; left: 30px;">회원가입 하기</a> 
+					<a href="findLoginId" class="register" style="position:relative; bottom:2px;">아이디 찾기</a>  
+					<a href="findPassword" class="register" style="position: absolute; right: 31px;">비밀번호 찾기</a>
 				</div>
 				<input type="submit" value="로그인" class="submit">
 			</div>

@@ -1,29 +1,38 @@
 package Notice.Model;
 
 import java.time.LocalDateTime;
+import java.util.Map;
 
 import Post.Model.Writer;
 
 public class Notice {
 	private int noticeId;
-	private Writer wrtier;
+	private Writer writer;
 	private String title;
 	private LocalDateTime write_date;
 	private LocalDateTime update_date;
 	private int views;
 	private boolean able;
 
-	public Notice(Writer wrtier, String title) {
+	
+	public Notice(int noticeId, Writer writer, String title) {
 		super();
-		this.wrtier = wrtier;
+		this.noticeId = noticeId;
+		this.writer = writer;
 		this.title = title;
 	}
 
-	public Notice(int noticeId, Writer wrtier, String title, LocalDateTime write_date, LocalDateTime update_date,
+	public Notice(Writer writer, String title) {
+		super();
+		this.writer = writer;
+		this.title = title;
+	}
+
+	public Notice(int noticeId, Writer writer, String title, LocalDateTime write_date, LocalDateTime update_date,
 			int views, boolean able) {
 		super();
 		this.noticeId = noticeId;
-		this.wrtier = wrtier;
+		this.writer = writer;
 		this.title = title;
 		this.write_date = write_date;
 		this.update_date = update_date;
@@ -31,11 +40,18 @@ public class Notice {
 		this.able = able;
 	}
 
-	public Notice(Writer wrtier) {
+	public Notice(Writer writer) {
 		super();
-		this.wrtier = wrtier;
+		this.writer = writer;
 	}
 
+	public void writeValidate(Map<String, Boolean> errors) {
+		if(title==null||title.isEmpty()) {
+			errors.put("title", true);
+		}
+		
+	}
+		
 	public int getNoticeId() {
 		return noticeId;
 	}
@@ -44,12 +60,12 @@ public class Notice {
 		this.noticeId = noticeId;
 	}
 
-	public Writer getWrtier() {
-		return wrtier;
+	public Writer getWriter() {
+		return writer;
 	}
 
 	public void setWrtier(Writer wrtier) {
-		this.wrtier = wrtier;
+		this.writer = wrtier;
 	}
 
 	public LocalDateTime getWrite_date() {
@@ -82,6 +98,14 @@ public class Notice {
 
 	public void setAble(boolean able) {
 		this.able = able;
+	}
+
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
 	}
 
 	
