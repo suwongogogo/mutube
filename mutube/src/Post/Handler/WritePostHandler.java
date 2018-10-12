@@ -30,6 +30,7 @@ import com.sun.net.httpserver.HttpsParameters;
 
 import java.io.File;
 import Handler.CommandHandler;
+import Post.Exception.WritePostFailException;
 import Post.Model.Post;
 import Post.Model.PostContent;
 import Post.Model.PostData;
@@ -80,13 +81,14 @@ public class WritePostHandler implements CommandHandler {
 					if (!item.isFormField()) {// 파일일때..
 						String name = item.getName();
 						if (!name.equals("")) {
-							if (!name.endsWith(".jpg") || !name.endsWith(".png") || !name.endsWith(".gif")
-									|| !name.endsWith(".jpeg")) {
+							if (name.endsWith(".jpg") ||name.endsWith(".png")||name.endsWith(".PNG") || name.endsWith(".gif")
+									|| name.endsWith(".jpeg")) {
+								String date = sdf.format(new Date());
+								item.write(new File(directory + date + name));
+								imageNames.add(date + name);
+							}else {
 								errors.put("imageType", true);
 							}
-							String date = sdf.format(new Date());
-							item.write(new File(directory + date + name));
-							imageNames.add(date + name);
 						}
 					} else {
 						String name = item.getFieldName();
@@ -100,7 +102,7 @@ public class WritePostHandler implements CommandHandler {
 				e.printStackTrace();
 			}
 		}
-
+		
 		if (params.get("title").trim().equals("")) {
 			errors.put("title", true);
 			return FORM_VIEW;
@@ -108,7 +110,8 @@ public class WritePostHandler implements CommandHandler {
 		// 글 정보는 Post, 내용은 PostContent 객체에 담아 WriteRequest를 생성.
 		Post post = new Post(new Writer(loginUser.getUserId(), loginUser.getName()), params.get("title"),
 				params.get("genre"), params.get("country"), params.get("instrument"));
-
+	
+		
 		PostContent postContent = null;
 		if (!imageNames.isEmpty()) {
 
@@ -119,12 +122,15 @@ public class WritePostHandler implements CommandHandler {
 		}
 		postContent.trimLink();
 
+		
 		PostData writeReq = new PostData(post, postContent);
 
 		// WriteRequest의 무결성 검사를 진행하고 이상있으면 다시 FORM_VIEW로 이동
 
 		// post.writeValidate(errors);
 		if (!errors.isEmpty()) {
+			for(String as : errors.keySet())
+				System.out.println(as);
 			return FORM_VIEW;
 		}
 
@@ -135,6 +141,9 @@ public class WritePostHandler implements CommandHandler {
 			postId = writePostService.write(writeReq);
 			resp.sendRedirect(req.getContextPath() + "/post/list");
 
+		} catch(WritePostFailException e) {
+			e.printStackTrace();
+			return FORM_VIEW;
 		} catch (RuntimeException | SQLException e) {
 			e.printStackTrace();
 			return FORM_VIEW;

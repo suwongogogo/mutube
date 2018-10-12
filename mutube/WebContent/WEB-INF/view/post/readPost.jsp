@@ -38,13 +38,13 @@
 											<c:forEach var="i" begin="0"
 												end="${postData.postContent.imageNames.size()-1 }">
 												<img src="/img/${postData.postContent.imageNames.get(i) }"
-													width="600" height="460">
+													width="660" height="420">
 											</c:forEach>
 										</c:if>
 									</div>
 									<div class="margin-right">
 										<c:if test="${postData.postContent.video_link != null }">
-											<iframe width="560" height="315"
+											<iframe width="660" height="315"
 												src="https://www.youtube.com/embed/${postData.postContent.video_link }"
 												frameborder="0" allow="autoplay; encrypted-media"
 												allowfullscreen></iframe>
@@ -98,7 +98,7 @@
 								<tr>
 									<td class="name">이름</td>
 									<td class="comment">댓글</td>
-									<td class="util">수정 삭ㅈ</td>
+									<td class="util">수정 삭제</td>
 								</tr>
 							</c:forEach>
 						</table>
