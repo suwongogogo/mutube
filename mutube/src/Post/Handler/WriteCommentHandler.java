@@ -19,31 +19,33 @@ public class WriteCommentHandler implements CommandHandler {
 
 	public String process(HttpServletRequest req, HttpServletResponse resp) throws Exception {
 		WriteCommentService writeComment = WriteCommentService.getInstance();
+		int postId = Integer.parseInt(req.getParameter("postId"));
+		int pageNum = Integer.parseInt(req.getParameter("pageNum"));
+		String comment = req.getParameter("comment");
+		
+		User loginUser = (User) req.getSession().getAttribute("loginUser");
 		try {
-			int postId = Integer.parseInt(req.getParameter("postId"));
-			int pageNum = Integer.parseInt(req.getParameter("pageNum"));
-			String comment = req.getParameter("comment");
-			User sessionUser = (User) req.getSession().getAttribute("loginUser");
+			
 			Post post = writeComment.selectById(postId);
-			if(sessionUser == null) {
+			if(loginUser == null) {
 				throw new UserNotFoundException("로그인하지 않으셨습니다.");
 			}
 			
-			PostComment postComment = new PostComment(post.getPostId(), sessionUser.getUserId(), sessionUser.getLoginId(), sessionUser.getName(), comment);
+			PostComment postComment = new PostComment(post.getPostId(), loginUser.getUserId(), comment);
 		
 			writeComment.writeComment(postComment);
 			
-			
 			resp.sendRedirect(req.getContextPath()+"/post/view?no="+postId+"&pageNum="+pageNum);
+			
 		}catch(FailWriteCommentException e) {
 			e.printStackTrace();
-			return "/WEB-INF/view/post/readPost.jsp";
+			resp.sendRedirect(req.getContextPath()+"/post/view?no="+postId+"&pageNum="+pageNum);
 		}catch(PostNotFoundException e) {
 			e.printStackTrace();
-			return "/WEB-INF/view/post/list.jsp";
+			resp.sendRedirect(req.getContextPath()+"/post/list");
 		}catch(UserNotFoundException e) {
 			e.printStackTrace();
-			return "/WEB-INF/view/user/loginForm.jsp";
+			resp.sendRedirect(req.getContextPath()+"/user/login");
 		}
 		return null;
 	}

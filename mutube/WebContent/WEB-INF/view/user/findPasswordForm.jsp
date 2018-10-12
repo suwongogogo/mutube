@@ -6,13 +6,18 @@
 <head>
     <meta charset="utf-8" />
     <title>비밀번호 찾기</title>
-    <link rel="stylesheet" type="text/css" media="screen" href="CSS/findForm.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="/mutube/CSS/findForm.css" />
 </head>
 <body>
-	<div class="logo">
-		<a href="mutube/Main.jsp"><img src="/mutube/Image/수원이얼굴.jpg"></a>
-	</div>
+	
 	<div class="findForm-container" style="height: 305px">
+		<a href="/mutube/Main.jsp"> <img src="/mutube/Image/logo.jpg"
+			width="200" height="100" style="
+				position: absolute;
+				top: -103px;
+				left: 90px;
+			">
+		</a>
             <form action="findPassword" method="post">
                 <div class="findForm" class="input-container">
                     <div class="input-container">

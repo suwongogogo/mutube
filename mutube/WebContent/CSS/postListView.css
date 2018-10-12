@@ -1,6 +1,60 @@
+table {
+	border-collapse: collapse;
+}
+td {
+	padding: 3px 0px;
+}
+.board {
+	margin-left: 170px;
+    margin-top: 166px;
+}
+.post-information {
+	font-size: 22px;
+	font-weight: bold;
+	border-bottom: 1px solid #cccccc;
+	border-top-left-radius: 3px;
+	border-top-right-radius: 3px;
+	background-color: #dddddd;
+	padding: 5px 0px;
+}
+.tc {
+	text-align: center;
+}
 .center {
 	display: flex;
 }
-.short-interval {
-	width: 100px;
+.table-view-container {
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+}
+.table-view-div {
+	padding: 0px 10px;
+}
+.interval {
+	padding-right: 20px;
+}
+.long-interval {
+	width: 300px;
+}
+.border-line-bottom {
+	border-bottom: 1px solid #cccccc;
+}
+.table-title {
+	font-size: 17px;
+	font-weight: bold;
+}
+.prev,.next {
+}
+.underline:hover {
+	text-decoration: underline;
+}
+.post-title {
+	margin-left: 9px;
+}
+.pointer {
+	cursor: pointer;
+}
+.full-widht {
+	display: block;
+	width: 100%;
 }
