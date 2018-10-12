@@ -18,7 +18,7 @@ public class PostManagementHandler implements CommandHandler{
 		try {
 			User loginUser = (User) req.getSession().getAttribute("loginUser");
 
-			if (loginUser.isAuthority() == false) {
+			if ( loginUser!=null && loginUser.isAuthority() == false) {
 				throw new YourNotAdminException("권한이 없습니다.");
 			}
 
@@ -35,7 +35,8 @@ public class PostManagementHandler implements CommandHandler{
 			return FORM_VIEW;
 		} catch (YourNotAdminException e) {
 			e.printStackTrace();
-			return "/Main.jsp";
+			resp.sendRedirect(req.getContextPath()+"/Main.jsp");
+			throw new YourNotAdminException("권한이 없습니다.");
 		}
 	}
 }

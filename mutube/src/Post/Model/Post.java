@@ -14,7 +14,14 @@ public class Post {
 	private LocalDateTime write_date;
 	private LocalDateTime update_date;
 	private int views;
+	private boolean able;
 
+	public boolean isAble() {
+		return able;
+	}
+	public void setAble(boolean able) {
+		this.able = able;
+	}
 	public Post() {
 		
 	}

@@ -16,7 +16,9 @@ public class UserManagementHandler implements CommandHandler {
 		try {
 			User loginUser = (User) req.getSession().getAttribute("loginUser");
 
-			if (loginUser.isAuthority() == false) {
+			if (loginUser!=null && loginUser.isAuthority() == false) {
+				
+				resp.sendRedirect(req.getContextPath()+"/Main.jsp");
 				throw new YourNotAdminException("권한이 없습니다.");
 			}
 

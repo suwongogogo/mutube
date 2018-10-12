@@ -17,10 +17,6 @@ public class DeletePostHandler implements CommandHandler {
 	@Override
 	public String process(HttpServletRequest req, HttpServletResponse resp) throws Exception {
 		try {
-			if (req.getParameter("submit").equals("아니오")) {
-				resp.sendRedirect(req.getContextPath() + "/Main.jsp");
-				return null;
-			}
 
 			int postId = 0;
 			if (req.getParameter("no") != null) {
