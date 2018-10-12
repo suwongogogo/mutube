@@ -21,7 +21,7 @@ public class NoticeData {
 		this.notice = notice;
 		this.noticeContent = noticeContent;
 	}
-
+	
 	public Notice getNotice() {
 		return notice;
 	}

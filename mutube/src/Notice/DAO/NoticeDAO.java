@@ -81,4 +81,17 @@ public class NoticeDAO {
 
 		return notice;
 	}
+
+	public Notice selectById(Connection conn, int noticeId) throws SQLException {
+		String sql ="select * from notice where noticeId = ? and able = 1";
+		try(PreparedStatement pst = conn.prepareStatement(sql)){
+			pst.setInt(1, noticeId);
+			try(ResultSet rs = pst.executeQuery()){
+				if(rs.next()) {
+					return getNotice(rs);
+				}
+			}
+		}
+		return null;
+	}
 }

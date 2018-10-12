@@ -9,38 +9,21 @@ public class PostContent {
 	private String video_link;
 	private ArrayList<String> imageNames;
 	private String imageNamesStr;
-
+	
 	public PostContent(int postId, String content, String video_link, ArrayList<String> imageNames) {
 		this.postId = postId;
 		this.content = content;
 		this.video_link = video_link;
 		this.imageNames = imageNames;
 	}
-
+	
 	public PostContent(int postId, String content, String video_link, String imageNamesStr) {
 		this.postId = postId;
 		this.content = content;
 		this.video_link = video_link;
 		this.imageNamesStr = imageNamesStr;
 	}
-
-	public PostContent(int postId, String content, String video_link) {
-		this.postId = postId;
-		this.content = content;
-		this.video_link = video_link;
-	}
-
-	public PostContent(String content, String video_link, ArrayList<String> imageNames) {
-		this.content = content;
-		this.video_link = video_link;
-		this.imageNames = imageNames;
-	}
 	
-	public PostContent(String content, String video_link) {
-		this.content = content;
-		this.video_link = video_link;
-	}
-
 	public String getImageNamesStr() {
 		return imageNamesStr;
 	}
@@ -49,12 +32,31 @@ public class PostContent {
 		this.imageNamesStr = imageNamesStr;
 	}
 
+	
 	public void setImageNames(ArrayList<String> imageNames) {
 		this.imageNames = imageNames;
 	}
 
+	public PostContent(int postId, String content, String video_link) {
+		this.postId = postId;
+		this.content = content;
+		this.video_link = video_link;
+	}
+	public PostContent(String content, String video_link, ArrayList<String> imageNames) {
+		this.content = content;
+		this.video_link = video_link;
+		this.imageNames = imageNames ;
+	}
+
 	public ArrayList<String> getImageNames() {
 		return imageNames;
+	}
+	public void setImageName(String imageName) {
+		this.imageNames = imageNames;
+	}
+	public PostContent(String content, String video_link) {
+		this.content = content;
+		this.video_link = video_link;
 	}
 
 	public String trimLink() {
