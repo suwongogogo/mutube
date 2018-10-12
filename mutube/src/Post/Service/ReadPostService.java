@@ -43,17 +43,14 @@ public class ReadPostService {
 			postDAO.increaseReadCount(conn, postId);
 			
 			if(postContent.getImageNamesStr()!=null) {
-				System.out.println(postContent.getImageNamesStr());
 				String[] names = postContent.getImageNamesStr().split("\\?");
 				ArrayList<String> imageNames = new ArrayList<String>();
 				for(String name : names) {
 					imageNames.add(name);
-					System.out.println(name);
 				}
 				postContent.setImageNames(imageNames);
 			}else {
 				postContent.setImageNames(null);
-				System.out.println("이미지가 업떠요");
 			}
 			
 			conn.commit();
