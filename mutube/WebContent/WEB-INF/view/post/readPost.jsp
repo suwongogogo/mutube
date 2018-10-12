@@ -75,7 +75,7 @@
 							</td>
 						</tr>
 					</table>
-					<c:if
+					<c:if 
 						test="${loginUser!=null && loginUser.userId== postData.post.writer.userId }">
 						<div class="view-button-container margin-right">
 							<a href="update?no=${postData.post.postId }">
