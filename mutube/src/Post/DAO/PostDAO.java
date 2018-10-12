@@ -20,7 +20,7 @@ public class PostDAO {
 	public static PostDAO getInstance() {
 		return instance;
 	}
-
+	
 	public Post insert(Connection conn, Post post) throws SQLException {
 		String sql = "insert into post(userId, name, title, genre, country, instrument) values(?,?,?,?,?,?)";
 		try (PreparedStatement pst = conn.prepareStatement(sql)) {
