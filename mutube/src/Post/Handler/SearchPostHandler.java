@@ -20,10 +20,11 @@ public class SearchPostHandler implements CommandHandler {
 		try {
 			SearchPostService searchService = SearchPostService.getInstance();
 			
-			String keyword = req.getParameter("keyword");
-			if(keyword.equals("")){
-				keyword = null;
+			String keyword = "";
+			if(req.getParameter("keyword")!=null){
+				keyword = req.getParameter("keyword");
 			}
+			
 			String category = req.getParameter("category");
 			String pageNumStr = req.getParameter("pageNum");
 
