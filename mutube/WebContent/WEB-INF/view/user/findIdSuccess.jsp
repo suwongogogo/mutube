@@ -11,17 +11,17 @@
 	href="/mutube/CSS/findIdSuccess.css" />
 </head>
 <body>
-	<c:forEach var="loginIdList" items="${loginIdList }" begin="0"
-		end="${fn:length(loginIdList) }">
 
-		<div class="findId-container">
-			<P>회원님이 가지고 있는 ID</P>
-			<p>아이디 : ${loginIdList.loginId }</p>
-			<button class="check">
-				<a href="login">확인</a>
-			</button>
-		</div>
-	</c:forEach>
+	<div class="findId-container">
+		<P>회원님이 가지고 있는 ID</P><br>
+		<c:forEach var="loginIdList" items="${loginIdList }" begin="0"
+			end="${fn:length(loginIdList) }">
+			<p>${loginIdList.loginId }</p>
+		</c:forEach>
+		<button class="check">
+			<a href="login">확인</a>
+		</button>
+	</div>
 	<!-- 회원님이 가지고 있는 ID : "아이디" -->
 </body>
 </html>

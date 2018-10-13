@@ -78,8 +78,10 @@ public class NoticeDAO {
 	}
 
 	public List<Notice> selectNoticeList(Connection conn, int startRow, int size) throws SQLException {
-		String sql = "select * from notice where able=1 order by noticeId desc limit ?, ?";
-		try(PreparedStatement pst = conn.prepareStatement(sql)){
+		String query = "select noticeId, userId, name, title, "
+				+ "date_format(write_date, '%Y-%m-%d %H:%i'), date_format(update_date, '%Y-%m-%d %H:%i'), "
+				+ "views, able from notice where able=1 order by noticeId desc limit ?, ?";
+		try(PreparedStatement pst = conn.prepareStatement(query)){
 			pst.setInt(1, startRow);
 			pst.setInt(2, size);
 			try(ResultSet rs = pst.executeQuery()){
@@ -94,8 +96,7 @@ public class NoticeDAO {
 	
 	private Notice getNotice(ResultSet rs) throws SQLException {
 		Notice notice = new Notice(rs.getInt("noticeId"), new Writer(rs.getInt("userId"),rs.getString("name")),
-				rs.getString("title"), rs.getTimestamp("write_date").toLocalDateTime(), rs.getTimestamp("update_date").toLocalDateTime()
-				, rs.getInt("views"), rs.getBoolean("able"));
+				rs.getString("title"), rs.getString(5), rs.getString(6), rs.getInt("views"), rs.getBoolean("able"));
 
 		return notice;
 	}

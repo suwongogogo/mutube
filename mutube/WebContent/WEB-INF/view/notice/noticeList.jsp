@@ -46,7 +46,7 @@
 								<td></td>
 								<td class="tc">${notice.views}</td>
 								<td></td>
-								<td class="tc">${notice.write_date}</td>
+								<td class="tc">${notice.wdateStr}</td>
 							</tr>
 						</c:forEach>
 						<tr class="line-top line-bottom write-tr">
