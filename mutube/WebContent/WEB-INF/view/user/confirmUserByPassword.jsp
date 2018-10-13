@@ -15,6 +15,7 @@
                 <div class="input-container">
                     <p>비밀번호</p>
                     <input type="password" name="password" class="password-input" placeholder="비밀번호를 입력하세요" id="password">
+                    <div class="underline"></div>
                     <%--비밀번호 틀리는지 검사 비밀번호 빈칸은 javascript에서 확인함. --%>
                     <%-- <span class="error"><c:if test="${errors.password }">비밀번호가 틀렸습니다.</c:if></span> --%>
                 </div>
