@@ -42,43 +42,44 @@ public class SearchPostHandler implements CommandHandler {
 			}
 			if (category != null) {
 				if (category.trim().equalsIgnoreCase("genre")) {
-					PostPage postList = searchService.searchGenre(keyword, pageNum);
+					PostPage postPage = searchService.searchGenre(keyword, pageNum);
 
-					if (postList == null) {
-						errors.put("postList", true);
+					if (postPage == null) {
+						errors.put("postPage", true);
 					}
 
-					req.setAttribute("postList", postList);
+					req.setAttribute("postPage", postPage);
 					return "/WEB-INF/view/post/searchResult.jsp";
 				}
 				if (category.trim().equalsIgnoreCase("instrument")) {
-					PostPage postList = searchService.searchInstrument(keyword, pageNum);
+					PostPage postPage = searchService.searchInstrument(keyword, pageNum);
 
-					if (postList == null) {
-						errors.put("postList", true);
+					if (postPage == null) {
+						errors.put("postPage", true);
 					}
 
-					req.setAttribute("postList", postList);
+					req.setAttribute("postPage", postPage);
 					return "/WEB-INF/view/post/searchResult.jsp";
 				}
 				if (category.trim().equalsIgnoreCase("country")) {
-					PostPage postList = searchService.searchCountry(keyword, pageNum);
+					PostPage postPage = searchService.searchCountry(keyword, pageNum);
 
-					if (postList == null) {
-						errors.put("post", true);
+					if (postPage == null) {
+						errors.put("postPage", true);
 					}
 
-					req.setAttribute("postList", postList);
+					req.setAttribute("postPage", postPage);
 					return "/WEB-INF/view/post/searchResult.jsp";
 				}
 			}
-			PostPage postList = searchService.searchTitle(keyword, pageNum);
+			PostPage postPage = searchService.searchTitle(keyword, pageNum);
 
-			if (postList == null) {
-				errors.put("postList", true);
+			if (postPage == null) {
+				errors.put("postPage", true);
 			}
 
-			req.setAttribute("postList", postList);
+			req.setAttribute("postPage", postPage);
+			
 			return "/WEB-INF/view/post/searchResult.jsp";
 		} catch (PostNotFoundException e) {
 			e.printStackTrace();
