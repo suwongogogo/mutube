@@ -51,7 +51,7 @@
 									<c:if test="${loginUser == null }">
 										<div class="userInf">
 											<p>
-												댓글을 쓰시려면 로그인을 해주세요.
+												<font size="2">로그인이 필요한 서비스 입니다.</font>
 											</p>
 										</div>
 									</c:if>
