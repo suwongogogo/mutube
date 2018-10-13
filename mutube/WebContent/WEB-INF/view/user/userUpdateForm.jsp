@@ -33,9 +33,7 @@
                     <span id="email-error" class="error"></span>
                 </div>
                 <input type="submit" value="수정" class="submit" onclick="move()">
-                <a href="/mutube/myPage.jsp">
-                	<button class="submit">취소</button>
-                </a>
+                <button class="submit" onclick="moveMain()">취소</button>
             </div>
         </form>
     </div> 

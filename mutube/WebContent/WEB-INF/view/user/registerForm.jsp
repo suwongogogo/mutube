@@ -8,7 +8,6 @@
 <title>회원가입</title>
 <link rel="stylesheet" type="text/css" media="screen"
 	href="/mutube/CSS/registerForm.css" />
-<script src="/mutube/JavaScript/registerForm.js"></script>
 </head>
 <body>
 	<div class="register-container">

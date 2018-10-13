@@ -18,3 +18,7 @@ function move() {
 		check = false;
 	}
 }
+
+function moveMain() {
+	location.href="/mutube/myPage.jsp";
+}
