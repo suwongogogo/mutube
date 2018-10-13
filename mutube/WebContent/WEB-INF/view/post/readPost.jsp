@@ -47,7 +47,7 @@
 										</c:if>
 									</div>
 								</div>
-							<div class="content-div">${postData.postContent.content }</div>
+								<div class="content-div">${postData.postContent.content }</div>
 						</tr>
 					</table>
 					<table class="comment-table">
@@ -72,72 +72,79 @@
 							</td>
 							<td class="padding-none" colspan="2">
 								<div class="comment-form">
-									<form action="writeComment" method="post" onsubmit="return false;" id="comment-submit">
+									<form action="writeComment" method="post"
+										onsubmit="return false;" id="comment-submit">
 										<input type="hidden" name="pageNum" value="${param.pageNum }">
 										<input type="hidden" name="postId" value="${param.no }">
 										<div class="form">
-											<textarea rows="5" class="comment-textarea" id="comment" name="comment" onkeydown="commnetLimit()"></textarea>
-											<input type="submit" value="댓글 작성" class="submit" id="comment-submit" onclick="commnetPost()">
+											<textarea rows="5" class="comment-textarea" id="comment"
+												name="comment" onkeydown="commnetLimit()"></textarea>
+											<input type="submit" value="댓글 작성" class="submit"
+												id="comment-submit" onclick="commnetPost()">
 										</div>
 									</form>
 								</div>
 							</td>
 						</tr>
-						<c:forEach var="comment" 
-								items="${postData.commentPage.commentList }">
+						<c:forEach var="comment"
+							items="${postData.commentPage.commentList }">
 							<tr class="real-comment-tr">
-								<td class="name">${comment.writer.name}<br>
-								<font size="2" color="darkgray">${comment.writer.loginId }</font>
+								<td class="name">${comment.writer.name}<br> <font
+									size="2" color="darkgray">${comment.writer.loginId }</font>
 								</td>
 								<td class="comment">${comment.comment}</td>
-								<td class="util">
-								<c:if test="${loginUser.userId == comment.userId }">
-								<td class="util">
-									<a href="deleteComment?commentId=${comment.commentId }&no=${param.no}&pageNum=${param.pageNum}">
-										삭제
-									</a>
-								</td>
-								</c:if>
+								<td class="util"><c:if
+										test="${loginUser.userId == comment.userId }">
+										<td class="util"><a
+											href="deleteComment?commentId=${comment.commentId }&no=${param.no}&pageNum=${param.pageNum}">
+												삭제 </a></td>
+									</c:if>
 							</tr>
 						</c:forEach>
 						<c:if test="${postData.commentPage.hasComment()}">
 							<tr class="tc">
-								<td class="paging" colspan="9">
-									<c:if test="${postData.commentPage.startPage > 5}">
-										<a href="view?no=${param.no }&pageNum=${postData.commentPage.startPage-5 }"><span class="arrow">◀</span><span class="prev">이전</span></a>
+								<td class="paging" colspan="9"><c:if
+										test="${postData.commentPage.startPage > 5}">
+										<a
+											href="view?no=${param.no }&pageNum=${postData.commentPage.startPage-5 }"><span
+											class="arrow">◀</span><span class="prev">이전</span></a>
 									</c:if>
-									<c:forEach var="pageNum" begin="${postData.commentPage.startPage }" end="${postData.commentPage.endPage }">
-										<div class="inline pagination-border">
-											<a href="view?no=${param.no }&pageNum=${pageNum }" class="pagenation">${pageNum }</a>
-										</div>
-									</c:forEach>
-									<c:if test="${postData.commentPage.endPage < postData.commentPage.totalPages }">
-										<a href="view?no=${param.no }&pageNum=${postData.commentPage.startPage+5 }"><span class="next">다음</span><span class="arrow">▶</span></a>
+									<div class="inline pagination-border">
+										<c:forEach var="pageNum"
+											begin="${postData.commentPage.startPage }"
+											end="${postData.commentPage.endPage }">
+											<a href="view?no=${param.no }&pageNum=${pageNum }"
+												class="pagenation">${pageNum }</a>
+										</c:forEach>
+									</div> <c:if
+										test="${postData.commentPage.endPage < postData.commentPage.totalPages }">
+										<a
+											href="view?no=${param.no }&pageNum=${postData.commentPage.startPage+5 }"><span
+											class="next">다음</span><span class="arrow">▶</span></a>
 									</c:if>
 								</td>
 							</tr>
 						</c:if>
 					</table>
 					<div class="button-container">
-						<c:if 
-							test="${loginUser!=null && loginUser.userId== postData.post.writer.userId }">
 							<div class="view-button-container">
+						<c:if
+							test="${loginUser!=null && loginUser.userId== postData.post.writer.userId }">
 								<a href="update?no=${postData.post.postId }">
 									<button class="view-button">수정</button>
-								</a>
-								<a href="delete?no=${postData.post.postId }">
+								</a> <a href="delete?no=${postData.post.postId }">
 									<button class="view-button">삭제</button>
 								</a>
-								<a href="list?pageNum=${param.pageNum }">
-									<button class="view-button">목록</button>
-								</a>
-							</div>
 						</c:if>
+						<a href="list?pageNum=${param.pageNum }">
+							<button class="view-button">목록</button>
+						</a>
 					</div>
 				</div>
 			</div>
 		</div>
-		<jsp:include page="/particular/footer.jsp"></jsp:include>
+	</div>
+	<jsp:include page="/particular/footer.jsp"></jsp:include>
 	</div>
 </body>
 </html>

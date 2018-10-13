@@ -6,7 +6,7 @@
 <head>
     <meta charset="utf-8" />
     <link rel="stylesheet" type="text/css" media="screen" href="/mutube/CSS/header.css" />
-    <script type="text/javascript" src="JavaScript/header.js"></script>
+    <script type="text/javascript" src="/mutube/JavaScript/header.js"></script>
 </head>
 <body>
 	<div class="custom-header-container">
@@ -16,7 +16,7 @@
 		<div class="search-form-container">
 			<form action="/mutube/post/search" method="get" class="search-real-form" id="search-form" onsubmit="return false;">
 				<div class="search-in-div">
-					<input type="text" name="keyword" class="search-real-input" id="search-result" placeholder="${params.keyword }"><button class="search-submit" onclick="search()"></button>
+					<input type="text" name="keyword" class="search-real-input" id="search-result" value="${param.keyword }"><button class="search-submit" onclick="search()"></button>
 				</div>
 			</form>
 		</div>

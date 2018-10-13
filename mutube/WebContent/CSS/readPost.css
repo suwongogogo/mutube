@@ -125,3 +125,6 @@ a, a:hover {
 	margin-top: 20px;
 	float: right;
 }
+.pagination-border {
+	margin-top: 10px;
+}

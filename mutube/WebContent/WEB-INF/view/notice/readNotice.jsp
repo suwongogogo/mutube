@@ -51,7 +51,7 @@
 									<c:if test="${loginUser == null }">
 										<div class="userInf">
 											<p>
-												<font size="2">로그인이 필요한 서비스 입니다.</font>
+												댓글을 쓰시려면 로그인을 해주세요.
 											</p>
 										</div>
 									</c:if>
@@ -100,11 +100,11 @@
 									<c:if test="${noticeData.noticeCommentPage.startPage > 5}">
 										<a href="readNotice?noticeId=${param.no }&pageNum=${noticeData.noticeCommentPage.startPage-5 }"><span class="arrow">◀</span><span class="prev">이전</span></a>
 									</c:if>
-									<c:forEach var="pageNum" begin="${noticeData.noticeCommentPage.startPage }" end="${noticeData.noticeCommentPage.endPage }">
-										<div class="inline pagination-border">
-											<a href="readNotice?noticeId=${param.noticeId }&pageNum=${pageNum }" class="pagenation">${pageNum }</a>
-										</div>
-									</c:forEach>
+									<div class="inline pagination-border">
+										<c:forEach var="pageNum" begin="${noticeData.noticeCommentPage.startPage }" end="${noticeData.noticeCommentPage.endPage }">
+												<a href="readNotice?noticeId=${param.noticeId }&pageNum=${pageNum }" class="pagenation">${pageNum }</a>
+										</c:forEach>
+									</div>
 									<c:if test="${noticeData.noticeCommentPage.endPage < noticeData.noticeCommentPage.totalPages }">
 										<a href="readNotice?noticeId=${param.noticeId }&pageNum=${noticeData.noticeCommentPage.startPage+5 }"><span class="next">다음</span><span class="arrow">▶</span></a>
 									</c:if>
@@ -113,20 +113,20 @@
 						</c:if>
 					</table>
 					<div class="button-container">
-						<c:if 
-							test="${loginUser!=null && loginUser.userId== noticeData.notice.writer.userId }">
-							<div class="view-button-container">
-								<a href="updateNotice?noticeId=${noticeData.notice.noticeId }">
-									<button class="view-button">수정</button>
-								</a>
-								<a href="deleteNotice?noticeId=${noticeData.notice.noticeId }">
-									<button class="view-button">삭제</button>
-								</a>
-								<a href="notice?pageNum=${param.pageNum }">
-									<button class="view-button">목록</button>
-								</a>
-							</div>
-						</c:if>
+						<div class="view-button-container">
+							<c:if 
+								test="${loginUser!=null && loginUser.userId== noticeData.notice.writer.userId }">
+									<a href="updateNotice?noticeId=${noticeData.notice.noticeId }">
+										<button class="view-button">수정</button>
+									</a>
+									<a href="deleteNotice?noticeId=${noticeData.notice.noticeId }">
+										<button class="view-button">삭제</button>
+									</a>
+							</c:if>
+							<a href="notice?pageNum=${param.pageNum }">
+								<button class="view-button">목록</button>
+							</a>
+						</div>
 					</div>
 				</div>
 			</div>
