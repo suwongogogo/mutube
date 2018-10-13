@@ -48,11 +48,8 @@ table {
 .margin-right {
 	text-align: center;
 }
-.view-button-container {
-	text-align: end;
-}
 .content-div {
-	padding: 10px 0px;
+	padding: 30px 41px;
 }
 .view-button {
 	font-size: 15px;
@@ -62,34 +59,57 @@ table {
 	color: white;
 	padding: 5px 5px;
 }
-.comment-container {
-	height: 80px;
-}
 .img-div,.vedio-div {
 	padding: 10px 0px; 
 }
 a, a:hover {
 	text-decoration: none;
 }
-
-.comment-textarea {
-	position: relative;
-	left: 108px;
-	width: 904px;
-	outline: none;
-}
-
-.submit {
-	height: 81px;
-	position: relative;
-	top: -35px;
-	left: 104px;
-}
-
 .view-comment-container {
 	padding: 10px 0px;
 	border-top: 1px solid #bbbbbb;
 	border-bottom: 1px solid #bbbbbb;
 	overflow: hidden;
 	height: 59px;
+}
+.comment-id {
+	width: 100px;
+    text-align: center;
+    border-right: 1px solid #cccccc;
+}
+.form {
+	display: flex;
+}
+.comment-table {
+	margin-left: 43px;
+}
+.comment-tr {
+	border: 1px solid #cccccc;
+}
+.comment-textarea {
+	width: 940px;
+	border: none;
+	outline: none;
+}
+.padding-none {
+	padding: 0px;
+}
+.submit {
+	width: 74px;
+}
+.name {
+	text-align: center;
+	border-right: 1px solid #cccccc;
+}
+.comment {
+	width: 930px;
+	padding: 7px;
+}
+.real-comment-tr {
+	border: 1px solid #cccccc;
+} 
+.util {
+	font-size: 13px;
+    color: black;
+    float: right;
 }

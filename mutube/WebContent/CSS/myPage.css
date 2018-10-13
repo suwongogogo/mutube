@@ -4,6 +4,9 @@
 .flex {
 	display: flex;
 }
+.inline {
+	display: inline-block;
+}
 .mypage-container {
 	margin: 245px 518px;
 }
