@@ -1,4 +1,3 @@
-
 <%@page import="Post.Model.PostData"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
@@ -8,6 +7,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" type="text/css" href="/mutube/CSS/readPost.css" />
+<script type="text/javascript" src="/mutube/JavaScript/readPost.js"></script>
 <title>게시글 보기</title>
 </head>
 <body>
@@ -70,7 +70,7 @@
 										<input type="hidden" name="pageNum" value="${param.pageNum }">
 										<input type="hidden" name="postId" value="${param.no }">
 										<div class="form">
-											<textarea rows="5" class="comment-textarea" name="comment"></textarea>
+											<textarea rows="5" class="comment-textarea" id="comment" name="comment" onkeydown="commnetLimit()"></textarea>
 											<input type="submit" value="댓글 작성" class="submit">
 										</div>
 									</form>
@@ -80,12 +80,28 @@
 						<c:forEach var="comment" 
 								items="${postData.commentPage.commentList }">
 							<tr class="real-comment-tr">
-								<td class="name">${comment.writer.name}<br><font size="2" color="darkgrey">(${comment.writer.loginId })</font></td>
+								<td class="name">${comment.writer.name}</td>
 								<td class="comment">${comment.comment}</td>
-								<td class="util">수정 삭제</td>
+								<td class="util"><a href="#">삭제</a></td>
 							</tr>
 						</c:forEach>
 					</table>
+					<div class="button-container">
+						<c:if 
+							test="${loginUser!=null && loginUser.userId== postData.post.writer.userId }">
+							<div class="view-button-container">
+								<a href="update?no=${postData.post.postId }">
+									<button class="view-button">수정</button>
+								</a>
+								<a href="delete?no=${postData.post.postId }">
+									<button class="view-button">삭제</button>
+								</a>
+								<a href="list?pageNum=${param.pageNum }">
+									<button class="view-button">목록</button>
+								</a>
+							</div>
+						</c:if>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -93,15 +109,3 @@
 	</div>
 </body>
 </html>
-<%-- <div class="button-container">
-	<c:if 
-		test="${loginUser!=null && loginUser.userId== postData.post.writer.userId }">
-		<div class="view-button-container">
-			<a href="update?no=${postData.post.postId }">
-				<button class="view-button">수정하기</button>
-			</a> <a href="delete?no=${postData.post.postId }">
-				<button class="view-button">삭제하기</button>
-			</a>
-		</div>
-	</c:if>
-</div> --%>
