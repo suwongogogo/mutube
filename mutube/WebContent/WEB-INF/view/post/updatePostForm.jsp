@@ -38,13 +38,19 @@
 							<div class="genre-form">
 								<p class="write-title">장르</p>
 								<select name="genre" class="select">
-									<option value="jazz" <%if(postData.getPost().getGenre().equals("jazz")){ %> selected <% } %> class="option">재즈</option>
 									<option value="blues" <%if(postData.getPost().getGenre().equals("blues")){ %> selected <% } %> class="option">블루스</option>
 									<option value="rock" <%if(postData.getPost().getGenre().equals("rock")){ %> selected <% } %> class="option">락</option>
-									<option value="balad" <%if(postData.getPost().getGenre().equals("balad")){ %> selected <% } %> class="option">발라드</option>
-									<option value="pop" <%if(postData.getPost().getGenre().equals("pop")){ %> selected <% } %> class="option">팝</option>
-									<option value="musical" <%if(postData.getPost().getGenre().equals("musical")){ %> selected <% } %> class="option">뮤지컬</option>
-									<option value="orchestra" <%if(postData.getPost().getGenre().equals("orchestra")){ %> selected <% } %> class="option">오케스트라</option>
+									<option value="jazz" <%if(postData.getPost().getGenre().equals("jazz")){ %> selected <% } %> class="option">재즈</option>
+									<option value="r&b" <%if(postData.getPost().getGenre().equals("r&b")){ %> selected <% } %> class="option">R&B</option>
+									<option value="funk" <%if(postData.getPost().getGenre().equals("funk")){ %> selected <% } %> class="option">FUNK</option>
+									<option value="hiphop" <%if(postData.getPost().getGenre().equals("hiphop")){ %> selected <% } %> class="option">힙합</option>
+									<option value="metal" <%if(postData.getPost().getGenre().equals("metal")){ %> selected <% } %> class="option">메탈</option>
+									<option value="edm" <%if(postData.getPost().getGenre().equals("edm")){ %> selected <% } %> class="option">EDM</option>
+									<option value="classic" <%if(postData.getPost().getGenre().equals("classic")){ %> selected <% } %> class="option">클래식</option>
+									<option value="gospel" <%if(postData.getPost().getGenre().equals("gospel")){ %> selected <% } %> class="option">GOSPEL</option>
+									<option value="fusion" <%if(postData.getPost().getGenre().equals("fusion")){ %> selected <% } %> class="option">Fusion Jazz</option>
+									<option value="etc" <%if(postData.getPost().getGenre().equals("etc")){ %> selected <% } %> class="option">etc...</option>
+
 								</select>
 							</div>
 							<div class="musician-form">

@@ -48,7 +48,6 @@
 									<option value="edm" class="option">EDM</option>
 									<option value="classic" class="option">클래식</option>
 									<option value="gospel" class="option">GOSPEL</option>
-									<option value="band" class="option">밴드</option>
 									<option value="fusion" class="option">퓨전 재즈</option>
 									<option value="etc"  class="option">etc...</option>
 									
@@ -81,6 +80,7 @@
 									<option value="saxophone" class="option">색소폰</option>
 									<option value="trombone" class="option">트롬본</option>
 									<option value="acoustic" class="option">어쿠스틱 기타</option>
+									<option value="band" class="option">밴드</option>
 									<option value="etc" class="option">etc...</option>
 								</select>
 							</div>

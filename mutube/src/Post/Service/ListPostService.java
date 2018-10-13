@@ -16,7 +16,7 @@ public class ListPostService {
 		return instance;
 	}
 	
-	private int size = 20;
+	private int size = 15;
 	private int blockSize = 10;
 	
 	public PostPage getPostPage(int pageNum) {

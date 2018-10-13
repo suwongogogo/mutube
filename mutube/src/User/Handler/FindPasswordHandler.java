@@ -1,5 +1,6 @@
 package User.Handler;
 
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
@@ -43,9 +44,7 @@ public class FindPasswordHandler implements CommandHandler {
 	}
 
 	private String processSubmit(HttpServletRequest req, HttpServletResponse resp)
-			throws UserNotFoundException, SQLException {
-
-		System.out.println("들어옴.");
+			throws UserNotFoundException, SQLException, IOException {
 
 		String loginId = req.getParameter("loginId");
 		String name = req.getParameter("name");
@@ -115,6 +114,7 @@ public class FindPasswordHandler implements CommandHandler {
 
 			return "/WEB-INF/view/user/findPasswordSuccess.jsp";
 		} catch (UserNotFoundException e) {
+			resp.sendRedirect(req.getContextPath()+"/Main.jsp");
 			throw new UserNotFoundException("없는 유저 입니다.");
 		} catch (MessagingException e) {
 			// TODO Auto-generated catch block

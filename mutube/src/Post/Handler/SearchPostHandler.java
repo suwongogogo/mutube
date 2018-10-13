@@ -23,15 +23,8 @@ public class SearchPostHandler implements CommandHandler {
 			Map<String, Boolean> errors = new HashMap<String, Boolean>();
 			req.setAttribute("errors", errors);
 			
-			String keyword = null;
-			if(!req.getParameter("keyword").trim().equals("")){
-				keyword = req.getParameter("keyword");
-			}
-			if(keyword == null) {
-				errors.put("keyword", true);
-				resp.sendRedirect(req.getContextPath()+"/Main.jsp");
-				return null;
-			}
+			String keyword = req.getParameter("keyword");
+
 			String category = req.getParameter("category");
 			String pageNumStr = req.getParameter("pageNum");
 

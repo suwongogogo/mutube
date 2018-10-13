@@ -42,7 +42,7 @@
 								<td></td>
 								<td class="pointer"><a href="view?no=${post.postId }&pageNum=${postPage.currentPage}"><font size="2" color="darkgrey" >(${post.genre}, ${post.country}, ${post.instrument})</font> ${post.title }</a></td>
 								<td></td>
-								<td class="tc">${post.writer.name }<font size="2" color="darkgrey" >(${post.writer.loginId })</font></td>
+								<td class="tc">${post.writer.name }<br><font size="2" color="darkgrey" >(${post.writer.loginId })</font></td>
 								<td></td>
 								<td class="tc">${post.views}</td>
 								<td></td>
