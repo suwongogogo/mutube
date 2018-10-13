@@ -63,3 +63,6 @@
     height: 42px;
     cursor: pointer;
 }
+.button-container form{
+	display: inline-block;
+}

@@ -17,9 +17,11 @@
 				<div class="board">
 					<table class="view-table" border="1">
 						<tr>
-							<td class="view-title">제목</td>
-							<td colspan="5">${noticeData.notice.title }</td>
+							<td colspan="6" class="view-title">제목</td>
 						</tr>
+						<tr>
+							<td colspan="6">${noticeData.notice.title }</td>
+						</tr>	
 						<tr>
 							<td colspan="6" class="text-none">
 								<div class="view-content-container">
@@ -55,7 +57,7 @@
 							</td>
 						</tr>
 						<tr>
-							<td colspan="6">
+							<td colspan="2">
 								<div class="comment-container">
 									<c:if test="${loginUser == null }">
 									</c:if>
@@ -71,7 +73,7 @@
 											<input type="hidden" name="pageNum" value="${param.pageNum }">
 											<input type="hidden" name="postId" value="${param.no }">
 											<div class="form">
-												<textarea rows="5" class="comment-textarea" name="comment"></textarea>
+												<textarea rows="4" class="comment-textarea" name="comment"></textarea>
 												<input type="submit" value="댓글 작성" class="submit">
 											</div>
 										</form>
