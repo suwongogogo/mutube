@@ -57,7 +57,7 @@
 									<c:if test="${loginUser == null }">
 										<div class="userInf">
 											<p>
-												<font size="2">로그인이 필요한 서비스 입니다.</font>
+												<font size="2" style="display: block;">Unknown</font>
 											</p>
 										</div>
 									</c:if>
@@ -70,17 +70,27 @@
 									</c:if>
 								</div>
 							</td>
-							<td class="padding-none" colspan="2">
+							<td class="padding-none" colspan="3">
 								<div class="comment-form">
 									<form action="writeComment" method="post"
 										onsubmit="return false;" id="comment-submit">
 										<input type="hidden" name="pageNum" value="${param.pageNum }">
 										<input type="hidden" name="postId" value="${param.no }">
 										<div class="form">
-											<textarea rows="5" class="comment-textarea" id="comment"
-												name="comment" onkeydown="commnetLimit()"></textarea>
-											<input type="submit" value="댓글 작성" class="submit"
+											<c:if test="${loginUser==null }">
+												<textarea rows="5" class="comment-textarea" readonly="readonly">로그인이 필요한 서비스입니다.</textarea>
+											</c:if>
+											<c:if test="${loginUser!=null }">
+												<textarea rows="5" class="comment-textarea" id="comment"
+													name="comment" onkeydown="commnetLimit()"></textarea>
+											</c:if>
+											<c:if test="${loginUser==null }">
+												<input type="submit" value="댓글 작성" readonly="readonly">
+											</c:if>
+											<c:if test="${loginUser!=null }">
+												<input type="submit" value="댓글 작성" class="submit"
 												id="comment-submit" onclick="commnetPost()">
+											</c:if>
 										</div>
 									</form>
 								</div>
@@ -93,12 +103,11 @@
 									size="2" color="darkgray">${comment.writer.loginId }</font>
 								</td>
 								<td class="comment">${comment.comment}</td>
-								<td class="util"><c:if
-										test="${loginUser.userId == comment.userId }">
-										<td class="util"><a
-											href="deleteComment?commentId=${comment.commentId }&no=${param.no}&pageNum=${param.pageNum}">
-												삭제 </a></td>
+								<td class="util">
+									<c:if test="${loginUser.userId == comment.userId }">
+											<a href="deleteComment?commentId=${comment.commentId }&no=${param.no}&pageNum=${param.pageNum}">삭제 </a>	
 									</c:if>
+								</td>
 							</tr>
 						</c:forEach>
 						<c:if test="${postData.commentPage.hasComment()}">
@@ -106,21 +115,22 @@
 								<td class="paging" colspan="9"><c:if
 										test="${postData.commentPage.startPage > 5}">
 										<a
-											href="view?no=${param.no }&pageNum=${postData.commentPage.startPage-5 }"><span
-											class="arrow">◀</span><span class="prev">이전</span></a>
+											href="view?no=${param.no }&pageNum=${postData.commentPage.startPage-5 }">
+											<span class="prev">이전</span></a>
 									</c:if>
 									<div class="inline pagination-border">
 										<c:forEach var="pageNum"
 											begin="${postData.commentPage.startPage }"
 											end="${postData.commentPage.endPage }">
 											<a href="view?no=${param.no }&pageNum=${pageNum }"
-												class="pagenation">${pageNum }</a>
+												class="pagination" id="pagination${pageNum }">${pageNum }</a>
 										</c:forEach>
 									</div> <c:if
 										test="${postData.commentPage.endPage < postData.commentPage.totalPages }">
 										<a
-											href="view?no=${param.no }&pageNum=${postData.commentPage.startPage+5 }"><span
-											class="next">다음</span><span class="arrow">▶</span></a>
+											href="view?no=${param.no }&pageNum=${postData.commentPage.startPage+5 }">
+											<span class="next">다음</span>
+										</a>
 									</c:if>
 								</td>
 							</tr>
@@ -146,5 +156,11 @@
 	</div>
 	<jsp:include page="/particular/footer.jsp"></jsp:include>
 	</div>
+	<script type="text/javascript">
+		var page = document.location.href.split("?");
+		var params = page[1].split("&");
+		var pageNum = params[1].substr(length-1, length+1);
+		document.getElementById("pagination" + pageNum).style = "color: blue;";
+	</script>
 </body>
 </html>
