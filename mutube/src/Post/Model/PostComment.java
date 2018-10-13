@@ -3,7 +3,7 @@ package Post.Model;
 import java.time.LocalDateTime;
 
 public class PostComment {
-
+	private int commentId;
 	private int postId;
 	private int userId;
 	private Writer writer;
@@ -36,6 +36,10 @@ public class PostComment {
 		this.comment = comment;
 	}
 
+	public int getCommentId() {
+		return commentId;
+	}
+	
 	public int getPostId() {
 		return postId;
 	}

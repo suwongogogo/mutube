@@ -75,4 +75,12 @@ public class PostCommentDAO {
 			}
 		}
 	}
+	
+	public int commentDelete(Connection conn, int commentId) throws SQLException {
+		String sql = "delete from post_comment where commentId = ?";
+		try(PreparedStatement pst = conn.prepareStatement(sql)){
+			pst.setInt(1, commentId);
+			return pst.executeUpdate();
+		}
+	}
 }

@@ -27,7 +27,7 @@ public class PostContentDAO {
 			pst.setString(4, postContent.getImageNamesStr());
 			return pst.executeUpdate();
 
-		}
+		}	
 	}
 
 	public PostContent selectByPostId(Connection conn, int postId) throws SQLException {

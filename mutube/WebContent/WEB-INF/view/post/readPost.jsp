@@ -80,11 +80,34 @@
 						<c:forEach var="comment" 
 								items="${postData.commentPage.commentList }">
 							<tr class="real-comment-tr">
-								<td class="name">${comment.writer.name}</td>
+								<td class="name">${comment.writer.name}<br>
+								<font size="2" color="darkgray">${comment.writer.loginId }</font>
+								</td>
 								<td class="comment">${comment.comment}</td>
-								<td class="util"><a href="#">삭제</a></td>
+								<td class="util">
+									<a href="deleteComment?commentId=${comment.commentId }&no=${param.no}&pageNum=${param.pageNum}">
+										삭제
+									</a>
+								</td>
 							</tr>
 						</c:forEach>
+						<c:if test="${postData.commentPage.hasComment()}">
+							<tr class="tc">
+								<td class="paging" colspan="9">
+									<c:if test="${postData.commentPage.startPage > 5}">
+										<a href="view?no=${param.no }&pageNum=${postData.commentPage.startPage-5 }"><span class="arrow">◀</span><span class="prev">이전</span></a>
+									</c:if>
+									<c:forEach var="pageNum" begin="${postData.commentPage.startPage }" end="${postData.commentPage.endPage }">
+										<div class="inline pagination-border">
+											<a href="view?no=${param.no }&pageNum=${pageNum }" class="pagenation">${pageNum }</a>
+										</div>
+									</c:forEach>
+									<c:if test="${postData.commentPage.endPage < postData.commentPage.totalPages }">
+										<a href="view?no=${param.no }&pageNum=${postData.commentPage.startPage+5 }"><span class="next">다음</span><span class="arrow">▶</span></a>
+									</c:if>
+								</td>
+							</tr>
+						</c:if>
 					</table>
 					<div class="button-container">
 						<c:if 
