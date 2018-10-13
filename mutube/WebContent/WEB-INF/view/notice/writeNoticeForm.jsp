@@ -7,7 +7,7 @@
 <link rel="stylesheet" type="text/css" media="screen"
 	href="/mutube/CSS/postForm.css" />
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>공지 쓰기</title>
 </head>
 <body>
 	<div class="wrapper">
