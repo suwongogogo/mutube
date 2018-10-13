@@ -54,7 +54,13 @@
 						<tr class="comment-tr">
 							<td class="comment-id">
 								<div>
-									<c:if test="${loginUser == null }"></c:if>
+									<c:if test="${loginUser == null }">
+										<div class="userInf">
+											<p>
+												<font size="2">로그인이 필요한 서비스 입니다.</font>
+											</p>
+										</div>
+									</c:if>
 									<c:if test="${loginUser != null }">
 										<div class="userInf">
 											<p>${loginUser.name }<br> <font size="2"
@@ -85,10 +91,13 @@
 								</td>
 								<td class="comment">${comment.comment}</td>
 								<td class="util">
+								<c:if test="${loginUser.userId == comment.userId }">
+								<td class="util">
 									<a href="deleteComment?commentId=${comment.commentId }&no=${param.no}&pageNum=${param.pageNum}">
 										삭제
 									</a>
 								</td>
+								</c:if>
 							</tr>
 						</c:forEach>
 						<c:if test="${postData.commentPage.hasComment()}">

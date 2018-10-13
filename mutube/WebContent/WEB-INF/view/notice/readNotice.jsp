@@ -48,7 +48,13 @@
 						<tr class="comment-tr">
 							<td class="comment-id">
 								<div>
-									<c:if test="${loginUser == null }"></c:if>
+									<c:if test="${loginUser == null }">
+										<div class="userInf">
+											<p>
+												댓글을 쓰시려면 로그인을 해주세요.
+											</p>
+										</div>
+									</c:if>
 									<c:if test="${loginUser != null }">
 										<div class="userInf">
 											<p>${loginUser.name }<br> <font size="2"
@@ -60,9 +66,9 @@
 							</td>
 							<td class="padding-none" colspan="2">
 								<div class="comment-form">
-									<form action="writeComment" method="post" onsubmit="return false;" id="comment-submit">
+									<form action="writeNoticeComment" method="post" onsubmit="return false;" id="comment-submit">
 										<input type="hidden" name="pageNum" value="${param.pageNum }">
-										<input type="hidden" name="postId" value="${param.no }">
+										<input type="hidden" name="noticeId" value="${param.noticeId }">
 										<div class="form">
 											<textarea rows="5" class="comment-textarea" id="comment" name="comment" onkeydown="commnetLimit()"></textarea>
 											<input type="submit" value="댓글 작성" class="submit" onclick="commnetPost()">
@@ -72,13 +78,39 @@
 							</td>
 						</tr>
 						<c:forEach var="comment" 
-								items="${postData.commentPage.commentList }">
+								items="${noticeData.noticeCommentPage.noticeCommentList }">
 							<tr class="real-comment-tr">
-								<td class="name">${comment.writer.name}</td>
+								<td class="name">${comment.writer.name}
+								<font size="2" color="darkgray">${comment.writer.loginId }</font>
+								</td>
 								<td class="comment">${comment.comment}</td>
-								<td class="util"><a href="#">삭제</a></td>
+								<td class="util">
+								<c:if test="${loginUser.userId == comment.userId }">
+								<td class="util">
+									<a href="deleteNoticeComment?commentId=${comment.commentId }&noticeId=${param.noticeId}&pageNum=${param.pageNum}">
+										삭제
+									</a>
+								</td>
+								</c:if>
 							</tr>
 						</c:forEach>
+						<c:if test="${noticeData.noticeCommentPage.hasComment()}">
+							<tr class="tc">
+								<td class="paging" colspan="9">
+									<c:if test="${noticeData.noticeCommentPage.startPage > 5}">
+										<a href="readNotice?noticeId=${param.no }&pageNum=${noticeData.noticeCommentPage.startPage-5 }"><span class="arrow">◀</span><span class="prev">이전</span></a>
+									</c:if>
+									<c:forEach var="pageNum" begin="${noticeData.noticeCommentPage.startPage }" end="${noticeData.noticeCommentPage.endPage }">
+										<div class="inline pagination-border">
+											<a href="readNotice?noticeId=${param.noticeId }&pageNum=${pageNum }" class="pagenation">${pageNum }</a>
+										</div>
+									</c:forEach>
+									<c:if test="${noticeData.noticeCommentPage.endPage < noticeData.noticeCommentPage.totalPages }">
+										<a href="readNotice?noticeId=${param.noticeId }&pageNum=${noticeData.noticeCommentPage.startPage+5 }"><span class="next">다음</span><span class="arrow">▶</span></a>
+									</c:if>
+								</td>
+							</tr>
+						</c:if>
 					</table>
 					<div class="button-container">
 						<c:if 

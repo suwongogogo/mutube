@@ -5,8 +5,12 @@ import javax.servlet.http.HttpServletResponse;
 
 import Handler.CommandHandler;
 import Notice.Exception.NoticeNotFoundException;
+import Notice.Model.NoticeCommentPage;
 import Notice.Model.NoticeData;
+import Notice.Service.NoticeCommentListService;
 import Notice.Service.ReadNoticeService;
+import Post.Service.CommentListService;
+import Post.Service.CommentPage;
 
 public class ReadNoticeHandler implements CommandHandler{
 
@@ -31,12 +35,17 @@ public class ReadNoticeHandler implements CommandHandler{
 			String repleaceNoticeContent = noticeData.getNoticeContent().getContent().replaceAll("<","&lt").replaceAll(">", "&gt").replaceAll(" ", "&nbsp").replaceAll("\n", "<br>");
 			noticeData.getNoticeContent().setContent(repleaceNoticeContent);
 			
+			NoticeCommentListService noticeCommentList = NoticeCommentListService.getInstance();
+			NoticeCommentPage noticeCommentPage = noticeCommentList.commentList(pageNum, noticeId);
+			noticeData.setNoticeCommentPage(noticeCommentPage);
+			
 			req.setAttribute("noticeData", noticeData);
 			
 			return "/WEB-INF/view/notice/readNotice.jsp";
 		}catch(NoticeNotFoundException e) {
 			e.printStackTrace();
-			return "/mutube/Main.jsp";
+			resp.sendRedirect(req.getContextPath()+ "/Main.jsp");
+			return null;
 		}
 	}
 	

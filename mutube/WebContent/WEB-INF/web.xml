@@ -41,6 +41,7 @@
 		
 		<url-pattern>/notice/writeNotice</url-pattern>
 		<url-pattern>/notice/updateNotice</url-pattern>
+		<url-pattern>/notice/writeNoticeComment</url-pattern>
 		
 		<url-pattern>/mutube/myPage.jsp</url-pattern>
 	</filter-mapping>
@@ -82,6 +83,9 @@
 		<url-pattern>/notice/updateNotice</url-pattern>
 		<url-pattern>/notice/readNotice</url-pattern>
 		<url-pattern>/notice/deleteNotice</url-pattern>
+		<url-pattern>/notice/writeNoticeComment</url-pattern>
+		<url-pattern>/notice/noticeCommentList</url-pattern>
+		<url-pattern>/notice/deleteNoticeComment</url-pattern>
 		
 		<url-pattern>/admin/userManagement</url-pattern>
 		<url-pattern>/admin/postManagement</url-pattern>

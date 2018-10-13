@@ -1,6 +1,6 @@
 package Notice.Model;
 
-import Notice.Service.NoticeCommentPage;
+
 import Post.Model.File;
 
 public class NoticeData {
@@ -22,6 +22,10 @@ public class NoticeData {
 		this.noticeContent = noticeContent;
 	}
 	
+	public NoticeData() {
+		// TODO Auto-generated constructor stub
+	}
+
 	public Notice getNotice() {
 		return notice;
 	}

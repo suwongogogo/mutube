@@ -2,7 +2,6 @@ package Post.Model;
 
 public class Writer {
 	private int userId;
-
 	private String loginId;
 	private String name;
 	
