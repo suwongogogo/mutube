@@ -66,7 +66,7 @@ public class PostContent {
 			} else if (video_link.length() < 40) {
 				video_link = video_link.substring(video_link.lastIndexOf('/') + 1);
 			} else {
-				video_link = video_link.substring(video_link.lastIndexOf('=') + 1);
+				video_link = video_link.substring(video_link.lastIndexOf("=") + 1);
 			}
 		}
 		return video_link;

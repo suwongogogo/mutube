@@ -87,7 +87,7 @@ public class PostDAO {
 	}
 	
 	public List<Post> searchPostList(Connection conn, String keyword, int startRow, int size) throws SQLException{
-		String query = "select postId, userId, name, title, genre, country, instrument, "
+		String query = "select postId, userId, loginId, name, title, genre, country, instrument, "
 					+ "date_format(write_date, '%Y-%m-%d %H:%i'), date_format(update_date, '%Y-%m-%d %H:%i')," 
 					+ "views, able from Post where title like ? order by write_date desc limit ?, ?";
 		try(PreparedStatement pst = conn.prepareStatement(query)){
@@ -105,7 +105,7 @@ public class PostDAO {
 	}
 	
 	public List<Post> searchGenreList(Connection conn, String keyword, int startRow, int size) throws SQLException{
-		String query = "select postId, userId, name, title, genre, country, instrument, "
+		String query = "select postId, userId, loginId, name, title, genre, country, instrument, "
 				+ "date_format(write_date, '%Y-%m-%d %H:%i'), date_format(update_date, '%Y-%m-%d %H:%i')," 
 				+ "views, able from Post where genre like ? order by write_date desc limit ?, ?";
 		try(PreparedStatement pst = conn.prepareStatement(query)){
@@ -123,7 +123,7 @@ public class PostDAO {
 	}
 	
 	public List<Post> searchCountryList(Connection conn, String keyword, int startRow, int size) throws SQLException{
-		String query = "select postId, userId, name, title, genre, country, instrument, "
+		String query = "select postId, userId,loginId, name, title, genre, country, instrument, "
 				+ "date_format(write_date, '%Y-%m-%d %H:%i'), date_format(update_date, '%Y-%m-%d %H:%i')," 
 				+ "views, able from Post where country like ? order by write_date desc limit ?, ?";
 		try(PreparedStatement pst = conn.prepareStatement(query)){
@@ -141,7 +141,7 @@ public class PostDAO {
 	}
 	
 	public List<Post> searchInstrumentList(Connection conn, String keyword, int startRow, int size) throws SQLException{
-		String query = "select postId, userId, name, title, genre, country, instrument, "
+		String query = "select postId, userId,loginId, name, title, genre, country, instrument, "
 				+ "date_format(write_date, '%Y-%m-%d %H:%i'), date_format(update_date, '%Y-%m-%d %H:%i')," 
 				+ "views, able from Post where Instrument like ? order by write_date desc limit ?, ?";
 		try(PreparedStatement pst = conn.prepareStatement(query)){
@@ -234,7 +234,7 @@ public class PostDAO {
 	private Post toPost(ResultSet rs) throws SQLException {
 		Post post = new Post(rs.getInt("postId"), new Writer(rs.getInt("userId"),rs.getString("loginId"),rs.getString("name")),
 				rs.getString("title"), rs.getString("genre"), rs.getString("country"), rs.getString("instrument")
-				, rs.getString(8), rs.getString(9), rs.getInt("views"), rs.getBoolean("able"));
+				, rs.getString(9), rs.getString(10), rs.getInt("views"), rs.getBoolean("able"));
 		return post;
 	}
 	
