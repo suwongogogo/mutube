@@ -34,6 +34,7 @@ public class WritePostService {
 				conn.rollback();
 				throw new WritePostFailException("게시글 삽입 실패");
 			}	
+			
 			PostContent postContent = null;
 			if( writeReq.getPostContent().getImageNames()!= null) {
 				String imageName = "";

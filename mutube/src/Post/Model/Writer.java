@@ -14,6 +14,12 @@ public class Writer {
 		this.loginId = loginId;
 		this.name = name;
 	}
+	public Writer(int userId, String loginId, String name) {
+		this.userId = userId;
+		this.loginId = loginId;
+		this.name = name;
+	}
+
 
 
 	public int getUserId() {

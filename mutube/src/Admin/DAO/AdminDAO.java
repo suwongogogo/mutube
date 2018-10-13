@@ -98,4 +98,18 @@ public class AdminDAO {
 			return pst.executeUpdate();
 		}
 	}
+	public int deletePostContent(Connection conn, int postId) throws SQLException {
+		String sql = "delete from post_content where postid = ?";
+		try(PreparedStatement pst = conn.prepareStatement(sql)){
+			pst.setInt(1, postId);
+			return pst.executeUpdate();
+		}
+	}
+	public int deletePostComment(Connection conn, int postId) throws SQLException {
+		String sql = "delete from post_comment where postid = ?";
+		try(PreparedStatement pst = conn.prepareStatement(sql)){
+			pst.setInt(1, postId);
+			return pst.executeUpdate();
+		}
+	}
 }

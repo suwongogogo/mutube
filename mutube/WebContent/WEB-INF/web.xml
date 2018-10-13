@@ -34,9 +34,10 @@
 		<url-pattern>/user/changePassword</url-pattern>
 	
 		<url-pattern>/post/write</url-pattern>
-		<url-pattern>/post/updatePost</url-pattern>
-		<url-pattern>/post/deletePost</url-pattern>
+		<url-pattern>/post/update</url-pattern>
+		<url-pattern>/post/delete</url-pattern>
 		<url-pattern>/post/writeComment</url-pattern>
+		<url-pattern>/post/deleteComment</url-pattern>
 		
 		<url-pattern>/notice/writeNotice</url-pattern>
 		<url-pattern>/notice/updateNotice</url-pattern>

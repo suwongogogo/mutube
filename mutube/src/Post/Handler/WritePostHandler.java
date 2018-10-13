@@ -108,10 +108,10 @@ public class WritePostHandler implements CommandHandler {
 			return FORM_VIEW;
 		}
 		// 글 정보는 Post, 내용은 PostContent 객체에 담아 WriteRequest를 생성.
-		Post post = new Post(new Writer(loginUser.getUserId(), loginUser.getName()), params.get("title"),
+		Post post = new Post(new Writer(loginUser.getUserId(), loginUser.getLoginId(), loginUser.getName()), params.get("title"),
 				params.get("genre"), params.get("country"), params.get("instrument"));
 	
-		
+		System.out.println(loginUser.getLoginId());
 		PostContent postContent = null;
 		if (!imageNames.isEmpty()) {
 
@@ -122,15 +122,12 @@ public class WritePostHandler implements CommandHandler {
 		}
 		postContent.trimLink();
 
-		
 		PostData writeReq = new PostData(post, postContent);
 
 		// WriteRequest의 무결성 검사를 진행하고 이상있으면 다시 FORM_VIEW로 이동
 
-		// post.writeValidate(errors);
+		post.writeValidate(errors);
 		if (!errors.isEmpty()) {
-			for(String as : errors.keySet())
-				System.out.println(as);
 			return FORM_VIEW;
 		}
 

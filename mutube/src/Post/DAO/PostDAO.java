@@ -23,14 +23,15 @@ public class PostDAO {
 	}
 	
 	public Post insert(Connection conn, Post post) throws SQLException {
-		String sql = "insert into post(userId, name, title, genre, country, instrument) values(?,?,?,?,?,?)";
+		String sql = "insert into post(userId, loginId ,name, title, genre, country, instrument) values(?,?,?,?,?,?,?)";
 		try (PreparedStatement pst = conn.prepareStatement(sql)) {
 			pst.setInt(1, post.getWriter().getUserId());
-			pst.setString(2, post.getWriter().getName());
-			pst.setString(3, post.getTitle());
-			pst.setString(4, post.getGenre());
-			pst.setString(5, post.getCountry());
-			pst.setString(6, post.getInstrument());
+			pst.setString(2, post.getWriter().getLoginId());
+			pst.setString(3, post.getWriter().getName());
+			pst.setString(4, post.getTitle());
+			pst.setString(5, post.getGenre());
+			pst.setString(6, post.getCountry());
+			pst.setString(7, post.getInstrument());
 			int writeCnt = pst.executeUpdate();
 
 			if (writeCnt > 0) {
@@ -68,7 +69,7 @@ public class PostDAO {
 
 	// 리미트를 이용한 리스트를 가져오는 쿼리
 	public List<Post> select(Connection conn, int startRow, int size) throws SQLException {
-		String query = "select postId, userId, name, title, genre, country, instrument, "
+		String query = "select postId, userId, loginId, name, title, genre, country, instrument, "
 				+ "date_format(write_date, '%Y-%m-%d %H:%i'), date_format(update_date, '%Y-%m-%d %H:%i'), "
 				+ "views, able from Post where able=1 order by postId desc limit ?, ?";
 		
@@ -231,7 +232,7 @@ public class PostDAO {
 	
 	// ResultSet으로 나온 결과를 Post객체로 생성해 담는 역할
 	private Post toPost(ResultSet rs) throws SQLException {
-		Post post = new Post(rs.getInt("postId"), new Writer(rs.getInt("userId"),rs.getString("name")),
+		Post post = new Post(rs.getInt("postId"), new Writer(rs.getInt("userId"),rs.getString("loginId"),rs.getString("name")),
 				rs.getString("title"), rs.getString("genre"), rs.getString("country"), rs.getString("instrument")
 				, rs.getString(8), rs.getString(9), rs.getInt("views"), rs.getBoolean("able"));
 		return post;
