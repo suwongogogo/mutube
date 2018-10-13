@@ -17,6 +17,9 @@
                     <%-- <span class="error"><c:if test="${errors.password }">비밀번호를 입력하세요.</c:if></span> --%>
                 </div>
                 <input type="submit" value="확인" class="submit">
+                <a href="/mutube/myPage.jsp">
+                	<button class="submit">취소</button>
+                </a>
             </div>
         </form>
     </div>
