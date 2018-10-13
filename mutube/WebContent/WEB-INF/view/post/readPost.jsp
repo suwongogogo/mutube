@@ -66,12 +66,12 @@
 							</td>
 							<td class="padding-none" colspan="2">
 								<div class="comment-form">
-									<form action="writeComment" method="post">
+									<form action="writeComment" method="post" onsubmit="return false;" id="comment-submit">
 										<input type="hidden" name="pageNum" value="${param.pageNum }">
 										<input type="hidden" name="postId" value="${param.no }">
 										<div class="form">
 											<textarea rows="5" class="comment-textarea" id="comment" name="comment" onkeydown="commnetLimit()"></textarea>
-											<input type="submit" value="댓글 작성" class="submit">
+											<input type="submit" value="댓글 작성" class="submit" id="comment-submit" onclick="commnetPost()">
 										</div>
 									</form>
 								</div>
