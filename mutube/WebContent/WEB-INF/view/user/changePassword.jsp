@@ -35,7 +35,7 @@
                     </c:if>
                 </div>
                 <input type="submit" value="수정" class="submit">
-                <a href="/mutube/myPage.jsp">
+                <a href="/mutube/Myapge.jsp">
                 	<button class="submit">취소</button>
                 </a>
             </div>
