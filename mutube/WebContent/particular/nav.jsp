@@ -45,7 +45,7 @@
 	                	</li>
 	                	<c:if test="${loginUser.authority == true }">
 	        	        	<li class="sub-font mypage" style="float: right;">
-	    	            		<a href="/mutube/user/confirmUserByPassword" style="display: block;
+	    	            		<a href="/mutube/managementList.jsp" style="display: block;
 		                		position: absolute; top: 188px; left: 191px;">관리자 페이지</a>
 	                		</li>
 	                	</c:if>

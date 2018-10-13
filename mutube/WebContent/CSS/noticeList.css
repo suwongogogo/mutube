@@ -1,0 +1,96 @@
+table {
+	border-top: 1px solid black;
+	border-bottom: 1px solid black;
+	border-collapse: collapse;
+}
+.inline {
+	display: inline-block;
+}
+.pagination-border {
+	padding: 1px 3px;
+	margin: 5px 0px;
+	border: 1px solid gray;
+    border-radius: 4px;
+}
+.center {
+	display: flex;
+}
+.pointer {
+	cursor: pointer;
+}
+.board-list {
+	min-width: 1612px;
+}
+.board-list-container {
+	padding: 0px 212px 69px;
+}
+.line-bottom {
+	border-bottom: 1px solid black;
+}
+.line-top {
+	border-top: 1px solid black;
+}
+.font18 {
+	font-size: 18px;
+	font-weight: bold;
+}
+.table-title {
+	text-align: center;
+	padding: 5px 0px 7px;
+}
+.pr {
+	padding-right: 20px;
+}
+.tc {
+	text-align: center;
+}
+.write {
+	text-align: end;
+}
+.list-postid {
+	width: 70px;
+}
+.list-title {
+	width: 700px;
+}
+.list-author {
+	width: 120px;
+}
+.list-counter {
+	width: 150px;
+}
+.interval {
+	padding: 0px 20px;	
+}
+.wrtie-button {
+	background-color: white;
+	border: 1px solid #dddddd;
+	border-radius: 3px;
+	padding: 7px 10px;
+	margin: 10px 0px;
+	cursor: pointer;
+}
+.list-tr {
+	height: 30px;
+	border-bottom: 1px solid lightgray;
+}
+.list-tr:LAST-CHILD {
+	border-bottom: none !important;
+}
+.pagenation {
+	color: black;
+}
+.pagenation:HOVER {
+	text-decoration: underline;
+}
+.arrow {
+	font-size: 15px;
+}
+.next,.prev {
+	font-size: 17px;
+}
+.address {
+	font-size: 36px;
+    font-weight: bold;
+    margin: 10px 0px 15px 209px;
+}

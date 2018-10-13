@@ -58,3 +58,7 @@ td {
 	display: block;
 	width: 100%;
 }
+.back-button{
+	float: right;
+	border: 1px solid black;
+}

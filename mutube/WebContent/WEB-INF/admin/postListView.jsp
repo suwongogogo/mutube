@@ -17,6 +17,7 @@
 		   		<div class="table-view-container">
 		   			<div class="post-information">
 		   				<span class="post-title">Post Information</span>
+		   				<span class="back-button"><a href="/mutube/managementList.jsp">뒤로가기</a></span>
 		   			</div>
 		   			<div class="table-view-div">
 				   		<table class="view-real-table">
