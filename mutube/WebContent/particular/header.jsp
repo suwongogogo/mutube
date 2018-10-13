@@ -6,6 +6,7 @@
 <head>
     <meta charset="utf-8" />
     <link rel="stylesheet" type="text/css" media="screen" href="/mutube/CSS/header.css" />
+    <script type="text/javascript" src="JavaScript/header.js"></script>
 </head>
 <body>
 	<div class="custom-header-container">
@@ -13,18 +14,10 @@
 			<img src="/mutube/Image/logo.jpg" width="200px" height="100px" class="header-image">
 		</a>
 		<div class="search-form-container">
-			<form action="/mutube/post/search" method="get" class="search-real-form">
-			<c:if test="${ errors.keyword}">
+			<form action="/mutube/post/search" method="get" class="search-real-form" id="search-form" onsubmit="return false;">
 				<div class="search-in-div">
-					<input type="text" name="keyword" class="search-real-input" placeholder="검색어를 입력하세요"><button class="search-submit"></button>
+					<input type="text" name="keyword" class="search-real-input" id="search-result" placeholder="${params.keyword }"><button class="search-submit" onclick="search()"></button>
 				</div>
-			</c:if>
-			<c:if test="${ !errors.keyword}">
-				<div class="search-in-div">
-					<input type="text" name="keyword" class="search-real-input" placeholder="${params.keyword }"><button class="search-submit"></button>
-				</div>
-			</c:if>
-			
 			</form>
 		</div>
 	</div>
