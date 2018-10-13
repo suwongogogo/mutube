@@ -67,7 +67,7 @@
 										<c:if test="${postPageINF.startPage > 6 }">
 											<a href="userManagement?pageNum=${userpageINF.startPage - 6 }" class="prev">이전</a>
 										</c:if>
-										<c:forEach var="pageNum" begin="${postPageINF.startPage }" end="${postPageINF.endPage }">
+										<c:forEach var="pageNum" begin="${userpageINF.startPage }" end="${userpageINF.endPage }">
 											<a href="userManagement?pageNum=${pageNum }" class="underline">${pageNum }</a>
 										</c:forEach>
 										<c:if test="${pageINF.endPage < pageINF.totalPage }">
