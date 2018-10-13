@@ -6,7 +6,7 @@
 <head>
 <link rel="stylesheet" type="text/css" href="/mutube/CSS/changePasswordForm.css" />
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>비밀번호 변경</title>
 </head>
 <body>
 	<div class="loginForm-container">
