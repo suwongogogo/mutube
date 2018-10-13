@@ -17,15 +17,15 @@
                 </a>
                 <ul class="information">
                     <li class="sub-font">
-                        <a href="user/register">회원가입</a>
+                        <a href="/mutube/user/register">회원가입</a>
                     </li>
                     <span class="sub-font"> / </span>
                     <li class="sub-font">
-                        <a href="user/findLoginId">아이디 찾기</a>
+                        <a href="/mutube/user/findLoginId">아이디 찾기</a>
                     </li>
                     <span class="sub-font"> / </span>
                     <li class="sub-font">
-                        <a href="user/findPassword">비밀번호 찾기</a>
+                        <a href="/mutube/user/findPassword">비밀번호 찾기</a>
                     </li>
                 </ul>
                 </c:if>

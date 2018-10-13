@@ -95,11 +95,9 @@ public class UserDAO {
 			try (ResultSet rs = pst.executeQuery()) {
 				User user = null;
 				List<User> list = new ArrayList<>();
-				if (rs.next()) {
+				while (rs.next()) {
 					user = getUserModel(rs);
 					list.add(user);
-				} else {
-					list = Collections.emptyList();
 				}
 				return list;
 			}
@@ -181,6 +179,13 @@ public class UserDAO {
 	}
 
 	private User getUserModel(ResultSet rs) throws SQLException {
+		System.out.println(rs.getInt("userId"));
+		System.out.println(rs.getString("loginId"));
+		System.out.println(rs.getString("password"));
+		System.out.println(rs.getString("email"));
+		System.out.println(rs.getString("name"));
+		System.out.println(rs.getTimestamp("register_date").toLocalDateTime());
+		System.out.println(rs.getString("authority"));
 		User user = new User(rs.getInt("userId"), rs.getString("loginId"), rs.getString("password").trim(),
 				rs.getString("email"), rs.getString("name"), rs.getTimestamp("register_date").toLocalDateTime(),
 				rs.getBoolean("authority"));

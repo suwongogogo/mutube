@@ -11,6 +11,8 @@ public class Notice {
 	private String title;
 	private LocalDateTime write_date;
 	private LocalDateTime update_date;
+	private String wdateStr;
+	private String udateStr;
 	private int views;
 	private boolean able;
 
@@ -30,12 +32,22 @@ public class Notice {
 
 	public Notice(int noticeId, Writer writer, String title, LocalDateTime write_date, LocalDateTime update_date,
 			int views, boolean able) {
-		super();
 		this.noticeId = noticeId;
 		this.writer = writer;
 		this.title = title;
 		this.write_date = write_date;
 		this.update_date = update_date;
+		this.views = views;
+		this.able = able;
+	}
+	
+	public Notice(int noticeId, Writer writer, String title, String wdateStr, String udateStr,
+			int views, boolean able) {
+		this.noticeId = noticeId;
+		this.writer = writer;
+		this.title = title;
+		this.wdateStr = wdateStr;
+		this.udateStr = udateStr;
 		this.views = views;
 		this.able = able;
 	}
@@ -74,6 +86,14 @@ public class Notice {
 
 	public void setWrite_date(LocalDateTime write_date) {
 		this.write_date = write_date;
+	}
+
+	public String getWdateStr() {
+		return wdateStr;
+	}
+
+	public String getUdateStr() {
+		return udateStr;
 	}
 
 	public LocalDateTime getUpdate_date() {

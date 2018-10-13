@@ -46,7 +46,7 @@ public class PostCommentDAO {
 	}
 	
 	public List<PostComment> commentList(Connection conn, int postId, int startRow, int size) throws SQLException{
-		String sql = "select * from post_comment where postId = ? order by write_date asc limit ?, ?";
+		String sql = "select * from post_comment where postId = ? order by write_date desc limit ?, ?";
 		try(PreparedStatement pst = conn.prepareStatement(sql)){
 			pst.setInt(1, postId);
 			pst.setInt(2, startRow);

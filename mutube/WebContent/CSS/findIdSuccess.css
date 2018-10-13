@@ -3,11 +3,10 @@ body,p {
 }
 .findId-container {
     width: 380px;
-    height: 104px;
     padding: 30px;
-    position: absolute;
+    position: relative;
     left: 0px;
-    top: 0px;
+    top: 322px;
     bottom: 0px;
     right: 0px;
     margin: auto;

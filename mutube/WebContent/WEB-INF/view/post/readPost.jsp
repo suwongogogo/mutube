@@ -80,7 +80,7 @@
 						<c:forEach var="comment" 
 								items="${postData.commentPage.commentList }">
 							<tr class="real-comment-tr">
-								<td class="name">${comment.writer.name}</td>
+								<td class="name">${comment.writer.name}<br><font size="2" color="darkgrey">(${comment.writer.loginId })</font></td>
 								<td class="comment">${comment.comment}</td>
 								<td class="util">수정 삭제</td>
 							</tr>

@@ -80,7 +80,7 @@ public class FindPasswordHandler implements CommandHandler {
 			String from = "fltndnjs1234@gmail.com";
 			String to = email;
 			String subject = "Mutube:: 회원님의 비밀번호를 알려드립니다.";
-			String content = "비밀 번호는 : " + user.getPassword()+"<br>"
+			String content = "비밀 번호는 : " + user.getPassword()+"<br><br>"
 					+ "보안 유지를 위해 로그인 후 꼭 비밀번호를 바꿔주시기 바랍니다.";
 				
 
