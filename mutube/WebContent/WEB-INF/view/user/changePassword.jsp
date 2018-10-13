@@ -15,17 +15,17 @@
             <div class="login" class="input-container">
                 <div class="input-container">
                     <p>현재 비밀번호</p>
-                    <input type="text" name="now_password" class="signin" placeholder="현재 비밀번호를 입력해주세요." value="${loginUser.password }"> 
+                    <input type="password" name="now_password" class="signin" placeholder="현재 비밀번호를 입력해주세요."> 
                     <div class="underline"></div>
                     <span class="error"><c:if test="${errors.password }">현재 비밀번호를 입력하세요.</c:if></span>
                     <p>새 비밀번호</p>
-                    <input type="text" name="new_password" class="signin" placeholder="새 비밀번호를 입력해주세요." > 
+                    <input type="password" name="new_password" class="signin" placeholder="새 비밀번호를 입력해주세요." > 
                     <div class="underline"></div>
                     <c:if test="${errors.new_password }">
                     	<span class="error">새 비밀번호를 입력하세요.</span>
                     </c:if>
                     <p>새 비밀번호 확인</p>
-                    <input type="text" name="new_password_confirm" class="signin" placeholder="새 비밀번호 한번 더 입력해주세요."> 
+                    <input type="password" name="new_password_confirm" class="signin" placeholder="새 비밀번호 한번 더 입력해주세요."> 
                     <div class="underline"></div>
                     <c:if test="${errors.new_password_confirm }">
                     	<span class="error">새 비밀번호를 입력하세요.</span>
