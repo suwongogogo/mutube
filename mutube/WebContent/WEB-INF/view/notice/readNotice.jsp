@@ -28,7 +28,7 @@
 									<div class="margin-right">
 										<c:if test="${noticeData.noticeContent.imageNames != null }">
 											<c:forEach var="i" begin="0"
-												end="${noticeData.postContent.imageNames.size()-1 }">
+												end="${noticeData.noticeContent.imageNames.size()-1 }">
 												<img src="/img/${noticeData.noticeContent.imageNames.get(i) }"
 													width="660" height="420">
 											</c:forEach>
