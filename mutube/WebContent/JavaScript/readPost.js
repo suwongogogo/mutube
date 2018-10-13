@@ -13,3 +13,13 @@ function commnetLimit() {
 		}
 	}
 }
+
+function commnetPost() {
+	var comment = document.getElementById("comment").value;
+	
+	if(comment.trim() == "") {
+		alert("댓글을 입력하세요!");
+	} else {
+		document.getElementById("comment-submit").submit();
+	}
+}
