@@ -9,6 +9,7 @@
 <title>비밀번호 변경</title>
 </head>
 <body>
+	<%-- 비밀번호 공백 확인 및 현재 비밀번호 맞는지 확인 --%>
 	<div class="loginForm-container">
         <form action="changePassword" method="post">
         <input type="hidden" name="userId" value="${loginUser.userId }">
@@ -18,6 +19,7 @@
                     <input type="password" name="now_password" class="signin" placeholder="현재 비밀번호를 입력해주세요."> 
                     <div class="underline"></div>
                     <span class="error"><c:if test="${errors.password }">현재 비밀번호를 입력하세요.</c:if></span>
+                    <span class="error"><c:if test="${errors.ㅔasswordNotMatch }">비밀번호가 일치하지 않습니다.</c:if></span>
                     <p>새 비밀번호</p>
                     <input type="password" name="new_password" class="signin" placeholder="새 비밀번호를 입력해주세요." > 
                     <div class="underline"></div>
