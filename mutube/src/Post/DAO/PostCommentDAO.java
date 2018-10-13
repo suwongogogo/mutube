@@ -54,8 +54,8 @@ public class PostCommentDAO {
 			try(ResultSet rs = pst.executeQuery()){
 				List<PostComment> commentList = new ArrayList<PostComment>();
 				while(rs.next()) {
-					PostComment postComment = new PostComment(rs.getInt("postId"), rs.getInt("userId"),
-							rs.getString("comment"), rs.getString(4), rs.getString(5));
+					PostComment postComment = new PostComment(rs.getInt("commentId"), rs.getInt("postId"), rs.getInt("userId"),
+							rs.getString("comment"), rs.getString(5), rs.getString(6));
 					commentList.add(postComment);
 				}
 				return commentList;

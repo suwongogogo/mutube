@@ -29,6 +29,15 @@ public class PostComment {
 		this.wdateStr = wdateStr;
 		this.udateStr = udateStr;
 	}
+	public PostComment(int commentId, int postId, int userId, String comment, String wdateStr,
+			String udateStr) {
+		this.commentId = commentId;
+		this.postId = postId;
+		this.userId = userId;
+		this.comment = comment;
+		this.wdateStr = wdateStr;
+		this.udateStr = udateStr;
+	}
 
 	public PostComment(int postId, int userId, String comment) {
 		this.postId = postId;
