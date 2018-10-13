@@ -86,7 +86,9 @@ public class PostDAO {
 	}
 	
 	public List<Post> searchPostList(Connection conn, String keyword, int startRow, int size) throws SQLException{
-		String query = "select * from Post where title like ? order by write_date desc limit ?, ?";
+		String query = "select postId, userId, name, title, genre, country, instrument, "
+					+ "date_format(write_date, '%Y-%m-%d %H:%i'), date_format(update_date, '%Y-%m-%d %H:%i')," 
+					+ "views, able from Post where title like ? order by write_date desc limit ?, ?";
 		try(PreparedStatement pst = conn.prepareStatement(query)){
 			pst.setString(1, keyword);
 			pst.setInt(2, startRow);
@@ -102,7 +104,9 @@ public class PostDAO {
 	}
 	
 	public List<Post> searchGenreList(Connection conn, String keyword, int startRow, int size) throws SQLException{
-		String query = "select * from Post where genre like ? order by write_date desc limit ?, ?";
+		String query = "select postId, userId, name, title, genre, country, instrument, "
+				+ "date_format(write_date, '%Y-%m-%d %H:%i'), date_format(update_date, '%Y-%m-%d %H:%i')," 
+				+ "views, able from Post where genre like ? order by write_date desc limit ?, ?";
 		try(PreparedStatement pst = conn.prepareStatement(query)){
 			pst.setString(1, keyword);
 			pst.setInt(2, startRow);
@@ -118,7 +122,9 @@ public class PostDAO {
 	}
 	
 	public List<Post> searchCountryList(Connection conn, String keyword, int startRow, int size) throws SQLException{
-		String query = "select * from Post where country like ? order by write_date desc limit ?, ?";
+		String query = "select postId, userId, name, title, genre, country, instrument, "
+				+ "date_format(write_date, '%Y-%m-%d %H:%i'), date_format(update_date, '%Y-%m-%d %H:%i')," 
+				+ "views, able from Post where country like ? order by write_date desc limit ?, ?";
 		try(PreparedStatement pst = conn.prepareStatement(query)){
 			pst.setString(1, keyword);
 			pst.setInt(2, startRow);
@@ -134,7 +140,9 @@ public class PostDAO {
 	}
 	
 	public List<Post> searchInstrumentList(Connection conn, String keyword, int startRow, int size) throws SQLException{
-		String query = "select * from Post where instrument like ? order by write_date desc limit ?, ?";
+		String query = "select postId, userId, name, title, genre, country, instrument, "
+				+ "date_format(write_date, '%Y-%m-%d %H:%i'), date_format(update_date, '%Y-%m-%d %H:%i')," 
+				+ "views, able from Post where Instrument like ? order by write_date desc limit ?, ?";
 		try(PreparedStatement pst = conn.prepareStatement(query)){
 			pst.setString(1, keyword);
 			pst.setInt(2, startRow);

@@ -47,43 +47,43 @@
 							<td class="interval"></td>
 							<td class="table-title list-date">작성 일자</td>
 						</tr>
-						<c:if test="${!postList.hasPost() }">
+						<c:if test="${!postPage.hasPost() }">
 							<tr>
 								<td colspan="13">검색한 게시글을 찾을 수 없습니다.</td>
 							</tr>
 						</c:if>
-						<c:forEach var="postList" items="${postList.postList }">
+						<c:forEach var="post" items="${postPage.postList }">
 							<tr>
-								<td class="tc height">${postList.postId }</td>
+								<td class="tc height">${post.postId }</td>
 								<td></td>
 								<td class="pointer height"><a
-									href="view?no=${post.postId }&pageNum=${postPage.currentPage}">${postList.title }</a></td>
+									href="view?no=${post.postId }&pageNum=${postPage.currentPage}">${post.title }</a></td>
 								<td></td>
-								<td class="tc height">${postList.writer.name }</td>
+								<td class="tc height">${post.writer.name }</td>
 								<td></td>
-								<td class="tc height">${postList.genre }</td>
+								<td class="tc height">${post.genre }</td>
 								<td></td>
-								<td class="tc height">${postList.instrument }</td>
+								<td class="tc height">${post.instrument }</td>
 								<td></td>
-								<td class="tc height">${postList.country }</td>
+								<td class="tc height">${post.country }</td>
 								<td></td>
-								<td class="tc height">${postList.write_date }</td>
+								<td class="tc height">${post.wdateStr }</td>
 							</tr>
 						</c:forEach>
-						<c:if test="${postList.hasPost() }">
+						<c:if test="${postPage.hasPost() }">
 							<tr class="tc">
 								<td colspan="14" class="line-top"><c:if
 										test="${postPage.startPage > 5}">
-										<a href="/mutube/post/search?pageNum=${postList.startPage-5 }"><span
+										<a href="/mutube/post/search?pageNum=${postPage.startPage-5 }"><span
 											class="arrow">◀</span><span class="prev">이전</span></a>
-									</c:if> <c:forEach var="pageNum" begin="${postList.startPage }"
-										end="${postList.endPage }">
+									</c:if> <c:forEach var="pageNum" begin="${postPage.startPage }"
+										end="${postPage.endPage }">
 										<div class="inline pagination-border">
 											<a href="/mutube/post/search?pageNum=${pageNum }"
 												class="pagenation">${pageNum }</a>
 										</div>
-									</c:forEach> <c:if test="${postList.endPage < postList.total }">
-										<a href="/mutube/post/search?pageNum=${postList.startPage+5 }"><span
+									</c:forEach> <c:if test="${postPage.endPage < postPage.total }">
+										<a href="/mutube/post/search?pageNum=${postPage.startPage+5 }"><span
 											class="next">다음</span><span class="arrow">▶</span></a>
 									</c:if></td>
 							</tr>
