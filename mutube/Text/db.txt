@@ -36,6 +36,7 @@ able boolean null default 1
 
 );
 
+alter table mutube.post change title title varchar(100) not null;
  
 
 drop table mutube.notice;

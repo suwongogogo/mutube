@@ -20,19 +20,25 @@ public class SearchPostHandler implements CommandHandler {
 		try {
 			SearchPostService searchService = SearchPostService.getInstance();
 			
-			String keyword = "";
-			if(req.getParameter("keyword")!=null){
+			Map<String, Boolean> errors = new HashMap<String, Boolean>();
+			req.setAttribute("errors", errors);
+			
+			String keyword = null;
+			if(!req.getParameter("keyword").trim().equals("")){
 				keyword = req.getParameter("keyword");
 			}
-			
+			if(keyword == null) {
+				errors.put("keyword", true);
+				resp.sendRedirect(req.getContextPath()+"/Main.jsp");
+				return null;
+			}
 			String category = req.getParameter("category");
 			String pageNumStr = req.getParameter("pageNum");
 
 			System.out.println("key"+keyword);
 			System.out.println("ca"+category);
 				 
-			Map<String, Boolean> errors = new HashMap<String, Boolean>();
-			req.setAttribute("errors", errors);
+			
 
 			int pageNum = 1;
 			if (pageNumStr != null) {
