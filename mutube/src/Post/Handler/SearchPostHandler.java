@@ -94,7 +94,6 @@ public class SearchPostHandler implements CommandHandler {
 			error.put("from", "/post/searchResult");
 			return ERROR_PAGE;
 		}
-		return null;
 	}
 
 }

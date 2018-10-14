@@ -64,7 +64,6 @@ public class ReadPostHandler implements CommandHandler {
 			error.put("from", "/post/readPost");
 			return ERROR_PAGE;
 		}
-		return null;
 	}
 
 }

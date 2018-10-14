@@ -37,7 +37,6 @@ public class ListPostHandler implements Handler.CommandHandler {
 			error.put("from", "/post/list");
 			return ERROR_PAGE;
 		}
-		return null;
 	}
 
 }
