@@ -57,11 +57,15 @@ public class ReadNoticeHandler implements CommandHandler {
 			return "/WEB-INF/view/notice/readNotice.jsp";
 		} catch (NoticeNotFoundException e) {
 			e.printStackTrace();
-			error.put("errorCode", "PostNotFound");
+			error.put("errorCode", "NoticeNotFound");
 			error.put("from", "/notice/notice");
 		} catch (SQLException e) {
 			e.printStackTrace();
 			error.put("errorCode", "dbError");
+			error.put("from", "/notice/notice");
+		} catch (PageNotFoundException e) {
+			e.printStackTrace();
+			error.put("errorCode", "PageNotFound");
 			error.put("from", "/notice/notice");
 		}
 		return null;

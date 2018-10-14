@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import Handler.CommandHandler;
+import Notice.Exception.NothingException;
 import Notice.Exception.PageNotFoundException;
 import Notice.Model.NoticePage;
 import Notice.Service.NoticeListService;
@@ -40,6 +41,10 @@ public class NoticeListHandler implements CommandHandler {
 		} catch (SQLException e) {
 			e.printStackTrace();
 			error.put("errorCode", "dbError");
+			error.put("from", "/notice/notice");
+		} catch (NothingException e) {
+			e.printStackTrace();
+			error.put("errorCode", "Nothing");
 			error.put("from", "/notice/notice");
 		}
 		return null;
