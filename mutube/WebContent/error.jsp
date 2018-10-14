@@ -1,19 +1,35 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@page import="java.util.HashMap"%>
+<%@page import="java.util.Map"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
-<title>¿¡·¯</title>
+<meta charset="UTF-8">
+<title>ì—ëŸ¬</title>
 </head>
 <body>
-<script type="text/javascript">
-	var error = '<%=request.getParameter("")%>' or '${}';
-	console.log(a);
-	if(error == "") {
-		alert("~~~¸¦ ÇÏ¼¼¿ä");
-		location.href="¿øÇÏ´Â ÆäÀÌÁö.jsp";
-	}
-</script>
+	<%
+		Map<String, String> map = new HashMap<String, String>();
+		map = (Map)request.getAttribute("error");
+		
+		String errorCode = map.get("errorCode");
+		String from = map.get("from");
+	%>
+	<c:choose>
+		<c:when test="<%=errorCode %> == 'postNotFound'" >
+			<script>
+				alert("ê²Œì‹œê¸€ì„ ì°¾ì„ ìˆ˜ ì—†ìŠµë‹ˆë‹¤.");
+				location.href = '<%=from %>';
+			</script>
+		</c:when>
+		<c:when test="<%=errorCode %> == 'userNotFound'">
+			<script>
+				alert("ìœ ì €ë¥¼ ì°¾ì„ ìˆ˜ ì—†ìŠµë‹ˆë‹¤.");
+				location.href = '<%=from %>';
+			</script>
+		</c:when>
+	</c:choose>
 </body>
 </html>

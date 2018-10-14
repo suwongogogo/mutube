@@ -1,4 +1,5 @@
 .custom-header-container {
+	min-width: 1903px;
 	height: 100px;
 	display: flex;
 	border-bottom: 1px solid #cccccc;
