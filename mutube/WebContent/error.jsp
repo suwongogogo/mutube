@@ -84,7 +84,7 @@
 			out.print("<script>alert('댓글 작성에 실패하였습니다.') location.href='/mutube" + from + "';</script>");
 			response.sendRedirect(request.getContextPath() + from);
 			break;
-		} 
+		}
 	%>
 </body>
 </html>
