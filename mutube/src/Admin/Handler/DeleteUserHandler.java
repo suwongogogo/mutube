@@ -1,17 +1,23 @@
 package Admin.Handler;
 
+import java.io.IOException;
+import java.sql.SQLException;
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import Admin.Exception.DeleteFailException;
 import Admin.Service.DeleteUserService;
 import Handler.CommandHandler;
 import User.Exception.UserNotFoundException;
 
 public class DeleteUserHandler implements CommandHandler{
-
+	private static final String ERROR_PAGE = "/error.jsp";
 	@Override
-	public String process(HttpServletRequest req, HttpServletResponse resp) throws Exception {
+	public String process(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+		Map<String, String> error = new HashMap<>();
+		req.setAttribute("error", error);
 		try {
 			int userId = 0;
 			if(req.getParameter("userId") != null) {
@@ -24,16 +30,18 @@ public class DeleteUserHandler implements CommandHandler{
 			deleteUserService.deleteUser(userId);
 			
 			resp.sendRedirect(req.getContextPath() + "/admin/userManagement");
-		}catch(DeleteFailException e) {
-			e.printStackTrace();
-			resp.sendRedirect(req.getContextPath() + "/admin/userManagement");
 			return null;
+			
 		}catch(UserNotFoundException e) {
 			e.printStackTrace();
-			resp.sendRedirect(req.getContextPath() + "/admin/userManagement");
-			return null;
+			error.put("errorCode", "userNotFound");
+			error.put("from", "/mutube/admin/deleteUser");
+		} catch (SQLException e) {
+			e.printStackTrace();
+			error.put("errorCode", "userNotFound");
+			error.put("from", "/mutube/admin/deleteUser");
 		}
-		return null;
+		return ERROR_PAGE;
 	}
 	
 }

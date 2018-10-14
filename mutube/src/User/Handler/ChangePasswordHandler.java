@@ -16,7 +16,8 @@ import User.Service.ChangePasswordService;
 
 public class ChangePasswordHandler implements CommandHandler {
 	private static final String FORM_VIEW = "/WEB-INF/view/user/changePassword.jsp";
-
+	private static final String ERROR_PAGE = "/error.jsp";
+	
 	@Override
 	public String process(HttpServletRequest req, HttpServletResponse resp) throws Exception {
 		if (req.getMethod().equalsIgnoreCase("GET")) {
@@ -30,7 +31,6 @@ public class ChangePasswordHandler implements CommandHandler {
 	}
 
 	private String processForm(HttpServletRequest req, HttpServletResponse resp) throws SQLException {
-		System.out.println("비밀번호 수정폼");
 		int userId = Integer.parseInt(req.getParameter("userId"));
 		
 		ChangePasswordService changePassword = ChangePasswordService.getInstance();
@@ -41,17 +41,22 @@ public class ChangePasswordHandler implements CommandHandler {
 	}
 
 	private String processSubmit(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+		Map<String, String> error = new HashMap<String, String>();
+		req.setAttribute("error", error);
+		
 		try {
-			System.out.println("비밀번호 변경 실행");
 			String now_password = req.getParameter("now_password");
 			String new_password = req.getParameter("new_password");
 			String new_password_confirm = req.getParameter("new_password_confirm");
-			User sessionUser = (User)req.getSession().getAttribute("loginUser");
 			
-			System.out.println(sessionUser.getLoginId());
+			User loginUser = null;
+			if(req.getSession().getAttribute("loginUser")!= null) {
+				loginUser =  (User)req.getSession().getAttribute("loginUser");
+			}
 			
 			Map<String, Boolean> errors = new HashMap<String, Boolean>();
-			if(sessionUser == null) {
+			req.setAttribute("errors", errors);
+			if(loginUser == null) {
 				throw new UserNotFoundException("없는 유저입니다.");
 			}
 			if(now_password.isEmpty() || now_password == null) {
@@ -65,24 +70,27 @@ public class ChangePasswordHandler implements CommandHandler {
 			}
 			if(!new_password.equals(new_password_confirm)) {
 				errors.put("passwordNotMatch", true);
-				throw new NewPasswordNotMatchException("입력하신 새 비밀번호가 일치하지 않습니다.");
+				return FORM_VIEW;
 			}
 			
 			ChangePasswordService changePassword = ChangePasswordService.getInstance();
-			User user = changePassword.changePwd(new_password, sessionUser.getLoginId());
+			User user = changePassword.changePwd(new_password, loginUser.getLoginId());
 			
-			sessionUser.setPassword(user.getPassword());
+			loginUser.setPassword(user.getPassword());
 			
 			resp.sendRedirect(req.getContextPath()+"/myPage.jsp");
+			return null;
+			
 		}catch(SQLException e) {
-			throw new RuntimeException(e);
+			e.printStackTrace();
+			error.put("errorCode", "dbError");
+			error.put("from", "/user/changePassword");
 		} catch (UserNotFoundException e) {
 			e.printStackTrace();
-		}catch(NewPasswordNotMatchException e) {
-			e.printStackTrace();
-			resp.sendRedirect(req.getContextPath()+"/user/changePassword");
+			error.put("errorCode", "userNotFound");
+			error.put("from", "/user/changePassword");
 		}
-		return null;
+		return ERROR_PAGE;
 	}
 
 }

@@ -43,6 +43,8 @@
 		<url-pattern>/notice/updateNotice</url-pattern>
 		<url-pattern>/notice/writeNoticeComment</url-pattern>
 		
+		<url-pattern>/admin/userManagement</url-pattern>
+		<url-pattern>/admin/postManagement</url-pattern>
 		<url-pattern>/mutube/myPage.jsp</url-pattern>
 	</filter-mapping>
 	

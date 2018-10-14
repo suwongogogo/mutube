@@ -24,7 +24,7 @@ public class PostManagementService {
 			int total = adminDAO.getPostCount(conn);
 			List<Post> postList = adminDAO.getPostList(conn, (pageNum - 1) * size, size);
 			
-			return new PostPageINF(postList, pageNum, total, size, blockSize);
+			return new PostPageINF(postList, pageNum, total, size, blockSize);		
 		}
 	}
 }

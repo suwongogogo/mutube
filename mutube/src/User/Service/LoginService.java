@@ -29,7 +29,6 @@ public class LoginService {
 			if(!user.getPassword().equals(checkUser.getPassword())) {
 				throw new PasswordNotMatchException("올바르지 않은 패스워드");
 			}
-			System.out.println(checkUser.getLoginId());
 			return checkUser;
 		}
 	}

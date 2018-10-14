@@ -3,7 +3,6 @@ package Post.Handler;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import Admin.Exception.DeleteFailException;
 import Handler.CommandHandler;
 import Post.Exception.CommentNotFoundException;
 import Post.Service.DeleteCommentService;

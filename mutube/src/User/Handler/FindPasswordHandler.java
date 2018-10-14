@@ -25,7 +25,8 @@ import User.Service.FindPasswordService;
 
 public class FindPasswordHandler implements CommandHandler {
 	private static final String FORM_VIEW = "/WEB-INF/view/user/findPasswordForm.jsp";
-
+	private static final String ERROR_PAGE = "/error.jsp";
+	
 	@Override
 	public String process(HttpServletRequest req, HttpServletResponse resp) throws Exception {
 		if (req.getMethod().equalsIgnoreCase("GET")) {
@@ -39,25 +40,21 @@ public class FindPasswordHandler implements CommandHandler {
 	}
 
 	private String processForm(HttpServletRequest req, HttpServletResponse resp) {
-		System.out.println("폼");
 		return FORM_VIEW;
 	}
 
-	private String processSubmit(HttpServletRequest req, HttpServletResponse resp)
-			throws UserNotFoundException, SQLException, IOException {
+	private String processSubmit(HttpServletRequest req, HttpServletResponse resp)	throws IOException {
 
+		Map<String, String> error = new HashMap<String, String>();
+		req.setAttribute("error", error);
+		
 		String loginId = req.getParameter("loginId");
 		String name = req.getParameter("name");
 		String email = req.getParameter("email");
-
-		User user = new User();
-		user.setLoginId(loginId);
-		user.setName(name);
-		user.setEmail(email);
-
+		
 		Map<String, Boolean> errors = new HashMap<String, Boolean>();
 		req.setAttribute("errors", errors);
-
+		
 		if (loginId.isEmpty() || loginId == null) {
 			errors.put("loginId", true);
 		}
@@ -70,6 +67,11 @@ public class FindPasswordHandler implements CommandHandler {
 		if (!errors.isEmpty()) {
 			return FORM_VIEW;
 		}
+		
+		User user = new User();
+		user.setLoginId(loginId);
+		user.setName(name);
+		user.setEmail(email);
 
 		FindPasswordService passwordService = FindPasswordService.getInstance();
 		try {
@@ -108,20 +110,22 @@ public class FindPasswordHandler implements CommandHandler {
 			msg.setContent(content, "text/html;charset=UTF-8");
 			Transport.send(msg);
 
-			System.out.println("메일 전송 완료");
-
-			req.setAttribute("userPassword", user.getPassword());
-
 			return "/WEB-INF/view/user/findPasswordSuccess.jsp";
 		} catch (UserNotFoundException e) {
-			resp.sendRedirect(req.getContextPath()+"/Main.jsp");
-			throw new UserNotFoundException("없는 유저 입니다.");
-		} catch (MessagingException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
+			error.put("errorCode", "userNotFound");
+			error.put("from", "user/findPassword");
+		} catch (MessagingException e) {
+			e.printStackTrace();
+			error.put("errorCode", "message");
+			error.put("from", "user/findPassword");
+		} catch (SQLException e) {
+			e.printStackTrace();
+			error.put("errorCode", "dbError");
+			error.put("from", "user/findPassword");
 		}
 
-		return null;
+		return ERROR_PAGE;
 
 	}
 

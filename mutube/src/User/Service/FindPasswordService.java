@@ -1,6 +1,5 @@
 package User.Service;
 
-import java.nio.file.attribute.UserPrincipalNotFoundException;
 import java.sql.Connection;
 import java.sql.SQLException;
 
@@ -21,7 +20,7 @@ public class FindPasswordService {
 		try(Connection conn = ConnectionProvider.getConnection()){
 			User savedUser = userDAO.findPassword(conn, user);
 			if(savedUser == null) {
-				throw new UserNotFoundException("User를 찾을 수 없다");
+				throw new UserNotFoundException("알 수 없는 사용자");
 			}
 			
 			return savedUser;
