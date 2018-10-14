@@ -1,9 +1,14 @@
 package Notice.Handler;
 
+import java.sql.SQLException;
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import Handler.CommandHandler;
+import Notice.Exception.ValueIsEmptyException;
 import Notice.Model.Notice;
 import Notice.Model.NoticeComment;
 import Notice.Service.WriteNoticeCommentService;
@@ -18,14 +23,34 @@ import User.Model.User;
 public class WriteNoticeCommentHandler implements CommandHandler {
 	@Override
 	public String process(HttpServletRequest req, HttpServletResponse resp) throws Exception {
-		System.out.println("하이");
-		WriteNoticeCommentService writeNoticeComment = WriteNoticeCommentService.getInstance();
-		int noticeId = Integer.parseInt(req.getParameter("noticeId"));
-		int pageNum = Integer.parseInt(req.getParameter("pageNum"));
-		String comment = req.getParameter("comment");
-
-		User loginUser = (User) req.getSession().getAttribute("loginUser");
+		Map<String, String> error = new HashMap<>();
+		req.setAttribute("error", error);
 		try {
+			System.out.println("하이");
+			WriteNoticeCommentService writeNoticeComment = WriteNoticeCommentService.getInstance();
+			int noticeId = 0;
+			if (req.getParameter("noticeId") != null) {
+				noticeId = Integer.parseInt(req.getParameter("noticeId"));
+			}
+			if (noticeId == 0) {
+				throw new ValueIsEmptyException("NoticeId 의 값이 올바르지 않습니다.");
+			}
+			int pageNum = 0;
+			if (req.getParameter("pageNum") != null) {
+				pageNum = Integer.parseInt(req.getParameter("pageNum"));
+			}
+			if (pageNum == 0) {
+				throw new ValueIsEmptyException("PageNum 의 값이 올바르지 않습니다.");
+			}
+			String comment = "";
+			if (req.getParameter("comment") != null) {
+				comment = req.getParameter("comment");
+			}
+			if (req.getParameter("comment").equals("")) {
+				throw new ValueIsEmptyException("comment 의 값이 올바르지 않습니다.");
+			}
+
+			User loginUser = (User) req.getSession().getAttribute("loginUser");
 
 			Notice notice = writeNoticeComment.selectById(noticeId);
 			if (loginUser == null) {
@@ -40,13 +65,24 @@ public class WriteNoticeCommentHandler implements CommandHandler {
 
 		} catch (FailWriteCommentException e) {
 			e.printStackTrace();
-			resp.sendRedirect(req.getContextPath() + "/notice/readNotice?noticeId=" + noticeId + "&pageNum=" + pageNum);
+			error.put("errorCode", "FailWriteComment");
+			error.put("from", "/notice/readNotice");
 		} catch (PostNotFoundException e) {
 			e.printStackTrace();
-			resp.sendRedirect(req.getContextPath() + "/notice/noticeList");
+			error.put("errorCode", "PostNotFound");
+			error.put("from", "/notice/readNotice");
 		} catch (UserNotFoundException e) {
 			e.printStackTrace();
-			resp.sendRedirect(req.getContextPath() + "/user/login");
+			error.put("errorCode", "UserNotFound");
+			error.put("from", "/notice/readNotice");
+		} catch (ValueIsEmptyException e) {
+			e.printStackTrace();
+			error.put("errorCode", "ValueIsEmpty");
+			error.put("from", "/notice/readNotice");
+		} catch (SQLException e) {
+			e.printStackTrace();
+			error.put("errorCode", "dbError");
+			error.put("from", "/notice/notice");
 		}
 		return null;
 	}

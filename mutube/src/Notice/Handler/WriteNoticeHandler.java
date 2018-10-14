@@ -54,19 +54,19 @@ public class WriteNoticeHandler implements CommandHandler{
 			
 		}catch(NoPermissionException e) {
 			e.printStackTrace();
-			resp.sendRedirect(req.getContextPath() + "/Main.jsp");
-			return null;
+			req.setAttribute("errorCode", "UserNotFound");
+			return "error.jsp";
 		}catch(UserNotFoundException e) {
 			e.printStackTrace();
-			resp.sendRedirect(req.getContextPath() + "/Main.jsp");
-			return null;
+			req.setAttribute("errorCode", "NoPermisson");
+			return "error.jsp";
 		}
 		
 		return FORM_VIEW;
 	}
 
 	private String processSubmit(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-
+		
 		// 세션에 있는 유저의 정보와 파라미터로 값을 받고
 		User loginUser = (User) req.getSession().getAttribute("loginUser");
 
@@ -80,7 +80,10 @@ public class WriteNoticeHandler implements CommandHandler{
 
 		Map<String, Boolean> errors = new HashMap<String, Boolean>();
 		req.setAttribute("errors", errors);
-
+		
+		Map<String, String> error = new HashMap<>();
+		req.setAttribute("error", error);
+		
 		if (ServletFileUpload.isMultipartContent(req)) {
 			try {
 				List<FileItem> multiparts = new ServletFileUpload(new DiskFileItemFactory()).parseRequest(req);
@@ -151,10 +154,11 @@ public class WriteNoticeHandler implements CommandHandler{
 
 		} catch(WritePostFailException e) {
 			e.printStackTrace();
-			return FORM_VIEW;
-		} catch (RuntimeException e) {
-			e.printStackTrace();
-			return FORM_VIEW;
+			error.put("errorCode", "WritePostFail");
+			error.put("from", "/notice/notice");
+		} catch (SQLException e) {
+			error.put("errorCode", "dbError");
+			error.put("from", "/notice/notice");
 		}
 
 		return null;

@@ -33,7 +33,7 @@ import Post.Service.UpdatePostService;
 import User.Exception.UserNotFoundException;
 import User.Model.User;
 
-public class UpdateNoticeHandler implements CommandHandler{
+public class UpdateNoticeHandler implements CommandHandler {
 	private static final String FORM_VIEW = "/WEB-INF/view/notice/updateNoticeForm.jsp";
 
 	@Override
@@ -51,22 +51,23 @@ public class UpdateNoticeHandler implements CommandHandler{
 
 	private String processForm(HttpServletRequest req, HttpServletResponse resp) throws SQLException, IOException {
 		User loginUser = (User) req.getSession().getAttribute("loginUser");
+		Map<String, String> error = new HashMap<String, String>();
 		try {
-			if(loginUser == null) {
+			if (loginUser == null) {
 				throw new UserNotFoundException("유저를 찾을 수 없습니다.");
 			}
-			if(loginUser.isAuthority() == false) {
+			if (loginUser.isAuthority() == false) {
 				throw new NoPermissionException("어드민 권한이 없습니다.");
 			}
-			
-		}catch(NoPermissionException e) {
+
+		} catch (NoPermissionException e) {
 			e.printStackTrace();
-			resp.sendRedirect(req.getContextPath() + "/Main.jsp");
-			return null;
-		}catch(UserNotFoundException e) {
+			error.put("errorCode", "UserNotFound");
+			error.put("from", "/notice/notice");
+		} catch (UserNotFoundException e) {
 			e.printStackTrace();
-			resp.sendRedirect(req.getContextPath() + "/Main.jsp");
-			return null;
+			error.put("errorCode", "NoPermission");
+			error.put("from", "/notice/notice");
 		}
 		int noticeId = Integer.parseInt(req.getParameter("noticeId"));
 
@@ -81,13 +82,16 @@ public class UpdateNoticeHandler implements CommandHandler{
 		User loginUser = (User) req.getSession().getAttribute("loginUser");
 
 		String directory = req.getServletContext().getRealPath("/upload/");
-		
+
 		Map<String, Boolean> errors = new HashMap<>();
 		req.setAttribute("errors", errors);
 
+		Map<String, String> error = new HashMap<>();
+		req.setAttribute("error", error);
+
 		ArrayList<String> imageNames = new ArrayList<>();
 		Map<String, String> params = new HashMap<>();
-		
+
 		try {
 			if (ServletFileUpload.isMultipartContent(req)) {
 				try {
@@ -118,26 +122,26 @@ public class UpdateNoticeHandler implements CommandHandler{
 					e.printStackTrace();
 				}
 			}
-			
+
 			int noticeId = 0;
 
-			if (params.get("no") != null) {
-				noticeId = Integer.parseInt(params.get("no"));
+			if (params.get("noticeId") != null) {
+				noticeId = Integer.parseInt(params.get("noticeId"));
 			}
 			System.out.println(noticeId);
 			if (noticeId == 0) {
 				throw new PostNotFoundException("올바르지 않은 게시글 번호");
 			}
-	
-			Notice notice = new Notice(noticeId, new Writer(loginUser.getUserId(), loginUser.getName()), params.get("title"));
-			
-			
+
+			Notice notice = new Notice(noticeId, new Writer(loginUser.getUserId(), loginUser.getName()),
+					params.get("title"));
+
 			notice.writeValidate(errors);
 			if (!errors.isEmpty()) {
 				return FORM_VIEW;
 			}
 			NoticeContent noticeContent = new NoticeContent(noticeId, params.get("content"), params.get("video_link"));
-			if(!imageNames.isEmpty()) {
+			if (!imageNames.isEmpty()) {
 				noticeContent.setImageNames(imageNames);
 			}
 			noticeContent.trimLink();
@@ -147,13 +151,19 @@ public class UpdateNoticeHandler implements CommandHandler{
 			updateNoticeService.update(noticeData);
 
 			resp.sendRedirect(req.getContextPath() + "/notice/readNotice?noticeId=" + noticeId);
-			
+
 		} catch (PostNotFoundException e) {
 			e.printStackTrace();
+			error.put("errorCode", "PostNotFound");
+			error.put("from", "/notice/readNotice");
 		} catch (UpdatePostFailExcpetion e) {
 			e.printStackTrace();
+			error.put("errorCode", "UpdatePostFail");
+			error.put("from", "/notice/readNotice?");
 		} catch (SQLException e) {
 			e.printStackTrace();
+			error.put("errorCode", "dbError");
+			error.put("from", "/notice/notice");
 		}
 		return null;
 	}

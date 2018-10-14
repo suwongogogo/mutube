@@ -1,5 +1,9 @@
 package Post.Handler;
 
+import java.sql.SQLException;
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -12,6 +16,9 @@ public class DeleteCommentHandler implements CommandHandler{
 
 	@Override
 	public String process(HttpServletRequest req, HttpServletResponse resp) throws Exception {
+		Map<String, String> error = new HashMap<String, String>();
+		req.setAttribute("error", error);
+		
 		int commentId = 0;
 		int postId = 0;
 		int pageNum = 1;
@@ -32,8 +39,11 @@ public class DeleteCommentHandler implements CommandHandler{
 			resp.sendRedirect(req.getContextPath() + "/post/view?no="+postId+"&pageNum="+pageNum);
 		}catch(CommentNotFoundException e) {
 			e.printStackTrace();
-			resp.sendRedirect(req.getContextPath() + "/post/view?no="+postId+"&pageNum="+pageNum);
-			return null;
+			error.put("errorCode", "CommentNotFound");
+		}catch(SQLException e) {
+			e.printStackTrace();
+			error.put("error", "dbError");
+			error.put("from", "/post/view");
 		}
 		return null;
 	}

@@ -20,14 +20,19 @@ public class DeleteNoticeService {
 		try(Connection conn = ConnectionProvider.getConnection()){
 			conn.setAutoCommit(false);
 			NoticeDAO noticeDAO = NoticeDAO.getInstance();
+			try {
+				int cnt = noticeDAO.deleteNotice(conn, noticeId);
+				if(cnt == 0 ) {
+					conn.rollback();
+					throw new PostNotFoundException("게시글 삭제 실패");
+				}
 			
-			int cnt = noticeDAO.deleteNotice(conn, noticeId);
-			if(cnt == 0 ) {
+				conn.commit();
+			}catch(SQLException e) {
+				e.printStackTrace();
 				conn.rollback();
-				throw new PostNotFoundException("게시글 삭제 실패");
+				throw new SQLException("");
 			}
-			
-			conn.commit();
 		}
 	}
 }

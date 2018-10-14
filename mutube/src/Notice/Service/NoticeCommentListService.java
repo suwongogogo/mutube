@@ -9,9 +9,9 @@ import Notice.DAO.NoticeCommentDAO;
 import Notice.Model.NoticeComment;
 import Notice.Model.NoticeCommentPage;
 import Post.DAO.PostCommentDAO;
+import Post.Model.CommentPage;
 import Post.Model.PostComment;
 import Post.Service.CommentListService;
-import Post.Service.CommentPage;
 import User.DAO.UserDAO;
 
 public class NoticeCommentListService {
@@ -24,7 +24,7 @@ public class NoticeCommentListService {
 	private int size = 10;
 	private int blockSize = 5;
 	
-	public NoticeCommentPage commentList(int pageNum, int postId) throws SQLException{
+	public NoticeCommentPage commentList(int pageNum, int postId) throws SQLException {
 		try(Connection conn = ConnectionProvider.getConnection()){
 			NoticeCommentDAO noticeCommentDAO = NoticeCommentDAO.getInstance();
 			
@@ -38,7 +38,9 @@ public class NoticeCommentListService {
 			
 			
 			return new NoticeCommentPage(noticeCommentList, pageNum, total, size, blockSize);
+		}catch(SQLException e) {
+			e.printStackTrace();
+			throw new SQLException("");
 		}
-		
 	}
 }

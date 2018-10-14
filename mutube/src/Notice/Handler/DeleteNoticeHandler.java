@@ -1,5 +1,9 @@
 package Notice.Handler;
 
+import java.sql.SQLException;
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -12,6 +16,9 @@ public class DeleteNoticeHandler implements CommandHandler{
 
 	@Override
 	public String process(HttpServletRequest req, HttpServletResponse resp) throws Exception {
+		Map<String, String> error = new HashMap<String, String>();
+		req.setAttribute("error", error);
+		
 		int noticeId = 0;
 		try {
 		if(req.getParameter("noticeId") != null) {
@@ -29,6 +36,12 @@ public class DeleteNoticeHandler implements CommandHandler{
 		
 		}catch(NoticeNotFoundException e) {
 			e.printStackTrace();
+			error.put("errorCode", "DeleteNoticeFail");
+			error.put("from", "/notice/notice");
+		} catch (SQLException e) {
+			e.printStackTrace();
+			error.put("errorCode", "dbError");
+			error.put("from", "/notice/notice");
 		}
 		return null;
 	}

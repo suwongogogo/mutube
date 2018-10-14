@@ -6,6 +6,7 @@ import java.util.List;
 
 import Connection.ConnectionProvider;
 import Post.DAO.PostCommentDAO;
+import Post.Model.CommentPage;
 import Post.Model.PostComment;
 import User.DAO.UserDAO;
 
@@ -34,6 +35,5 @@ public class CommentListService {
 			
 			return new CommentPage(commentList, pageNum, total, size, blockSize);
 		}
-		
 	}
 }

@@ -2,6 +2,8 @@ package Post.Handler;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -16,8 +18,9 @@ public class DeletePostHandler implements CommandHandler {
 
 	@Override
 	public String process(HttpServletRequest req, HttpServletResponse resp) throws Exception {
+		Map<String, String> error = new HashMap<String, String>();
+		req.setAttribute("error", error);
 		try {
-
 			int postId = 0;
 			if (req.getParameter("no") != null) {
 				postId = Integer.parseInt(req.getParameter("no"));
@@ -33,8 +36,12 @@ public class DeletePostHandler implements CommandHandler {
 
 		} catch (PostNotFoundException e) {
 			e.printStackTrace();
+			error.put("errorCode", "PostNotFound");
+			error.put("from", "/post/list");
 		} catch (SQLException e) {
 			e.printStackTrace();
+			error.put("errorCode", "dbError");
+			error.put("from", "/post/list");
 		}
 		return null;
 	}

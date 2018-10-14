@@ -1,6 +1,10 @@
 package Post.Handler;
 
 
+import java.sql.SQLException;
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.security.auth.message.callback.PrivateKeyCallback.Request;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -24,6 +28,10 @@ public class WriteCommentHandler implements CommandHandler {
 		String comment = req.getParameter("comment");
 		
 		User loginUser = (User) req.getSession().getAttribute("loginUser");
+		
+		Map<String, String> error = new HashMap<String, String>();
+		req.setAttribute("error", error);
+		
 		try {
 			
 			Post post = writeComment.selectById(postId);
@@ -39,13 +47,20 @@ public class WriteCommentHandler implements CommandHandler {
 			
 		}catch(FailWriteCommentException e) {
 			e.printStackTrace();
-			resp.sendRedirect(req.getContextPath()+"/post/view?no="+postId+"&pageNum="+pageNum);
+			error.put("errorCode", "FailWriteComment");
+			error.put("from", "/post/view");
 		}catch(PostNotFoundException e) {
 			e.printStackTrace();
-			resp.sendRedirect(req.getContextPath()+"/post/list");
+			error.put("errorCode", "PostNotFound");
+			error.put("from", "/post/view");
 		}catch(UserNotFoundException e) {
 			e.printStackTrace();
-			resp.sendRedirect(req.getContextPath()+"/user/login");
+			error.put("errorCode", "UserNotFound");
+			error.put("from", "/post/view");
+		}catch (SQLException e) {
+			e.printStackTrace();
+			error.put("errorCode", "dbError");
+			error.put("from", "/post/view");
 		}
 		return null;
 	}

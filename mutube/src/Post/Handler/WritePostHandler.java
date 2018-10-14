@@ -57,6 +57,8 @@ public class WritePostHandler implements CommandHandler {
 	}
 
 	private String processSubmit(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+		Map<String, String> error = new HashMap<String, String>();
+		req.setAttribute("error", error);
 
 		// 세션에 있는 유저의 정보와 파라미터로 값을 받고
 		User loginUser = (User) req.getSession().getAttribute("loginUser");
@@ -81,12 +83,12 @@ public class WritePostHandler implements CommandHandler {
 					if (!item.isFormField()) {// 파일일때..
 						String name = item.getName();
 						if (!name.equals("")) {
-							if (name.endsWith(".jpg") ||name.endsWith(".png")||name.endsWith(".PNG") || name.endsWith(".gif")
-									|| name.endsWith(".jpeg")) {
+							if (name.endsWith(".jpg") || name.endsWith(".png") || name.endsWith(".PNG")
+									|| name.endsWith(".gif") || name.endsWith(".jpeg")) {
 								String date = sdf.format(new Date());
 								item.write(new File(directory + date + name));
 								imageNames.add(date + name);
-							}else {
+							} else {
 								errors.put("imageType", true);
 							}
 						}
@@ -102,15 +104,15 @@ public class WritePostHandler implements CommandHandler {
 				e.printStackTrace();
 			}
 		}
-		
+
 		if (params.get("title").trim().equals("")) {
 			errors.put("title", true);
 			return FORM_VIEW;
 		}
 		// 글 정보는 Post, 내용은 PostContent 객체에 담아 WriteRequest를 생성.
-		Post post = new Post(new Writer(loginUser.getUserId(), loginUser.getLoginId(), loginUser.getName()), params.get("title"),
-				params.get("genre"), params.get("country"), params.get("instrument"));
-	
+		Post post = new Post(new Writer(loginUser.getUserId(), loginUser.getLoginId(), loginUser.getName()),
+				params.get("title"), params.get("genre"), params.get("country"), params.get("instrument"));
+
 		System.out.println(loginUser.getLoginId());
 		PostContent postContent = null;
 		if (!imageNames.isEmpty()) {
@@ -138,12 +140,13 @@ public class WritePostHandler implements CommandHandler {
 			postId = writePostService.write(writeReq);
 			resp.sendRedirect(req.getContextPath() + "/post/list");
 
-		} catch(WritePostFailException e) {
+		} catch (WritePostFailException e) {
 			e.printStackTrace();
-			return FORM_VIEW;
-		} catch (RuntimeException | SQLException e) {
-			e.printStackTrace();
-			return FORM_VIEW;
+			error.put("errorCode", "WritePostFail");
+			error.put("from", "/post/list");
+		} catch (SQLException e) {
+			error.put("errorCode", "dbError");
+			error.put("from", "/post/list");
 		}
 
 		return null;

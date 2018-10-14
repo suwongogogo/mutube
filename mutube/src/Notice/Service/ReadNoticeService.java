@@ -29,7 +29,7 @@ public class ReadNoticeService {
 		NoticeData NoticeData = null;
 		
 		try(Connection conn = ConnectionProvider.getConnection()){
-			
+			try {
 			System.out.println("noticeId : "+noticeId);
 			NoticeDAO noticeDAO = NoticeDAO.getInstance();
 			Notice notice = noticeDAO.selectById(conn, noticeId);
@@ -60,9 +60,12 @@ public class ReadNoticeService {
 			
 			conn.commit();
 			NoticeData = new NoticeData(notice, noticeContent);
-			
+			}catch(SQLException e) {
+				e.printStackTrace();
+				conn.rollback();
+				throw new SQLException("");
+			}
 		}
-		
 		return NoticeData;
 	}
 }

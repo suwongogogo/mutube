@@ -1,19 +1,26 @@
 package Post.Handler;
 
+import java.sql.SQLException;
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import Handler.CommandHandler;
 import Post.Exception.PostNotFoundException;
+import Post.Model.CommentPage;
 import Post.Model.PostData;
 import Post.Service.CommentListService;
-import Post.Service.CommentPage;
 import Post.Service.ReadPostService;
 
 public class ReadPostHandler implements CommandHandler {
 
 	@Override
 	public String process(HttpServletRequest req, HttpServletResponse resp) throws Exception {
+		Map<String, String> error = new HashMap<String, String>();
+		req.setAttribute("error", error);
+		
 		// postId를 매개변수로 받아서 해당하는 게시글 정보를 조회 후 request의 속성값으로 등록하고 화면을 전환
 		int postId = 0;
 		int pageNum = 1; 
@@ -48,6 +55,12 @@ public class ReadPostHandler implements CommandHandler {
 
 		} catch (PostNotFoundException e) {
 			e.printStackTrace();
+			error.put("errorCode", "PostNotFound");
+			error.put("from", "/post/readPost");
+		}catch (SQLException e) {
+			e.printStackTrace();
+			error.put("errorCode", "dbError");
+			error.put("from", "/post/readPost");
 		}
 		return null;
 	}

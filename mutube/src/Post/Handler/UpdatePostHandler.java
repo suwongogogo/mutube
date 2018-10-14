@@ -49,6 +49,9 @@ public class UpdatePostHandler implements Handler.CommandHandler {
 	}
 
 	private String processForm(HttpServletRequest req, HttpServletResponse resp) throws SQLException {
+		Map<String, String> error = new HashMap<String, String>();
+		req.setAttribute("error", error);
+		
 		int postId = Integer.parseInt(req.getParameter("no"));
 
 		UpdatePostService updatePostService = UpdatePostService.getInstance();
@@ -66,6 +69,9 @@ public class UpdatePostHandler implements Handler.CommandHandler {
 		Map<String, Boolean> errors = new HashMap<>();
 		req.setAttribute("errors", errors);
 
+		Map<String, String> error = new HashMap<String, String>();
+		req.setAttribute("error", error);
+		
 		ArrayList<String> imageNames = new ArrayList<>();
 		Map<String, String> params = new HashMap<>();
 		
@@ -132,10 +138,15 @@ public class UpdatePostHandler implements Handler.CommandHandler {
 			
 		} catch (PostNotFoundException e) {
 			e.printStackTrace();
+			error.put("errorCode", "PostNotFound");
+			error.put("from", "/post/list");
 		} catch (UpdatePostFailExcpetion e) {
 			e.printStackTrace();
+			error.put("errorCode", "UpdatePostFail");
+			error.put("from", "/post/list");
 		} catch (SQLException e) {
-			e.printStackTrace();
+			error.put("errorCode", "dbError");
+			error.put("from", "/post/list");
 		}
 		return null;
 	}

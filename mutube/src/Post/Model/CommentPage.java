@@ -1,9 +1,6 @@
-package Post.Service;
+package Post.Model;
 
 import java.util.List;
-
-import Post.Model.Post;
-import Post.Model.PostComment;
 
 //한 페이지에서 보여줄 게시글 정보와 페이지 관련 정보를 담는 객체
 // 페이지에 담겨있는 내용을 출력

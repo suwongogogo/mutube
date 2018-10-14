@@ -1,5 +1,6 @@
 package Post.Handler;
 
+import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -17,6 +18,9 @@ public class SearchPostHandler implements CommandHandler {
 
 	@Override
 	public String process(HttpServletRequest req, HttpServletResponse resp) throws Exception {
+		Map<String, String> error = new HashMap<String, String>();
+		req.setAttribute("error", error);
+		
 		try {
 			SearchPostService searchService = SearchPostService.getInstance();
 			
@@ -82,7 +86,11 @@ public class SearchPostHandler implements CommandHandler {
 			
 			return "/WEB-INF/view/post/searchResult.jsp";
 		} catch (PostNotFoundException e) {
-			e.printStackTrace();
+			error.put("errorCode", "PostNotFound");
+			error.put("from", "/post/searchResult");
+		}catch (SQLException e) {
+			error.put("errorCode", "dbError");
+			error.put("from", "/post/searchResult");
 		}
 		return null;
 	}
