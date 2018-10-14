@@ -24,9 +24,10 @@ public class PostContentDAO {
 			pst.setInt(1, postContent.getPostId());
 			pst.setString(2, postContent.getContent());
 			pst.setString(3, postContent.getVideo_link());
+			pst.setString(4, postContent.getImageNamesStr());
 			return pst.executeUpdate();
 
-		}
+		}	
 	}
 
 	public PostContent selectByPostId(Connection conn, int postId) throws SQLException {
@@ -37,7 +38,7 @@ public class PostContentDAO {
 
 			try (ResultSet rs = pst.executeQuery()) {
 				if (rs.next()) {
-					postContent = new PostContent(rs.getInt("postId"), rs.getString("content"), rs.getString(3), rs.getString("imageName"));
+					postContent = new PostContent(rs.getInt("postId"), rs.getString("content"), rs.getString("video_link"), rs.getString("imageName"));
 				}
 			}
 		}
@@ -47,6 +48,7 @@ public class PostContentDAO {
 
 	public int update(Connection conn, PostContent postContent, int postId) throws SQLException {
 		String sql = "update post_content set content = ?, video_link= ? where postId = ?";
+		System.out.println("test in update");
 		try (PreparedStatement pst = conn.prepareStatement(sql)) {
 			pst.setString(1, postContent.getContent());
 			pst.setString(2, postContent.getVideo_link());
@@ -54,4 +56,16 @@ public class PostContentDAO {
 			return pst.executeUpdate();
 		}
 	}
+	
+	public int updateWithImage(Connection conn, PostContent postContent, int postId) throws SQLException {
+		String sql = "update post_content set content = ?, video_link= ?, imageName = ? where postId = ?";
+		try (PreparedStatement pst = conn.prepareStatement(sql)) {
+			pst.setString(1, postContent.getContent());
+			pst.setString(2, postContent.getVideo_link());
+			pst.setString(3, postContent.getImageNamesStr());
+			pst.setInt(4, postId);
+			return pst.executeUpdate();
+		}
+	}
+	
 }

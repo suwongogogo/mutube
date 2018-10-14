@@ -2,18 +2,27 @@ package Post.Handler;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.io.File;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import org.apache.commons.fileupload.FileItem;
+import org.apache.commons.fileupload.disk.DiskFileItemFactory;
+import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 import Handler.CommandHandler;
 import Post.Exception.UpdatePostFailExcpetion;
-import Post.Model.File;
+import Post.Exception.PostNotFoundException;
 import Post.Model.Post;
 import Post.Model.PostContent;
 import Post.Model.PostData;
@@ -25,7 +34,7 @@ import User.Model.User;
 public class UpdatePostHandler implements Handler.CommandHandler {
 
 	private static final String FORM_VIEW = "/WEB-INF/view/post/updatePostForm.jsp";
-
+	private static final String ERROR_PAGE = "/error.jsp";
 	@Override
 	public String process(HttpServletRequest req, HttpServletResponse resp) throws Exception {
 		if (req.getMethod().equalsIgnoreCase("GET")) {
@@ -39,70 +48,115 @@ public class UpdatePostHandler implements Handler.CommandHandler {
 		}
 	}
 
-	private String processForm(HttpServletRequest req, HttpServletResponse resp) throws SQLException {
+	private String processForm(HttpServletRequest req, HttpServletResponse resp) {
+		Map<String, String> error = new HashMap<String, String>();
+		req.setAttribute("error", error);
+		
 		int postId = Integer.parseInt(req.getParameter("no"));
 
 		UpdatePostService updatePostService = UpdatePostService.getInstance();
-		PostData postData = updatePostService.getPost(postId);
-		req.setAttribute("postData", postData);
-
+		PostData postData;
+		try {
+			postData = updatePostService.getPost(postId);
+			req.setAttribute("postData", postData);
+			System.out.println(postData.getPost().getPostId());
+		} catch (SQLException e) {
+			e.printStackTrace();
+			error.put("errorCode", "dbError");
+			error.put("from", "/post/view?postId="+postId);
+		}
 		return FORM_VIEW;
 	}
 
 	private String processSubmit(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+		User loginUser = (User) req.getSession().getAttribute("loginUser");
+
+		String directory = req.getServletContext().getRealPath("/upload/");
+		
+		Map<String, Boolean> errors = new HashMap<>();
+		req.setAttribute("errors", errors);
+
+		Map<String, String> error = new HashMap<String, String>();
+		req.setAttribute("error", error);
+		
+		ArrayList<String> imageNames = new ArrayList<>();
+		Map<String, String> params = new HashMap<>();
+		
+		int postId = 0;
+
+		if (params.get("no") != null) {
+			postId = Integer.parseInt(params.get("no"));
+		}
 		try {
-			int postId = Integer.parseInt(req.getParameter("no"));
+			if (ServletFileUpload.isMultipartContent(req)) {
+				try {
+					List<FileItem> multiparts = new ServletFileUpload(new DiskFileItemFactory()).parseRequest(req);
+					SimpleDateFormat sdf = new SimpleDateFormat("yyMMddHHmmss");
 
-			Map<String, Boolean> errors = new HashMap<>();
-			req.setAttribute("errors", errors);
+					for (FileItem item : multiparts) {
+						if (!item.isFormField()) {// 파일일때..
+							String name = item.getName();
+							if (!name.equals("")) {
+								if (name.endsWith(".jpg") || name.endsWith(".png") || name.endsWith(".PNG")
+										|| name.endsWith(".gif") || name.endsWith(".jpeg")) {
+									String date = sdf.format(new Date());
+									item.write(new File(directory + date + name));
+									imageNames.add(date + name);
+								}
+							}
+							System.out.println(name);
+						} else {
+							String name = item.getFieldName();
+							String value = item.getString("UTF-8");
+							params.put(name, value);
+							System.out.println(name + ", " + value);
+						}
+					}
 
-			//넘겨받은 이미지 파일에 대한 정보를 저장
-			String directory = req.getServletContext().getRealPath("/upload/");
-			int maxSize = 1024*1024*10;
-			String encoding = "utf-8";
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
 			
-			MultipartRequest multipartRequest = new MultipartRequest(req, directory, maxSize, encoding, 
-					new DefaultFileRenamePolicy());
+			System.out.println(postId);
+			if (postId == 0) {
+				throw new PostNotFoundException("올바르지 않은 게시글 번호");
+			}
+	
+			Post post = new Post(postId, new Writer(loginUser.getUserId(), loginUser.getName()), params.get("title"),
+					params.get("genre"), params.get("country"), params.get("instrument"));
 			
 			
-			
-			
-			Post post = new Post();
-			post.setTitle(multipartRequest.getParameter("title"));
-			post.setGenre(multipartRequest.getParameter("genre"));
-			post.setCountry(multipartRequest.getParameter("country"));
-			post.setInstrument(multipartRequest.getParameter("instrument"));
-			post.setPostId(postId);
 			post.writeValidate(errors);
 			if (!errors.isEmpty()) {
 				return FORM_VIEW;
 			}
-			
-			PostContent postContent = null;
-			File image = null;
-			if(multipartRequest.getFile("image")!= null ) {
-				image = new File();
-			
-				image.setFileName(multipartRequest.getOriginalFileName("image"));
-				image.setFileRealName(multipartRequest.getFile("image").getAbsolutePath());
-			
-				postContent = new PostContent(multipartRequest.getParameter("content"),multipartRequest.getParameter("video_link"));
-			}else{
-			
-				postContent = new PostContent(multipartRequest.getParameter("content"),multipartRequest.getParameter("video_link"));
+			PostContent postContent = new PostContent(postId, params.get("content"), params.get("video_link"));
+			if(!imageNames.isEmpty()) {
+				postContent.setImageNames(imageNames);
 			}
 			postContent.trimLink();
 
 			PostData postData = new PostData(post, postContent);
 			UpdatePostService updatePostService = UpdatePostService.getInstance();
-
 			updatePostService.update(postData);
+
+			resp.sendRedirect(req.getContextPath() + "/post/view?no=" + postId);
 			
-			resp.sendRedirect(req.getContextPath()+"/post/view?no="+postId);
-		} catch( UpdatePostFailExcpetion e) {
+		} catch (PostNotFoundException e) {
 			e.printStackTrace();
+			error.put("errorCode", "PostNotFound");
+			error.put("from", "/post/view?no=" + postId);
+			return ERROR_PAGE;
+		} catch (UpdatePostFailExcpetion e) {
+			e.printStackTrace();
+			error.put("errorCode", "UpdatePostFail");
+			error.put("from", "/post/view?no=" + postId);
+			return ERROR_PAGE;
 		} catch (SQLException e) {
-			e.printStackTrace();
+			error.put("errorCode", "dbError");
+			error.put("from", "/post/view?no=" + postId);
+			return ERROR_PAGE;
 		}
 		return null;
 	}

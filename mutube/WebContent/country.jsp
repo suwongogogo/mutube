@@ -13,7 +13,7 @@
 </head>
 <body>
 	<div class="wrapper">
-    	<jsp:include page="/particular/header2.jsp"></jsp:include>
+    	<jsp:include page="/particular/header.jsp"></jsp:include>
     	<div class="center">
         	<jsp:include page="/particular/nav.jsp"></jsp:include>
 		   	<div class="board">
@@ -26,10 +26,10 @@
 							<hr class="list-line">
 							<table class="country">
 								<tr>
-									<td><a href="/post/search?keyword=korea&category=country"><img src="Image/country/south_korea.png" alt="sorry"></a></td>
-									<td><a href="/post/search?keyword=japan&category=country"><img src="Image/country/japan.png" alt="sorry"></a></td>
-									<td><a href="/post/search?keyword=USA&category=country"><img src="Image/country/USA.png" alt="sorry"></a></td>
-									<td><a href="/post/search?keyword=germanty&category=country"><img src="Image/country/germany.png" alt="sorry"></a></td>
+									<td><a href="/mutube/post/search?keyword=korea&category=country"><img src="Image/country/south_korea.png" alt="sorry"></a></td>
+									<td><a href="/mutube/post/search?keyword=japan&category=country"><img src="Image/country/japan.png" alt="sorry"></a></td>
+									<td><a href="/mutube/post/search?keyword=USA&category=country"><img src="Image/country/USA.png" alt="sorry"></a></td>
+									<td><a href="/mutube/post/search?keyword=germanty&category=country"><img src="Image/country/germany.png" alt="sorry"></a></td>
 								</tr>
 								<tr>
 									<td>대한민국</td>
@@ -41,10 +41,10 @@
 							<br> <br> <br> <br>
 							<table class="country">
 								<tr>
-									<td><a href="/post/search?keyword=china&category=country"><img src="Image/country/china.png" alt="sorry"></a></td>
-									<td><a href="/post/search?keyword=spain&category=country"><img src="Image/country/spain.png" alt="sorry"></a></td>
-									<td><a href="/post/search?keyword=england&category=country"><img src="Image/country/England.jpg" alt="sorry"></a></td>
-									<td><a href="/post/search?keyword=france&category=country"><img src="Image/country/france.png" alt="sorry"></a></td>
+									<td><a href="/mutube/post/search?keyword=china&category=country"><img src="Image/country/china.png" alt="sorry"></a></td>
+									<td><a href="/mutube/post/search?keyword=spain&category=country"><img src="Image/country/spain.png" alt="sorry"></a></td>
+									<td><a href="/mutube/post/search?keyword=england&category=country"><img src="Image/country/England.jpg" alt="sorry"></a></td>
+									<td><a href="/mutube/post/search?keyword=france&category=country"><img src="Image/country/france.png" alt="sorry"></a></td>
 								</tr>
 								<tr>
 									<td>중국</td>
@@ -56,10 +56,12 @@
 							<br> <br> <br> <br>
 							<table class="country">
 								<tr>
-									<td><a href="/post/search?keyword=russia&category=country"><img src="Image/country/russia.png" alt="sorry"></a></td>
+									<td><a href="/mutube/post/search?keyword=russia&category=country"><img src="Image/country/russia.png" alt="sorry"></a></td>
+									<td><a href="/mutube/post/search?keyword=etc&category=country"><img src="Image/etc.gif" alt="sorry"></a></td>
 								</tr>
 								<tr>
 									<td>러시아</td>
+									<td>ETC</td>
 								</tr>
 							</table>
 						</div>

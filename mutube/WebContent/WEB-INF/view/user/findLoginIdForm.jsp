@@ -10,16 +10,21 @@
 	href="/mutube/CSS/findForm.css" />
 </head>
 <body>
-	<div class="logo">
-		<a href="mutube/Main.jsp"><img src="/mutube/Image/수원이얼굴.jpg"></a>
-	</div>
+
 	<div class="findForm-container" style="height: 220px">
+		<a href="/mutube/Main.jsp"> <img src="/mutube/Image/logo.jpg"
+			width="200" height="100" style="
+				position: absolute;
+				top: -103px;
+				left: 90px;
+			">
+		</a>
 		<form action="findLoginId" method="post">
 			<div class="findLoginId" class="input-container">
 				<div class="input-container">
-					<p>이름</p>
+					<p>이름</p>
 					<input type="text" name="name" class="find"
-						placeholder="이름을 입력해주세요">
+						placeholder="이름을 입력해주세요">
 					<div class="underline"></div>
 					<span class="error"><c:if test="${errors.name }">이름을 입력하세요.</c:if></span>
 				</div>

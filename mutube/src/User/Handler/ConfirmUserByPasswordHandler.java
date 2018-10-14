@@ -2,6 +2,8 @@ package User.Handler;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -12,50 +14,58 @@ import User.Exception.UserNotFoundException;
 import User.Model.User;
 import User.Service.ConfirmUserByPasswordService;
 
-public class ConfirmUserByPasswordHandler implements CommandHandler{
+public class ConfirmUserByPasswordHandler implements CommandHandler {
 	private static final String FORM_VIEW = "/WEB-INF/view/user/confirmUserByPassword.jsp";
+	private static final String ERROR_PAGE = "/error.jsp";
+
 	@Override
 	public String process(HttpServletRequest req, HttpServletResponse resp) throws Exception {
-		if(req.getMethod().equalsIgnoreCase("GET")) {
+		if (req.getMethod().equalsIgnoreCase("GET")) {
 			return processForm(req, resp);
-		}else if(req.getMethod().equalsIgnoreCase("POST")) {
+		} else if (req.getMethod().equalsIgnoreCase("POST")) {
 			return processSubmit(req, resp);
-		}else {
+		} else {
 			resp.sendError(HttpServletResponse.SC_METHOD_NOT_ALLOWED);
 			return null;
 		}
 	}
 
 	private String processForm(HttpServletRequest req, HttpServletResponse resp) {
-		System.out.println("폼");
 		return FORM_VIEW;
 	}
 
-	private String processSubmit(HttpServletRequest req, HttpServletResponse resp) throws SQLException, IOException {
-		System.out.println("실행이당.");
-		ConfirmUserByPasswordService confirmService = ConfirmUserByPasswordService.getInstance();
-		String password = req.getParameter("password");
-		
-		
+	private String processSubmit(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+
+		Map<String, String> error = new HashMap<String, String>();
+		req.setAttribute("error", error);
+
 		try {
-			User sessionUser = (User) req.getSession().getAttribute("loginUser");
-			User user = confirmService.confirmUser(sessionUser.getLoginId());
+			ConfirmUserByPasswordService confirmService = ConfirmUserByPasswordService.getInstance();
+			User loginUser = (User) req.getSession().getAttribute("loginUser");
 			
-			System.out.println(password + ", " + sessionUser.getPassword());
-			
-			if(!user.getPassword().equals(password) &&!sessionUser.getPassword().equals(password)) {
+			User user = confirmService.confirmUser(loginUser.getLoginId());
+			String password = req.getParameter("password");
+
+			if (!user.getPassword().equals(password) && !loginUser.getPassword().equals(password)) {
 				throw new PasswordNotMatchException("비밀번호가 일치하지 않습니다.");
 			}
+			resp.sendRedirect(req.getContextPath() + "/myPage.jsp");
+			return null;
 			
-			resp.sendRedirect(req.getContextPath()+"/myPage.jsp");
-		}catch(PasswordNotMatchException e) {
+		} catch (PasswordNotMatchException e) {
 			e.printStackTrace();
-			return FORM_VIEW;
-		}catch(UserNotFoundException e) {
+			error.put("errorCode", "passwordNotMatch");
+			error.put("from", "/user/confirmUserByPassword");
+		} catch (UserNotFoundException e) {
 			e.printStackTrace();
-			return FORM_VIEW;
+			error.put("errorCode", "userNotFound");
+			error.put("from", "/user/confirmUserByPassword");
+		} catch (SQLException e) {
+			e.printStackTrace();
+			error.put("errorCode", "dbError");
+			error.put("from", "/user/confirmUserByPassword");
 		}
-		return null;
+		return ERROR_PAGE;
 	}
-	
+
 }

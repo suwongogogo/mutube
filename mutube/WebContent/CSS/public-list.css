@@ -8,6 +8,7 @@
 }
 .col-xs-9 {
 	width: 100% !important;
+	margin-bottom: 40px;
 }
 .loginout {
 	font-size: 16px !important;

@@ -1,13 +1,13 @@
-
 <%@page import="Post.Model.PostData"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" type="text/css" href="/mutube/CSS/readPost.css" />
+<script type="text/javascript" src="/mutube/JavaScript/readPost.js"></script>
 <title>게시글 보기</title>
 </head>
 <body>
@@ -17,101 +17,156 @@
 			<jsp:include page="/particular/nav.jsp"></jsp:include>
 			<div class="board-container">
 				<div class="board">
-					<table class="view-table" border="1">
-						<tr>
-							<td class="view-title">제목</td>
-							<td colspan="5">${postData.post.title }</td>
+					<table class="read-post-contaienr">
+						<tr class="bottom-line">
+							<td colspan="6" class="post-title tc padding-bottom-5">${postData.post.title }</td>
 						</tr>
-						<tr>
-							<td class="view-title">장르</td>
-							<td>${postData.post.genre }</td>
-							<td class="view-title">국가</td>
-							<td>${postData.post.country }</td>
-							<td class="view-title">악기</td>
-							<td>${postData.post.instrument }</td>
-						</tr>
-						<tr>
-							<td colspan="6" class="text-none">
-								<div class="view-content-container">
-									<div class="margin-right">
-										<c:if test="${postData.postContent.video_link != null }">
-											<iframe width="560" height="315"
-												src="https://www.youtube.com/embed/${postData.postContent.video_link }"
-												frameborder="0" allow="autoplay; encrypted-media"
-												allowfullscreen></iframe>
-										</c:if>
-									</div>
-									<div class="margin-right">
-										<c:if test="${postData.postContent.video_link != null }">
-											<c:forEach var="imageName" items="${ postData.postContent.imageNames}">
-												<img src="/img/${imageName }">
-											</c:forEach>
-										</c:if>
-									</div>
-									<div>${postData.postContent.content }</div>
-									<c:if
-										test="${loginUser!=null && loginUser.userId== postData.post.writer.userId }">
-										<div class="view-button-container margin-right">
-											<a href="update?no=${postData.post.postId }">
-												<button class="view-button">수정하기</button>
-											</a> <a href="delete?no=${postData.post.postId }">
-												<button class="view-button">삭제하기</button>
-											</a>
-										</div>
-									</c:if>
-								</div>
-							</td>
+						<tr class="bottom-line">
+							<td colspan="2" class="post-subtitle tc padding-top-bottom-5">${postData.post.genre }</td>
+							<td colspan="2" class="post-subtitle tc padding-top-bottom-5">${postData.post.country }</td>
+							<td colspan="2" class="post-subtitle tc padding-top-bottom-5">${postData.post.instrument }</td>
 						</tr>
 						<tr>
 							<td colspan="6">
-								<div class="comment-container">
+								<div class="img-vedio-div">
+									<div class="img-div">
+										<c:if test="${postData.postContent.imageNames != null }">
+											<c:forEach var="i" begin="0"
+												end="${postData.postContent.imageNames.size()-1 }">
+												<img src="/img/${postData.postContent.imageNames.get(i) }"
+													width="660" height="420" class="padding-top-15">
+											</c:forEach>
+										</c:if>
+									</div>
+									<div>
+										<c:if test="${postData.postContent.video_link != null }">
+											<iframe width="660" height="315"
+												src="https://www.youtube.com/embed/${postData.postContent.video_link }"
+												frameborder="0" allow="autoplay; encrypted-media"
+												allowfullscreen class="vedio-div"></iframe>
+										</c:if>
+									</div>
+								</div>
+								<div class="content-div">${postData.postContent.content }</div>
+						</tr>
+					</table>
+					<table class="comment-table">
+						<tr class="comment-tr">
+							<td class="comment-id">
+								<div>
 									<c:if test="${loginUser == null }">
+										<div class="userInf">
+											<p>
+												<font size="2" style="display: block;">Unknown</font>
+											</p>
+										</div>
 									</c:if>
 									<c:if test="${loginUser != null }">
 										<div class="userInf">
-											<p>${loginUser.name }<br>
-											 <font size="2" color="gray">(${loginUser.loginId })</font></p>
+											<p>${loginUser.name }<br> <font size="2"
+													color="gray">(${loginUser.loginId })</font>
+											</p>
 										</div>
 									</c:if>
-									<div class="comment-form">
-										<form action="writeComment" method="post">
-											<input type="hidden" name="pageNum" value="${param.pageNum }">
-											<input type="hidden" name="postId" value="${param.no }">
-											<div class="form">
-												<textarea rows="5" class="comment-textarea" name="comment"></textarea>
-												<input type="submit" value="댓글 작성" class="submit">
-											</div>
-										</form>
-									</div>
+								</div>
+							</td>
+							<td class="padding-none" colspan="3">
+								<div class="comment-form">
+									<form action="writeComment" method="post"
+										onsubmit="return false;" id="comment-submit">
+										<input type="hidden" name="pageNum" value="${param.pageNum }">
+										<input type="hidden" name="postId" value="${param.no }">
+										<div class="form">
+											<c:if test="${loginUser==null }">
+												<textarea rows="5" class="comment-textarea" readonly="readonly">로그인이 필요한 서비스입니다.</textarea>
+											</c:if>
+											<c:if test="${loginUser!=null }">
+												<textarea rows="5" class="comment-textarea" id="comment"
+													name="comment" onkeydown="commnetLimit()"></textarea>
+											</c:if>
+											<c:if test="${loginUser==null }">
+												<input type="submit" value="댓글 작성" readonly="readonly">
+											</c:if>
+											<c:if test="${loginUser!=null }">
+												<input type="submit" value="댓글 작성" class="submit"
+												id="comment-submit" onclick="commnetPost()">
+											</c:if>
+										</div>
+									</form>
 								</div>
 							</td>
 						</tr>
-						<c:if test="${!postData.commentPage.hasComment()}"></c:if>
-						<c:forEach var="comment" items="${postData.commentPage.commentList }">
-							<tr>
-								<td colspan="6">
-									<div class="view-comment-container">
-										<div class="id-inline">
-											<p>${comment.name }<br>
-											<font size="2" color="gray">(${comment.loginId })</font></p>
-										</div>
-										<c:if test="${loginUser != null && loginUser.userId == comment.userId}">
-										<div class="comment-control-div">
-											<a href="#">수정</a> <a href="#">삭제</a>
-										</div>
-										</c:if>
-										<div class="comment-inline">
-											<p>${comment.comment }</p>
-										</div>
-									</div>
+						<c:forEach var="comment"
+							items="${postData.commentPage.commentList }">
+							<tr class="real-comment-tr">
+								<td class="name">${comment.writer.name}<br> <font
+									size="2" color="darkgray">${comment.writer.loginId }</font>
+								</td>
+								<td class="comment">${comment.comment}</td>
+								<td class="util">
+									<c:if test="${loginUser.userId == comment.userId }">
+											<a href="deleteComment?commentId=${comment.commentId }&no=${param.no}&pageNum=${param.pageNum}">삭제 </a>	
+									</c:if>
 								</td>
 							</tr>
 						</c:forEach>
+						<c:if test="${postData.commentPage.hasComment()}">
+							<tr class="tc">
+								<td class="paging" colspan="9"><c:if
+										test="${postData.commentPage.startPage > 5}">
+										<a
+											href="view?no=${param.no }&pageNum=${postData.commentPage.startPage-5 }">
+											<span class="prev">이전</span></a>
+									</c:if>
+									<div class="inline pagination-border">
+										<c:forEach var="pageNum"
+											begin="${postData.commentPage.startPage }"
+											end="${postData.commentPage.endPage }">
+											<a href="view?no=${param.no }&pageNum=${pageNum }"
+												class="pagination" id="pagination${pageNum }">${pageNum }</a>
+										</c:forEach>
+									</div> <c:if
+										test="${postData.commentPage.endPage < postData.commentPage.totalPages }">
+										<a
+											href="view?no=${param.no }&pageNum=${postData.commentPage.startPage+5 }">
+											<span class="next">다음</span>
+										</a>
+									</c:if>
+								</td>
+							</tr>
+						</c:if>
 					</table>
+					<div class="button-container">
+							<div class="view-button-container">
+						<c:if
+							test="${loginUser!=null && loginUser.userId== postData.post.writer.userId }">
+								<a href="update?no=${postData.post.postId }">
+									<button class="view-button">수정</button>
+								</a> <a href="delete?no=${postData.post.postId }">
+									<button class="view-button">삭제</button>
+								</a>
+						</c:if>
+						<a href="list?pageNum=${param.pageNum }">
+							<button class="view-button">목록</button>
+						</a>
+					</div>
 				</div>
 			</div>
 		</div>
-		<jsp:include page="/particular/footer.jsp"></jsp:include>
 	</div>
+	<jsp:include page="/particular/footer.jsp"></jsp:include>
+	</div>
+	<script type="text/javascript">
+		var page = document.location.href.split("?");
+		console.log("asd1")
+		if(page != null) {
+			var params = page[1].split("&");
+			var pageNum = params[1].substr(length-1, length+1);
+			var pagination = document.getElementById("pagination" + pageNum);
+			if(pagination != null) {
+				document.getElementById("pagination" + pageNum).style = "color: blue;";
+			}
+		}
+	</script>
 </body>
 </html>

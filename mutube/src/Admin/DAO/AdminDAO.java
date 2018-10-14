@@ -76,10 +76,40 @@ public class AdminDAO {
 					postList.add(new Post(rs.getInt("postId"), new Writer(rs.getInt("userId"), rs.getString("name")),
 							rs.getString("title"), rs.getString("genre"), rs.getString("country"),
 							rs.getString("instrument"), rs.getTimestamp("write_date").toLocalDateTime(),
-							rs.getTimestamp("update_date").toLocalDateTime(), rs.getInt("views")));
+							rs.getTimestamp("update_date").toLocalDateTime(), rs.getInt("views"), rs.getBoolean("able")));
 				}
 				return postList;
 			}
+		}
+	}
+	
+	public int deleteUser(Connection conn, int userId) throws SQLException {
+		String sql = "delete from user where userId = ?";
+		try(PreparedStatement pst = conn.prepareStatement(sql)){
+			pst.setInt(1, userId);
+			return pst.executeUpdate();
+		}
+	}
+	
+	public int deletePost(Connection conn, int postId) throws SQLException {
+		String sql = "delete from post where postid = ?";
+		try(PreparedStatement pst = conn.prepareStatement(sql)){
+			pst.setInt(1, postId);
+			return pst.executeUpdate();
+		}
+	}
+	public int deletePostContent(Connection conn, int postId) throws SQLException {
+		String sql = "delete from post_content where postid = ?";
+		try(PreparedStatement pst = conn.prepareStatement(sql)){
+			pst.setInt(1, postId);
+			return pst.executeUpdate();
+		}
+	}
+	public int deletePostComment(Connection conn, int postId) throws SQLException {
+		String sql = "delete from post_comment where postid = ?";
+		try(PreparedStatement pst = conn.prepareStatement(sql)){
+			pst.setInt(1, postId);
+			return pst.executeUpdate();
 		}
 	}
 }

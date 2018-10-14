@@ -19,7 +19,8 @@ import User.Service.FindLoginIdService;
 
 public class FindLoginIdHandler implements CommandHandler {
 	private static final String FORM_VIEW = "/WEB-INF/view/user/findLoginIdForm.jsp";
-
+	private static final String ERROR_PAGE = "/error.jsp";
+	
 	public String process(HttpServletRequest req, HttpServletResponse resp) throws Exception {
 		if (req.getMethod().equalsIgnoreCase("GET")) {
 			return processForm(req, resp);
@@ -37,6 +38,9 @@ public class FindLoginIdHandler implements CommandHandler {
 
 	private String processSubmit(HttpServletRequest req, HttpServletResponse resp) {
 
+		Map<String, String> error = new HashMap<String, String>();
+		req.setAttribute("error", error);
+		
 		FindLoginIdService findService = FindLoginIdService.getInstance();
 
 		String name = req.getParameter("name");
@@ -61,15 +65,23 @@ public class FindLoginIdHandler implements CommandHandler {
 
 		try {
 			List<User> userList = findService.checkId(name, email);
-
+			if(userList == null) {
+				throw new UserNotFoundException("유저를 찾을 수 없음");
+			}
 			req.setAttribute("loginIdList", userList);
 			
 			return "/WEB-INF/view/user/findIdSuccess.jsp";
 		} catch (UserNotFoundException e) {
 			e.printStackTrace();
+			error.put("errorCode", "userNotFound");
+			error.put("from", "/user/findLoginId");
+		} catch (SQLException e) {
+			e.printStackTrace();
+			error.put("errorCode", "dbError");
+			error.put("from", "/user/findLoginId");
 		}
 	
-		return null;
+		return ERROR_PAGE;
 	}
 
 }

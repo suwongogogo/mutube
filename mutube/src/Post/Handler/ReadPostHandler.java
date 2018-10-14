@@ -29,6 +29,11 @@ public class ReadPostHandler implements CommandHandler {
 			PostData postData = readPostService.getPost(postId);
 			
 			System.out.println(pageNum);
+			if(postData.getPostContent().getContent() != null) {
+				String replacedContent = postData.getPostContent().getContent().replaceAll("<","&lt").replaceAll(">", "&gt").replaceAll(" ", "&nbsp").replaceAll("\n", "<br>");
+				postData.getPostContent().setContent(replacedContent);
+			}
+
 			
 			CommentListService commentList = CommentListService.getInstance();
 			CommentPage commentPage = commentList.commentList(pageNum, postId);

@@ -18,6 +18,8 @@ import User.Service.UserUpdateService;
 
 public class UserUpdateHandler implements CommandHandler{
 	private static final String FORM_VIEW = "/WEB-INF/view/user/userUpdateForm.jsp";
+	private static final String ERROR_PAGE = "/error.jsp";
+	
 	@Override
 	public String process(HttpServletRequest req, HttpServletResponse resp) throws Exception {
 		if(req.getMethod().equalsIgnoreCase("GET")) {
@@ -30,31 +32,22 @@ public class UserUpdateHandler implements CommandHandler{
 		}
 	}
 
-	private String processForm(HttpServletRequest req, HttpServletResponse resp) throws SQLException, UserNotFoundException {
-		System.out.println("수정폼");
-		int userId = Integer.parseInt(req.getParameter("userId"));
-		
-		UserUpdateService updateService = UserUpdateService.getInstance();
-		User user = updateService.selectByUserId(userId);
-		
-		req.setAttribute("user", user);
+	private String processForm(HttpServletRequest req, HttpServletResponse resp) {
 		return FORM_VIEW;
 	}
 
-	private String processSubmit(HttpServletRequest req, HttpServletResponse resp) throws SQLException, IOException {
-		System.out.println("수정 시작");
-		
+	private String processSubmit(HttpServletRequest req, HttpServletResponse resp) throws IOException {		
+		int userId = Integer.parseInt(req.getParameter("userId"));
 		String loginId = (String)req.getParameter("loginId");
 		String name = (String)req.getParameter("name");
 		String email = (String)req.getParameter("email");
 
-		User savedUser = new User();
-		savedUser.setLoginId(loginId);
-		savedUser.setName(name);
-		savedUser.setEmail(email);
-		
 		Map<String, Boolean> errors = new HashMap<String, Boolean>();
 		req.setAttribute("errors", errors);
+		
+		Map<String, String> error = new HashMap<String, String>();
+		req.setAttribute("error", error);
+		
 		
 		if(loginId.isEmpty() || loginId == null) {
 			errors.put("loginid", true);
@@ -65,16 +58,29 @@ public class UserUpdateHandler implements CommandHandler{
 		if(email.isEmpty() || email == null) {
 			errors.put("email", true);
 		}
+		if(!errors.isEmpty()) {
+			return FORM_VIEW;
+		}
+		User savedUser = new User();
+		savedUser.setUserId(userId);
+		savedUser.setLoginId(loginId);
+		savedUser.setName(name);
+		savedUser.setEmail(email);
 		
 		try {
 			UserUpdateService updateService = UserUpdateService.getInstance();
-			updateService.update(savedUser);
+			updateService.update(savedUser, userId);
+			
+			req.getSession().setAttribute("loginUser", savedUser);
 
 			resp.sendRedirect(req.getContextPath()+"/myPage.jsp");
-		}catch(UserNotFoundException e) {
+			return null;
+		} catch (SQLException e) {
 			e.printStackTrace();
+			error.put("errorCode", "dbError");
+			error.put("from", "/myPage.jsp");
 		}
-		return null;
+		return ERROR_PAGE;
 	}
 		
 }

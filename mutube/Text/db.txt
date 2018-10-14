@@ -1,44 +1,162 @@
-DB
-테이블
+create database mutube;
 
-// 게시글의 정보를 담고있다.
-- Post(
-postId int auto_increment primary key not null,
+use mutube;
+
+show tables;
+
+drop table mutube.post;
+
+ 
+
+create table mutube.Post(
+
+postId int auto_increment primary key,
+
 userId int not null,
+
+loginId varchar(45) not null,
+
 name varchar(20) not null,
-title varchar(50) not null,
+
+title varchar(40) not null,
+
 genre varchar(20) not null,
-musician varchar(50) not null,
+
+country varchar(50) not null,
+
 instrument varchar(20) not null,
-write_date datetime current_timestamp,
-update_date datetime current_timestamp on update current_timestamp,
-views int null default 0
-)
 
-// 게시글의 내용
-- Post_content(
-postId int primary key not null,
-able int not null,
-content text
-)
+write_date datetime default current_timestamp,
 
-// 게시글의 댓글
-- Post_comment(
-postId int primary key not null,
+update_date datetime default current_timestamp on update current_timestamp,
+
+views int null default 0,
+
+able boolean null default 1
+
+);
+
+alter table mutube.post change title title varchar(100) not null;
+ 
+
+drop table mutube.notice;
+
+create table mutube.notice(
+
+	noticeid int auto_increment primary key,
+
+	userid int not null,
+
+	name varchar(20) not null,
+
+    title varchar(40) not null,
+
+	write_date datetime default current_timestamp,
+
+	update_date datetime default current_timestamp on update current_timestamp,
+
+	views int null default 0,
+
+	able boolean default 1
+
+);
+
+ 
+
+ 
+
+ 
+
+create table mutube.notice_content(
+
+	noticeId int primary key,
+
+	content text,
+
+	video_link varchar(256),
+
+	imageName varchar(256)
+
+);
+
+ 
+
+ 
+
+ 
+
+create table mutube.notice_comment(
+
+	commentId int primary key auto_increment,
+
+	noticeId int not null,
+
+	userId int not null,
+
+	comment text,	
+
+	write_date datetime default current_timestamp,
+
+	update_date datetime default current_timestamp on update current_timestamp
+
+);
+
+ 
+
+create table mutube.Post_content(
+
+postId int primary key,
+
+content text,
+
+video_link varchar(256),
+
+imageName varchar(256)
+
+);
+
+ 
+
+drop table mutube.post_comment;
+
+create table mutube.Post_comment(
+
+commentId int primary key auto_increment,
+
+postId int not null,
+
 userId int not null,
-comment text
-)
 
-// 유저 정보를 담고있는 TABLE
-- User(
-userId int auto_increment primary key not null,
-loginId varchar(30) not null,
-password varchar(30) not null,
-email varchar(30) not null,
-name varchar(20) not null,
-register_date datetime current_timestamp,
-authority int default 0,
-)
+comment text,
 
+write_date timestamp default current_timestamp,
 
+update_date datetime default current_timestamp on update current_timestamp
 
+);
+
+ 
+
+ 
+
+alter table mutube.post_content add imageName varchar(256);
+
+ 
+
+create table mutube.User(
+
+userId int auto_increment primary key,
+
+loginId varchar(30) not null unique,
+
+password varchar(50) not null,
+
+email varchar(45) not null,
+
+name varchar(50) not null,
+
+register_date datetime default current_timestamp,
+
+authority int default 0
+
+);

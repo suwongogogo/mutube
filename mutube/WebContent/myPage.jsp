@@ -41,6 +41,13 @@
 								<button class="submit input">회원 탈퇴</button>
 							</a>
 						</span>
+						<%-- 패스워드 받기 --%>
+						<form action="/mutube/user/deleteConfirmUserByPassword" onsubmit="return false" id="userOutForm" class="inline" onclick="userOut()" method="post">
+							<span>
+								<input type="hidden" value="${loginUser.userId }">
+								<input type="submit" class="submit input" value="회원 탈퇴">
+							</span>
+						</form>
 						<a href="/mutube/user/changePassword?userId=${loginUser.userId }">
 							<button class="submit input">비밀번호 수정</button>
 						</a>

@@ -103,6 +103,9 @@ public class User {
 		if(name==null || name.isEmpty()) {
 			errors.put("name", true);
 		}
+		if(email.indexOf("@") == -1 || email.indexOf(".com") == -1) {
+			errors.put("emailForm", true);
+		}
 	}
 	public void loginValidate(Map<String, Boolean> errors) {
 		if(loginId==null || loginId.isEmpty()) {

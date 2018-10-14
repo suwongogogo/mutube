@@ -1,95 +1,70 @@
-table{
-	border: 1px solid black;
+table {
 	border-collapse: collapse;
+}
+.padding-top-bottom-5 {
+	padding: 5px 0px;
+}
+.padding-bottom-5 {
+	padding: 0px 0px 5px 0px;
+}
+.padding-top-15 {
+	padding-top: 5px;
+}
+.read-post-contaienr {
+	width: 100%;
+}
+.bottom-line {
+	border-bottom: 1px solid #cccccc;
 }
 .center {
 	display: flex;
 }
-.inline {
-	display: inline-block;
-}
-.font20 {
-	font-size: 20px;
-	font-weight: bold;
-}
 .board-container {
-	width: 1200px;
-	height: 650px;
-    position: relative;
-    top: 100px;
-    left: 200px;
+	width: 1570px;
+	min-height: 650px;
+	padding: 25px;
 }
-.view-table {
-	width: 1200px;
+.tc {
 	text-align: center;
 }
-.view-title {
+.board {
+	width: 1200px;
+	height: 100%;
+	margin: 0px 185px;
+	border-left: 1px solid #cccccc;
+	border-right: 1px solid #cccccc;
+}
+.post-title {
 	font-size: 22px;
 	font-weight: bold;
 }
-.text-none {
-	text-align: start;
-	height: 500px;
+.post-subtitle {
+	font-size: 18px;
+	width: 33%;
 }
-.line {
-	position: absolute;
-	top: 72px;
-	left: 0px;
-	right: 0px;
-	border-bottom: 1px solid darkgray;
-}
-.view-content-container {
-	margin-top: 30px;
-    margin-left: 30px;
+.img-vedio-div {
+	margin-left: 280px;
 }
 .margin-right {
-	position: relative;
-	bottom: 50px;
 	text-align: center;
 }
-.view-button-container {
-	position: relative;
-    bottom: 370px;
-    text-align: end;
+.content-div {
+	padding: 30px 41px;
 }
 .view-button {
-    font-size: 15px;
-    border-radius: 4px;
-    background-color: #1a73e8;
-    border: 1px solid #1a73e8;
-    color: white;
-    padding: 5px 5px;
+	font-size: 15px;
+	border-radius: 4px;
+	background-color: #1a73e8;
+	border: 1px solid #1a73e8;
+	color: white;
+	padding: 5px 5px;
+	cursor: pointer;
 }
-.comment > textarea{	
-	width: 80%;
-	margin-top: 6px;
+.img-div,.vedio-div {
+	padding: 10px 0px; 
 }
-.comment{
-	width: 1100px;
-}
-.comment > input{
-	position: relative;
-	bottom: 45px;
-	left: 55px;
-}
-
-.comment-container {
-	height: 80px;
-}
-a,a:hover {
+a, a:hover {
 	text-decoration: none;
-}	
-.comment-textarea {
-	position: relative;
-	left: 108px;
-	width: 904px;
-	outline: none;
-}
-.submit {
-	height: 81px;
-    position: relative;
-    top: -35px;
-    left: 104px;
 }
 .view-comment-container {
 	padding: 10px 0px;
@@ -97,64 +72,65 @@ a,a:hover {
 	border-bottom: 1px solid #bbbbbb;
 	overflow: hidden;
 	height: 59px;
-} 
-.inline {
-	display: inline-block;
 }
-.comment-control-div {
-	float: right;
-	display: grid;
-	position: relative;
-	right: 18px;
-	bottom: -6px;
+.comment-id {
+	width: 100px;
+    text-align: center;
+    border-right: 1px solid #cccccc;
 }
-.comment-control-div > a {
-	font-size: 15px;
-	border: 1px solid black;
-	margin-bottom: 5px;
+.form {
+	display: flex;
 }
-.id {
-	font-weight: bold;
+.comment-table {
+	margin: 0px 43px;
+}
+.comment-tr {
+	border: 1px solid #cccccc;
+}
+.comment-textarea {
+	width: 940px;
+	border: none;
+	outline: none;
+	resize: none;
+}
+.padding-none {
+	padding: 0px;
+}
+.submit {
+	width: 74px;
+}
+.name {
+	text-align: center;
+	border-right: 1px solid #cccccc;
 }
 .comment {
-	font-size: 15px;
-	word-break: break-all;
+	width: 930px;
+	padding: 7px;
 }
-.userInf{
-	display: table;	
-	position: absolute;
-	height: 81px;
-	width: 213px;
+.real-comment-tr {
+	border: 1px solid #cccccc;
+} 
+.util {
+	font-size: 13px;
+    color: black;
+    text-align: end;
+    vertical-align: sub;
+    border-right: 1px solid #cccccc;
 }
-.userInf p{
-	display: table-cell;
-	text-align: center;
-	vertical-align: middle;
+.check-length {
+	display: inline-block;
+    position: relative;
+    top: 78px;
+    right: -1044px;
 }
-.id-inline{
-	position: absolute;
-	display: table;
-	height: 80px;
-	width: 212px;
-	bottom: -83px;
-	border-right: 1px solid darkgray;
+.button-container {
+	margin-right: 10px;
+	margin-top: 20px;
+	float: right;
 }
-.id-inline p{
-	display: table-cell;
-	text-align: center;
-	vertical-align: middle;
+.pagination-border {
+	margin-top: 10px;
 }
-.comment-inline{
-	position: relative;
-	left: 213px;
-	bottom: 11px;
-	display:table;
-	height: 81px;
-	width: 910px;
-	border-right: 1px solid darkgray;
-}
-.comment-inline p{
-	display: table-cell;
-	text-align: center;
-	vertical-align: middle;
+.pagination:active {
+	color: blue;
 }

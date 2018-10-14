@@ -13,11 +13,70 @@ public class Post {
 	private String instrument;
 	private LocalDateTime write_date;
 	private LocalDateTime update_date;
+	private String wdateStr;
+	private String udateStr;
 	private int views;
+	private boolean able;
 
+	public boolean isAble() {
+		return able;
+	}
+	
+	
+	public String getWdateStr() {
+		return wdateStr;
+	}
+
+
+	public void setWdateStr(String wdateStr) {
+		this.wdateStr = wdateStr;
+	}
+
+
+	public String getUdateStr() {
+		return udateStr;
+	}
+
+
+	public void setUdateStr(String udateStr) {
+		this.udateStr = udateStr;
+	}
+
+
+	public void setAble(boolean able) {
+		this.able = able;
+	}
 	public Post() {
 		
 	}
+	public Post(int postId, Writer writer, String title, String genre, String country, String instrument,
+			String wdateStr, String udateStr, int views, boolean able) {
+		this.postId = postId;
+		this.writer = writer;
+		this.title = title;
+		this.genre = genre;
+		this.country = country;
+		this.instrument = instrument;
+		this.wdateStr = wdateStr;
+		this.udateStr = udateStr;
+		this.views = views;
+		this.able = able;
+	}
+	
+	public Post(int postId, Writer writer, String title, String genre, String country, String instrument,
+			LocalDateTime write_date, LocalDateTime update_date, int views, boolean able) {
+		this.postId = postId;
+		this.writer = writer;
+		this.title = title;
+		this.genre = genre;
+		this.country = country;
+		this.instrument = instrument;
+		this.write_date = write_date;
+		this.update_date = update_date;
+		this.views = views;
+		this.able = able;
+	}
+	
 	public Post(int postId, Writer writer, String title, String genre, String country, String instrument,
 			LocalDateTime write_date, LocalDateTime update_date, int views) {
 		this.postId = postId;
@@ -31,6 +90,15 @@ public class Post {
 		this.views = views;
 	}
 
+	public Post(int postId, Writer writer, String title, String genre, String country, String instrument) {
+		this.postId = postId;
+		this.writer = writer;
+		this.title = title;
+		this.genre = genre;
+		this.country = country;
+		this.instrument = instrument;
+	}
+	
 	public Post(Writer writer, String title, String genre, String country, String instrument) {
 		this.writer = writer;
 		this.title = title;

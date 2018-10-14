@@ -51,10 +51,10 @@ table {
 	text-align: end;
 }
 .list-postid {
-	width: 70px;
+	width: 50px;
 }
 .list-title {
-	width: 308px;
+	width: 400px;
 }
 .list-public {
 	width: 80px;
@@ -102,4 +102,11 @@ table {
 	font-size: 36px;
     font-weight: bold;
     margin: 10px 0px 15px 209px;
+}
+.title-container {
+	display: block;
+	width: 100%;
+}
+.user-board {
+	border-bottom: 1px solid #cccccc;
 }

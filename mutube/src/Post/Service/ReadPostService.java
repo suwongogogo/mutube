@@ -2,11 +2,10 @@ package Post.Service;
 
 import java.sql.Connection;
 import java.sql.SQLException;
-
+import java.util.ArrayList;
 
 import Post.Exception.PostNotFoundException;
 import Connection.ConnectionProvider;
-import File.DAO.FileDAO;
 import Post.DAO.PostContentDAO;
 import Post.DAO.PostDAO;
 import Post.Model.Post;
@@ -42,15 +41,18 @@ public class ReadPostService {
 			}
 			postDAO.increaseReadCount(conn, postId);
 			
-//			if(postContent.getImageName()!=null) {
-//				FileDAO fileDAO = FileDAO.getInstance();
-//				String imageRealPath = fileDAO.getRealPath(conn, postContent.getImageName());
-//			
-//				postContent.setImageName(imageRealPath);
-//				System.out.println(postContent.getImageName());
-//			}
-			conn.commit();
+			if(postContent.getImageNamesStr()!=null) {
+				String[] names = postContent.getImageNamesStr().split("\\?");
+				ArrayList<String> imageNames = new ArrayList<String>();
+				for(String name : names) {
+					imageNames.add(name);
+				}
+				postContent.setImageNames(imageNames);
+			}else {
+				postContent.setImageNames(null);
+			}
 			
+			conn.commit();
 			postData = new PostData(post, postContent);
 			
 		}

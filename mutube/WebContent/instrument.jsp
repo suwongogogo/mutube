@@ -13,7 +13,7 @@
 </head>
 <body>
 	<div class="wrapper">
-    	<jsp:include page="/particular/header2.jsp"></jsp:include>
+    	<jsp:include page="/particular/header.jsp"></jsp:include>
     	<div class="center">
         	<jsp:include page="/particular/nav.jsp"></jsp:include>
 		   	<div class="board">
@@ -26,10 +26,10 @@
 								<hr class="">
 								<table class="instrument">
 									<tr>
-										<td><a href="/post/search?keyword=guitar&category=instrument"><img src="Image/instrument/guitar.jpg" alt="sorry"></a></td>
-										<td><a href="/post/search?keyword=bass&category=instrument"><img src="Image/instrument/bass.jpg" alt="sorry"></a></td>
-										<td><a href="/post/search?keyword=vocal&category=instrument"><img src="Image/instrument/vocal.jpg" alt="sorry"></a></td>
-										<td><a href="/post/search?keyword=drum&category=instrument"><img src="Image/instrument/drum.jpg" alt="sorry"></a></td>
+										<td><a href="/mutube/post/search?keyword=guitar&category=instrument"><img src="Image/instrument/guitar.jpg" alt="sorry"></a></td>
+										<td><a href="/mutube/post/search?keyword=bass&category=instrument"><img src="Image/instrument/bass.jpg" alt="sorry"></a></td>
+										<td><a href="/mutube/post/search?keyword=vocal&category=instrument"><img src="Image/instrument/vocal.jpg" alt="sorry"></a></td>
+										<td><a href="/mutube/post/search?keyword=drum&category=instrument"><img src="Image/instrument/drum.jpg" alt="sorry"></a></td>
 									</tr>
 									<tr>
 										<td>Guitar</td>
@@ -41,10 +41,10 @@
 								<br> <br> <br> <br>
 								<table class="instrument">
 									<tr>
-										<td><a href="/post/search?keyword=piano&category=instrument"><img src="Image/instrument/piano.jpg" alt="sorry"></a></td>
-										<td><a href="/post/search?keyword=trumpet&category=instrument"><img src="Image/instrument/trumpet.jpg" alt="sorry"></a></td>
-										<td><a href="/post/search?keyword=saxophone&category=instrument"><img src="Image/instrument/saxophone.jpg" alt="sorry"></a></td>
-										<td><a href="/post/search?keyword=trombone&category=instrument"><img src="Image/instrument/trombone.jpg" alt="sorry"></a></td>
+										<td><a href="/mutube/post/search?keyword=piano&category=instrument"><img src="Image/instrument/piano.jpg" alt="sorry"></a></td>
+										<td><a href="/mutube/post/search?keyword=trumpet&category=instrument"><img src="Image/instrument/trumpet.jpg" alt="sorry"></a></td>
+										<td><a href="/mutube/post/search?keyword=saxophone&category=instrument"><img src="Image/instrument/saxophone.jpg" alt="sorry"></a></td>
+										<td><a href="/mutube/post/search?keyword=trombone&category=instrument"><img src="Image/instrument/trombone.jpg" alt="sorry"></a></td>
 									</tr>
 									<tr>
 										<td>Piano</td>
@@ -56,12 +56,14 @@
 								<br> <br> <br> <br>
 								<table class="instrument">
 									<tr>
-										<td><a href="/post/search?keyword=acoustic guitar&category=instrument"><img src="Image/instrument/acoustic_guitar.jpg" alt="sorry"></a></td>
-										<td><a href="/post/search?keyword=contrabass&category=instrument"><img src="Image/instrument/Contrabass.jpg" alt="sorry"></a></td>
+										<td><a href="/mutube/post/search?keyword=acoustic guitar&category=instrument"><img src="Image/instrument/acoustic_guitar.jpg" alt="sorry"></a></td>
+										<td><a href="/mutube/post/search?keyword=contrabass&category=instrument"><img src="Image/instrument/Contrabass.jpg" alt="sorry"></a></td>
+										<td><a href="/mutube/post/search?keyword=etc&category=country"><img src="Image/etc.gif" alt="sorry"></a></td>
 									</tr>
 									<tr>
 										<td>Acoustic Guitar</td>
 										<td>ContraBass</td>
+										<td>etc</td>
 									</tr>
 								</table>
 							</div>

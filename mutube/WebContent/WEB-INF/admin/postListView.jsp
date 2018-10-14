@@ -1,63 +1,103 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<link rel="stylesheet" type="text/css" href="/mutube/CSS/postListView.css" />
+<title>글 정보</title>
 </head>
 <body>
-	<table border="1">
-		<tr>
-			<th colspan="12">회원 정보</th>
-		</tr>
-		<tr>
-			<td>postId</td>
-			<td>userId</td>
-			<td>name</td>
-			<td>email</td>
-			<td>title</td>
-			<td>genre</td>
-			<td>country</td>
-			<td>instrument</td>
-			<td>write_date</td>
-			<td>update_date</td>
-			<td>views</td>
-			<td>able</td>
-		</tr>
-		<c:forEach var="post" items="${postPageINF.postList }">
-			<tr>
-				<td>${post.postId }</td>
-				<td>${post.userId }</td>
-				<td>${post.name }</td>
-				<td>${post.title }</td>
-				<td>${post.genre }</td>
-				<td>${post.country }</td>
-				<td>${post.instrument }</td>
-				<td>${post.write_date }</td>
-				<td>${post.update_date }</td>
-				<td>${post.views }</td>
-				<td>${post.able }</td>
-			</tr>
-		</c:forEach>
-		<c:if test="${postPageINF.hasUser() }">
-			<tr>
-				<td colspan="7">
-					<a href="userManagement?pageNum=1">[처음으로]</a>
-					<c:if test="${postPageINF.startPage > 6 }">
-						<a href="userManagement?pageNum=${postPageINF.startPage - 6 }">[이전으로]</a>
-					</c:if>
-					<c:forEach var="pageNum" begin="${postPageINF.startPage }" end="${postPageINF.endPage }">
-						<a href="userManagement?pageNum=${pageNum }">[${pageNum }]</a>
-					</c:forEach>
-					<c:if test="${postPageINF.endPage < postPageINF.totalPage }">
-						<a href="userManagement?pageNum=${postPageINF.startPage + 6 }">[다음]</a>
-					</c:if> 
-					<a href="userManagement?pageNum=${postPageINF.totalPage }">[마지막으로]</a>
-				</td>
-			</tr>
-		</c:if>
-	</table>
+	<div class="wrapper">
+    	<jsp:include page="/particular/header.jsp"></jsp:include>
+    	<div class="center">
+        	<jsp:include page="/particular/nav.jsp"></jsp:include>
+		   	<div class="board">
+		   		<div class="table-view-container">
+		   			<div class="post-information">
+		   				<span class="post-title">Post Information</span>
+		   				<span class="back-button"><a href="/mutube/managementList.jsp">뒤로가기</a></span>
+		   			</div>
+		   			<div class="table-view-div">
+				   		<table class="view-real-table">
+							<tr class="border-line-bottom">
+								<td class="table-title tc">postId</td>
+								<td class="interval"></td>
+								<td class="table-title tc">userId</td>
+								<td class="interval"></td>
+								<td class="table-title tc">name</td>
+								<td class="interval"></td>
+								<td class="table-title pointer">title</td>
+								<td class="table-title tc">genre</td>
+								<td class="interval"></td>
+								<td class="table-title tc">country</td>
+								<td class="interval"></td>
+								<td class="table-title tc">instrument</td>
+								<td class="interval"></td>
+								<td class="table-title tc">write_date</td>
+								<td class="interval"></td>
+								<td class="table-title tc">update_date</td>
+								<td class="interval"></td>
+								<td class="table-title tc">views</td>
+								<td class="interval"></td>
+								<td class="table-title tc">able</td>
+								<td class="interval"></td>
+								<td class="table-title tc">삭제</td>
+							</tr>
+							<c:forEach var="post" items="${postPageINF.postList }">
+								<tr class="border-line-bottom">
+									<td class="tc">${post.postId }</td>
+									<td></td>
+									<td class="tc">${post.writer.userId }</td>
+									<td></td>
+									<td class="tc">${post.writer.name }</td>
+									<td></td>
+									<td class="long-interval">
+										<a href="/mutube/post/view?no=${post.postId }" class="full-widht">${post.title }</a>
+									</td>
+									<td class="tc">${post.genre }</td>
+									<td></td>
+									<td class="tc">${post.country }</td>
+									<td></td>
+									<td class="tc">${post.instrument }</td>
+									<td></td>
+									<td class="tc">${post.write_date }</td>
+									<td></td>
+									<td class="tc">${post.update_date }</td>
+									<td></td>
+									<td class="tc">${post.views }</td>
+									<td></td>
+									<td class="tc">${post.able }</td>
+									<td></td>
+									<td class="tc">
+										<form action="/mutube/admin/deletePost?postId=${post.postId }" method="post">
+											<button>삭제</button>
+										</form>
+									</td>
+								</tr>
+							</c:forEach>
+							<c:if test="${postPageINF.hasUser() }">
+								<tr class="tc">
+									<td colspan="21">
+										<c:if test="${postPageINF.startPage > 6 }">
+											<a href="postManagement?pageNum=${postPageINF.startPage - 6 }" class="prev">이전</a>
+										</c:if>
+										<c:forEach var="pageNum" begin="${postPageINF.startPage }" end="${postPageINF.endPage }">
+											<a href="postManagement?pageNum=${pageNum }" class="underline">${pageNum }</a>
+										</c:forEach>
+										<c:if test="${postPageINF.endPage < postPageINF.totalPage }">
+											<a href="postManagement?pageNum=${postPageINF.startPage + 6 }" class="next">다음</a>
+										</c:if> 
+									</td>
+								</tr>
+							</c:if>
+						</table>
+					</div>
+				</div>
+		   	</div>	
+    	</div>
+    	<jsp:include page="/particular/footer.jsp"></jsp:include>
+    </div>
 </body>
 </html>

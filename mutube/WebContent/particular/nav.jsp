@@ -17,15 +17,15 @@
                 </a>
                 <ul class="information">
                     <li class="sub-font">
-                        <a href="user/register">회원가입</a>
+                        <a href="/mutube/user/register">회원가입</a>
                     </li>
                     <span class="sub-font"> / </span>
                     <li class="sub-font">
-                        <a href="user/findLoginId">아이디 찾기</a>
+                        <a href="/mutube/user/findLoginId">아이디 찾기</a>
                     </li>
                     <span class="sub-font"> / </span>
                     <li class="sub-font">
-                        <a href="user/findPassword">비밀번호 찾기</a>
+                        <a href="/mutube/user/findPassword">비밀번호 찾기</a>
                     </li>
                 </ul>
                 </c:if>
@@ -35,11 +35,20 @@
                 </a>
                 <ul class="logout-ul">
 	                <li class="font">
-	                	<span class="id">${loginUser.name }</span>님, 환영합니다. 
+	                	<span class="id">
+	                		<c:if test="${loginUser.name.length() > 4 }">${loginUser.name.substring(0,4) }...</c:if>
+	                		<c:if test="${loginUser.name.length() <= 4 }">${loginUser.name} </c:if>
+	                	</span>님, 환영합니다. 
 	                </li>
-	                <li class="sub-font mypage" style="float: right;">
-	                	<a href="/mutube/user/confirmUserByPassword" style="display: block;">마이페이지</a>
-	                </li>
+	                	<li class="sub-font mypage" style="float: right;">
+	                		<a href="/mutube/user/confirmUserByPassword" style="display: block;">마이페이지</a>
+	                	</li>
+	                	<c:if test="${loginUser.authority == true }">
+	        	        	<li class="sub-font mypage" style="float: right;">
+	    	            		<a href="/mutube/managementList.jsp" style="display: block;
+		                		position: absolute; top: 188px; left: 191px;">관리자 페이지</a>
+	                		</li>
+	                	</c:if>
                	</ul>
                	</c:if>
             </div>
@@ -53,7 +62,7 @@
                 <li class="drop-li">
                     <div class="clicked"></div>
                     <div class="list-container">
-                        <a class="droplist" href="/mutube/post/notice">공지</a>
+                        <a class="droplist" href="/mutube/notice/notice">공지</a>
                     </div>
                 </li>
                 <li class="drop-li">

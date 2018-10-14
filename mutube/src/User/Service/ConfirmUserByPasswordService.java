@@ -26,7 +26,6 @@ public class ConfirmUserByPasswordService {
 			if(user == null) {
 				throw new UserNotFoundException("없는 유저입니다.");
 			}
-			
 			return user;
 		}
 	}

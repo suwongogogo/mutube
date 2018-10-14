@@ -10,29 +10,27 @@ import User.Model.User;
 
 public class UserUpdateService {
 	private static UserUpdateService instance = new UserUpdateService();
-	private UserUpdateService () {}
-	public static UserUpdateService getInstance(){
+
+	private UserUpdateService() {
+	}
+
+	public static UserUpdateService getInstance() {
 		return instance;
 	}
-	
-	public void update(User user) throws SQLException, UserNotFoundException {
-		try(Connection conn = ConnectionProvider.getConnection()){
+
+	public void update(User user, int userId) throws SQLException {
+		try (Connection conn = ConnectionProvider.getConnection()) {
+			conn.setAutoCommit(false);
 			UserDAO userDAO = UserDAO.getInstance();
-			
-			userDAO.update(conn, user);
-		}
-	}
-	
-	public User selectByUserId(int userId) throws SQLException, UserNotFoundException {
-		try(Connection conn = ConnectionProvider.getConnection()){
-			UserDAO userDAO = UserDAO.getInstance();
-			User user = userDAO.selectByUserId(conn, userId);
-			
-			if(user == null) {
-				throw new UserNotFoundException("없는 유저입니다.");
+			try {
+				userDAO.update(conn, user, userId);
+				conn.commit();
+			} catch (SQLException e) {
+				e.printStackTrace();
+				conn.rollback();
+				throw new SQLException(e);
 			}
-			
-			return user;
 		}
 	}
+
 }
