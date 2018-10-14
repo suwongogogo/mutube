@@ -12,7 +12,7 @@
 		setTimeout(function() {
 			alert("이메일 전송을 완료하였습니다.");
 			location.href = "/mutube/Main.jsp";
-		}, 2000);
+		}, 1000);
 	</script>
 </body>
 </html>
