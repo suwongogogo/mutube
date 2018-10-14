@@ -51,6 +51,5 @@ public class NoticeListHandler implements CommandHandler {
 			error.put("from", "/notice/notice");
 			return ERROR_PAGE;
 		}
-		return null;
 	}
 }

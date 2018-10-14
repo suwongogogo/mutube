@@ -70,7 +70,5 @@ public class ReadNoticeHandler implements CommandHandler {
 			error.put("from", "/notice/notice");
 			return ERROR_PAGE;
 		}
-		return null;
 	}
-
 }
