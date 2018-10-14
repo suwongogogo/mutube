@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 <title>회원 수정</title>
 <link rel="stylesheet" type="text/css" href="/mutube/CSS/loginForm.css" />
-<script type="text/javascript" src="/mutube/JavaScript/userUpdate.js"></script>
+<script type="text/javascript" src="/mutube/JavaScript/miscellaneous.js"></script>
 </head>
 <body>
 	<div class="loginForm-container" style="height: 360px;">

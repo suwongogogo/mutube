@@ -7,7 +7,7 @@
     <meta charset="utf-8" />
     <title>비밀번호 찾기</title>
     <link rel="stylesheet" type="text/css" media="screen" href="/mutube/CSS/findForm.css" />
-    <script type="text/javascript" src="/mutube/JavaScript/findPassword.js"></script>
+    <script type="text/javascript" src="/mutube/JavaScript/miscellaneous.js"></script>
 </head>
 <body>
 	
