@@ -41,7 +41,7 @@ import User.Model.User;
 public class WritePostHandler implements CommandHandler {
 	private static final String FORM_VIEW = "/WEB-INF/view/post/writePostForm.jsp";
 
-	public String process(HttpServletRequest req, HttpServletResponse resp) throws Exception {
+	public String process(HttpServletRequest req, HttpServletResponse resp) throws IOException {
 		if (req.getMethod().equalsIgnoreCase("GET")) {
 			return processForm(req, resp);
 		} else if (req.getMethod().equalsIgnoreCase("POST")) {

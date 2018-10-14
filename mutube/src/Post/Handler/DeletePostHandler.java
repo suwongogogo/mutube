@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import Handler.CommandHandler;
+import Post.Exception.DeletePostFailException;
 import Post.Exception.PostNotFoundException;
 import Post.Service.DeletePostService;
 
@@ -30,8 +31,12 @@ public class DeletePostHandler implements CommandHandler {
 				throw new PostNotFoundException("잘못된 게시글번호");
 			}
 			DeletePostService deletePostService = DeletePostService.getInstance();
-			deletePostService.delete(postId);
-
+			int cnt = deletePostService.delete(postId);
+			
+			if(cnt > 0) {
+				throw new DeletePostFailException("게시글 삭제 실패");
+			}
+			
 			resp.sendRedirect(req.getContextPath() + "/post/list");
 
 		} catch (PostNotFoundException e) {
@@ -41,6 +46,10 @@ public class DeletePostHandler implements CommandHandler {
 		} catch (SQLException e) {
 			e.printStackTrace();
 			error.put("errorCode", "dbError");
+			error.put("from", "/post/list");
+		} catch(DeletePostFailException e) {
+			e.printStackTrace();
+			error.put("errorCode", "DeletePostFail");
 			error.put("from", "/post/list");
 		}
 		return null;

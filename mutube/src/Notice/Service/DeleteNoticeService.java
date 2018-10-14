@@ -16,7 +16,7 @@ public class DeleteNoticeService {
 		return instance;
 	}
 	
-	public void deleteNotice(int noticeId) throws SQLException {
+	public int deleteNotice(int noticeId) throws SQLException {
 		try(Connection conn = ConnectionProvider.getConnection()){
 			conn.setAutoCommit(false);
 			NoticeDAO noticeDAO = NoticeDAO.getInstance();
@@ -28,6 +28,7 @@ public class DeleteNoticeService {
 				}
 			
 				conn.commit();
+				return cnt;
 			}catch(SQLException e) {
 				e.printStackTrace();
 				conn.rollback();

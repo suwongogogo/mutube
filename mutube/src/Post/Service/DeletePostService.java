@@ -14,7 +14,7 @@ public class DeletePostService {
 		return instance;
 	}
 	
-	public void delete(int postId) throws SQLException {
+	public int delete(int postId) throws SQLException {
 		try(Connection conn = ConnectionProvider.getConnection()){
 			conn.setAutoCommit(false);
 			PostDAO postDAO = PostDAO.getInstance();
@@ -25,6 +25,7 @@ public class DeletePostService {
 				throw new PostNotFoundException("게시글 삭제 실패");
 			}
 			conn.commit();
+			return cnt;
 		}
 	}
 }

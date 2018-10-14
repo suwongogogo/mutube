@@ -26,7 +26,7 @@ public class WriteNoticeService {
 		return instance;
 	}
 
-	public int writeNotice(NoticeData writeReq) throws SQLException {
+	public int writeNotice(NoticeData writeReq) throws SQLException, WriteNoticeFailException {
 		NoticeDAO noticeDAO = NoticeDAO.getInstance();
 		NoticeContentDAO noticeContentDAO = NoticeContentDAO.getInstance();
 		try (Connection conn = ConnectionProvider.getConnection()) {
@@ -64,7 +64,7 @@ public class WriteNoticeService {
 			System.out.println("내용 삽입 성그옹");
 			if (ret == 0) {
 				conn.rollback();
-				throw new WritePostFailException("Content 삽입 실패");
+				throw new WriteNoticeFailException("Content 삽입 실패");
 			}
 
 			conn.commit();

@@ -1,5 +1,6 @@
 package Notice.Handler;
 
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
@@ -8,13 +9,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import Handler.CommandHandler;
+import Notice.Exception.DeleteNoticeCommentException;
 import Notice.Service.DeleteNoticeCommentService;
 import Post.Exception.CommentNotFoundException;
 import Post.Service.DeleteCommentService;
 
 public class DeleteNoticeCommentHandler implements CommandHandler {
 	@Override
-	public String process(HttpServletRequest req, HttpServletResponse resp) throws Exception {
+	public String process(HttpServletRequest req, HttpServletResponse resp) throws IOException{
 		int commentId = 0;
 		int noticeId = 0;
 		int pageNum = 1;
@@ -34,17 +36,25 @@ public class DeleteNoticeCommentHandler implements CommandHandler {
 
 		try {
 			DeleteNoticeCommentService deleteNoticeCommentService = DeleteNoticeCommentService.getInstance();
-			deleteNoticeCommentService.deleteNoticeComment(commentId);
+			int deleteCnt = deleteNoticeCommentService.deleteNoticeComment(commentId);
 
+			if(deleteCnt > 0) {
+				throw new DeleteNoticeCommentException("공지 댓글 삭제 실패");
+			}
+			
 			resp.sendRedirect(req.getContextPath() + "/notice/readNotice?noticeId=" + noticeId + "&pageNum=" + pageNum);
 		} catch (CommentNotFoundException e) {
 			e.printStackTrace();
 			error.put("errorCode", "CommentNotFound");
-			error.put("from", "/notice/readNotice");
+			error.put("from", "/notice/readNotice?noticeId=" + noticeId + "&pageNum=" + pageNum);
 		} catch (SQLException e) {
 			e.printStackTrace();
 			error.put("errorCode", "dbError");
-			error.put("from", "/notice/readNotice");
+			error.put("from", "/notice/readNotice?noticeId=" + noticeId + "&pageNum=" + pageNum);
+		} catch (DeleteNoticeCommentException e) {
+			e.printStackTrace();
+			error.put("errorCode", "DeleteNoticeComment");
+			error.put("from", "/notice/readNotice?noticeId=" + noticeId + "&pageNum=" + pageNum);
 		}
 		return null;
 	}

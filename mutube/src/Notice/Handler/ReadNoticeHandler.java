@@ -1,5 +1,6 @@
 package Notice.Handler;
 
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
@@ -20,7 +21,7 @@ import Post.Service.CommentListService;
 public class ReadNoticeHandler implements CommandHandler {
 
 	@Override
-	public String process(HttpServletRequest req, HttpServletResponse resp) throws Exception {
+	public String process(HttpServletRequest req, HttpServletResponse resp) throws IOException {
 		Map<String, String> error = new HashMap<String, String>();
 		req.setAttribute("error", error);
 
@@ -39,7 +40,6 @@ public class ReadNoticeHandler implements CommandHandler {
 			if (pageNum == 0) {
 				throw new PageNotFoundException("페이지를 찾을 수 없습니다.");
 			}
-
 			ReadNoticeService readNoticeService = ReadNoticeService.getInstance();
 			NoticeData noticeData = readNoticeService.getNotice(noticeId);
 
@@ -56,15 +56,15 @@ public class ReadNoticeHandler implements CommandHandler {
 			return "/WEB-INF/view/notice/readNotice.jsp";
 		} catch (NoticeNotFoundException e) {
 			e.printStackTrace();
-			error.put("errorCode", "ReadFail");
-			error.put("from", "/notice/notice");
-		} catch (PageNotFoundException e) {
-			e.printStackTrace();
-			error.put("errorCode", "PageNotFound");
+			error.put("errorCode", "NoticeNotFound");
 			error.put("from", "/notice/notice");
 		} catch (SQLException e) {
 			e.printStackTrace();
 			error.put("errorCode", "dbError");
+			error.put("from", "/notice/notice");
+		} catch (PageNotFoundException e) {
+			e.printStackTrace();
+			error.put("errorCode", "PageNotFound");
 			error.put("from", "/notice/notice");
 		}
 		return null;

@@ -22,6 +22,7 @@ import Handler.CommandHandler;
 import Notice.Model.Notice;
 import Notice.Model.NoticeContent;
 import Notice.Model.NoticeData;
+import Notice.Service.WriteNoticeFailException;
 import Notice.Service.WriteNoticeService;
 import Post.Exception.WritePostFailException;
 import Post.Model.Writer;
@@ -31,7 +32,7 @@ import User.Model.User;
 public class WriteNoticeHandler implements CommandHandler{
 	private static final String FORM_VIEW = "/WEB-INF/view/notice/writeNoticeForm.jsp";
 
-	public String process(HttpServletRequest req, HttpServletResponse resp) throws Exception {
+	public String process(HttpServletRequest req, HttpServletResponse resp) throws IOException {
 		if (req.getMethod().equalsIgnoreCase("GET")) {
 			return processForm(req, resp);
 		} else if (req.getMethod().equalsIgnoreCase("POST")) {
@@ -152,9 +153,9 @@ public class WriteNoticeHandler implements CommandHandler{
 			postId = writeNoticeService.writeNotice(writeReq);
 			resp.sendRedirect(req.getContextPath() + "/notice/notice");
 
-		} catch(WritePostFailException e) {
+		} catch(WriteNoticeFailException e) {
 			e.printStackTrace();
-			error.put("errorCode", "WritePostFail");
+			error.put("errorCode", "WriteNoticeFail");
 			error.put("from", "/notice/notice");
 		} catch (SQLException e) {
 			error.put("errorCode", "dbError");

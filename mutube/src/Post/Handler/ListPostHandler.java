@@ -19,6 +19,7 @@ public class ListPostHandler implements Handler.CommandHandler {
 	public String process(HttpServletRequest req, HttpServletResponse resp) throws Exception {
 		Map<String, String> error = new HashMap<String, String>();
 		req.setAttribute("error", error);
+		
 		try {
 			ListPostService postService = ListPostService.getInstance();
 			String pageNumStr = req.getParameter("pageNum");

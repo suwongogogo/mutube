@@ -1,5 +1,6 @@
 package Notice.Handler;
 
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
@@ -8,13 +9,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import Handler.CommandHandler;
+import Notice.Exception.NothingException;
 import Notice.Exception.PageNotFoundException;
 import Notice.Model.NoticePage;
 import Notice.Service.NoticeListService;
 
 public class NoticeListHandler implements CommandHandler {
 	@Override
-	public String process(HttpServletRequest req, HttpServletResponse resp) throws Exception {
+	public String process(HttpServletRequest req, HttpServletResponse resp) throws IOException {
 		Map<String, String> error = new HashMap<String, String>();
 		req.setAttribute("error", error);
 
@@ -39,6 +41,10 @@ public class NoticeListHandler implements CommandHandler {
 		} catch (SQLException e) {
 			e.printStackTrace();
 			error.put("errorCode", "dbError");
+			error.put("from", "/notice/notice");
+		} catch (NothingException e) {
+			e.printStackTrace();
+			error.put("errorCode", "Nothing");
 			error.put("from", "/notice/notice");
 		}
 		return null;
