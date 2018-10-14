@@ -52,7 +52,7 @@
 			out.print("<script>alert('공지를 찾을 수 없습니다.') location.href='/mutube" + from + "';</script>");
 			response.sendRedirect(request.getContextPath() + from);
 			break;
-		case "FailWriteNoticeComment":
+		case "WirteNoticeCommentFail":
 			out.print("<script>alert('댓글 작성에 실패하였습니다.') location.href='/mutube" + from + "';</script>");
 			response.sendRedirect(request.getContextPath() + from);
 			break;
