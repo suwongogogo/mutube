@@ -6,7 +6,7 @@ import java.sql.SQLException;
 import Connection.ConnectionProvider;
 import Post.DAO.PostCommentDAO;
 import Post.DAO.PostDAO;
-import Post.Exception.FailWriteCommentException;
+import Post.Exception.WriteCommentFailException;
 import Post.Exception.PostNotFoundException;
 import Post.Model.Post;
 import Post.Model.PostComment;
@@ -20,13 +20,13 @@ public class WriteCommentService {
 		return instance;
 	}
 	
-	public void writeComment(PostComment postComment) throws SQLException, FailWriteCommentException {
+	public void writeComment(PostComment postComment) throws SQLException, WriteCommentFailException {
 		PostCommentDAO commentDAO = PostCommentDAO.getInstance();
 		try(Connection conn = ConnectionProvider.getConnection()){
 			PostComment savedpostComment = commentDAO.insert(conn, postComment);
 			
 			if(savedpostComment == null) {
-				throw new FailWriteCommentException("댓글 작성 실패");
+				throw new WriteCommentFailException("댓글 작성 실패");
 			}
 			 
 		}

@@ -48,16 +48,23 @@ public class UpdatePostHandler implements Handler.CommandHandler {
 		}
 	}
 
-	private String processForm(HttpServletRequest req, HttpServletResponse resp) throws SQLException {
+	private String processForm(HttpServletRequest req, HttpServletResponse resp) {
 		Map<String, String> error = new HashMap<String, String>();
 		req.setAttribute("error", error);
 		
 		int postId = Integer.parseInt(req.getParameter("no"));
 
 		UpdatePostService updatePostService = UpdatePostService.getInstance();
-		PostData postData = updatePostService.getPost(postId);
-		req.setAttribute("postData", postData);
-		System.out.println(postData.getPost().getPostId());
+		PostData postData;
+		try {
+			postData = updatePostService.getPost(postId);
+			req.setAttribute("postData", postData);
+			System.out.println(postData.getPost().getPostId());
+		} catch (SQLException e) {
+			e.printStackTrace();
+			error.put("errorCode", "dbError");
+			error.put("from", "/post/view?postId="+postId);
+		}
 		return FORM_VIEW;
 	}
 
@@ -75,6 +82,11 @@ public class UpdatePostHandler implements Handler.CommandHandler {
 		ArrayList<String> imageNames = new ArrayList<>();
 		Map<String, String> params = new HashMap<>();
 		
+		int postId = 0;
+
+		if (params.get("no") != null) {
+			postId = Integer.parseInt(params.get("no"));
+		}
 		try {
 			if (ServletFileUpload.isMultipartContent(req)) {
 				try {
@@ -106,11 +118,6 @@ public class UpdatePostHandler implements Handler.CommandHandler {
 				}
 			}
 			
-			int postId = 0;
-
-			if (params.get("no") != null) {
-				postId = Integer.parseInt(params.get("no"));
-			}
 			System.out.println(postId);
 			if (postId == 0) {
 				throw new PostNotFoundException("올바르지 않은 게시글 번호");
@@ -139,14 +146,14 @@ public class UpdatePostHandler implements Handler.CommandHandler {
 		} catch (PostNotFoundException e) {
 			e.printStackTrace();
 			error.put("errorCode", "PostNotFound");
-			error.put("from", "/post/list");
+			error.put("from", "/post/view?no=" + postId);
 		} catch (UpdatePostFailExcpetion e) {
 			e.printStackTrace();
 			error.put("errorCode", "UpdatePostFail");
-			error.put("from", "/post/list");
+			error.put("from", "/post/view?no=" + postId);
 		} catch (SQLException e) {
 			error.put("errorCode", "dbError");
-			error.put("from", "/post/list");
+			error.put("from", "/post/view?no=" + postId);
 		}
 		return null;
 	}

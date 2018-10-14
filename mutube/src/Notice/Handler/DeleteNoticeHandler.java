@@ -1,5 +1,6 @@
 package Notice.Handler;
 
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
@@ -8,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import Handler.CommandHandler;
+import Notice.Exception.DeleteNoticeFailException;
 import Notice.Exception.NoticeNotFoundException;
 import Notice.Service.DeleteNoticeService;
 
@@ -15,7 +17,7 @@ import Notice.Service.DeleteNoticeService;
 public class DeleteNoticeHandler implements CommandHandler{
 
 	@Override
-	public String process(HttpServletRequest req, HttpServletResponse resp) throws Exception {
+	public String process(HttpServletRequest req, HttpServletResponse resp) throws IOException {
 		Map<String, String> error = new HashMap<String, String>();
 		req.setAttribute("error", error);
 		
@@ -30,17 +32,25 @@ public class DeleteNoticeHandler implements CommandHandler{
 		}
 		
 		DeleteNoticeService deleteNoticeService = DeleteNoticeService.getInstance();
-		deleteNoticeService.deleteNotice(noticeId);
+		int deleteCnt = deleteNoticeService.deleteNotice(noticeId);
+		
+		if(deleteCnt == 0 ) {
+			throw new DeleteNoticeFailException("삭제 실패");
+		}
 		
 		resp.sendRedirect(req.getContextPath() + "/notice/notice");
 		
 		}catch(NoticeNotFoundException e) {
 			e.printStackTrace();
-			error.put("errorCode", "DeleteNoticeFail");
+			error.put("errorCode", "NoticeNotFound");
 			error.put("from", "/notice/notice");
 		} catch (SQLException e) {
 			e.printStackTrace();
 			error.put("errorCode", "dbError");
+			error.put("from", "/notice/notice");
+		} catch(DeleteNoticeFailException e) {
+			e.printStackTrace();
+			error.put("errorCode", "DeleteNoticeFail");
 			error.put("from", "/notice/notice");
 		}
 		return null;

@@ -1,5 +1,6 @@
 package Notice.Handler;
 
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
@@ -20,23 +21,23 @@ import Post.Service.CommentListService;
 public class NoticeCommentListHandler implements CommandHandler {
 
 	@Override
-	public String process(HttpServletRequest req, HttpServletResponse resp) throws Exception {
+	public String process(HttpServletRequest req, HttpServletResponse resp) throws IOException {
 		Map<String, String> error = new HashMap<String, String>();
 		req.setAttribute("error", error);
 
+		int noticeId = 0;
+		if (req.getParameter("noticeId") != null) {
+			noticeId = Integer.parseInt(req.getParameter("noticeId"));
+		}
+		int pageNum = 1;
+		String pageNumStr = req.getParameter("pageNum");
+		if (pageNumStr != null) {
+			pageNum = Integer.parseInt(pageNumStr);
+		}
 		try {
-			int noticeId = 0;
-			if (req.getParameter("noticeId") != null) {
-				noticeId = Integer.parseInt(req.getParameter("noticeId"));
-			}
 			if (noticeId == 0) {
 				resp.sendRedirect(req.getContextPath() + "/notice/notice");
 				throw new NoticeNotFoundException("올바르지 않은 게시글 번호");
-			}
-			String pageNumStr = req.getParameter("pageNum");
-			int pageNum = 1;
-			if (pageNumStr != null) {
-				pageNum = Integer.parseInt(pageNumStr);
 			}
 			if (pageNum == 0) {
 				throw new PageNotFoundException("페이지를 찾을 수 없습니다.");
@@ -52,7 +53,7 @@ public class NoticeCommentListHandler implements CommandHandler {
 		} catch (NoticeNotFoundException e) {
 			e.printStackTrace();
 			error.put("errorCode", "NoticeNotFound");
-			error.put("from", "/notice/notice");
+			error.put("from", "/notice/readNotice?noticeId=" + noticeId + "&pageNum=" + pageNum);
 		} catch (PageNotFoundException e) {
 			e.printStackTrace();
 			error.put("errorCode", "PageNotFound");

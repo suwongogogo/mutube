@@ -6,11 +6,12 @@ import java.sql.SQLException;
 import Connection.ConnectionProvider;
 import Notice.DAO.NoticeCommentDAO;
 import Notice.DAO.NoticeDAO;
+import Notice.Exception.NoticeNotFoundException;
 import Notice.Model.Notice;
 import Notice.Model.NoticeComment;
 import Post.DAO.PostCommentDAO;
 import Post.DAO.PostDAO;
-import Post.Exception.FailWriteCommentException;
+import Post.Exception.WriteCommentFailException;
 import Post.Exception.PostNotFoundException;
 import Post.Model.Post;
 import Post.Model.PostComment;
@@ -26,7 +27,7 @@ public class WriteNoticeCommentService {
 		return instance;
 	}
 
-	public void writeNoticeComment(NoticeComment noticeComment) throws FailWriteCommentException, SQLException {
+	public void writeNoticeComment(NoticeComment noticeComment) throws WriteCommentFailException, SQLException {
 		NoticeCommentDAO noticeCommentDAO = NoticeCommentDAO.getInstance();
 		try (Connection conn = ConnectionProvider.getConnection()) {
 			try {
@@ -34,7 +35,7 @@ public class WriteNoticeCommentService {
 
 				if (savedNoticeComment == null) {
 					conn.rollback();
-					throw new FailWriteCommentException("댓글 작성 실패");
+					throw new WriteCommentFailException("댓글 작성 실패");
 				}
 			} catch (SQLException e) {
 				e.printStackTrace();
@@ -43,14 +44,14 @@ public class WriteNoticeCommentService {
 		}
 	}
 
-	public Notice selectById(int noticeId) throws SQLException {
+	public Notice selectById(int noticeId) throws SQLException, NoticeNotFoundException {
 		NoticeDAO noticeDAO = NoticeDAO.getInstance();
 		try (Connection conn = ConnectionProvider.getConnection()) {
 			try {
 			Notice notice = noticeDAO.selectById(conn, noticeId);
 			if (notice == null) {
 				conn.rollback();
-				throw new PostNotFoundException("게시글을 찾을 수 없음.");
+				throw new NoticeNotFoundException("게시글을 찾을 수 없음.");
 			}
 
 			return notice;

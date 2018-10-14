@@ -1,5 +1,6 @@
 package Notice.Handler;
 
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
@@ -14,7 +15,7 @@ import Notice.Service.NoticeListService;
 
 public class NoticeListHandler implements CommandHandler {
 	@Override
-	public String process(HttpServletRequest req, HttpServletResponse resp) throws Exception {
+	public String process(HttpServletRequest req, HttpServletResponse resp) throws IOException {
 		Map<String, String> error = new HashMap<String, String>();
 		req.setAttribute("error", error);
 

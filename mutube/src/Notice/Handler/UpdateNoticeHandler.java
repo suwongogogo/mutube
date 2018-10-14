@@ -19,6 +19,7 @@ import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
 import Handler.CommandHandler;
+import Notice.Exception.NoticeNotFoundException;
 import Notice.Model.Notice;
 import Notice.Model.NoticeContent;
 import Notice.Model.NoticeData;
@@ -37,7 +38,7 @@ public class UpdateNoticeHandler implements CommandHandler {
 	private static final String FORM_VIEW = "/WEB-INF/view/notice/updateNoticeForm.jsp";
 
 	@Override
-	public String process(HttpServletRequest req, HttpServletResponse resp) throws Exception {
+	public String process(HttpServletRequest req, HttpServletResponse resp) throws IOException {
 		if (req.getMethod().equalsIgnoreCase("GET")) {
 			return processForm(req, resp);
 		} else if (req.getMethod().equalsIgnoreCase("Post")) {
@@ -49,7 +50,7 @@ public class UpdateNoticeHandler implements CommandHandler {
 		}
 	}
 
-	private String processForm(HttpServletRequest req, HttpServletResponse resp) throws SQLException, IOException {
+	private String processForm(HttpServletRequest req, HttpServletResponse resp) throws IOException {
 		User loginUser = (User) req.getSession().getAttribute("loginUser");
 		Map<String, String> error = new HashMap<String, String>();
 		try {
@@ -62,19 +63,23 @@ public class UpdateNoticeHandler implements CommandHandler {
 
 		} catch (NoPermissionException e) {
 			e.printStackTrace();
-			error.put("errorCode", "UserNotFound");
+			error.put("errorCode", "NoPermission");
 			error.put("from", "/notice/notice");
 		} catch (UserNotFoundException e) {
 			e.printStackTrace();
-			error.put("errorCode", "NoPermission");
+			error.put("errorCode", "UserNotFound");
 			error.put("from", "/notice/notice");
 		}
 		int noticeId = Integer.parseInt(req.getParameter("noticeId"));
-
-		UpdateNoticeService updatePostService = UpdateNoticeService.getInstance();
-		NoticeData noticeData = updatePostService.getNotice(noticeId);
-		req.setAttribute("noticeData", noticeData);
-
+		try {
+			UpdateNoticeService updatePostService = UpdateNoticeService.getInstance();
+			NoticeData noticeData = updatePostService.getNotice(noticeId);
+			req.setAttribute("noticeData", noticeData);
+		}catch(SQLException e) {
+			e.printStackTrace();
+			error.put("errorCode", "dbError");
+			error.put("from", "/notice/notice");
+		}
 		return FORM_VIEW;
 	}
 
@@ -92,6 +97,12 @@ public class UpdateNoticeHandler implements CommandHandler {
 		ArrayList<String> imageNames = new ArrayList<>();
 		Map<String, String> params = new HashMap<>();
 
+		int noticeId = 0;
+
+		if (params.get("noticeId") != null) {
+			noticeId = Integer.parseInt(params.get("noticeId"));
+		}
+		
 		try {
 			if (ServletFileUpload.isMultipartContent(req)) {
 				try {
@@ -123,14 +134,9 @@ public class UpdateNoticeHandler implements CommandHandler {
 				}
 			}
 
-			int noticeId = 0;
-
-			if (params.get("noticeId") != null) {
-				noticeId = Integer.parseInt(params.get("noticeId"));
-			}
 			System.out.println(noticeId);
 			if (noticeId == 0) {
-				throw new PostNotFoundException("올바르지 않은 게시글 번호");
+				throw new NoticeNotFoundException("올바르지 않은 게시글 번호");
 			}
 
 			Notice notice = new Notice(noticeId, new Writer(loginUser.getUserId(), loginUser.getName()),
@@ -152,18 +158,18 @@ public class UpdateNoticeHandler implements CommandHandler {
 
 			resp.sendRedirect(req.getContextPath() + "/notice/readNotice?noticeId=" + noticeId);
 
-		} catch (PostNotFoundException e) {
+		} catch (NoticeNotFoundException e) {
 			e.printStackTrace();
-			error.put("errorCode", "PostNotFound");
-			error.put("from", "/notice/readNotice");
+			error.put("errorCode", "NoticeNotFound");
+			error.put("from", "/notice/readNotice?noticeId=" + noticeId);
 		} catch (UpdatePostFailExcpetion e) {
 			e.printStackTrace();
-			error.put("errorCode", "UpdatePostFail");
-			error.put("from", "/notice/readNotice?");
+			error.put("errorCode", "UpdateNoticeFail");
+			error.put("from", "/notice/readNotice?noticeId=" + noticeId);
 		} catch (SQLException e) {
 			e.printStackTrace();
 			error.put("errorCode", "dbError");
-			error.put("from", "/notice/notice");
+			error.put("from", "/notice/readNotice?noticeId=" + noticeId);
 		}
 		return null;
 	}

@@ -19,7 +19,7 @@ public class DeleteNoticeCommentService {
 		return instance;
 	}
 
-	public void deleteNoticeComment(int commentId) throws CommentNotFoundException, SQLException {
+	public int deleteNoticeComment(int commentId) throws CommentNotFoundException, SQLException {
 		try (Connection conn = ConnectionProvider.getConnection()) {
 
 			System.out.println(commentId);
@@ -30,6 +30,8 @@ public class DeleteNoticeCommentService {
 				conn.rollback();
 				throw new CommentNotFoundException("댓글을 찾을 수 없음");
 			}
+			
+			return count;
 		}
 	}
 }
