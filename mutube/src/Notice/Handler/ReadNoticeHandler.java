@@ -40,7 +40,6 @@ public class ReadNoticeHandler implements CommandHandler {
 			if (pageNum == 0) {
 				throw new PageNotFoundException("페이지를 찾을 수 없습니다.");
 			}
-
 			ReadNoticeService readNoticeService = ReadNoticeService.getInstance();
 			NoticeData noticeData = readNoticeService.getNotice(noticeId);
 
