@@ -94,3 +94,7 @@ table {
     font-weight: bold;
     margin: 10px 0px 15px 209px;
 }
+.title-container {
+	display: block;
+	width: 100%;
+}
