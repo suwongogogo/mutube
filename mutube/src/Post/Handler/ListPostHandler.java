@@ -29,7 +29,7 @@ public class ListPostHandler implements Handler.CommandHandler {
 			PostPage postPage = postService.getPostPage(pageNum);
 
 			req.setAttribute("postPage", postPage);
-
+ 
 			return "/WEB-INF/view/post/list.jsp";
 		} catch (SQLException e) {
 			error.put("errorCode", "dbError");
