@@ -114,15 +114,15 @@ public class FindPasswordHandler implements CommandHandler {
 		} catch (UserNotFoundException e) {
 			e.printStackTrace();
 			error.put("errorCode", "userNotFound");
-			error.put("from", "user/findPassword");
+			error.put("from", "/user/findPassword");
 		} catch (MessagingException e) {
 			e.printStackTrace();
 			error.put("errorCode", "message");
-			error.put("from", "user/findPassword");
+			error.put("from", "/user/findPassword");
 		} catch (SQLException e) {
 			e.printStackTrace();
 			error.put("errorCode", "dbError");
-			error.put("from", "user/findPassword");
+			error.put("from", "/user/findPassword");
 		}
 
 		return ERROR_PAGE;
