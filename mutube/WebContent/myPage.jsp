@@ -37,7 +37,9 @@
 							<button class="submit input">회원 수정</button>
 						</a>
 						<span onclick="userOut()">
-							<button class="submit input">회원 탈퇴</button>
+							<a href="user/delete">
+								<button class="submit input">회원 탈퇴</button>
+							</a>
 						</span>
 						<a href="/mutube/user/changePassword?userId=${loginUser.userId }">
 							<button class="submit input">비밀번호 수정</button>
