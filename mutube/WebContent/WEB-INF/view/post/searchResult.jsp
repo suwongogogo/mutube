@@ -53,11 +53,11 @@
 							</tr>
 						</c:if>
 						<c:forEach var="post" items="${postPage.postList }">
-							<tr>
+							<tr class="user-board">
 								<td class="tc height">${post.postId }</td>
 								<td></td>
 								<td class="pointer height"><a
-									href="view?no=${post.postId }&pageNum=${postPage.currentPage}">${post.title }</a></td>
+									href="view?no=${post.postId }&pageNum=${postPage.currentPage}" class="title-container">${post.title }</a></td>
 								<td></td>
 								<td class="tc height">${post.writer.name }</td>
 								<td></td>
@@ -74,17 +74,17 @@
 							<tr class="tc">
 								<td colspan="14" class="line-top"><c:if
 										test="${postPage.startPage > 5}">
-										<a href="/mutube/post/search?keyword=${keyword }&pageNum=${postPage.startPage-5 }"><span
-											class="arrow">◀</span><span class="prev">이전</span></a>
+										<a href="/mutube/post/search?keyword=${keyword }&pageNum=${postPage.startPage-5 }">
+										<span class="prev">이전</span></a>
 									</c:if> <c:forEach var="pageNum" begin="${postPage.startPage }"
 										end="${postPage.endPage }">
 										<div class="inline pagination-border">
 											<a href="/mutube/post/search?keyword=${keyword }&pageNum=${pageNum }"
 												class="pagenation">${pageNum }</a>
 										</div>
-									</c:forEach> <c:if test="${postPage.endPage < postPage.total }">
+									</c:forEach> <c:if test="${postPage.endPage > postPage.total }">
 										<a href="/mutube/post/search?keyword=${keyword }&pageNum=${postPage.startPage+5 }"><span
-											class="next">다음</span><span class="arrow">▶</span></a>
+											class="next">다음</span></a>
 									</c:if></td>
 							</tr>
 						</c:if>

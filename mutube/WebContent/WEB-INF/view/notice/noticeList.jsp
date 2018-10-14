@@ -40,7 +40,7 @@
 							<tr class="list-tr">
 								<td class="tc">${notice.noticeId }</td>
 								<td></td>
-								<td class="pointer"><a href="readNotice?noticeId=${notice.noticeId }&pageNum=${noticePage.currentPage}">${notice.title }</a></td>
+								<td class="pointer"><a href="readNotice?noticeId=${notice.noticeId }&pageNum=${noticePage.currentPage}" class="title-container">${notice.title }</a></td>
 								<td></td>
 								<td class="tc">${notice.writer.name }</td>
 								<td></td>
