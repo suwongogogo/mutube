@@ -74,11 +74,11 @@ public class FindLoginIdHandler implements CommandHandler {
 		} catch (UserNotFoundException e) {
 			e.printStackTrace();
 			error.put("errorCode", "userNotFound");
-			error.put("from", "user/findLoginId");
+			error.put("from", "/user/findLoginId");
 		} catch (SQLException e) {
 			e.printStackTrace();
 			error.put("errorCode", "dbError");
-			error.put("from", "user/findLoginId");
+			error.put("from", "/user/findLoginId");
 		}
 	
 		return ERROR_PAGE;
