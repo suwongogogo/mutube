@@ -15,7 +15,7 @@ import Post.Service.CommentListService;
 import Post.Service.ReadPostService;
 
 public class ReadPostHandler implements CommandHandler {
-
+	private static final String ERROR_PAGE = "/error.jsp";
 	@Override
 	public String process(HttpServletRequest req, HttpServletResponse resp) throws Exception {
 		Map<String, String> error = new HashMap<String, String>();
@@ -57,10 +57,12 @@ public class ReadPostHandler implements CommandHandler {
 			e.printStackTrace();
 			error.put("errorCode", "PostNotFound");
 			error.put("from", "/post/readPost");
+			return ERROR_PAGE;
 		}catch (SQLException e) {
 			e.printStackTrace();
 			error.put("errorCode", "dbError");
 			error.put("from", "/post/readPost");
+			return ERROR_PAGE;
 		}
 		return null;
 	}

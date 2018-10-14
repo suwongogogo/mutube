@@ -15,7 +15,7 @@ import Post.Model.PostPage;
 import Post.Service.SearchPostService;
 
 public class SearchPostHandler implements CommandHandler {
-
+	private static final String ERROR_PAGE = "/error.jsp";
 	@Override
 	public String process(HttpServletRequest req, HttpServletResponse resp) throws Exception {
 		Map<String, String> error = new HashMap<String, String>();
@@ -88,9 +88,11 @@ public class SearchPostHandler implements CommandHandler {
 		} catch (PostNotFoundException e) {
 			error.put("errorCode", "PostNotFound");
 			error.put("from", "/post/searchResult");
+			return ERROR_PAGE;
 		}catch (SQLException e) {
 			error.put("errorCode", "dbError");
 			error.put("from", "/post/searchResult");
+			return ERROR_PAGE;
 		}
 		return null;
 	}

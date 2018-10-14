@@ -34,7 +34,7 @@ import User.Model.User;
 public class UpdatePostHandler implements Handler.CommandHandler {
 
 	private static final String FORM_VIEW = "/WEB-INF/view/post/updatePostForm.jsp";
-
+	private static final String ERROR_PAGE = "/error.jsp";
 	@Override
 	public String process(HttpServletRequest req, HttpServletResponse resp) throws Exception {
 		if (req.getMethod().equalsIgnoreCase("GET")) {
@@ -147,13 +147,16 @@ public class UpdatePostHandler implements Handler.CommandHandler {
 			e.printStackTrace();
 			error.put("errorCode", "PostNotFound");
 			error.put("from", "/post/view?no=" + postId);
+			return ERROR_PAGE;
 		} catch (UpdatePostFailExcpetion e) {
 			e.printStackTrace();
 			error.put("errorCode", "UpdatePostFail");
 			error.put("from", "/post/view?no=" + postId);
+			return ERROR_PAGE;
 		} catch (SQLException e) {
 			error.put("errorCode", "dbError");
 			error.put("from", "/post/view?no=" + postId);
+			return ERROR_PAGE;
 		}
 		return null;
 	}

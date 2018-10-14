@@ -11,10 +11,10 @@ import javax.servlet.http.HttpServletResponse;
 import Handler.CommandHandler;
 import Notice.Exception.NoticeNotFoundException;
 import Notice.Exception.ValueIsEmptyException;
+import Notice.Exception.WriteNoticeCommentFailException;
 import Notice.Model.Notice;
 import Notice.Model.NoticeComment;
 import Notice.Service.WriteNoticeCommentService;
-import Post.Exception.WriteCommentFailException;
 import Post.Exception.PostNotFoundException;
 import Post.Model.Post;
 import Post.Model.PostComment;
@@ -23,6 +23,7 @@ import User.Exception.UserNotFoundException;
 import User.Model.User;
 
 public class WriteNoticeCommentHandler implements CommandHandler {
+	private static final String ERROR_PAGE = "/error.jsp";
 	@Override
 	public String process(HttpServletRequest req, HttpServletResponse resp) throws IOException {
 		Map<String, String> error = new HashMap<>();
@@ -67,26 +68,31 @@ public class WriteNoticeCommentHandler implements CommandHandler {
 
 			resp.sendRedirect(req.getContextPath() + "/notice/readNotice?noticeId=" + noticeId + "&pageNum=" + pageNum);
 
-		} catch (WriteCommentFailException e) {
+		} catch (WriteNoticeCommentFailException e) {
 			e.printStackTrace();
-			error.put("errorCode", "FailWriteComment");
+			error.put("errorCode", "WriteNoticeCommentFail");
 			error.put("from", "/notice/readNotice?noticeId=" + noticeId + "&pageNum=" + pageNum);
+			return ERROR_PAGE;
 		} catch (NoticeNotFoundException e) {
 			e.printStackTrace();
 			error.put("errorCode", "NoticeNotFound");
 			error.put("from", "/notice/readNotice?noticeId=" + noticeId + "&pageNum=" + pageNum);
+			return ERROR_PAGE;
 		} catch (UserNotFoundException e) {
 			e.printStackTrace();
 			error.put("errorCode", "UserNotFound");
 			error.put("from", "/notice/readNotice?noticeId=" + noticeId + "&pageNum=" + pageNum);
+			return ERROR_PAGE;
 		} catch (ValueIsEmptyException e) {
 			e.printStackTrace();
 			error.put("errorCode", "ValueIsEmpty");
 			error.put("from", "/notice/readNotice?noticeId=" + noticeId + "&pageNum=" + pageNum);
+			return ERROR_PAGE;
 		} catch (SQLException e) {
 			e.printStackTrace();
 			error.put("errorCode", "dbError");
 			error.put("from", "/notice/notice");
+			return ERROR_PAGE;
 		}
 		return null;
 	}

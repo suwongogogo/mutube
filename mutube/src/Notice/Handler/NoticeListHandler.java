@@ -15,6 +15,7 @@ import Notice.Model.NoticePage;
 import Notice.Service.NoticeListService;
 
 public class NoticeListHandler implements CommandHandler {
+	private static final String ERROR_PAGE = "/error.jsp";
 	@Override
 	public String process(HttpServletRequest req, HttpServletResponse resp) throws IOException {
 		Map<String, String> error = new HashMap<String, String>();
@@ -38,14 +39,17 @@ public class NoticeListHandler implements CommandHandler {
 			e.printStackTrace();
 			error.put("errorCode", "PageNotFound");
 			error.put("from", "notice/noticeList");
+			return ERROR_PAGE;
 		} catch (SQLException e) {
 			e.printStackTrace();
 			error.put("errorCode", "dbError");
 			error.put("from", "/notice/notice");
+			return ERROR_PAGE;
 		} catch (NothingException e) {
 			e.printStackTrace();
 			error.put("errorCode", "Nothing");
 			error.put("from", "/notice/notice");
+			return ERROR_PAGE;
 		}
 		return null;
 	}

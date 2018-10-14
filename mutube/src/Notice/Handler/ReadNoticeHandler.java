@@ -19,7 +19,7 @@ import Post.Model.CommentPage;
 import Post.Service.CommentListService;
 
 public class ReadNoticeHandler implements CommandHandler {
-
+	private static final String ERROR_PAGE = "/error.jsp";
 	@Override
 	public String process(HttpServletRequest req, HttpServletResponse resp) throws IOException {
 		Map<String, String> error = new HashMap<String, String>();
@@ -58,14 +58,17 @@ public class ReadNoticeHandler implements CommandHandler {
 			e.printStackTrace();
 			error.put("errorCode", "NoticeNotFound");
 			error.put("from", "/notice/notice");
+			return ERROR_PAGE;
 		} catch (SQLException e) {
 			e.printStackTrace();
 			error.put("errorCode", "dbError");
 			error.put("from", "/notice/notice");
+			return ERROR_PAGE;
 		} catch (PageNotFoundException e) {
 			e.printStackTrace();
 			error.put("errorCode", "PageNotFound");
 			error.put("from", "/notice/notice");
+			return ERROR_PAGE;
 		}
 		return null;
 	}

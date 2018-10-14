@@ -15,6 +15,7 @@ import Post.Exception.CommentNotFoundException;
 import Post.Service.DeleteCommentService;
 
 public class DeleteNoticeCommentHandler implements CommandHandler {
+	private static final String ERROR_PAGE = "/error.jsp";
 	@Override
 	public String process(HttpServletRequest req, HttpServletResponse resp) throws IOException{
 		int commentId = 0;
@@ -47,14 +48,17 @@ public class DeleteNoticeCommentHandler implements CommandHandler {
 			e.printStackTrace();
 			error.put("errorCode", "CommentNotFound");
 			error.put("from", "/notice/readNotice?noticeId=" + noticeId + "&pageNum=" + pageNum);
+			return ERROR_PAGE;
 		} catch (SQLException e) {
 			e.printStackTrace();
 			error.put("errorCode", "dbError");
 			error.put("from", "/notice/readNotice?noticeId=" + noticeId + "&pageNum=" + pageNum);
+			return ERROR_PAGE;
 		} catch (DeleteNoticeCommentException e) {
 			e.printStackTrace();
 			error.put("errorCode", "DeleteNoticeComment");
 			error.put("from", "/notice/readNotice?noticeId=" + noticeId + "&pageNum=" + pageNum);
+			return ERROR_PAGE;
 		}
 		return null;
 	}

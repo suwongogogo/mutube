@@ -31,7 +31,7 @@ import User.Model.User;
 
 public class WriteNoticeHandler implements CommandHandler{
 	private static final String FORM_VIEW = "/WEB-INF/view/notice/writeNoticeForm.jsp";
-
+	private static final String ERROR_PAGE = "/error.jsp";
 	public String process(HttpServletRequest req, HttpServletResponse resp) throws IOException {
 		if (req.getMethod().equalsIgnoreCase("GET")) {
 			return processForm(req, resp);
@@ -56,11 +56,11 @@ public class WriteNoticeHandler implements CommandHandler{
 		}catch(NoPermissionException e) {
 			e.printStackTrace();
 			req.setAttribute("errorCode", "UserNotFound");
-			return "error.jsp";
+			return ERROR_PAGE;
 		}catch(UserNotFoundException e) {
 			e.printStackTrace();
 			req.setAttribute("errorCode", "NoPermisson");
-			return "error.jsp";
+			return ERROR_PAGE;
 		}
 		
 		return FORM_VIEW;
@@ -157,9 +157,11 @@ public class WriteNoticeHandler implements CommandHandler{
 			e.printStackTrace();
 			error.put("errorCode", "WriteNoticeFail");
 			error.put("from", "/notice/notice");
+			return ERROR_PAGE;
 		} catch (SQLException e) {
 			error.put("errorCode", "dbError");
 			error.put("from", "/notice/notice");
+			return ERROR_PAGE;
 		}
 
 		return null;

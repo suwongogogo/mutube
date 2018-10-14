@@ -40,7 +40,7 @@ import User.Model.User;
 
 public class WritePostHandler implements CommandHandler {
 	private static final String FORM_VIEW = "/WEB-INF/view/post/writePostForm.jsp";
-
+	private static final String ERROR_PAGE = "/error.jsp";
 	public String process(HttpServletRequest req, HttpServletResponse resp) throws IOException {
 		if (req.getMethod().equalsIgnoreCase("GET")) {
 			return processForm(req, resp);
@@ -144,9 +144,11 @@ public class WritePostHandler implements CommandHandler {
 			e.printStackTrace();
 			error.put("errorCode", "WritePostFail");
 			error.put("from", "/post/list");
+			return ERROR_PAGE;
 		} catch (SQLException e) {
 			error.put("errorCode", "dbError");
 			error.put("from", "/post/list");
+			return ERROR_PAGE;
 		}
 
 		return null;

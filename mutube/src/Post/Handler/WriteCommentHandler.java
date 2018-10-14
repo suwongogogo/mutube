@@ -21,7 +21,7 @@ import User.Exception.UserNotFoundException;
 import User.Model.User;
 
 public class WriteCommentHandler implements CommandHandler {
-
+	private static final String ERROR_PAGE = "/error.jsp";
 	public String process(HttpServletRequest req, HttpServletResponse resp) throws IOException {
 		WriteCommentService writeComment = WriteCommentService.getInstance();
 		int postId = Integer.parseInt(req.getParameter("postId"));
@@ -50,18 +50,22 @@ public class WriteCommentHandler implements CommandHandler {
 			e.printStackTrace();
 			error.put("errorCode", "WriteCommentFail");
 			error.put("from", "/post/view?no="+postId+"&pageNum="+pageNum);
+			return ERROR_PAGE;
 		}catch(PostNotFoundException e) {
 			e.printStackTrace();
 			error.put("errorCode", "PostNotFound");
 			error.put("from", "/post/view?no="+postId+"&pageNum="+pageNum);
+			return ERROR_PAGE;
 		}catch(UserNotFoundException e) {
 			e.printStackTrace();
 			error.put("errorCode", "UserNotFound");
 			error.put("from", "/post/view?no="+postId+"&pageNum="+pageNum);
+			return ERROR_PAGE;
 		}catch (SQLException e) {
 			e.printStackTrace();
 			error.put("errorCode", "dbError");
 			error.put("from", "/post/view?no="+postId+"&pageNum="+pageNum);
+			return ERROR_PAGE;
 		}
 		return null;
 	}

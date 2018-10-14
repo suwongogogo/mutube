@@ -7,6 +7,7 @@ import Connection.ConnectionProvider;
 import Notice.DAO.NoticeCommentDAO;
 import Notice.DAO.NoticeDAO;
 import Notice.Exception.NoticeNotFoundException;
+import Notice.Exception.WriteNoticeCommentFailException;
 import Notice.Model.Notice;
 import Notice.Model.NoticeComment;
 import Post.DAO.PostCommentDAO;
@@ -27,7 +28,7 @@ public class WriteNoticeCommentService {
 		return instance;
 	}
 
-	public void writeNoticeComment(NoticeComment noticeComment) throws WriteCommentFailException, SQLException {
+	public void writeNoticeComment(NoticeComment noticeComment) throws WriteNoticeCommentFailException, SQLException {
 		NoticeCommentDAO noticeCommentDAO = NoticeCommentDAO.getInstance();
 		try (Connection conn = ConnectionProvider.getConnection()) {
 			try {
@@ -35,7 +36,7 @@ public class WriteNoticeCommentService {
 
 				if (savedNoticeComment == null) {
 					conn.rollback();
-					throw new WriteCommentFailException("댓글 작성 실패");
+					throw new WriteNoticeCommentFailException("댓글 작성 실패");
 				}
 			} catch (SQLException e) {
 				e.printStackTrace();

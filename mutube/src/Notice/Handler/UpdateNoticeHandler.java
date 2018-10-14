@@ -36,7 +36,7 @@ import User.Model.User;
 
 public class UpdateNoticeHandler implements CommandHandler {
 	private static final String FORM_VIEW = "/WEB-INF/view/notice/updateNoticeForm.jsp";
-
+	private static final String ERROR_PAGE = "/error.jsp";
 	@Override
 	public String process(HttpServletRequest req, HttpServletResponse resp) throws IOException {
 		if (req.getMethod().equalsIgnoreCase("GET")) {
@@ -65,10 +65,12 @@ public class UpdateNoticeHandler implements CommandHandler {
 			e.printStackTrace();
 			error.put("errorCode", "NoPermission");
 			error.put("from", "/notice/notice");
+			return ERROR_PAGE;
 		} catch (UserNotFoundException e) {
 			e.printStackTrace();
 			error.put("errorCode", "UserNotFound");
 			error.put("from", "/notice/notice");
+			return ERROR_PAGE;
 		}
 		int noticeId = Integer.parseInt(req.getParameter("noticeId"));
 		try {
@@ -79,6 +81,7 @@ public class UpdateNoticeHandler implements CommandHandler {
 			e.printStackTrace();
 			error.put("errorCode", "dbError");
 			error.put("from", "/notice/notice");
+			return ERROR_PAGE;
 		}
 		return FORM_VIEW;
 	}
@@ -162,14 +165,17 @@ public class UpdateNoticeHandler implements CommandHandler {
 			e.printStackTrace();
 			error.put("errorCode", "NoticeNotFound");
 			error.put("from", "/notice/readNotice?noticeId=" + noticeId);
+			return ERROR_PAGE;
 		} catch (UpdatePostFailExcpetion e) {
 			e.printStackTrace();
 			error.put("errorCode", "UpdateNoticeFail");
 			error.put("from", "/notice/readNotice?noticeId=" + noticeId);
+			return ERROR_PAGE;
 		} catch (SQLException e) {
 			e.printStackTrace();
 			error.put("errorCode", "dbError");
 			error.put("from", "/notice/readNotice?noticeId=" + noticeId);
+			return ERROR_PAGE;
 		}
 		return null;
 	}

@@ -16,7 +16,7 @@ import Post.Service.DeletePostService;
 public class DeletePostHandler implements CommandHandler {
 
 	private static final String FORM_VIEW = "/WEB-INF/view/post/deletePostForm.jsp";
-
+	private static final String ERROR_PAGE = "/error.jsp";
 	@Override
 	public String process(HttpServletRequest req, HttpServletResponse resp) throws Exception {
 		Map<String, String> error = new HashMap<String, String>();
@@ -43,14 +43,17 @@ public class DeletePostHandler implements CommandHandler {
 			e.printStackTrace();
 			error.put("errorCode", "PostNotFound");
 			error.put("from", "/post/list");
+			return ERROR_PAGE;
 		} catch (SQLException e) {
 			e.printStackTrace();
 			error.put("errorCode", "dbError");
 			error.put("from", "/post/list");
+			return ERROR_PAGE;
 		} catch(DeletePostFailException e) {
 			e.printStackTrace();
 			error.put("errorCode", "DeletePostFail");
 			error.put("from", "/post/list");
+			return ERROR_PAGE;
 		}
 		return null;
 	}

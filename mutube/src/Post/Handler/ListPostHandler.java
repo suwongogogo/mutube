@@ -13,7 +13,7 @@ import Post.Model.PostPage;
 import Post.Service.ListPostService;
 
 public class ListPostHandler implements Handler.CommandHandler {
-
+	private static final String ERROR_PAGE = "/error.jsp";
 	// 페이지 번호를 파라미터로 받고 서비스를 이용해서 페이지 목록을 받아옴
 	@Override
 	public String process(HttpServletRequest req, HttpServletResponse resp) throws Exception {
@@ -35,6 +35,7 @@ public class ListPostHandler implements Handler.CommandHandler {
 		} catch (SQLException e) {
 			error.put("errorCode", "dbError");
 			error.put("from", "/post/list");
+			return ERROR_PAGE;
 		}
 		return null;
 	}
