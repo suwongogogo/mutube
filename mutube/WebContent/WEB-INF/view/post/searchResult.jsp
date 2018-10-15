@@ -79,8 +79,14 @@
 									</c:if> <c:forEach var="pageNum" begin="${postPage.startPage }"
 										end="${postPage.endPage }">
 										<div class="inline pagination-border">
-											<a href="/mutube/post/search?keyword=${param.keyword }&pageNum=${pageNum }&category=${param.category}"
-												class="pagenation">${pageNum }</a>
+											<c:if test="${pageNum == param.pageNum }">
+												<a href="/mutube/post/search?keyword=${param.keyword }&pageNum=${pageNum }&category=${param.category}"
+													style="color: blue;" class="pagenation">${pageNum }</a>
+											</c:if>
+											<c:if test="${pageNum != param.pageNum }">
+												<a href="/mutube/post/search?keyword=${param.keyword }&pageNum=${pageNum }&category=${param.category}"
+													class="pagenation">${pageNum }</a>
+											</c:if>
 										</div>
 									</c:forEach> <c:if test="${postPage.endPage > postPage.total }">
 										<a href="/mutube/post/search?keyword=${param.keyword }&pageNum=${postPage.startPage+5 }&category=${param.category}"><span

@@ -65,7 +65,12 @@
 									</c:if>
 									<c:forEach var="pageNum" begin="${noticePage.startPage }" end="${noticePage.endPage }">
 										<div class="inline pagination-border">
-											<a href="notice?pageNum=${pageNum }" class="pagenation">${pageNum }</a>
+											<c:if test="${pageNum == param.pageNum }">
+												<a href="notice?pageNum=${pageNum }" class="pagenation" style="color: blue;">${pageNum }</a>
+											</c:if>
+											<c:if test="${pageNum != param.pageNum }">
+												<a href="notice?pageNum=${pageNum }" class="pagenation">${pageNum }</a>
+											</c:if>
 										</div>
 									</c:forEach>
 									<c:if test="${noticePage.endPage < noticePage.totalPages }">
