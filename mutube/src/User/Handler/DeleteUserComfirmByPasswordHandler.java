@@ -3,8 +3,7 @@ package User.Handler;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.HashMap;
-import java.util.Map;
-
+import java.util.Map;import javax.security.auth.callback.ConfirmationCallback;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import com.mysql.cj.jdbc.exceptions.SQLError;
@@ -58,15 +57,17 @@ public class DeleteUserComfirmByPasswordHandler implements CommandHandler {
 			DeleteUserComfirmByPasswordService deleteUserService = DeleteUserComfirmByPasswordService.getInstance();
 			User comfirmUser = deleteUserService.getUser(userId);
 
+			System.out.println("비번 " + comfirmUser.getPassword());
+			
 			if (!comfirmUser.getPassword().equals(comfirmPassword)) {
-				throw new ComfirmPasswordNotMatchException("비밀번호 ");
+				throw new ComfirmPasswordNotMatchException("비밀번호가 일치하지 않습니다. ");
 			}
 			
 			if (userId == 0) {
 				throw new UserNotFoundException("유저를 찾을 수 없습니다.");
 			}
 
-			resp.sendRedirect(req.getContextPath() + "/user/delete");
+			return "/user/delete";
 
 		} catch (SQLException e) {
 			e.printStackTrace();
