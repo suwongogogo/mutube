@@ -41,6 +41,7 @@ import User.Model.User;
 public class WritePostHandler implements CommandHandler {
 	private static final String FORM_VIEW = "/WEB-INF/view/post/writePostForm.jsp";
 	private static final String ERROR_PAGE = "/error.jsp";
+	private static final String SUCCESS_PAGE = "/success.jsp";
 	public String process(HttpServletRequest req, HttpServletResponse resp) throws IOException {
 		if (req.getMethod().equalsIgnoreCase("GET")) {
 			return processForm(req, resp);
@@ -138,7 +139,13 @@ public class WritePostHandler implements CommandHandler {
 		int postId = 0;
 		try {
 			postId = writePostService.write(writeReq);
-			resp.sendRedirect(req.getContextPath() + "/post/list");
+		
+			Map<String, String> success = new HashMap<String, String>();
+			req.setAttribute("success", success);
+
+			success.put("successCode", "writePost");
+			success.put("from", "/post/view?no="+postId);
+			return SUCCESS_PAGE;
 
 		} catch (WritePostFailException e) {
 			e.printStackTrace();
@@ -151,7 +158,6 @@ public class WritePostHandler implements CommandHandler {
 			return ERROR_PAGE;
 		}
 
-		return null;
 	}
 
 }

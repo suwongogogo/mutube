@@ -15,8 +15,8 @@ import Post.Service.DeletePostService;
 
 public class DeletePostHandler implements CommandHandler {
 
-	private static final String FORM_VIEW = "/WEB-INF/view/post/deletePostForm.jsp";
 	private static final String ERROR_PAGE = "/error.jsp";
+	private static final String SUCCESS_PAGE = "/success.jsp";
 	@Override
 	public String process(HttpServletRequest req, HttpServletResponse resp) throws Exception {
 		Map<String, String> error = new HashMap<String, String>();
@@ -37,7 +37,12 @@ public class DeletePostHandler implements CommandHandler {
 				throw new DeletePostFailException("게시글 삭제 실패");
 			}
 			
-			resp.sendRedirect(req.getContextPath() + "/post/list");
+			Map<String, String> success = new HashMap<String, String>();
+			req.setAttribute("success", success);
+
+			success.put("successCode", "deletePost");
+			success.put("from", "/post/list");
+			return SUCCESS_PAGE;
 
 		} catch (PostNotFoundException e) {
 			e.printStackTrace();
@@ -55,7 +60,6 @@ public class DeletePostHandler implements CommandHandler {
 			error.put("from", "/post/list");
 			return ERROR_PAGE;
 		}
-		return null;
 	}
 
 }

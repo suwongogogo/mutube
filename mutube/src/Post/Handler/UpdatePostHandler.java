@@ -122,6 +122,7 @@ public class UpdatePostHandler implements Handler.CommandHandler {
 				pageNum = Integer.parseInt(params.get("pageNum"));
 			}
 			System.out.println(postId);
+
 			
 			if (postId == 0) {
 				throw new PostNotFoundException("올바르지 않은 게시글 번호");
@@ -146,6 +147,12 @@ public class UpdatePostHandler implements Handler.CommandHandler {
 			updatePostService.update(postData);
 
 			resp.sendRedirect(req.getContextPath() + "/post/view?no=" + postId+"&pageNum="+pageNum);
+			Map<String, String> success = new HashMap<String, String>();
+			req.setAttribute("success", success);
+
+			success.put("successCode", "updatePost");
+			success.put("from", "/post/view?postId=" + postId);
+			return SUCCESS_PAGE;
 			
 		} catch (PostNotFoundException e) {
 			e.printStackTrace();

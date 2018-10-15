@@ -61,6 +61,7 @@ public class DeleteUserComfirmByPasswordHandler implements CommandHandler {
 			if (!comfirmUser.getPassword().equals(comfirmPassword)) {
 				throw new ComfirmPasswordNotMatchException("비밀번호 ");
 			}
+			
 			if (userId == 0) {
 				throw new UserNotFoundException("유저를 찾을 수 없습니다.");
 			}

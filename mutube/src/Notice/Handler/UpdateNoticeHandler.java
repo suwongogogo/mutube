@@ -37,6 +37,8 @@ import User.Model.User;
 public class UpdateNoticeHandler implements CommandHandler {
 	private static final String FORM_VIEW = "/WEB-INF/view/notice/updateNoticeForm.jsp";
 	private static final String ERROR_PAGE = "/error.jsp";
+	private static final String SUCCESS_PAGE = "/success.jsp";
+	
 	@Override
 	public String process(HttpServletRequest req, HttpServletResponse resp) throws IOException {
 		if (req.getMethod().equalsIgnoreCase("GET")) {
@@ -159,7 +161,12 @@ public class UpdateNoticeHandler implements CommandHandler {
 			UpdateNoticeService updateNoticeService = UpdateNoticeService.getInstance();
 			updateNoticeService.update(noticeData);
 
-			resp.sendRedirect(req.getContextPath() + "/notice/readNotice?noticeId=" + noticeId);
+			Map<String, String> success = new HashMap<String, String>();
+			req.setAttribute("success", success);
+
+			success.put("successCode", "updatePost");
+			success.put("from", "/notice/readNotice?noticeId=" + noticeId);
+			return SUCCESS_PAGE;
 
 		} catch (NoticeNotFoundException e) {
 			e.printStackTrace();
@@ -177,6 +184,5 @@ public class UpdateNoticeHandler implements CommandHandler {
 			error.put("from", "/notice/readNotice?noticeId=" + noticeId);
 			return ERROR_PAGE;
 		}
-		return null;
 	}
 }
