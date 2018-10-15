@@ -154,15 +154,15 @@ public class WriteNoticeHandler implements CommandHandler{
 
 		// WriteService를 이용한다.
 		WriteNoticeService writeNoticeService = WriteNoticeService.getInstance();
-		int postId = 0;
+		int noticeId = 0;
 		try {
-			postId = writeNoticeService.writeNotice(writeReq);
+			noticeId = writeNoticeService.writeNotice(writeReq);
 			
 			Map<String, String> success = new HashMap<String, String>();
 			req.setAttribute("success", success);
 
 			success.put("successCode", "writePost");
-			success.put("from", "/notice/notice");
+			success.put("from", "/notice/readNotice?noticeId="+noticeId);
 			return SUCCESS_PAGE;
 
 		} catch(WriteNoticeFailException e) {
