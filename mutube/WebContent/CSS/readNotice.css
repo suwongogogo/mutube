@@ -104,6 +104,7 @@ a, a:hover {
 .comment {
 	width: 930px;
 	padding: 7px;
+	word-break: break-all;
 }
 .real-comment-tr {
 	border: 1px solid #cccccc;

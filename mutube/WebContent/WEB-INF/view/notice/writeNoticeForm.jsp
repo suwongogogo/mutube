@@ -7,6 +7,7 @@
 <link rel="stylesheet" type="text/css" media="screen"
 	href="/mutube/CSS/postForm.css" />
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<script src="/mutube/JavaScript/postForm.js"></script>
 <title>공지 쓰기</title>
 </head>
 <body>
@@ -16,7 +17,7 @@
 			<jsp:include page="/particular/nav.jsp"></jsp:include>
 			<div class="postForm-container">
 				<div class="title-container">
-					<form action="writeNotice" method="post" enctype="multipart/form-data">
+					<form action="writeNotice" method="post" enctype="multipart/form-data" id="form" onsubmit="return false;">
 						<div class="title-form">
 							<p class="write-title">제목</p>
 							<input class="input" name="title" type="text">
@@ -40,7 +41,7 @@
 							<textarea name="content" class="textarea"></textarea>
 						</div>
 						<div class="button-container">
-							<input type="submit" value="글쓰기" class="submit button">
+							<input type="submit" value="글쓰기" class="submit button" onclick="move()">
 							<button class="cancle button" onclick="cancle()">취소</button>
 						</div>
 					</form>

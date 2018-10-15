@@ -156,17 +156,5 @@
 	</div>
 	<jsp:include page="/particular/footer.jsp"></jsp:include>
 	</div>
-	<script type="text/javascript">
-		var page = document.location.href.split("?");
-		console.log("asd1")
-		if(page != null) {
-			var params = page[1].split("&");
-			var pageNum = params[1].substr(length-1, length+1);
-			var pagination = document.getElementById("pagination" + pageNum);
-			if(pagination != null) {
-				document.getElementById("pagination" + pageNum).style = "color: blue;";
-			}
-		}
-	</script>
 </body>
 </html>
