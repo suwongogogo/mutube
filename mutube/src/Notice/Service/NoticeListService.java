@@ -26,14 +26,11 @@ public class NoticeListService {
 	private int size = 20;
 	private int blockSize = 10;
 	
-	public NoticePage getNoticePage(int pageNum) throws SQLException, NothingException {
+	public NoticePage getNoticePage(int pageNum) throws SQLException {
 		try(Connection conn = ConnectionProvider.getConnection();){
 			try {
 				NoticeDAO noticeDAO = NoticeDAO.getInstance();
 				int total = noticeDAO.selectCount(conn);
-				if(total == 0) {
-					throw new NothingException("공지가 존재하지 않음.");
-				}
 				List<Notice> noticeList = noticeDAO.selectNoticeList(conn, (pageNum - 1) * size , size);
 				return new NoticePage(noticeList, pageNum, total, size, blockSize);
 			}catch(SQLException e) {

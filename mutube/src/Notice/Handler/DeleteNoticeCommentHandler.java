@@ -39,7 +39,7 @@ public class DeleteNoticeCommentHandler implements CommandHandler {
 			DeleteNoticeCommentService deleteNoticeCommentService = DeleteNoticeCommentService.getInstance();
 			int deleteCnt = deleteNoticeCommentService.deleteNoticeComment(commentId);
 
-			if(deleteCnt > 0) {
+			if(deleteCnt < 0) {
 				throw new DeleteNoticeCommentException("공지 댓글 삭제 실패");
 			}
 			

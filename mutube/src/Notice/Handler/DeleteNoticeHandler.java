@@ -34,7 +34,7 @@ public class DeleteNoticeHandler implements CommandHandler{
 		DeleteNoticeService deleteNoticeService = DeleteNoticeService.getInstance();
 		int deleteCnt = deleteNoticeService.deleteNotice(noticeId);
 		
-		if(deleteCnt == 0 ) {
+		if(deleteCnt < 0 ) {
 			throw new DeleteNoticeFailException("삭제 실패");
 		}
 		

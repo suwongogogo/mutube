@@ -33,8 +33,9 @@ public class ListPostHandler implements Handler.CommandHandler {
  
 			return "/WEB-INF/view/post/list.jsp";
 		} catch (SQLException e) {
+			e.printStackTrace();
 			error.put("errorCode", "dbError");
-			error.put("from", "/post/list");
+			error.put("from", "/Main.jsp");
 			return ERROR_PAGE;
 		}
 	}

@@ -73,6 +73,10 @@
 			out.print("<script>alert('공지를 수정하는데 실패하였습니다.'); location.href='/mutube" + from + "';</script>");
 			break;
 			
+		case "SameValue":
+			out.print("<script>alert('현재 회원님의 정보와 일치합니다.'); location.href='/mutube" + from + ";</script>");
+			break;
+			
 		case "DeleteNoticeFail":
 			out.print("<script>alert('공지를 삭제하는데 실패하였습니다.'); location.href='/mutube" + from + "';</script>");
 			break;
@@ -91,6 +95,10 @@
 			
 		case "WriteCommentFail":
 			out.print("<script>alert('댓글 작성에 실패하였습니다.'); location.href='/mutube" + from + "';</script>");
+			break;
+		
+		case "ComfirmPasswordNotMatch":
+			out.print("<script>alert('입력하신 비밀번호가 일치하지 않습니다.'); location.href='/mutube" + from + "';</script>");
 			break;
 		}
 	%>

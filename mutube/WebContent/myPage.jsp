@@ -19,7 +19,11 @@
 		<div class="center">
 			<jsp:include page="/particular/nav.jsp"></jsp:include>
 			<div class="mypage-container">
+			<a href="/mutube/Main.jsp"> <img src="/mutube/Image/logo.jpg"
+		width="200" height="100" style="position: absolute; top:246px; right:757px;">
+	</a>
 				<div class="mypage">
+				
 					<div class="input-container">
 						<p>아이디</p>
 						<input class="font30 outline" value="${loginUser.loginId }" readonly="readonly">
@@ -37,7 +41,7 @@
 							<button class="submit input">회원 수정</button>
 						</a>
 						<%-- 패스워드 받기 --%>
-						<form action="/mutube/user/deleteConfirmUserByPassword" onsubmit="return false" id="userOutForm" class="inline" onclick="userOut()" method="post">
+						<form action="/mutube/user/deleteUserComfirmByPassword" onsubmit="return false" id="userOutForm" class="inline" onclick="userOut()" method="post">
 							<span>
 								<input type="hidden" value="${loginUser.userId }">
 								<input type="submit" class="submit input" value="회원 탈퇴">

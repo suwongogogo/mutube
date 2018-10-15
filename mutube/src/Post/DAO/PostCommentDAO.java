@@ -20,7 +20,7 @@ public class PostCommentDAO {
 	}
 	
 	public PostComment insert(Connection conn, PostComment postComment) throws SQLException {
-		String sql = "insert into post_comment(postId, userId, comment) values(?, ?, ?)";
+		String sql = "insert into post_comment(postId, userId,comment) values(?, ?, ?)";
 		try (PreparedStatement pst = conn.prepareStatement(sql)) {
 			pst.setInt(1, postComment.getPostId());
 			pst.setInt(2, postComment.getUserId());

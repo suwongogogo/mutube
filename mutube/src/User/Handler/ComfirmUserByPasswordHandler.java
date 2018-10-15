@@ -14,7 +14,7 @@ import User.Exception.UserNotFoundException;
 import User.Model.User;
 import User.Service.ConfirmUserByPasswordService;
 
-public class ConfirmUserByPasswordHandler implements CommandHandler {
+public class ComfirmUserByPasswordHandler implements CommandHandler {
 	private static final String FORM_VIEW = "/WEB-INF/view/user/confirmUserByPassword.jsp";
 	private static final String ERROR_PAGE = "/error.jsp";
 

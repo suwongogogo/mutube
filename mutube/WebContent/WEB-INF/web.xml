@@ -69,6 +69,7 @@
 		<url-pattern>/user/delete</url-pattern>
 		<url-pattern>/user/confirmUserByPassword</url-pattern>
 		<url-pattern>/user/changePassword</url-pattern>
+		<url-pattern>/user/deleteUserComfirmByPassword</url-pattern>
 		
 		<url-pattern>/post/write</url-pattern>
 		<url-pattern>/post/view</url-pattern>

@@ -1,5 +1,8 @@
 package Post.Handler;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -11,9 +14,11 @@ import Post.Service.CommentListService;
 import Post.Service.ReadPostService;
 
 public class ReadPostHandler implements CommandHandler {
-
+	private static final String ERROR_PAGE = "/error.jsp";
 	@Override
 	public String process(HttpServletRequest req, HttpServletResponse resp) throws Exception {
+		Map<String, String> error = new HashMap<String, String>();
+		req.setAttribute("error", error);
 		// postId를 매개변수로 받아서 해당하는 게시글 정보를 조회 후 request의 속성값으로 등록하고 화면을 전환
 		int postId = 0;
 		int pageNum = Integer.parseInt(req.getParameter("pageNum")); 
@@ -46,8 +51,10 @@ public class ReadPostHandler implements CommandHandler {
 
 		} catch (PostNotFoundException e) {
 			e.printStackTrace();
+			error.put("errorCode", "PostNotFound");
+			error.put("from", "/Main.jsp");
 		}
-		return null;
+		return ERROR_PAGE;
 	}
 
 }

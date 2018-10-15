@@ -33,7 +33,7 @@ public class DeletePostHandler implements CommandHandler {
 			DeletePostService deletePostService = DeletePostService.getInstance();
 			int cnt = deletePostService.delete(postId);
 			
-			if(cnt > 0) {
+			if(cnt < 0) {
 				throw new DeletePostFailException("게시글 삭제 실패");
 			}
 			

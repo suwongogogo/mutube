@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import Handler.CommandHandler;
 import User.Exception.UserNotFoundException;
+import User.Exception.ValueIsNotVaildException;
 import User.Model.User;
 import User.Service.FindLoginIdService;
 
@@ -42,7 +43,7 @@ public class FindLoginIdHandler implements CommandHandler {
 		req.setAttribute("error", error);
 		
 		FindLoginIdService findService = FindLoginIdService.getInstance();
-
+		
 		String name = req.getParameter("name");
 		String email = req.getParameter("email");
 
@@ -53,6 +54,7 @@ public class FindLoginIdHandler implements CommandHandler {
 		Map<String, Boolean> errors = new HashMap<>();
 		req.setAttribute("errors", errors);
 		
+		
 		if (name == null || name.isEmpty()) {
 			errors.put("name", true);
 		}
@@ -62,17 +64,18 @@ public class FindLoginIdHandler implements CommandHandler {
 		if(!errors.isEmpty()) {
 			return FORM_VIEW;
 		}
+		
 
 		try {
 			List<User> userList = findService.checkId(name, email);
-			if(userList == null) {
+			if(userList == null || userList.isEmpty()) {
 				throw new UserNotFoundException("유저를 찾을 수 없음");
 			}
 			req.setAttribute("loginIdList", userList);
 			
 			return "/WEB-INF/view/user/findIdSuccess.jsp";
 		} catch (UserNotFoundException e) {
-			e.printStackTrace();
+			e.printStackTrace();	
 			error.put("errorCode", "userNotFound");
 			error.put("from", "/user/findLoginId");
 		} catch (SQLException e) {

@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import Handler.CommandHandler;
 import User.Exception.NewPasswordNotMatchException;
 import User.Exception.UserNotFoundException;
-import User.Exception.confirmPasswordNotMatchException;
+import User.Exception.ComfirmPasswordNotMatchException;
 import User.Exception.samePasswordException;
 import User.Model.User;
 import User.Service.ChangePasswordService;
@@ -81,7 +81,7 @@ public class ChangePasswordHandler implements CommandHandler {
 			}
 			// 새 비밀번호 확인의 값과 새 비밀번호의 값이 일치하지 않을 때
 			if(!new_password.equals(new_password_confirm)) {
-				throw new confirmPasswordNotMatchException("새 비밀번호 확인가 일치하지 않습니다.");
+				throw new ComfirmPasswordNotMatchException("새 비밀번호 확인가 일치하지 않습니다.");
 			}
 			// 새 비밀번호의 값이 현재 비밀번호와 같을 때
 			if(new_password.equals(now_password)) {
@@ -104,7 +104,7 @@ public class ChangePasswordHandler implements CommandHandler {
 			e.printStackTrace();
 			error.put("errorCode", "userNotFound");
 			error.put("from", "/user/changePassword?userId="+loginUser.getUserId());
-		} catch (confirmPasswordNotMatchException e) {
+		} catch (ComfirmPasswordNotMatchException e) {
 			e.printStackTrace();
 			error.put("errorCode", "ConfirmPasswordNotMatch");
 			error.put("from", "/user/changePassword?userId="+loginUser.getUserId());
