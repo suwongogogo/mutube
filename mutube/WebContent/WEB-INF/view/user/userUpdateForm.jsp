@@ -10,12 +10,9 @@
 </head>
 <body>
 	<div class="loginForm-container" style="height: 360px;">
-	<a href="/mutube/Main.jsp"> <img src="/mutube/Image/logo.jpg"
-		width="200" height="100">
-	</a>
-        <form action="update" method="post">
-        <form action="update" method="post" onsubmit="return false;" id="form">
-        <input type="hidden" name="userId" value="${loginUser.userId }">
+		<a href="/mutube/Main.jsp"> <img src="/mutube/Image/logo.jpg"
+			width="200" height="100">
+		</a>
         <form action="update" method="post" onsubmit="return false;" id="form">
         <input type="hidden" name="userId" value="${loginUser.userId }">
             <div class="login" class="input-container">
