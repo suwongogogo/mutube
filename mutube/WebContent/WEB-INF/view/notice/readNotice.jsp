@@ -51,7 +51,7 @@
 									<c:if test="${loginUser == null }">
 										<div class="userInf">
 											<p>
-												댓글을 쓰시려면 로그인을 해주세요.
+												Unknown
 											</p>
 										</div>
 									</c:if>

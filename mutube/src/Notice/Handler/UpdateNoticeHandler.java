@@ -103,10 +103,6 @@ public class UpdateNoticeHandler implements CommandHandler {
 		Map<String, String> params = new HashMap<>();
 
 		int noticeId = 0;
-
-		if (params.get("noticeId") != null) {
-			noticeId = Integer.parseInt(params.get("noticeId"));
-		}
 		
 		try {
 			if (ServletFileUpload.isMultipartContent(req)) {
@@ -139,6 +135,10 @@ public class UpdateNoticeHandler implements CommandHandler {
 				}
 			}
 
+			if (params.get("noticeId") != null) {
+				noticeId = Integer.parseInt(params.get("noticeId"));
+			}
+			
 			System.out.println(noticeId);
 			if (noticeId == 0) {
 				throw new NoticeNotFoundException("올바르지 않은 게시글 번호");
