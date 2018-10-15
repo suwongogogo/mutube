@@ -82,7 +82,7 @@ public class UpdatePostHandler implements Handler.CommandHandler {
 		
 		ArrayList<String> imageNames = new ArrayList<>();
 		Map<String, String> params = new HashMap<>();
-		
+
 		int postId = 0;
 		int pageNum = 1;
 		try {
@@ -147,12 +147,11 @@ public class UpdatePostHandler implements Handler.CommandHandler {
 			UpdatePostService updatePostService = UpdatePostService.getInstance();
 			updatePostService.update(postData);
 
-			resp.sendRedirect(req.getContextPath() + "/post/view?no=" + postId+"&pageNum="+pageNum);
 			Map<String, String> success = new HashMap<String, String>();
 			req.setAttribute("success", success);
 
 			success.put("successCode", "updatePost");
-			success.put("from", "/post/view?postId=" + postId);
+			success.put("from", "/post/view?no=" + postId);
 			return SUCCESS_PAGE;
 			
 		} catch (PostNotFoundException e) {

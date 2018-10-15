@@ -64,7 +64,7 @@
 									<c:if test="${loginUser != null }">
 										<div class="userInf">
 											<p>${loginUser.name }<br> <font size="2"
-													color="gray">(${loginUser.loginId })</font>
+													color="gray">(ID:${loginUser.loginId })</font>
 											</p>
 										</div>
 									</c:if>
@@ -100,7 +100,7 @@
 							items="${postData.commentPage.commentList }">
 							<tr class="real-comment-tr">
 								<td class="name">${comment.writer.name}<br> <font
-									size="2" color="darkgray">${comment.writer.loginId }</font>
+									size="2" color="darkgray">(ID:${comment.writer.loginId })</font>
 								</td>
 								<td class="comment">${comment.comment}</td>
 								<td class="util">

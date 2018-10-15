@@ -21,7 +21,10 @@ public class ReadPostHandler implements CommandHandler {
 		req.setAttribute("error", error);
 		// postId를 매개변수로 받아서 해당하는 게시글 정보를 조회 후 request의 속성값으로 등록하고 화면을 전환
 		int postId = 0;
-		int pageNum = Integer.parseInt(req.getParameter("pageNum")); 
+		int pageNum = 1;
+		if (req.getParameter("pageNum") != null) {
+			pageNum = Integer.parseInt(req.getParameter("pageNum"));
+		}
 		if (req.getParameter("no") != null) {
 			postId = Integer.parseInt(req.getParameter("no"));
 		}

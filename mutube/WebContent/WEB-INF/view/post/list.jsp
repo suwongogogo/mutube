@@ -40,7 +40,7 @@
 							<tr class="list-tr">
 								<td class="tc">${post.postId }</td>
 								<td></td>
-								<td class="pointer"><a href="view?no=${post.postId }&pageNum=${postPage.currentPage}" class="title-container"><font size="2" color="darkgrey" >(${post.genre}, ${post.country}, ${post.instrument})</font> ${post.title }</a></td>
+								<td class="pointer"><a href="view?no=${post.postId }&pageNum=${postPage.currentPage}" class="title-container"><font size="2" color="darkgrey" >(장르:${post.genre}, 나라:${post.country}, 악기:${post.instrument})</font> ${post.title }</a></td>
 								<td></td>
 								<td class="tc">${post.writer.name }<br><font size="2" color="darkgrey" >(${post.writer.loginId })</font></td>
 								<td></td>
