@@ -42,5 +42,5 @@ function move() {
 }
 
 function moveMain() {
-	location.href = "/mutube/Main.jsp";
+	location.href = "/mutube/myPage.jsp";
 }

@@ -30,7 +30,7 @@
 			break;
 			
 		case "notAdmin":
-			out.print("<script>alert('관리자 권한이 없습니다.'); location.href='/mutube" + from + "';</script>");
+			out.print("<script>alert('관리자 권한이 없습니다.'); location.href='/mutube/Main.jsp';</script>");
 			break;
 			
 		case "passwordNotMatch":
@@ -38,7 +38,7 @@
 			break;
 			
 		case "ConfirmPasswordNotMatch":
-			out.print("<script>alert('새 비밀번호와 일치하지 않습니다.'); location.href='/mutube" + from + "';</script>");
+			out.print("<script>alert('새 비밀번호가 일치하지 않습니다.'); location.href='/mutube" + from + "';</script>");
 			break;
 			
 		case "SamePassword":
@@ -46,7 +46,7 @@
 			break;
 
 		case "userDeleteFail":
-			out.print("<script>alert('회원 탈퇴에 실패하였습다.'); location.href='/mutube" + from + "';</script>");
+			out.print("<script>alert('회원 탈퇴에 실패하였습니다.'); location.href='/mutube" + from + "';</script>");
 			break;
 			
 		case "WritePostFail":
@@ -54,7 +54,7 @@
 			break;
 			
 		case "ValueIsEmpty":
-			out.print("<script>alert('값이 들어있지 않습니다.'); location.href='/mutube" + from + "';</script>");
+			out.print("<script>alert('내용을 입력해주세요.'); location.href='/mutube" + from + "';</script>");
 			break;
 			
 		case "NoticeNotFound":
