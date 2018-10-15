@@ -34,8 +34,10 @@ public class NoticeCommentListService {
 			UserDAO userDAO = UserDAO.getInstance();
 			for(int i = 0; i < noticeCommentList.size(); i++) {
 				noticeCommentList.get(i).setWriter(userDAO.getWriter(conn, noticeCommentList.get(i).getUserId()));
+				String replaceNoticeContent = noticeCommentList.get(i).getComment().replaceAll("<", "&lt")
+						.replaceAll(">", "&gt").replaceAll(" ", "&nbsp").replaceAll("\n", "<br>");
+				noticeCommentList.get(i).setComment(replaceNoticeContent);
 			}
-			
 			
 			return new NoticeCommentPage(noticeCommentList, pageNum, total, size, blockSize);
 		}catch(SQLException e) {

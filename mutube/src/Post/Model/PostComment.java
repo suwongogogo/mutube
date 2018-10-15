@@ -39,6 +39,10 @@ public class PostComment {
 		this.udateStr = udateStr;
 	}
 
+	public void setComment(String comment) {
+		this.comment = comment;
+	}
+	
 	public PostComment(int postId, int userId, String comment) {
 		this.postId = postId;
 		this.userId = userId;

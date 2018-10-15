@@ -15,7 +15,7 @@
 		<div class="center">
 			<jsp:include page="/particular/nav.jsp"></jsp:include>
 			<div class="board-list">
-				<c:if test="${param.category == null }">
+				<c:if test="${param.category == null || param.category== ''}">
 					<div class="address">
 						검색 결과<br>
 						<font size="2" color="darkgray">(${param.keyword }에 대한 결과 입니다.)</font>

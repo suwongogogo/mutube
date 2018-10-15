@@ -112,7 +112,7 @@
 						</c:forEach>
 						<c:if test="${postData.commentPage.hasComment()}">
 							<tr class="tc">
-								<td class="paging" colspan="9"><c:if
+								<td class="paging" colspan="3"><c:if
 										test="${postData.commentPage.startPage > 5}">
 										<a
 											href="view?no=${param.no }&pageNum=${postData.commentPage.startPage-5 }">

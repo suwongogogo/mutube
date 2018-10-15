@@ -30,6 +30,9 @@ public class CommentListService {
 			UserDAO userDAO = UserDAO.getInstance();
 			for(int i = 0; i < commentList.size(); i++) {
 				commentList.get(i).setWriter(userDAO.getWriter(conn, commentList.get(i).getUserId()));
+				String replaceComment = commentList.get(i).getComment().replaceAll("<", "&lt")
+						.replaceAll(">", "&gt").replaceAll(" ", "&nbsp").replaceAll("\n", "<br>");
+				commentList.get(i).setComment(replaceComment);
 			}
 			
 			

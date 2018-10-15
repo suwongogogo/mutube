@@ -23,6 +23,10 @@ public class NoticeComment {
 		this.update_date = update_date;
 	}
 
+	public void setComment(String comment) {
+		this.comment = comment;
+	}
+
 	public NoticeComment(int commentId, int noticeId, int userId, String comment) {
 		this.commentId = commentId;
 		this.noticeId = noticeId;

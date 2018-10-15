@@ -46,6 +46,7 @@ public class NoticeCommentListHandler implements CommandHandler {
 			NoticeCommentListService noticeCommentList = NoticeCommentListService.getInstance();
 			NoticeCommentPage noticeCommentPage = noticeCommentList.commentList(pageNum, noticeId);
 			NoticeData noticeData = new NoticeData();
+			
 			noticeData.setNoticeCommentPage(noticeCommentPage);
 
 			resp.sendRedirect(req.getContextPath() + "/notice/readNotice?noticeId=" + noticeId + "&pageNum=" + pageNum);
