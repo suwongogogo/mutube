@@ -10,7 +10,7 @@
 </head>
 <body>
 	<div class="confirm-password-container">
-        <form action="confirmUserByPassword" onsubmit="return false" method="post" id="confirm-password-form">
+        <form action="comfirmUserByPassword" onsubmit="return false" method="post" id="confirm-password-form">
             <div class="login" class="input-container">
                 <div class="input-container">
                     <p>비밀번호</p>

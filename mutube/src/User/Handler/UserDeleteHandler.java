@@ -14,7 +14,6 @@ import User.Model.User;
 import User.Service.UserDeleteService;
 
 public class UserDeleteHandler implements CommandHandler {
-	private static final String FORM_VIEW = "/WEB-INF/user/view/userDeleteForm.jsp";
 	private static final String ERROR_PAGE = "/error.jsp";
 
 	@Override
@@ -29,8 +28,8 @@ public class UserDeleteHandler implements CommandHandler {
 		try {
 			UserDeleteService deleteService = UserDeleteService.getInstance();
 			int cnt = deleteService.delete(sessionUser.getUserId());
-
-			return "/WEB-INF/user/view/deleteSuccess.jsp";
+			
+			return "/WEB-INF/view/user/deleteSuccess.jsp";
 		} catch (UserNotFoundException e) {
 			e.printStackTrace();
 			resp.sendRedirect(req.getContextPath() + "/myPage.jsp");

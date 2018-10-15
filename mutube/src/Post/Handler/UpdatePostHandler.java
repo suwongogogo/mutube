@@ -83,10 +83,7 @@ public class UpdatePostHandler implements Handler.CommandHandler {
 		Map<String, String> params = new HashMap<>();
 		
 		int postId = 0;
-
-		if (params.get("no") != null) {
-			postId = Integer.parseInt(params.get("no"));
-		}
+		int pageNum = 1;
 		try {
 			if (ServletFileUpload.isMultipartContent(req)) {
 				try {
@@ -117,8 +114,15 @@ public class UpdatePostHandler implements Handler.CommandHandler {
 					e.printStackTrace();
 				}
 			}
+			if (params.get("no") != null) {
+				postId = Integer.parseInt(params.get("no"));
+			}
 			
+			if (params.get("pageNum") != null) {
+				pageNum = Integer.parseInt(params.get("pageNum"));
+			}
 			System.out.println(postId);
+			
 			if (postId == 0) {
 				throw new PostNotFoundException("올바르지 않은 게시글 번호");
 			}
@@ -141,21 +145,21 @@ public class UpdatePostHandler implements Handler.CommandHandler {
 			UpdatePostService updatePostService = UpdatePostService.getInstance();
 			updatePostService.update(postData);
 
-			resp.sendRedirect(req.getContextPath() + "/post/view?no=" + postId);
+			resp.sendRedirect(req.getContextPath() + "/post/view?no=" + postId+"&pageNum="+pageNum);
 			
 		} catch (PostNotFoundException e) {
 			e.printStackTrace();
 			error.put("errorCode", "PostNotFound");
-			error.put("from", "/post/view?no=" + postId);
+			error.put("from", "/post/view?no=" + postId+"&pageNum="+pageNum);
 			return ERROR_PAGE;
 		} catch (UpdatePostFailExcpetion e) {
 			e.printStackTrace();
 			error.put("errorCode", "UpdatePostFail");
-			error.put("from", "/post/view?no=" + postId);
+			error.put("from", "/post/view?no=" + postId+"&pageNum="+pageNum);
 			return ERROR_PAGE;
 		} catch (SQLException e) {
 			error.put("errorCode", "dbError");
-			error.put("from", "/post/view?no=" + postId);
+			error.put("from", "/post/view?no=" + postId+"&pageNum="+pageNum);
 			return ERROR_PAGE;
 		}
 		return null;

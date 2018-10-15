@@ -8,13 +8,13 @@ import User.DAO.UserDAO;
 import User.Exception.UserNotFoundException;
 import User.Model.User;
 
-public class ConfirmUserByPasswordService {
-	private static ConfirmUserByPasswordService instance = new ConfirmUserByPasswordService();
+public class ComfirmUserByPasswordService {
+	private static ComfirmUserByPasswordService instance = new ComfirmUserByPasswordService();
 
-	private ConfirmUserByPasswordService() {
+	private ComfirmUserByPasswordService() {
 	}
 
-	public static ConfirmUserByPasswordService getInstance() {
+	public static ComfirmUserByPasswordService getInstance() {
 		return instance;
 	}
 

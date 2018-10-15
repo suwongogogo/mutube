@@ -13,8 +13,9 @@
         <form action="/mutube/user/delete" onsubmit="return false" method="post" id="confirm-password-form">
             <div class="login" class="input-container">
                 <div class="input-container">
-                    <p>비밀번호</p>
-                    <input type="password" name="password" class="password-input" placeholder="비밀번호를 입력하세요" id="password">
+                    <p>확인 비밀번호</p>
+                    <input type="hidden" name="userId" value="${loginUser.userId }">
+                    <input type="password" name="comfirmPassword" class="password-input" placeholder="탈퇴하시려면 비밀번호를 입력하세요" id="password">
                     <div class="underline"></div>
                     <%--비밀번호 틀리는지 검사 비밀번호 빈칸은 javascript에서 확인함. --%>
                     <%-- <span class="error"><c:if test="${errors.password }">비밀번호가 틀렸습니다.</c:if></span> --%>

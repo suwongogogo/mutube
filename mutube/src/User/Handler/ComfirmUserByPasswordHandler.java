@@ -12,10 +12,10 @@ import Handler.CommandHandler;
 import User.Exception.PasswordNotMatchException;
 import User.Exception.UserNotFoundException;
 import User.Model.User;
-import User.Service.ConfirmUserByPasswordService;
+import User.Service.ComfirmUserByPasswordService;
 
 public class ComfirmUserByPasswordHandler implements CommandHandler {
-	private static final String FORM_VIEW = "/WEB-INF/view/user/confirmUserByPassword.jsp";
+	private static final String FORM_VIEW = "/WEB-INF/view/user/comfirmUserByPassword.jsp";
 	private static final String ERROR_PAGE = "/error.jsp";
 
 	@Override
@@ -40,7 +40,7 @@ public class ComfirmUserByPasswordHandler implements CommandHandler {
 		req.setAttribute("error", error);
 
 		try {
-			ConfirmUserByPasswordService confirmService = ConfirmUserByPasswordService.getInstance();
+			ComfirmUserByPasswordService confirmService = ComfirmUserByPasswordService.getInstance();
 			User loginUser = (User) req.getSession().getAttribute("loginUser");
 			
 			User user = confirmService.confirmUser(loginUser.getLoginId());
@@ -55,15 +55,15 @@ public class ComfirmUserByPasswordHandler implements CommandHandler {
 		} catch (PasswordNotMatchException e) {
 			e.printStackTrace();
 			error.put("errorCode", "passwordNotMatch");
-			error.put("from", "/user/confirmUserByPassword");
+			error.put("from", "/user/comfirmUserByPassword");
 		} catch (UserNotFoundException e) {
 			e.printStackTrace();
 			error.put("errorCode", "userNotFound");
-			error.put("from", "/user/confirmUserByPassword");
+			error.put("from", "/user/comfirmUserByPassword");
 		} catch (SQLException e) {
 			e.printStackTrace();
 			error.put("errorCode", "dbError");
-			error.put("from", "/user/confirmUserByPassword");
+			error.put("from", "/user/comfirmUserByPassword");
 		}
 		return ERROR_PAGE;
 	}

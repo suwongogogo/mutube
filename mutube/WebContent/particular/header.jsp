@@ -16,7 +16,7 @@
 		<div class="search-form-container">
 			<form action="/mutube/post/search" method="get" class="search-real-form" id="search-form" onsubmit="return false;">
 				<div class="search-in-div">
-					<input type="text" name="keyword" class="search-real-input" id="search-result" value="${param.keyword }"><button class="search-submit" onclick="search()"></button>
+					<input type="text" name="keyword" class="search-real-input" id="search-result"><button class="search-submit" onclick="search()"></button>
 				</div>
 			</form>
 		</div>
