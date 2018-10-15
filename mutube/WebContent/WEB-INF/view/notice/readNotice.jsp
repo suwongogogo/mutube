@@ -85,13 +85,13 @@
 								</td>
 								<td class="comment">${comment.comment}</td>
 								<td class="util">
-								<c:if test="${loginUser.userId == comment.userId }">
-								<td class="util">
-									<a href="deleteNoticeComment?commentId=${comment.commentId }&noticeId=${param.noticeId}&pageNum=${param.pageNum}">
-										삭제
-									</a>
+									<c:if test="${loginUser.userId == comment.userId }">
+										<a href="deleteNoticeComment?commentId=${comment.commentId }&noticeId=${param.noticeId}&pageNum=${param.pageNum}">
+											삭제
+										</a>
+									</c:if>
 								</td>
-								</c:if>
+								
 							</tr>
 						</c:forEach>
 						<c:if test="${noticeData.noticeCommentPage.hasComment()}">

@@ -61,7 +61,7 @@
 							<tr class="tc">
 								<td class="paging" colspan="9">
 									<c:if test="${noticePage.startPage > 5}">
-										<a href="notice?pageNum=${noticePage.startPage-5 }"><span class="arrow">◀</span><span class="prev">이전</span></a>
+										<a href="notice?pageNum=${noticePage.startPage-5 }"><span class="prev">이전</span></a>
 									</c:if>
 									<c:forEach var="pageNum" begin="${noticePage.startPage }" end="${noticePage.endPage }">
 										<div class="inline pagination-border">
@@ -74,7 +74,7 @@
 										</div>
 									</c:forEach>
 									<c:if test="${noticePage.endPage < noticePage.totalPages }">
-										<a href="notice?pageNum=${noticePage.startPage+5 }"><span class="next">다음</span><span class="arrow">▶</span></a>
+										<a href="notice?pageNum=${noticePage.startPage+5 }"><span class="next">다음</span></a>
 									</c:if>
 								</td>
 							</tr>

@@ -17,7 +17,7 @@
 			<jsp:include page="/particular/nav.jsp"></jsp:include>
 			<div class="postForm-container">
 				<div class="title-container">
-					<form action="write" method="post" enctype="multipart/form-data">
+					<form action="write" method="post" enctype="multipart/form-data" id="form" onsubmit="return false;">
 						<div class="title-form">
 							<p class="write-title">제목</p>
 							<input class="input" name="title" type="text">
@@ -98,7 +98,7 @@
 							<textarea name="content" class="textarea"></textarea>
 						</div>
 						<div class="button-container">
-							<input type="submit" value="글쓰기" class="submit button">
+							<input type="submit" value="글쓰기" class="submit button" onclick="move()">
 							<button class="cancle button" onclick="cancle()">취소</button>
 						</div>
 					</form>

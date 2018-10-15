@@ -7,6 +7,7 @@
 <meta charset="UTF-8">
 <title>회원 수정</title>
 <link rel="stylesheet" type="text/css" href="/mutube/CSS/loginForm.css" />
+<script type="text/javascript" src="/mutube/JavaScript/miscellaneous.js"></script>
 </head>
 <body>
 	<div class="loginForm-container" style="height: 360px;">
@@ -18,27 +19,25 @@
             <div class="login" class="input-container">
                 <div class="input-container">
                     <p>아이디</p>
-                    <input type="text" name="loginId" class="signin" placeholder="아이디" value="${loginUser.loginId }">
+                    <input type="text" name="loginId" class="signin" placeholder="아이디" value="${loginUser.loginId }" id="id">
                     <div class="underline"></div>
-                    <span class="error"><c:if test="${errors.loginId }">아이디를 입력하세요.</c:if>
+                    <span class="error" id="id-error"><c:if test="${errors.loginId }">아이디를 입력하세요.</c:if>
                     </span>
                 </div>
                 <div class="input-container">
                     <p>이름</p>
-                    <input type="text" name="name" class="signin" placeholder="이름" value="${loginUser.name }"> 
+                    <input type="text" name="name" class="signin" placeholder="이름" value="${loginUser.name }" id="name"> 
                     <div class="underline"></div>
-                    <span class="error"><c:if test="${errors.password }">비밀번호를 입력하세요.</c:if></span>
+                    <span class="error" id="name-error"><c:if test="${errors.password }">비밀번호를 입력하세요.</c:if></span>
                 </div>
                 <div class="input-container">
                     <p>이메일</p>
-                    <input type="email" name="email" class="signin" placeholder="이메일" value="${loginUser.email }"> 
+                    <input type="email" name="email" class="signin" placeholder="이메일" value="${loginUser.email }" id="email"> 
                     <div class="underline"></div>
-                    <span class="error"><c:if test="${errors.email }">이메일을 입력하세요.</c:if></span>
+                    <span class="error" id="email-error"><c:if test="${errors.email }">이메일을 입력하세요.</c:if></span>
                 </div>
-                <input type="submit" value="수정" class="submit">
-                <a href="/mutube/myPage.jsp">
-                	<button class="submit">취소</button>
-                </a>
+                <input type="submit" value="수정" class="submit" onclick="move()">
+                <button class="submit" onclick="moveMain()">취소</button>
             </div>
         </form>
     </div> 
