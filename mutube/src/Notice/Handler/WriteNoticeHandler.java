@@ -18,13 +18,13 @@ import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
+import Admin.Exception.YourNotAdminException;
 import Handler.CommandHandler;
 import Notice.Model.Notice;
 import Notice.Model.NoticeContent;
 import Notice.Model.NoticeData;
 import Notice.Service.WriteNoticeFailException;
 import Notice.Service.WriteNoticeService;
-import Post.Exception.WritePostFailException;
 import Post.Model.Writer;
 import User.Exception.UserNotFoundException;
 import User.Model.User;
@@ -46,21 +46,26 @@ public class WriteNoticeHandler implements CommandHandler{
 
 	private String processForm(HttpServletRequest req, HttpServletResponse resp) throws IOException {
 		User loginUser = (User) req.getSession().getAttribute("loginUser");
+		Map<String, String> error = new HashMap<>();
+		req.setAttribute("error", error);
+		
 		try {
 			if(loginUser == null) {
 				throw new UserNotFoundException("유저를 찾을 수 없습니다.");
 			}
 			if(loginUser.isAuthority() == false) {
-				throw new NoPermissionException("어드민 권한이 없습니다.");
+				throw new YourNotAdminException("어드민 권한이 없습니다.");
 			}
 			
-		}catch(NoPermissionException e) {
+		}catch(YourNotAdminException e) {
 			e.printStackTrace();
-			req.setAttribute("errorCode", "UserNotFound");
+			error.put("errorCode", "notAdmin");
+			error.put("from", "/Main.jsp");
 			return ERROR_PAGE;
 		}catch(UserNotFoundException e) {
 			e.printStackTrace();
-			req.setAttribute("errorCode", "NoPermisson");
+			error.put("errorCode", "UserNotFound");
+			error.put("from", "/Main.jsp");
 			return ERROR_PAGE;
 		}
 		

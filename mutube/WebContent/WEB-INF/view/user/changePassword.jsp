@@ -12,6 +12,9 @@
 <body>
 	<%-- 비밀번호 공백 확인 및 현재 비밀번호 맞는지 확인 --%>
 	<div class="loginForm-container">
+	<a href="/mutube/Main.jsp"> <img src="/mutube/Image/logo.jpg"
+		width="200" height="100">
+	</a>
         <form action="changePassword" method="post" onsubmit="return false;" id="form">
         <input type="hidden" name="userId" value="${loginUser.userId }">
             <div class="login" class="input-container">

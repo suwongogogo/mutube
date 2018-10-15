@@ -10,6 +10,9 @@
 </head>
 <body>
 	<div class="confirm-password-container">
+	<a href="/mutube/Main.jsp"> <img src="/mutube/Image/logo.jpg"
+		width="200" height="100" style="position: absolute;top: -103px;left: 85px;">
+	</a>
         <form action="/mutube/user/deleteUserComfirmByPassword" onsubmit="return false" method="post" id="confirm-password-form">
             <div class="login" class="input-container">
                 <div class="input-container">

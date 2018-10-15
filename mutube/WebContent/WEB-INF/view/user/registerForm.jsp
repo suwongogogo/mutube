@@ -11,6 +11,9 @@
 </head>
 <body>
 	<div class="register-container">
+	<a href="/mutube/Main.jsp"> <img src="/mutube/Image/logo.jpg"
+		width="200" height="100" style="position: absolute; top: -102px; right: 85px;">
+	</a>
 		<div class="register">
 			<form action="register" method="post">
 				<div class="form-contents">
