@@ -44,6 +44,10 @@
 		case "SamePassword":
 			out.print("<script>alert('현재 비밀번호와 같습니다.'); location.href='/mutube" + from + "';</script>");
 			break;
+			
+		case "NowPasswordNotMatch":
+			out.print("<script>alert('입려하신 비밀번호가 맞지 않습니다..'); location.href='/mutube" + from + "';</script>");
+			break;
 
 		case "userDeleteFail":
 			out.print("<script>alert('회원 탈퇴에 실패하였습니다.'); location.href='/mutube" + from + "';</script>");

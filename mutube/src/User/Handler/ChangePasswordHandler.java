@@ -19,7 +19,7 @@ import User.Service.ChangePasswordService;
 public class ChangePasswordHandler implements CommandHandler {
 	private static final String FORM_VIEW = "/WEB-INF/view/user/changePassword.jsp";
 	private static final String ERROR_PAGE = "/error.jsp";
-	
+	private static final String SUCCESS_PAGE = "/success.jsp";
 	@Override
 	public String process(HttpServletRequest req, HttpServletResponse resp) throws Exception {
 		if (req.getMethod().equalsIgnoreCase("GET")) {
@@ -77,7 +77,7 @@ public class ChangePasswordHandler implements CommandHandler {
 			}
 			// 입력한 비밀번호가 현재 비밀번호와 같지 않을 때
 			if(!loginUser.getPassword().equals(now_password)) {
-				errors.put("nowPasswordNotMatch", true);
+				throw new NowPasswordNotMatchException("입력하신 비밀번호가 맞지 않습니다.");
 			}
 			// 새 비밀번호 확인의 값과 새 비밀번호의 값이 일치하지 않을 때
 			if(!new_password.equals(new_password_confirm)) {
@@ -93,8 +93,14 @@ public class ChangePasswordHandler implements CommandHandler {
 			
 			loginUser.setPassword(user.getPassword());
 			
-			resp.sendRedirect(req.getContextPath()+"/myPage.jsp");
-			return null;
+			req.getSession().setAttribute("loginUser", null);
+			
+			Map<String, String> success = new HashMap<String, String>();
+			req.setAttribute("success", success);
+
+			success.put("successCode", "changePassword");
+			success.put("from", "/user/login");
+			return SUCCESS_PAGE;
 			
 		}catch(SQLException e) {
 			e.printStackTrace();
@@ -111,6 +117,10 @@ public class ChangePasswordHandler implements CommandHandler {
 		} catch (samePasswordException e) {
 			e.printStackTrace();
 			error.put("errorCode", "SamePassword");
+			error.put("from", "/user/changePassword?userId="+loginUser.getUserId());
+		} catch (NowPasswordNotMatchException e) {
+			e.printStackTrace();
+			error.put("errorCode", "NowPasswordNotMatch");
 			error.put("from", "/user/changePassword?userId="+loginUser.getUserId());
 		}
 		return ERROR_PAGE;

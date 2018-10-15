@@ -21,7 +21,7 @@ import User.Service.UserUpdateService;
 public class UserUpdateHandler implements CommandHandler {
 	private static final String FORM_VIEW = "/WEB-INF/view/user/userUpdateForm.jsp";
 	private static final String ERROR_PAGE = "/error.jsp";
-
+	private static final String SUCCESS_PAGE = "/success.jsp";
 	@Override
 	public String process(HttpServletRequest req, HttpServletResponse resp) throws Exception {
 		if (req.getMethod().equalsIgnoreCase("GET")) {
@@ -76,9 +76,14 @@ public class UserUpdateHandler implements CommandHandler {
 			updateService.update(savedUser, userId);
 
 			req.getSession().setAttribute("loginUser", savedUser);
+			
+			Map<String, String> success = new HashMap<String, String>();
+			req.setAttribute("success", success);
 
-			resp.sendRedirect(req.getContextPath() + "/myPage.jsp");
-			return null;
+			success.put("successCode", "updateUser");
+			success.put("from", "/myPage.jsp");
+			return SUCCESS_PAGE;
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 			error.put("errorCode", "dbError");
