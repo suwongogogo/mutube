@@ -56,8 +56,8 @@ public class ReadPostHandler implements CommandHandler {
 			e.printStackTrace();
 			error.put("errorCode", "PostNotFound");
 			error.put("from", "/Main.jsp");
+			return ERROR_PAGE;
 		}
-		return ERROR_PAGE;
 	}
 
 }

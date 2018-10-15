@@ -35,10 +35,10 @@ public class DeletePostHandler implements CommandHandler{
 		}catch(PostNotFoundException e) {
 			e.printStackTrace();
 			error.put("errorCode", "postNotFound");
-			error.put("from", "/mutube/admin/deletePost");
+			error.put("from", "/mutube/admin/postManagement");
 		} catch (SQLException e) {
 			error.put("errorCode", "dbError");
-			error.put("from", "/mutube/admin/deletePost");
+			error.put("from", "/mutube/admin/postManagement");
 			e.printStackTrace();
 		}
 		return ERROR_PAGE;

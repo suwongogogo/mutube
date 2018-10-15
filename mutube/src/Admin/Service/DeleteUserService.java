@@ -21,7 +21,7 @@ public class DeleteUserService {
 			int count = 0;
 			try {
 				count = adminDAO.deleteUser(conn, userId);
-				if(count > 0) {
+				if(count == 0) {
 					throw new UserNotFoundException("유저 삭제에 실패하였습니다.");
 				}
 				

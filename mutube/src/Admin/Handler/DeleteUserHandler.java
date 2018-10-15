@@ -18,6 +18,8 @@ public class DeleteUserHandler implements CommandHandler{
 	public String process(HttpServletRequest req, HttpServletResponse resp) throws IOException {
 		Map<String, String> error = new HashMap<>();
 		req.setAttribute("error", error);
+		
+		
 		try {
 			int userId = 0;
 			if(req.getParameter("userId") != null) {
@@ -35,11 +37,11 @@ public class DeleteUserHandler implements CommandHandler{
 		}catch(UserNotFoundException e) {
 			e.printStackTrace();
 			error.put("errorCode", "userNotFound");
-			error.put("from", "/mutube/admin/deleteUser");
+			error.put("from", "/admin/userManagement");
 		} catch (SQLException e) {
 			e.printStackTrace();
 			error.put("errorCode", "userNotFound");
-			error.put("from", "/mutube/admin/deleteUser");
+			error.put("from", "/admin/userManagement");
 		}
 		return ERROR_PAGE;
 	}
