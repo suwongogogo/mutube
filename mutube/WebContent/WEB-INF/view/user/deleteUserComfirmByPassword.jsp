@@ -8,6 +8,7 @@
 	<link rel="stylesheet" type="text/css" media="screen" href="/mutube/CSS/confirmUserByPassword.css" />
 	<script type="text/javascript" src="/mutube/JavaScript/confirmUserByPassword.js"></script>
 </head>
+
 <body>
 	<div class="confirm-password-container">
 	<a href="/mutube/Main.jsp"> <img src="/mutube/Image/logo.jpg"
