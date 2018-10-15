@@ -35,6 +35,7 @@ public class UpdatePostHandler implements Handler.CommandHandler {
 
 	private static final String FORM_VIEW = "/WEB-INF/view/post/updatePostForm.jsp";
 	private static final String ERROR_PAGE = "/error.jsp";
+	private static final String SUCCESS_PAGE = "/success.jsp";
 	@Override
 	public String process(HttpServletRequest req, HttpServletResponse resp) throws Exception {
 		if (req.getMethod().equalsIgnoreCase("GET")) {
@@ -117,8 +118,7 @@ public class UpdatePostHandler implements Handler.CommandHandler {
 					e.printStackTrace();
 				}
 			}
-			
-			System.out.println(postId);
+
 			if (postId == 0) {
 				throw new PostNotFoundException("올바르지 않은 게시글 번호");
 			}
@@ -141,7 +141,12 @@ public class UpdatePostHandler implements Handler.CommandHandler {
 			UpdatePostService updatePostService = UpdatePostService.getInstance();
 			updatePostService.update(postData);
 
-			resp.sendRedirect(req.getContextPath() + "/post/view?no=" + postId);
+			Map<String, String> success = new HashMap<String, String>();
+			req.setAttribute("success", success);
+
+			success.put("successCode", "updatePost");
+			success.put("from", "/post/view?postId=" + postId);
+			return SUCCESS_PAGE;
 			
 		} catch (PostNotFoundException e) {
 			e.printStackTrace();
@@ -158,7 +163,6 @@ public class UpdatePostHandler implements Handler.CommandHandler {
 			error.put("from", "/post/view?no=" + postId);
 			return ERROR_PAGE;
 		}
-		return null;
 	}
 
 }

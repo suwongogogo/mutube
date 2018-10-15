@@ -12,7 +12,7 @@ import Handler.CommandHandler;
 import Notice.Exception.DeleteNoticeCommentException;
 import Notice.Service.DeleteNoticeCommentService;
 import Post.Exception.CommentNotFoundException;
-import Post.Service.DeleteCommentService;
+
 
 public class DeleteNoticeCommentHandler implements CommandHandler {
 	private static final String ERROR_PAGE = "/error.jsp";
