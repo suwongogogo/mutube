@@ -6,6 +6,7 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<link rel="stylesheet" type="text/css" href="/mutube/CSS/list.css" />
+	<script type="text/javascript" src="/mutube/JavaScript/pagination.js"></script>
 	<title>게시글 목록</title>
 </head>
 <body>
@@ -65,7 +66,12 @@
 									</c:if>
 									<c:forEach var="pageNum" begin="${postPage.startPage }" end="${postPage.endPage }">
 										<div class="inline pagination-border">
-											<a href="list?pageNum=${pageNum }" class="pagenation">${pageNum }</a>
+										<c:if test="${pageNum == param.pageNum}">
+											<a href="list?pageNum=${pageNum }" class="pagination" style="color: blue;">${pageNum }</a>
+										</c:if>
+										<c:if test="${pageNum != param.pageNum}">
+											<a href="list?pageNum=${pageNum }" class="pagination">${pageNum }</a>
+										</c:if>
 										</div>
 									</c:forEach>
 									<c:if test="${postPage.endPage < postPage.totalPages }">

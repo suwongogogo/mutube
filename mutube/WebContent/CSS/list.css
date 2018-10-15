@@ -77,7 +77,7 @@ table {
 .list-tr:LAST-CHILD {
 	border-bottom: none !important;
 }
-.pagenation {
+.pagination {
 	color: black;
 }
 .pagenation:HOVER {
