@@ -74,16 +74,16 @@
 							<tr class="tc">
 								<td colspan="14" class="line-top"><c:if
 										test="${postPage.startPage > 5}">
-										<a href="/mutube/post/search?keyword=${keyword }&pageNum=${postPage.startPage-5 }">
+										<a href="/mutube/post/search?keyword=${param.keyword }&pageNum=${postPage.startPage-5 }&category=${param.category}">
 										<span class="prev">이전</span></a>
 									</c:if> <c:forEach var="pageNum" begin="${postPage.startPage }"
 										end="${postPage.endPage }">
 										<div class="inline pagination-border">
-											<a href="/mutube/post/search?keyword=${keyword }&pageNum=${pageNum }"
+											<a href="/mutube/post/search?keyword=${param.keyword }&pageNum=${pageNum }&category=${param.category}"
 												class="pagenation">${pageNum }</a>
 										</div>
 									</c:forEach> <c:if test="${postPage.endPage > postPage.total }">
-										<a href="/mutube/post/search?keyword=${keyword }&pageNum=${postPage.startPage+5 }"><span
+										<a href="/mutube/post/search?keyword=${param.keyword }&pageNum=${postPage.startPage+5 }&category=${param.category}"><span
 											class="next">다음</span></a>
 									</c:if></td>
 							</tr>

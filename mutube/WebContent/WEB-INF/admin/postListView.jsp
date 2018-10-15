@@ -77,7 +77,7 @@
 									</td>
 								</tr>
 							</c:forEach>
-							<c:if test="${postPageINF.hasUser() }">
+							<c:if test="${postPageINF.hasPost() }">
 								<tr class="tc">
 									<td colspan="21">
 										<c:if test="${postPageINF.startPage > 6 }">
