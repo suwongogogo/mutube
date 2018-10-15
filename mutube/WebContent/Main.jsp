@@ -8,7 +8,7 @@
     <title>우리의 프로젝트</title>
     <link rel="stylesheet" type="text/css" href="CSS/main.css" />
     <script src="JavaScript/main.js"></script>
-</head>
+</head> 
 <body oncontextmenu="return false" onselectstart="return false" ondragstart="return false">
     <div class="wrapper">
     	<jsp:include page="/particular/header.jsp"></jsp:include>

@@ -30,9 +30,10 @@
 		<filter-name>LoginFilter</filter-name>
 		<url-pattern>/user/update</url-pattern>
 		<url-pattern>/user/delete</url-pattern>
-		<url-pattern>/user/confirmUserByPassword</url-pattern>
+		<url-pattern>/user/comfirmUserByPassword</url-pattern>
 		<url-pattern>/user/changePassword</url-pattern>
-	
+		<url-pattern>/user/deleteUserComfirmByPassword</url-pattern>
+		
 		<url-pattern>/post/write</url-pattern>
 		<url-pattern>/post/update</url-pattern>
 		<url-pattern>/post/delete</url-pattern>
@@ -43,7 +44,9 @@
 		<url-pattern>/notice/updateNotice</url-pattern>
 		<url-pattern>/notice/writeNoticeComment</url-pattern>
 		
-		<url-pattern>/mutube/myPage.jsp</url-pattern>
+		<url-pattern>/admin/userManagement</url-pattern>
+		<url-pattern>/admin/postManagement</url-pattern>
+		<url-pattern>/myPage.jsp</url-pattern>
 	</filter-mapping>
 	
 	<!-- 컨트롤러 서블릿 -->
@@ -65,8 +68,9 @@
 		<url-pattern>/user/findPassword</url-pattern>
 		<url-pattern>/user/update</url-pattern>
 		<url-pattern>/user/delete</url-pattern>
-		<url-pattern>/user/confirmUserByPassword</url-pattern>
+		<url-pattern>/user/comfirmUserByPassword</url-pattern>
 		<url-pattern>/user/changePassword</url-pattern>
+		<url-pattern>/user/deleteUserComfirmByPassword</url-pattern>
 		
 		<url-pattern>/post/write</url-pattern>
 		<url-pattern>/post/view</url-pattern>

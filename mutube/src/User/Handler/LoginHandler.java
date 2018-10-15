@@ -16,7 +16,9 @@ import User.Service.LoginService;
 
 public class LoginHandler implements CommandHandler{
 
-	public static final String FORM_VIEW = "/WEB-INF/view/user/loginForm.jsp";
+	private static final String FORM_VIEW = "/WEB-INF/view/user/loginForm.jsp";
+	private static final String ERROR_PAGE = "/error.jsp";
+	
 	@Override
 	public String process(HttpServletRequest req, HttpServletResponse resp) throws Exception {
 		if(req.getMethod().equalsIgnoreCase("GET")) {
@@ -36,7 +38,8 @@ public class LoginHandler implements CommandHandler{
 	}
 
 	private String processSubmit(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-		
+		Map<String, String> error = new HashMap<String, String>();
+		req.setAttribute("error", error);
 		
 		String loginId = req.getParameter("loginId");
 		String password = req.getParameter("password");
@@ -50,19 +53,21 @@ public class LoginHandler implements CommandHandler{
 		if( !errors.isEmpty()) {
 			return FORM_VIEW;
 		}
-		
 		try {
 			LoginService loginService = LoginService.getInstance();
 			
 			User loginUser = loginService.login(user);
-			System.out.println("로그인 성공"+loginUser.getName());
 			
 			req.getSession().setAttribute("loginUser", loginUser);
 			
 			resp.sendRedirect(req.getContextPath() + "/Main.jsp");
+			return null;
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
+			error.put("errorCode", "dbError");
+			error.put("from", "/user/login");
+			return ERROR_PAGE;
 		} catch (PasswordNotMatchException e) {
 			e.printStackTrace();
 			errors.put("passwordNotMatch", true);
@@ -72,8 +77,7 @@ public class LoginHandler implements CommandHandler{
 			errors.put("userNotFound",true);
 			return FORM_VIEW;
 		}
-		
-		return null;
+
 	}
 
 }

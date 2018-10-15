@@ -30,7 +30,7 @@
 				</div>
 				<div class="input-container">
 					<p>E-mail</p>
-					<input type="text" name="email" class="find"
+					<input type="email" name="email" class="find"
 						placeholder="이메일을 입력해주세요">
 					<div class="underline"></div>
 					<span class="error"><c:if test="${errors.email }">이메일를 입력하세요.</c:if></span>

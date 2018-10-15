@@ -1,5 +1,4 @@
 function commnetLimit() {
-	console.log(event.keyCode);
 	var keyCode = event.keyCode;
 	var comment = document.getElementById("comment").value;
 	var length = comment.length;

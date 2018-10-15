@@ -26,15 +26,15 @@ public class WriteNoticeService {
 		return instance;
 	}
 
-	public int writeNotice(NoticeData writeReq) {
+	public int writeNotice(NoticeData writeReq) throws SQLException, WriteNoticeFailException {
 		NoticeDAO noticeDAO = NoticeDAO.getInstance();
 		NoticeContentDAO noticeContentDAO = NoticeContentDAO.getInstance();
 		try (Connection conn = ConnectionProvider.getConnection()) {
 			conn.setAutoCommit(false);
-
+			try {
 			Notice notice = writeReq.getNotice();
 			noticeDAO.insertNotice(conn, notice);
-
+			
 			int noticeId = noticeDAO.selectLatestNoticeId(conn);
 			if (noticeId == 0) {
 				conn.rollback();
@@ -64,13 +64,15 @@ public class WriteNoticeService {
 			System.out.println("내용 삽입 성그옹");
 			if (ret == 0) {
 				conn.rollback();
-				throw new WritePostFailException("Content 삽입 실패");
+				throw new WriteNoticeFailException("Content 삽입 실패");
 			}
 
 			conn.commit();
 			return noticeId;
-		} catch (SQLException e) {
-			throw new RuntimeException(e);
+			} catch (SQLException e) {
+				e.printStackTrace();
+				throw new SQLException("");
+			}
 		}
 	}
 }

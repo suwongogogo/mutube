@@ -20,7 +20,7 @@ table {
 	display: flex;
 }
 .board-container {
-	width: 1611px;
+	width: 1570px;
 	min-height: 650px;
 	padding: 25px;
 }
@@ -91,6 +91,7 @@ a, a:hover {
 	width: 940px;
 	border: none;
 	outline: none;
+	resize: none;
 }
 .padding-none {
 	padding: 0px;
@@ -112,7 +113,9 @@ a, a:hover {
 .util {
 	font-size: 13px;
     color: black;
-    float: right;
+    text-align: end;
+    vertical-align: sub;
+    border-right: 1px solid #cccccc;
 }
 .check-length {
 	display: inline-block;
@@ -127,4 +130,7 @@ a, a:hover {
 }
 .pagination-border {
 	margin-top: 10px;
+}
+.pagination:active {
+	color: blue;
 }

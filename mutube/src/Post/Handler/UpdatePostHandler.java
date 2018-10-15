@@ -34,7 +34,8 @@ import User.Model.User;
 public class UpdatePostHandler implements Handler.CommandHandler {
 
 	private static final String FORM_VIEW = "/WEB-INF/view/post/updatePostForm.jsp";
-
+	private static final String ERROR_PAGE = "/error.jsp";
+	private static final String SUCCESS_PAGE = "/success.jsp";
 	@Override
 	public String process(HttpServletRequest req, HttpServletResponse resp) throws Exception {
 		if (req.getMethod().equalsIgnoreCase("GET")) {
@@ -48,13 +49,23 @@ public class UpdatePostHandler implements Handler.CommandHandler {
 		}
 	}
 
-	private String processForm(HttpServletRequest req, HttpServletResponse resp) throws SQLException {
+	private String processForm(HttpServletRequest req, HttpServletResponse resp) {
+		Map<String, String> error = new HashMap<String, String>();
+		req.setAttribute("error", error);
+		
 		int postId = Integer.parseInt(req.getParameter("no"));
 
 		UpdatePostService updatePostService = UpdatePostService.getInstance();
-		PostData postData = updatePostService.getPost(postId);
-		req.setAttribute("postData", postData);
-		System.out.println(postData.getPost().getPostId());
+		PostData postData;
+		try {
+			postData = updatePostService.getPost(postId);
+			req.setAttribute("postData", postData);
+			System.out.println(postData.getPost().getPostId());
+		} catch (SQLException e) {
+			e.printStackTrace();
+			error.put("errorCode", "dbError");
+			error.put("from", "/post/view?postId="+postId);
+		}
 		return FORM_VIEW;
 	}
 
@@ -66,9 +77,14 @@ public class UpdatePostHandler implements Handler.CommandHandler {
 		Map<String, Boolean> errors = new HashMap<>();
 		req.setAttribute("errors", errors);
 
+		Map<String, String> error = new HashMap<String, String>();
+		req.setAttribute("error", error);
+		
 		ArrayList<String> imageNames = new ArrayList<>();
 		Map<String, String> params = new HashMap<>();
-		
+
+		int postId = 0;
+		int pageNum = 1;
 		try {
 			if (ServletFileUpload.isMultipartContent(req)) {
 				try {
@@ -99,13 +115,16 @@ public class UpdatePostHandler implements Handler.CommandHandler {
 					e.printStackTrace();
 				}
 			}
-			
-			int postId = 0;
-
 			if (params.get("no") != null) {
 				postId = Integer.parseInt(params.get("no"));
 			}
+			
+			if (params.get("pageNum") != null) {
+				pageNum = Integer.parseInt(params.get("pageNum"));
+			}
 			System.out.println(postId);
+
+			
 			if (postId == 0) {
 				throw new PostNotFoundException("올바르지 않은 게시글 번호");
 			}
@@ -128,16 +147,28 @@ public class UpdatePostHandler implements Handler.CommandHandler {
 			UpdatePostService updatePostService = UpdatePostService.getInstance();
 			updatePostService.update(postData);
 
-			resp.sendRedirect(req.getContextPath() + "/post/view?no=" + postId);
+			Map<String, String> success = new HashMap<String, String>();
+			req.setAttribute("success", success);
+
+			success.put("successCode", "updatePost");
+			success.put("from", "/post/view?no=" + postId);
+			return SUCCESS_PAGE;
 			
 		} catch (PostNotFoundException e) {
 			e.printStackTrace();
+			error.put("errorCode", "PostNotFound");
+			error.put("from", "/post/view?no=" + postId+"&pageNum="+pageNum);
+			return ERROR_PAGE;
 		} catch (UpdatePostFailExcpetion e) {
 			e.printStackTrace();
+			error.put("errorCode", "UpdatePostFail");
+			error.put("from", "/post/view?no=" + postId+"&pageNum="+pageNum);
+			return ERROR_PAGE;
 		} catch (SQLException e) {
-			e.printStackTrace();
+			error.put("errorCode", "dbError");
+			error.put("from", "/post/view?no=" + postId+"&pageNum="+pageNum);
+			return ERROR_PAGE;
 		}
-		return null;
 	}
 
 }

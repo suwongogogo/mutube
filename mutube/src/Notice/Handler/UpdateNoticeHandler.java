@@ -19,6 +19,7 @@ import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
 import Handler.CommandHandler;
+import Notice.Exception.NoticeNotFoundException;
 import Notice.Model.Notice;
 import Notice.Model.NoticeContent;
 import Notice.Model.NoticeData;
@@ -33,11 +34,13 @@ import Post.Service.UpdatePostService;
 import User.Exception.UserNotFoundException;
 import User.Model.User;
 
-public class UpdateNoticeHandler implements CommandHandler{
+public class UpdateNoticeHandler implements CommandHandler {
 	private static final String FORM_VIEW = "/WEB-INF/view/notice/updateNoticeForm.jsp";
-
+	private static final String ERROR_PAGE = "/error.jsp";
+	private static final String SUCCESS_PAGE = "/success.jsp";
+	
 	@Override
-	public String process(HttpServletRequest req, HttpServletResponse resp) throws Exception {
+	public String process(HttpServletRequest req, HttpServletResponse resp) throws IOException {
 		if (req.getMethod().equalsIgnoreCase("GET")) {
 			return processForm(req, resp);
 		} else if (req.getMethod().equalsIgnoreCase("Post")) {
@@ -49,31 +52,39 @@ public class UpdateNoticeHandler implements CommandHandler{
 		}
 	}
 
-	private String processForm(HttpServletRequest req, HttpServletResponse resp) throws SQLException, IOException {
+	private String processForm(HttpServletRequest req, HttpServletResponse resp) throws IOException {
 		User loginUser = (User) req.getSession().getAttribute("loginUser");
+		Map<String, String> error = new HashMap<String, String>();
 		try {
-			if(loginUser == null) {
+			if (loginUser == null) {
 				throw new UserNotFoundException("유저를 찾을 수 없습니다.");
 			}
-			if(loginUser.isAuthority() == false) {
+			if (loginUser.isAuthority() == false) {
 				throw new NoPermissionException("어드민 권한이 없습니다.");
 			}
-			
-		}catch(NoPermissionException e) {
+
+		} catch (NoPermissionException e) {
 			e.printStackTrace();
-			resp.sendRedirect(req.getContextPath() + "/Main.jsp");
-			return null;
-		}catch(UserNotFoundException e) {
+			error.put("errorCode", "NoPermission");
+			error.put("from", "/notice/notice");
+			return ERROR_PAGE;
+		} catch (UserNotFoundException e) {
 			e.printStackTrace();
-			resp.sendRedirect(req.getContextPath() + "/Main.jsp");
-			return null;
+			error.put("errorCode", "UserNotFound");
+			error.put("from", "/notice/notice");
+			return ERROR_PAGE;
 		}
 		int noticeId = Integer.parseInt(req.getParameter("noticeId"));
-
-		UpdateNoticeService updatePostService = UpdateNoticeService.getInstance();
-		NoticeData noticeData = updatePostService.getNotice(noticeId);
-		req.setAttribute("noticeData", noticeData);
-
+		try {
+			UpdateNoticeService updatePostService = UpdateNoticeService.getInstance();
+			NoticeData noticeData = updatePostService.getNotice(noticeId);
+			req.setAttribute("noticeData", noticeData);
+		}catch(SQLException e) {
+			e.printStackTrace();
+			error.put("errorCode", "dbError");
+			error.put("from", "/notice/notice");
+			return ERROR_PAGE;
+		}
 		return FORM_VIEW;
 	}
 
@@ -81,12 +92,21 @@ public class UpdateNoticeHandler implements CommandHandler{
 		User loginUser = (User) req.getSession().getAttribute("loginUser");
 
 		String directory = req.getServletContext().getRealPath("/upload/");
-		
+
 		Map<String, Boolean> errors = new HashMap<>();
 		req.setAttribute("errors", errors);
 
+		Map<String, String> error = new HashMap<>();
+		req.setAttribute("error", error);
+
 		ArrayList<String> imageNames = new ArrayList<>();
 		Map<String, String> params = new HashMap<>();
+
+		int noticeId = 0;
+
+		if (params.get("noticeId") != null) {
+			noticeId = Integer.parseInt(params.get("noticeId"));
+		}
 		
 		try {
 			if (ServletFileUpload.isMultipartContent(req)) {
@@ -118,26 +138,21 @@ public class UpdateNoticeHandler implements CommandHandler{
 					e.printStackTrace();
 				}
 			}
-			
-			int noticeId = 0;
 
-			if (params.get("no") != null) {
-				noticeId = Integer.parseInt(params.get("no"));
-			}
 			System.out.println(noticeId);
 			if (noticeId == 0) {
-				throw new PostNotFoundException("올바르지 않은 게시글 번호");
+				throw new NoticeNotFoundException("올바르지 않은 게시글 번호");
 			}
-	
-			Notice notice = new Notice(noticeId, new Writer(loginUser.getUserId(), loginUser.getName()), params.get("title"));
-			
-			
+
+			Notice notice = new Notice(noticeId, new Writer(loginUser.getUserId(), loginUser.getName()),
+					params.get("title"));
+
 			notice.writeValidate(errors);
 			if (!errors.isEmpty()) {
 				return FORM_VIEW;
 			}
 			NoticeContent noticeContent = new NoticeContent(noticeId, params.get("content"), params.get("video_link"));
-			if(!imageNames.isEmpty()) {
+			if (!imageNames.isEmpty()) {
 				noticeContent.setImageNames(imageNames);
 			}
 			noticeContent.trimLink();
@@ -146,15 +161,28 @@ public class UpdateNoticeHandler implements CommandHandler{
 			UpdateNoticeService updateNoticeService = UpdateNoticeService.getInstance();
 			updateNoticeService.update(noticeData);
 
-			resp.sendRedirect(req.getContextPath() + "/notice/readNotice?noticeId=" + noticeId);
-			
-		} catch (PostNotFoundException e) {
+			Map<String, String> success = new HashMap<String, String>();
+			req.setAttribute("success", success);
+
+			success.put("successCode", "updatePost");
+			success.put("from", "/notice/readNotice?noticeId=" + noticeId);
+			return SUCCESS_PAGE;
+
+		} catch (NoticeNotFoundException e) {
 			e.printStackTrace();
+			error.put("errorCode", "NoticeNotFound");
+			error.put("from", "/notice/readNotice?noticeId=" + noticeId);
+			return ERROR_PAGE;
 		} catch (UpdatePostFailExcpetion e) {
 			e.printStackTrace();
+			error.put("errorCode", "UpdateNoticeFail");
+			error.put("from", "/notice/readNotice?noticeId=" + noticeId);
+			return ERROR_PAGE;
 		} catch (SQLException e) {
 			e.printStackTrace();
+			error.put("errorCode", "dbError");
+			error.put("from", "/notice/readNotice?noticeId=" + noticeId);
+			return ERROR_PAGE;
 		}
-		return null;
 	}
 }

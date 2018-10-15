@@ -16,7 +16,7 @@ import User.Service.RegisterService;
 public class RegisterHandler implements CommandHandler{
 
 	private static final String FORM_VIEW = "/WEB-INF/view/user/registerForm.jsp";
-	
+	private static final String ERROR_PAGE = "/error.jsp";
 	@Override
 	public String process(HttpServletRequest req, HttpServletResponse resp) throws Exception {
 		if(req.getMethod().equalsIgnoreCase("GET")) {
@@ -35,6 +35,10 @@ public class RegisterHandler implements CommandHandler{
 	}
 
 	private String processSubmit(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+		Map<String, String> error = new HashMap<String, String>();
+		req.setAttribute("error", error);
+
+		
 		// errors 맵을 이용해 무결성 검사
 		// RegisterService 객체를 이용해 회원가입 진행
 		// 회원가입 성공 시 로그인 화면으로 전환.
@@ -63,16 +67,21 @@ public class RegisterHandler implements CommandHandler{
 		
 		
 		try {
-			registerService.register(user);		
+			registerService.register(user);
+			
+			return "/WEB-INF/view/user/loginForm.jsp";
 		} catch (SQLException e) {
 			e.printStackTrace();
+			error.put("errorCode", "dbError");
+			error.put("from", "/user/register");
+			return ERROR_PAGE;
 		} catch (UserAlreadyExistException e) {
 			e.printStackTrace();
 			errors.put("userExist", true);
 			return FORM_VIEW;
 		}
 	
-		return "/WEB-INF/view/user/loginForm.jsp";
+		
 	}
 
 	

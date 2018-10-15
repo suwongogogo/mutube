@@ -5,6 +5,7 @@ import java.sql.SQLException;
 
 import Connection.ConnectionProvider;
 import Post.DAO.PostDAO;
+import Post.Exception.DeletePostFailException;
 import Post.Exception.PostNotFoundException;
 
 public class DeletePostService {
@@ -14,17 +15,18 @@ public class DeletePostService {
 		return instance;
 	}
 	
-	public void delete(int postId) throws SQLException {
+	public int delete(int postId) throws DeletePostFailException, SQLException {
 		try(Connection conn = ConnectionProvider.getConnection()){
 			conn.setAutoCommit(false);
 			PostDAO postDAO = PostDAO.getInstance();
-			
-			int cnt = postDAO.delete(conn, postId);
-			if(cnt == 0 ) {
+			try {
+				int cnt = postDAO.delete(conn, postId);
+				conn.commit();
+				return cnt;
+			}catch(SQLException e ) {
 				conn.rollback();
-				throw new PostNotFoundException("게시글 삭제 실패");
+				throw new DeletePostFailException("게시글 삭제 실패");
 			}
-			conn.commit();
 		}
 	}
 }

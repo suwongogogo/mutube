@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import Connection.ConnectionProvider;
 import Notice.DAO.NoticeContentDAO;
 import Notice.DAO.NoticeDAO;
+import Notice.Exception.NoticeNotFoundException;
 import Notice.Model.Notice;
 import Notice.Model.NoticeContent;
 import Notice.Model.NoticeData;
@@ -25,25 +26,25 @@ public class ReadNoticeService {
 		return instance;
 	}
 	
-	public NoticeData getNotice(int noticeId) throws SQLException {
+	public NoticeData getNotice(int noticeId) throws SQLException, NoticeNotFoundException {
 		NoticeData NoticeData = null;
 		
 		try(Connection conn = ConnectionProvider.getConnection()){
-			
+			try {
 			System.out.println("noticeId : "+noticeId);
 			NoticeDAO noticeDAO = NoticeDAO.getInstance();
 			Notice notice = noticeDAO.selectById(conn, noticeId);
 			conn.setAutoCommit(false);
 			if(notice == null) {
 				conn.rollback();
-				throw new PostNotFoundException("게시글을 찾을 수 없음");
+				throw new NoticeNotFoundException("게시글을 찾을 수 없음");
 			}
 			
 			NoticeContentDAO noticeContentDAO = NoticeContentDAO.getInstance();
 			NoticeContent noticeContent = noticeContentDAO.selectByNoticeId(conn, noticeId);
 			if(noticeContent ==null) {
 				conn.rollback();
-				throw new PostNotFoundException("게시글 내용을 찾을 수 없음");
+				throw new NoticeNotFoundException("게시글 내용을 찾을 수 없음");
 			}
 			noticeDAO.increaseReadCount(conn, noticeId);
 			
@@ -60,9 +61,12 @@ public class ReadNoticeService {
 			
 			conn.commit();
 			NoticeData = new NoticeData(notice, noticeContent);
-			
+			}catch(SQLException e) {
+				e.printStackTrace();
+				conn.rollback();
+				throw new SQLException("");
+			}
 		}
-		
 		return NoticeData;
 	}
 }

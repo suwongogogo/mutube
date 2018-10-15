@@ -19,7 +19,6 @@ public class UserDeleteService {
 		UserDAO userDAO = UserDAO.getInstance();
 		try (Connection conn = ConnectionProvider.getConnection()){
 			User user = userDAO.selectByUserId(conn, userId);
-			
 			if(user == null) {
 				throw new UserNotFoundException("없는 유저입니다.");
 			}

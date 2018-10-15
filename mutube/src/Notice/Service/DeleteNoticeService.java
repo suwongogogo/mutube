@@ -16,18 +16,24 @@ public class DeleteNoticeService {
 		return instance;
 	}
 	
-	public void deleteNotice(int noticeId) throws SQLException {
+	public int deleteNotice(int noticeId) throws SQLException {
 		try(Connection conn = ConnectionProvider.getConnection()){
 			conn.setAutoCommit(false);
 			NoticeDAO noticeDAO = NoticeDAO.getInstance();
+			try {
+				int cnt = noticeDAO.deleteNotice(conn, noticeId);
+				if(cnt == 0 ) {
+					conn.rollback();
+					throw new PostNotFoundException("게시글 삭제 실패");
+				}
 			
-			int cnt = noticeDAO.deleteNotice(conn, noticeId);
-			if(cnt == 0 ) {
+				conn.commit();
+				return cnt;
+			}catch(SQLException e) {
+				e.printStackTrace();
 				conn.rollback();
-				throw new PostNotFoundException("게시글 삭제 실패");
+				throw new SQLException("");
 			}
-			
-			conn.commit();
 		}
 	}
 }

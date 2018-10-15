@@ -19,15 +19,12 @@ public class ListPostService {
 	private int size = 15;
 	private int blockSize = 10;
 	
-	public PostPage getPostPage(int pageNum) {
+	public PostPage getPostPage(int pageNum) throws SQLException {
 		try(Connection conn = ConnectionProvider.getConnection();){
 			PostDAO postDAO = PostDAO.getInstance();
 			int total = postDAO.selectCount(conn);
 			List<Post> postList = postDAO.select(conn, (pageNum - 1) * size , size);
 			return new PostPage(postList, pageNum, total, size, blockSize);
-		}catch(SQLException e) {
-			throw new RuntimeException(e);
 		}
-		
 	}
 }

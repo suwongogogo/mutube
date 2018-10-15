@@ -1,7 +1,5 @@
 package Post.Model;
 
-import Post.Service.CommentPage;
-
 //원래 WriteRequest였음
 public class PostData {
 	private Post post;

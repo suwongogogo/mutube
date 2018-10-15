@@ -10,7 +10,10 @@
 </head>
 <body>
 	<div class="loginForm-container" style="height: 360px;">
-        <form action="update" method="post">
+		<a href="/mutube/Main.jsp"> <img src="/mutube/Image/logo.jpg"
+			width="200" height="100">
+		</a>
+        <form action="update" method="post" onsubmit="return false;" id="form">
         <input type="hidden" name="userId" value="${loginUser.userId }">
             <div class="login" class="input-container">
                 <div class="input-container">
@@ -30,7 +33,7 @@
                     <p>이메일</p>
                     <input type="email" name="email" class="signin" placeholder="이메일" value="${loginUser.email }"> 
                     <div class="underline"></div>
-                    <span class="error"><c:if test="${errors.password }">이메일을 입력하세요.</c:if></span>
+                    <span class="error"><c:if test="${errors.email }">이메일을 입력하세요.</c:if></span>
                 </div>
                 <input type="submit" value="수정" class="submit">
                 <a href="/mutube/myPage.jsp">

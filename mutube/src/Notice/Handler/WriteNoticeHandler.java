@@ -22,6 +22,7 @@ import Handler.CommandHandler;
 import Notice.Model.Notice;
 import Notice.Model.NoticeContent;
 import Notice.Model.NoticeData;
+import Notice.Service.WriteNoticeFailException;
 import Notice.Service.WriteNoticeService;
 import Post.Exception.WritePostFailException;
 import Post.Model.Writer;
@@ -30,8 +31,9 @@ import User.Model.User;
 
 public class WriteNoticeHandler implements CommandHandler{
 	private static final String FORM_VIEW = "/WEB-INF/view/notice/writeNoticeForm.jsp";
-
-	public String process(HttpServletRequest req, HttpServletResponse resp) throws Exception {
+	private static final String ERROR_PAGE = "/error.jsp";
+	private static final String SUCCESS_PAGE = "/success.jsp";
+	public String process(HttpServletRequest req, HttpServletResponse resp) throws IOException {
 		if (req.getMethod().equalsIgnoreCase("GET")) {
 			return processForm(req, resp);
 		} else if (req.getMethod().equalsIgnoreCase("POST")) {
@@ -54,19 +56,19 @@ public class WriteNoticeHandler implements CommandHandler{
 			
 		}catch(NoPermissionException e) {
 			e.printStackTrace();
-			resp.sendRedirect(req.getContextPath() + "/Main.jsp");
-			return null;
+			req.setAttribute("errorCode", "UserNotFound");
+			return ERROR_PAGE;
 		}catch(UserNotFoundException e) {
 			e.printStackTrace();
-			resp.sendRedirect(req.getContextPath() + "/Main.jsp");
-			return null;
+			req.setAttribute("errorCode", "NoPermisson");
+			return ERROR_PAGE;
 		}
 		
 		return FORM_VIEW;
 	}
 
 	private String processSubmit(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-
+		
 		// 세션에 있는 유저의 정보와 파라미터로 값을 받고
 		User loginUser = (User) req.getSession().getAttribute("loginUser");
 
@@ -80,7 +82,10 @@ public class WriteNoticeHandler implements CommandHandler{
 
 		Map<String, Boolean> errors = new HashMap<String, Boolean>();
 		req.setAttribute("errors", errors);
-
+		
+		Map<String, String> error = new HashMap<>();
+		req.setAttribute("error", error);
+		
 		if (ServletFileUpload.isMultipartContent(req)) {
 			try {
 				List<FileItem> multiparts = new ServletFileUpload(new DiskFileItemFactory()).parseRequest(req);
@@ -147,16 +152,24 @@ public class WriteNoticeHandler implements CommandHandler{
 		int postId = 0;
 		try {
 			postId = writeNoticeService.writeNotice(writeReq);
-			resp.sendRedirect(req.getContextPath() + "/notice/notice");
+			
+			Map<String, String> success = new HashMap<String, String>();
+			req.setAttribute("success", success);
 
-		} catch(WritePostFailException e) {
+			success.put("successCode", "writePost");
+			success.put("from", "/notice/notice");
+			return SUCCESS_PAGE;
+
+		} catch(WriteNoticeFailException e) {
 			e.printStackTrace();
-			return FORM_VIEW;
-		} catch (RuntimeException e) {
-			e.printStackTrace();
-			return FORM_VIEW;
+			error.put("errorCode", "WriteNoticeFail");
+			error.put("from", "/notice/notice");
+			return ERROR_PAGE;
+		} catch (SQLException e) {
+			error.put("errorCode", "dbError");
+			error.put("from", "/notice/notice");
+			return ERROR_PAGE;
 		}
 
-		return null;
 	}
 }

@@ -8,13 +8,13 @@ import User.DAO.UserDAO;
 import User.Exception.UserNotFoundException;
 import User.Model.User;
 
-public class ConfirmUserByPasswordService {
-	private static ConfirmUserByPasswordService instance = new ConfirmUserByPasswordService();
+public class ComfirmUserByPasswordService {
+	private static ComfirmUserByPasswordService instance = new ComfirmUserByPasswordService();
 
-	private ConfirmUserByPasswordService() {
+	private ComfirmUserByPasswordService() {
 	}
 
-	public static ConfirmUserByPasswordService getInstance() {
+	public static ComfirmUserByPasswordService getInstance() {
 		return instance;
 	}
 
@@ -26,7 +26,6 @@ public class ConfirmUserByPasswordService {
 			if(user == null) {
 				throw new UserNotFoundException("없는 유저입니다.");
 			}
-			
 			return user;
 		}
 	}

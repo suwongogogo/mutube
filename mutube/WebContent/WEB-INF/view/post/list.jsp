@@ -40,7 +40,7 @@
 							<tr class="list-tr">
 								<td class="tc">${post.postId }</td>
 								<td></td>
-								<td class="pointer"><a href="view?no=${post.postId }&pageNum=${postPage.currentPage}"><font size="2" color="darkgrey" >(${post.genre}, ${post.country}, ${post.instrument})</font> ${post.title }</a></td>
+								<td class="pointer"><a href="view?no=${post.postId }&pageNum=${postPage.currentPage}" class="title-container"><font size="2" color="darkgrey" >(장르:${post.genre}, 나라:${post.country}, 악기:${post.instrument})</font> ${post.title }</a></td>
 								<td></td>
 								<td class="tc">${post.writer.name }<br><font size="2" color="darkgrey" >(${post.writer.loginId })</font></td>
 								<td></td>
@@ -61,7 +61,7 @@
 							<tr class="tc">
 								<td class="paging" colspan="9">
 									<c:if test="${postPage.startPage > 5}">
-										<a href="list?pageNum=${postPage.startPage-5 }"><span class="arrow">◀</span><span class="prev">이전</span></a>
+										<a href="list?pageNum=${postPage.startPage-5 }"><span class="prev">이전</span></a>
 									</c:if>
 									<c:forEach var="pageNum" begin="${postPage.startPage }" end="${postPage.endPage }">
 										<div class="inline pagination-border">
@@ -69,7 +69,7 @@
 										</div>
 									</c:forEach>
 									<c:if test="${postPage.endPage < postPage.totalPages }">
-										<a href="list?pageNum=${postPage.startPage+5 }"><span class="next">다음</span><span class="arrow">▶</span></a>
+										<a href="list?pageNum=${postPage.startPage+5 }"><span class="next">다음</span></a>
 									</c:if>
 								</td>
 							</tr>
