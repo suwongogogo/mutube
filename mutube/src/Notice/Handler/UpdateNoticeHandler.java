@@ -135,8 +135,8 @@ public class UpdateNoticeHandler implements CommandHandler {
 				}
 			}
 
-			if (params.get("noticeId") != null) {
-				noticeId = Integer.parseInt(params.get("noticeId"));
+			if (params.get("no") != null) {
+				noticeId = Integer.parseInt(params.get("no"));
 			}
 			
 			System.out.println(noticeId);
