@@ -42,7 +42,7 @@
 			break;
 			
 		case "SamePassword":
-			out.print("<script>alert('현재 비밀번호와 같습니다.'); location.href='/mutube'" + from + "';</script>");
+			out.print("<script>alert('현재 비밀번호와 같습니다.'); location.href='/mutube" + from + "';</script>");
 			break;
 
 		case "userDeleteFail":
