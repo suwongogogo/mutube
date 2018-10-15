@@ -30,8 +30,8 @@ public class DeleteUserService {
 			}catch(SQLException e) {
 				conn.rollback();
 				e.printStackTrace();
-			}			
-			
+				throw new SQLException(e);
+			}		
 		}
 	}
 }

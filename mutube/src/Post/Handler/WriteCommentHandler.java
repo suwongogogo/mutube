@@ -25,7 +25,10 @@ public class WriteCommentHandler implements CommandHandler {
 	public String process(HttpServletRequest req, HttpServletResponse resp) throws IOException {
 		WriteCommentService writeComment = WriteCommentService.getInstance();
 		int postId = Integer.parseInt(req.getParameter("postId"));
-		int pageNum = Integer.parseInt(req.getParameter("pageNum"));
+		int pageNum = 1;
+		if(req.getParameter("pageNum")!= null){
+			pageNum = Integer.parseInt(req.getParameter("pageNum"));
+		}
 		String comment = req.getParameter("comment");
 		
 		User loginUser = (User) req.getSession().getAttribute("loginUser");

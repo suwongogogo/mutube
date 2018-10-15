@@ -40,11 +40,7 @@ public class PostPageINF {
 		}
 	}
 	
-	public boolean hasNoUser() {
-		return total == 0;
-	}
-	
-	public boolean hasUser() {
+	public boolean hasPost() {
 		return total > 0;
 	}
 
