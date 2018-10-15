@@ -22,11 +22,11 @@ public class ListPostHandler implements Handler.CommandHandler {
 		
 		try {
 			ListPostService postService = ListPostService.getInstance();
-			String pageNumStr = req.getParameter("pageNum");
 			int pageNum = 1;
-			if (pageNumStr != null) {
-				pageNum = Integer.parseInt(pageNumStr);
+			if (req.getParameter("pageNum") != null  && !req.getParameter("pageNum").equals("")) {
+				pageNum = Integer.parseInt(req.getParameter("pageNum"));
 			}
+			System.out.println(pageNum);
 			PostPage postPage = postService.getPostPage(pageNum);
 
 			req.setAttribute("postPage", postPage);

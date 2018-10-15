@@ -24,10 +24,9 @@ public class NoticeListHandler implements CommandHandler {
 
 		try {
 			NoticeListService noticeService = NoticeListService.getInstance();
-			String pageNumStr = req.getParameter("pageNum");
 			int pageNum = 1;
-			if (pageNumStr != null) {
-				pageNum = Integer.parseInt(pageNumStr);
+			if (req.getParameter("pageNum") != null && !req.getParameter("pageNum").equals("")) {
+				pageNum = Integer.parseInt(req.getParameter("pageNum"));
 			}
 			if (pageNum == 0) {
 				throw new PageNotFoundException("페이지를 찾을 수 없습니다.");
@@ -43,7 +42,7 @@ public class NoticeListHandler implements CommandHandler {
 		} catch (SQLException e) {
 			e.printStackTrace();
 			error.put("errorCode", "dbError");
-			error.put("from", "/Main");
+			error.put("from", "/Main.jsp");
 		}
 		return ERROR_PAGE;
 	}

@@ -34,6 +34,7 @@ public class ReadNoticeHandler implements CommandHandler {
 			if (req.getParameter("pageNum") != null) {
 				pageNum = Integer.parseInt(req.getParameter("pageNum"));
 			}
+			
 			if (noticeId == 0) {
 				throw new NoticeNotFoundException("해당 공지사항을 찾을 수 없습니다.");
 			}
