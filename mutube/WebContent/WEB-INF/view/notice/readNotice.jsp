@@ -35,7 +35,7 @@
 									<div>
 										<c:if test="${noticeData.noticeContent.video_link != null }">
 											<iframe width="660" height="315"
-												src="https://www.youtube.com/embed/${postData.noticeContent.video_link }"
+												src="https://www.youtube.com/embed/${noticeData.noticeContent.video_link }"
 												frameborder="0" allow="autoplay; encrypted-media"
 												allowfullscreen class="vedio-div"></iframe>
 										</c:if>
