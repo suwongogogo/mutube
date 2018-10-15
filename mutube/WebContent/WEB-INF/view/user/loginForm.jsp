@@ -42,6 +42,9 @@
 				<input type="submit" value="로그인" class="submit">
 			</div>
 		</form>
+		<a href="/mutube/Main.jsp">
+			<button class="submit">취소</button>
+		</a>
 	</div>
 </body>
 </html>

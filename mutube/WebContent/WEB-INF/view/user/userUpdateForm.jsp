@@ -37,7 +37,7 @@
                     <span class="error" id="email-error"><c:if test="${errors.email }">이메일을 입력하세요.</c:if></span>
                 </div>
                 <input type="submit" value="수정" class="submit" onclick="move()">
-                <button class="submit" onclick="moveMain()">취소</button>
+                <button class="submit" onclick="moveMyPage()">취소</button>
             </div>
         </form>
     </div> 
