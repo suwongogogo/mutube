@@ -87,7 +87,6 @@ public class ChangePasswordHandler implements CommandHandler {
 			if(new_password.equals(now_password)) {
 				throw new samePasswordException("새 비밀번호의 값이 현재 비밀번호와 같습니다.");
 			}
-			
 			ChangePasswordService changePassword = ChangePasswordService.getInstance();
 			User user = changePassword.changePwd(new_password, loginUser.getLoginId());
 			
