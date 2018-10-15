@@ -43,7 +43,7 @@ public class UpdatePostHandler implements Handler.CommandHandler {
 			return processSubmit(req, resp);
 		} else {
 			resp.sendError(HttpServletResponse.SC_METHOD_NOT_ALLOWED);
-			;
+		
 			return null;
 		}
 	}
