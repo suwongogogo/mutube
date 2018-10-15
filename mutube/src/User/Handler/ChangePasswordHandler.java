@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServletResponse;
 import Handler.CommandHandler;
 import User.Exception.NewPasswordNotMatchException;
 import User.Exception.UserNotFoundException;
+import User.Exception.confirmPasswordNotMatchException;
+import User.Exception.samePasswordException;
 import User.Model.User;
 import User.Service.ChangePasswordService;
 
@@ -44,33 +46,46 @@ public class ChangePasswordHandler implements CommandHandler {
 		Map<String, String> error = new HashMap<String, String>();
 		req.setAttribute("error", error);
 		
+		Map<String, Boolean> errors = new HashMap<String, Boolean>();
+		req.setAttribute("errors", errors);
+		
+		User loginUser = null;
+		if(req.getSession().getAttribute("loginUser")!= null) {
+			loginUser =  (User)req.getSession().getAttribute("loginUser");
+		}
+		
 		try {
 			String now_password = req.getParameter("now_password");
 			String new_password = req.getParameter("new_password");
 			String new_password_confirm = req.getParameter("new_password_confirm");
 			
-			User loginUser = null;
-			if(req.getSession().getAttribute("loginUser")!= null) {
-				loginUser =  (User)req.getSession().getAttribute("loginUser");
-			}
 			
-			Map<String, Boolean> errors = new HashMap<String, Boolean>();
-			req.setAttribute("errors", errors);
 			if(loginUser == null) {
 				throw new UserNotFoundException("없는 유저입니다.");
 			}
+			// 입력한 값이 없거나 공백을 넣었을 때
 			if(now_password.isEmpty() || now_password == null) {
 				errors.put("now_password", true);
 			}
+			// 입력한 값이 없거나 공백을 넣었을 때
 			if(new_password.isEmpty() || new_password == null) {
 				errors.put("new_password", true);
 			}
+			// 입력한 값이 없거나 공백을 넣었을 때
 			if(new_password_confirm.isEmpty() || new_password_confirm == null) {
 				errors.put("new_password_confirm", true);
 			}
+			// 입력한 비밀번호가 현재 비밀번호와 같지 않을 때
+			if(!loginUser.getPassword().equals(now_password)) {
+				errors.put("nowPasswordNotMatch", true);
+			}
+			// 새 비밀번호 확인의 값과 새 비밀번호의 값이 일치하지 않을 때
 			if(!new_password.equals(new_password_confirm)) {
-				errors.put("passwordNotMatch", true);
-				return FORM_VIEW;
+				throw new confirmPasswordNotMatchException("새 비밀번호 확인가 일치하지 않습니다.");
+			}
+			// 새 비밀번호의 값이 현재 비밀번호와 같을 때
+			if(new_password.equals(now_password)) {
+				throw new samePasswordException("새 비밀번호의 값이 현재 비밀번호와 같습니다.");
 			}
 			
 			ChangePasswordService changePassword = ChangePasswordService.getInstance();
@@ -84,11 +99,19 @@ public class ChangePasswordHandler implements CommandHandler {
 		}catch(SQLException e) {
 			e.printStackTrace();
 			error.put("errorCode", "dbError");
-			error.put("from", "/user/changePassword");
+			error.put("from", "/user/changePassword?userId="+loginUser.getUserId());
 		} catch (UserNotFoundException e) {
 			e.printStackTrace();
 			error.put("errorCode", "userNotFound");
-			error.put("from", "/user/changePassword");
+			error.put("from", "/user/changePassword?userId="+loginUser.getUserId());
+		} catch (confirmPasswordNotMatchException e) {
+			e.printStackTrace();
+			error.put("errorCode", "ConfirmPasswordNotMatch");
+			error.put("from", "/user/changePassword?userId="+loginUser.getUserId());
+		} catch (samePasswordException e) {
+			e.printStackTrace();
+			error.put("errorCode", "SamePassword");
+			error.put("from", "/user/changePassword?userId="+loginUser.getUserId());
 		}
 		return ERROR_PAGE;
 	}

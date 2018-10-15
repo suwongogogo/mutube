@@ -5,9 +5,9 @@ import javax.servlet.http.HttpServletResponse;
 
 import Handler.CommandHandler;
 import Post.Exception.PostNotFoundException;
+import Post.Model.CommentPage;
 import Post.Model.PostData;
 import Post.Service.CommentListService;
-import Post.Service.CommentPage;
 import Post.Service.ReadPostService;
 
 public class ReadPostHandler implements CommandHandler {

@@ -13,6 +13,8 @@
         <form action="update" method="post">
         <form action="update" method="post" onsubmit="return false;" id="form">
         <input type="hidden" name="userId" value="${loginUser.userId }">
+        <form action="update" method="post" onsubmit="return false;" id="form">
+        <input type="hidden" name="userId" value="${loginUser.userId }">
             <div class="login" class="input-container">
                 <div class="input-container">
                     <p>아이디</p>

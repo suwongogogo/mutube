@@ -21,7 +21,9 @@
                     <div class="underline"></div>
                     <div class="widht">
 	                    <span class="error" id="old-error"></span>
-	                    <span class="error"><c:if test="${errors.passwordNotMatch }">비밀번호가 일치하지 않습니다.</c:if></span>
+	                    <span class="error">
+	                    	<c:if test="${errors.nowPasswordNotMatch }">현재 비밀번호가 일치하지 않습니다.</c:if>
+	                    </span>
                     </div>
                     <p>새 비밀번호</p>
                     <input type="password" name="new_password" class="signin" placeholder="새 비밀번호를 입력해주세요." id="new-password"> 
@@ -34,9 +36,6 @@
                     <div class="underline"></div>
                     <div class="widht">
 	                    <span class="error" id="re-new-error"></span>
-	                    <c:if test="${errors.newPasswordNotMatch }">
-	                    	<span class="error">비밀번호가 일치하지 않습니다.</span>
-	                    </c:if>
                     </div>
                 </div>
                 <input type="submit" value="수정" class="submit" onclick="changePassword()">

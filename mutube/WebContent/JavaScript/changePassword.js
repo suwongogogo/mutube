@@ -23,5 +23,6 @@ function changePassword() {
 }
 
 function moveMain() {
+	alert("비밀번호 변경 완료");
 	location.href="/mutube/myPage.jsp";
 }
