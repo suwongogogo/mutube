@@ -1,3 +1,6 @@
+
+var check = true;
+
 function commnetLimit() {
 	var keyCode = event.keyCode;
 	var comment = document.getElementById("comment").value;
@@ -19,6 +22,9 @@ function commnetPost() {
 	if(comment.trim() == "") {
 		alert("댓글을 입력하세요!");
 	} else {
-		document.getElementById("comment-submit").submit();
+		if(check) {
+			document.getElementById("comment-submit").submit();
+			check = false;
+		}
 	}
 }

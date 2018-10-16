@@ -1,6 +1,13 @@
+
+var check = true;
+
 function move() {
 	var form = document.getElementById("form");
-	form.submit();
+	
+	if(check) {
+		form.submit();
+		check = false;
+	}
 }
 
 function cancle() {
