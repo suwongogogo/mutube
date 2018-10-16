@@ -103,8 +103,18 @@ public class User {
 		if(name==null || name.isEmpty()) {
 			errors.put("name", true);
 		}
-		if(email.indexOf("@") == -1 || email.indexOf(".com") == -1) {
+		if(email.indexOf("@") == -1) {
+			System.out.println("email0");
 			errors.put("emailForm", true);
+		}
+		if(email.indexOf(".com") == -1) {
+			if(email.indexOf(".kr") == -1) {
+				errors.put("emailForm", true);
+			} else {}
+		} else if(email.indexOf(".kr") == -1) {
+			if(email.indexOf(".com") == -1) {
+				errors.put("emailForm", true);
+			} else {}
 		}
 	}
 	public void loginValidate(Map<String, Boolean> errors) {
