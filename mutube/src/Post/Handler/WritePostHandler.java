@@ -3,34 +3,23 @@ package Post.Handler;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.servlet.ServletContext;
-import javax.servlet.ServletRequestListener;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.fileupload.FileItem;
+import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
-import org.apache.commons.fileupload.servlet.ServletRequestContext;
-
-import com.oreilly.servlet.MultipartRequest;
-import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
-import com.oreilly.servlet.multipart.MultipartParser;
-import com.sun.glass.ui.Application;
-import com.sun.net.httpserver.HttpsParameters;
-
 import java.io.File;
 import Handler.CommandHandler;
 import Post.Exception.WritePostFailException;
+import Post.Exception.UnexpectedImageFormat;
 import Post.Model.Post;
 import Post.Model.PostContent;
 import Post.Model.PostData;
@@ -66,8 +55,6 @@ public class WritePostHandler implements CommandHandler {
 
 		// 넘겨받은 이미지 파일에 대한 정보를 저장
 		String directory = req.getServletContext().getRealPath("/upload/");
-		int maxSize = 1024 * 1024 * 5;
-		String encoding = "utf-8";
 
 		ArrayList<String> imageNames = new ArrayList<>();
 		Map<String, String> params = new HashMap<>();
@@ -90,7 +77,7 @@ public class WritePostHandler implements CommandHandler {
 								item.write(new File(directory + date + name));
 								imageNames.add(date + name);
 							} else {
-								errors.put("imageType", true);
+								throw new UnexpectedImageFormat("올바르지 않은 이미지 형식");
 							}
 						}
 					} else {
@@ -101,9 +88,16 @@ public class WritePostHandler implements CommandHandler {
 					}
 				}
 
+			} catch (UnexpectedImageFormat e) {
+				error.put("errorCode", "unexpectedFormat");
+				error.put("from", "/post/write");
+				return ERROR_PAGE;
 			} catch (Exception e) {
-				e.printStackTrace();
+				error.put("errorCode", "fileUpload");
+				error.put("from", "/post/write");
+				return ERROR_PAGE;
 			}
+			
 		}
 
 		if (params.get("title").trim().equals("")) {
@@ -156,7 +150,8 @@ public class WritePostHandler implements CommandHandler {
 			error.put("errorCode", "dbError");
 			error.put("from", "/post/list");
 			return ERROR_PAGE;
-		}
+		} 
+
 
 	}
 

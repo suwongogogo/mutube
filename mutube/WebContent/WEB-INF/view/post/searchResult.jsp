@@ -57,7 +57,7 @@
 								<td class="tc height">${post.postId }</td>
 								<td></td>
 								<td class="pointer height"><a
-									href="/post/view?no=${post.postId }&pageNum=${postPage.currentPage}" class="title-container">${post.title }</a></td>
+									href="/mutube/post/view?no=${post.postId }&pageNum=${postPage.currentPage}" class="title-container">${post.title }</a></td>
 								<td></td>
 								<td class="tc height">${post.writer.name }</td>
 								<td></td>
