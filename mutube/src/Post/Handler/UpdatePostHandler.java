@@ -80,6 +80,7 @@ public class UpdatePostHandler implements Handler.CommandHandler {
 		Map<String, String> error = new HashMap<String, String>();
 		req.setAttribute("error", error);
 		
+
 		ArrayList<String> imageNames = new ArrayList<>();
 		Map<String, String> params = new HashMap<>();
 
@@ -107,6 +108,9 @@ public class UpdatePostHandler implements Handler.CommandHandler {
 							String name = item.getFieldName();
 							String value = item.getString("UTF-8");
 							params.put(name, value);
+							if(name.equals("image")) {
+								imageNames.add(value);
+							}
 							System.out.println(name + ", " + value);
 						}
 					}
