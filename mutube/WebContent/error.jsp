@@ -104,6 +104,10 @@
 		case "ComfirmPasswordNotMatch":
 			out.print("<script>alert('입력하신 비밀번호가 일치하지 않습니다.'); location.href='/mutube" + from + "';</script>");
 			break;
+			
+		case "DeleteFail":
+			out.print("<script>alert('삭제 실패.'); location.href='/mutube" + from + "';</script>");
+			break;
 		}
 	%>
 </body>
