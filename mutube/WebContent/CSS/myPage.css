@@ -7,9 +7,6 @@
 .inline {
 	display: inline-block;
 }
-.mypage-container {
-	margin: 245px 518px;
-}
 .mypage {
 	height: 100%;
 }
@@ -33,13 +30,14 @@
 
 .mypage-container {
     width: 410px;
-    height: 315px;
+    height: 365px;
     padding: 30px;
     border: 1px solid #dddddd;
     border-radius: 10px;
     box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14),
                 0 3px 1px -2px rgba(0,0,0,0.12),
                 0 1px 5px 0 rgba(0,0,0,0.2);
+    margin: 245px 518px;
 }
 .input-container {
     margin-bottom: 10px;
@@ -50,13 +48,12 @@
     font-size: 17px;
     margin-bottom: 4px;
 }
-.mypage input:last-child {
-    height: 40px;
-}
 .button-container {
-	margin-left: 60px;
+	margin-left: 80px;
 }
 .submit {
+	width: 118px;
+	height: 42px !important;
     margin-top: 6px;
     font-size: 16px;
     border-color: #1a73e8;
@@ -68,4 +65,10 @@
 }
 .button-container form{
 	display: inline-block;
+}
+.flex {
+	display: flex;
+}
+.button-container .flex a:FIRST-CHILD {
+	margin-right: 15px;
 }

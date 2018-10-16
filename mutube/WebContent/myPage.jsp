@@ -37,19 +37,26 @@
 						<input class="font30 outline" value="${loginUser.email }" readonly="readonly">
 					</div>
 					<div class="button-container">
-						<a href="/mutube/user/update?userId=${loginUser.userId }">
-							<button class="submit input">회원 수정</button>
-						</a>
-						<%-- 패스워드 받기 --%>
-						<form action="/mutube/user/deleteUserComfirmByPassword" onsubmit="return false" id="userOutForm" class="inline" onclick="userOut()" method="get">
-							<span>
-								<input type="hidden" value="${loginUser.userId }">
-								<input type="submit" class="submit input" value="회원 탈퇴">
-							</span>
-						</form>
-						<a href="/mutube/user/changePassword?userId=${loginUser.userId }">
-							<button class="submit input">비밀번호 수정</button>
-						</a>
+						<div class="flex">
+							<a href="#">
+								<button class="submit input">내가 쓴 글</button>
+							</a>
+							<a href="/mutube/user/changePassword?userId=${loginUser.userId }">
+								<button class="submit input">비밀번호 수정</button>
+							</a>
+						</div>
+						<div class="flex">
+							<a href="/mutube/user/update?userId=${loginUser.userId }" class="block">
+								<button class="submit input">회원 수정</button>
+							</a>
+							<%-- 패스워드 받기 --%>
+							<form action="/mutube/user/deleteUserComfirmByPassword" onsubmit="return false" id="userOutForm" class="inline" onclick="userOut()" method="get">
+								<span>
+									<input type="hidden" value="${loginUser.userId }">
+									<input type="submit" class="submit input" value="회원 탈퇴">
+								</span>
+							</form>
+						</div>
 					</div>
 				</div>
 			</div>
