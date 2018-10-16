@@ -11,6 +11,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>글 수정</title>
 <link rel="stylesheet" type="text/css" href="/mutube/CSS/postForm.css" />
+<script src="/mutube/JavaScript/postForm.js"></script>
 </head>
 <body>
     <div class="wrapper">
@@ -19,7 +20,7 @@
 			<jsp:include page="/particular/nav.jsp"></jsp:include>
 			<div class="postForm-container">
 				<div class="title-container">
-					<form action="update" method="post" enctype="multipart/form-data">
+					<form action="update" method="post" enctype="multipart/form-data" onsubmit="return false" id="form">
 						<input type="hidden" name="no" value="${postData.post.postId }">
 						<div class="title-form">
 							<p class="write-title">제목</p>
@@ -91,12 +92,25 @@
 							<p class="write-title">이미지 첨부하기</p>
 							<input type="file" name="image" class="image-input" size="10">
 						</div>
+						<c:if test="${postData.postContent.imageNames!=null && !postData.postContent.imageNames.isEmpty() }">
+						<div class="video-container">
+							${i=0;''}
+							<p class="write-title">이미지 미리보기</p>
+							<c:forEach var="image" items="${postData.postContent.imageNames }">
+								<span id="image${i= i+1 }" >					
+									<img src="/img/${image }" width="220" height="120"> 
+									<input type="hidden" name="image" value="${image }">
+									<button onclick="deleteImage(image${i})">이미지 삭제</button>
+								</span>
+							</c:forEach>
+						</div>
+						</c:if>
 						<div class="content">
 							<p class="write-title content-title">내용</p>
 							<textarea name="content" class="textarea" >${postData.postContent.content }</textarea>
 						</div>
 						<div class="button-container">
-							<input type="submit" value="수정" class="submit button">
+							<input type="submit" value="수정" onclick="move()" class="submit button">
 							<button class="cancle button" onclick="cancle()">취소</button>
 						</div>
 					</form>
@@ -105,5 +119,6 @@
 		</div>
 		<jsp:include page="/particular/footer.jsp"></jsp:include>
 	</div>
+
 </body>
 </html>

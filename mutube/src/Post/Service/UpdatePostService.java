@@ -2,6 +2,7 @@ package Post.Service;
 
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import Connection.ConnectionProvider;
 import Post.DAO.PostContentDAO;
@@ -31,6 +32,16 @@ public class UpdatePostService {
 
 			Post post = postDAO.selectById(conn, postId);
 			PostContent postContent = postContentDAO.selectByPostId(conn, postId);
+			if(postContent.getImageNamesStr()!=null) {
+				String[] names = postContent.getImageNamesStr().split("\\?");
+				ArrayList<String> imageNames = new ArrayList<String>();
+				for(String name : names) {
+					imageNames.add(name);
+				}
+				postContent.setImageNames(imageNames);
+			}else {
+				postContent.setImageNames(null);
+			}
 			postData = new PostData(post, postContent);
 		}
 

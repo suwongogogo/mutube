@@ -16,3 +16,9 @@ function cancle() {
     	location.href="/mutube/post/list";
     }
 }
+
+
+function deleteImage(image){
+	var parent = image.parentNode;
+	parent.removeChild(image);
+}
