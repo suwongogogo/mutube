@@ -21,7 +21,7 @@
 		<filter-name>EncodingFilter</filter-name>
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
-	<!-- 로그인 필터  -->
+	<!-- 로그인 필터 -->
 	<filter>
 		<filter-name>LoginFilter</filter-name>
 		<filter-class>Filter.LoginCheckFilter</filter-class>
@@ -33,25 +33,25 @@
 		<url-pattern>/user/comfirmUserByPassword</url-pattern>
 		<url-pattern>/user/changePassword</url-pattern>
 		<url-pattern>/user/deleteUserComfirmByPassword</url-pattern>
-		
+
 		<url-pattern>/post/write</url-pattern>
 		<url-pattern>/post/update</url-pattern>
 		<url-pattern>/post/delete</url-pattern>
 		<url-pattern>/post/writeComment</url-pattern>
 		<url-pattern>/post/deleteComment</url-pattern>
-		
+
 		<url-pattern>/notice/writeNotice</url-pattern>
 		<url-pattern>/notice/updateNotice</url-pattern>
 		<url-pattern>/notice/writeNoticeComment</url-pattern>
-		
+
 		<url-pattern>/admin/userManagement</url-pattern>
 		<url-pattern>/admin/postManagement</url-pattern>
 		<url-pattern>/admin/noticeManagement</url-pattern>
-		
+
 		<url-pattern>/myPage.jsp</url-pattern>
 		<url-pattern>/managementList.jsp</url-pattern>
 	</filter-mapping>
-	
+
 	<!-- 컨트롤러 서블릿 -->
 	<servlet>
 		<servlet-name>Controller</servlet-name>
@@ -74,7 +74,7 @@
 		<url-pattern>/user/comfirmUserByPassword</url-pattern>
 		<url-pattern>/user/changePassword</url-pattern>
 		<url-pattern>/user/deleteUserComfirmByPassword</url-pattern>
-		
+
 		<url-pattern>/post/write</url-pattern>
 		<url-pattern>/post/view</url-pattern>
 		<url-pattern>/post/update</url-pattern>
@@ -85,7 +85,7 @@
 		<url-pattern>/post/deleteComment</url-pattern>
 		<url-pattern>/post/commentList</url-pattern>
 		<url-pattern>/post/readMyPost</url-pattern>
-		
+
 		<url-pattern>/notice/writeNotice</url-pattern>
 		<url-pattern>/notice/notice</url-pattern>
 		<url-pattern>/notice/updateNotice</url-pattern>
@@ -94,7 +94,7 @@
 		<url-pattern>/notice/writeNoticeComment</url-pattern>
 		<url-pattern>/notice/noticeCommentList</url-pattern>
 		<url-pattern>/notice/deleteNoticeComment</url-pattern>
-		
+
 		<url-pattern>/admin/userManagement</url-pattern>
 		<url-pattern>/admin/postManagement</url-pattern>
 		<url-pattern>/admin/noticeManagement</url-pattern>
@@ -102,6 +102,4 @@
 		<url-pattern>/admin/deletePost</url-pattern>
 		<url-pattern>/admin/deleteNotice</url-pattern>
 	</servlet-mapping>
-	
-
 </web-app>
