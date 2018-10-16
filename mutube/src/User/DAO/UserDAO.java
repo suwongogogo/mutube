@@ -29,6 +29,7 @@ import java.util.List;
 
 import com.mysql.cj.xdevapi.Result;
 
+import Post.Model.Post;
 import Post.Model.Writer;
 import User.Model.User;
 
@@ -177,7 +178,7 @@ public class UserDAO {
 			}
 		}
 	}
-
+	
 	private User getUserModel(ResultSet rs) throws SQLException {
 		System.out.println(rs.getInt("userId"));
 		System.out.println(rs.getString("loginId"));

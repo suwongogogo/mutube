@@ -39,5 +39,4 @@ public class ListPostHandler implements Handler.CommandHandler {
 			return ERROR_PAGE;
 		}
 	}
-
 }

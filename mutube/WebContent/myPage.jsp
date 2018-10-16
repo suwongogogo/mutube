@@ -38,7 +38,7 @@
 					</div>
 					<div class="button-container">
 						<div class="flex">
-							<a href="#">
+							<a href="/mutube/post/readMyPost?userId=${loginUser.userId }">
 								<button class="submit input">내가 쓴 글</button>
 							</a>
 							<a href="/mutube/user/changePassword?userId=${loginUser.userId }">

@@ -4,9 +4,12 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import Post.Model.Post;
 import Post.Model.PostContent;
+import Post.Model.Writer;
 
 public class PostContentDAO {
 	private static PostContentDAO instance = new PostContentDAO();
@@ -67,5 +70,4 @@ public class PostContentDAO {
 			return pst.executeUpdate();
 		}
 	}
-	
 }
