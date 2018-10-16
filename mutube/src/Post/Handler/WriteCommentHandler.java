@@ -26,7 +26,7 @@ public class WriteCommentHandler implements CommandHandler {
 		WriteCommentService writeComment = WriteCommentService.getInstance();
 		int postId = Integer.parseInt(req.getParameter("postId"));
 		int pageNum = 1;
-		if(req.getParameter("pageNum")!= null){
+		if(req.getParameter("pageNum")!= null && !req.getParameter("pageNum").equals("")){
 			pageNum = Integer.parseInt(req.getParameter("pageNum"));
 		}
 		String comment = req.getParameter("comment");

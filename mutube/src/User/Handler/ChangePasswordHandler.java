@@ -49,16 +49,18 @@ public class ChangePasswordHandler implements CommandHandler {
 		Map<String, Boolean> errors = new HashMap<String, Boolean>();
 		req.setAttribute("errors", errors);
 		
+		
 		User loginUser = null;
 		if(req.getSession().getAttribute("loginUser")!= null) {
 			loginUser =  (User)req.getSession().getAttribute("loginUser");
 		}
-		
 		try {
 			String now_password = req.getParameter("now_password");
 			String new_password = req.getParameter("new_password");
 			String new_password_confirm = req.getParameter("new_password_confirm");
 			
+			System.out.println(now_password);
+			System.out.println(loginUser.getPassword());
 			
 			if(loginUser == null) {
 				throw new UserNotFoundException("없는 유저입니다.");
