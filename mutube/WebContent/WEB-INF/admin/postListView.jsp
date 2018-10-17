@@ -24,7 +24,7 @@
 		   				<form action="/mutube/admin/deletePost?check=true" onsubmit="return false">
 				   			<table class="view-real-table">
 								<tr class="border-line-bottom">
-									<td class="table-title tc"><input type="checkbox" id="all-check" onclick=""></td>
+									<td class="table-title tc"><input type="checkbox" id="allDelete" onclick="checkAll()"></td>
 									<td class="interval"></td>
 									<td class="table-title tc">postId</td>
 									<td class="interval"></td>
