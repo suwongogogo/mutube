@@ -6,6 +6,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" type="text/css" href="/mutube/CSS/postListView.css" />
+<script src="/mutube/JavaScript/adminDeletePost.js"></script>
 <title>글 정보</title>
 </head>
 <body>
@@ -20,33 +21,38 @@
 		   				<span class="back-button"><a href="/mutube/managementList.jsp">뒤로가기</a></span>
 		   			</div>
 		   			<div class="table-view-div">
-				   		<table class="view-real-table">
-							<tr class="border-line-bottom">
-								<td class="table-title tc">postId</td>
-								<td class="interval"></td>
-								<td class="table-title tc">userId</td>
-								<td class="interval"></td>
-								<td class="table-title tc">name</td>
-								<td class="interval"></td>
-								<td class="table-title pointer">title</td>
-								<td class="table-title tc">genre</td>
-								<td class="interval"></td>
-								<td class="table-title tc">country</td>
-								<td class="interval"></td>
-								<td class="table-title tc">instrument</td>
-								<td class="interval"></td>
-								<td class="table-title tc">write_date</td>
-								<td class="interval"></td>
-								<td class="table-title tc">update_date</td>
-								<td class="interval"></td>
-								<td class="table-title tc">views</td>
-								<td class="interval"></td>
-								<td class="table-title tc">able</td>
-								<td class="interval"></td>
-								<td class="table-title tc">삭제</td>
-							</tr>
+		   				<form action="/mutube/admin/deletePost?check=true" onsubmit="return false">
+				   			<table class="view-real-table">
+								<tr class="border-line-bottom">
+									<td class="table-title tc"><input type="checkbox" id="all-check" onclick=""></td>
+									<td class="interval"></td>
+									<td class="table-title tc">postId</td>
+									<td class="interval"></td>
+									<td class="table-title tc">userId</td>
+									<td class="interval"></td>
+									<td class="table-title tc">name</td>
+									<td class="interval"></td>
+									<td class="table-title pointer">title</td>
+									<td class="table-title tc">genre</td>
+									<td class="interval"></td>
+									<td class="table-title tc">country</td>
+									<td class="interval"></td>
+									<td class="table-title tc">instrument</td>
+									<td class="interval"></td>
+									<td class="table-title tc">write_date</td>
+									<td class="interval"></td>
+									<td class="table-title tc">update_date</td>
+									<td class="interval"></td>
+									<td class="table-title tc">views</td>
+									<td class="interval"></td>
+									<td class="table-title tc">able</td>
+									<td class="interval"></td>
+									<td class="table-title tc">삭제</td>
+								</tr>
 							<c:forEach var="post" items="${postPageINF.postList }">
 								<tr class="border-line-bottom">
+									<td class="tc"><input type="checkbox" name="delete" value="${post.postId }"></td>
+									<td></td>
 									<td class="tc">${post.postId }</td>
 									<td></td>
 									<td class="tc">${post.writer.userId }</td>
@@ -71,12 +77,16 @@
 									<td class="tc">${post.able }</td>
 									<td></td>
 									<td class="tc">
-										<form action="/mutube/admin/deletePost?postId=${post.postId }" method="post">
+										<a href="/mutube/admin/deletePost?postId=${post.postId }" >
 											<button>삭제</button>
-										</form>
+										</a>
 									</td>
 								</tr>
 							</c:forEach>
+								<tr>
+									<td colspan="21"><a href="/mutube/admin/deletePost?delete=true"><button onclick="check()">선택 삭제</button></a></td>
+								</tr>
+							
 							<c:if test="${postPageINF.hasPost() }">
 								<tr class="tc">
 									<td colspan="21">
@@ -93,6 +103,7 @@
 								</tr>
 							</c:if>
 						</table>
+						</form>
 					</div>
 				</div>
 		   	</div>	

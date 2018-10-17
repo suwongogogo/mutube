@@ -71,13 +71,11 @@ public class UpdatePostService {
 				System.out.println(imageName+"넣는다!!");
 				postContent = new PostContent(postData.getPost().getPostId(), postData.getPostContent().getContent(),
 						postData.getPostContent().getVideo_link(), imageName);
-				updateCnt = postContentDAO.updateWithImage(conn, postContent,
-						postData.getPost().getPostId());
 			} else {
 				postContent = new PostContent(postData.getPost().getPostId(), postData.getPostContent().getContent(),
 						postData.getPostContent().getVideo_link());
-				updateCnt = postContentDAO.update(conn, postData.getPostContent(), postData.getPost().getPostId());
 			}
+			updateCnt = postContentDAO.updateWithImage(conn, postContent, postData.getPost().getPostId());
 
 			if (updateCnt == 0) {
 				conn.rollback();

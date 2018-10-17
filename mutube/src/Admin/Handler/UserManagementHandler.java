@@ -21,11 +21,11 @@ public class UserManagementHandler implements CommandHandler {
 	public String process(HttpServletRequest req, HttpServletResponse resp) throws IOException {
 		Map<String, String> error = new HashMap<>();
 		req.setAttribute("error", error);
-	
+
 		try {
 			User loginUser = (User) req.getSession().getAttribute("loginUser");
 
-			if (loginUser!=null && loginUser.isAuthority() == false) {
+			if (loginUser.isAuthority() == false) {
 				throw new YourNotAdminException("권한이 없습니다.");
 			}
 
@@ -36,13 +36,13 @@ public class UserManagementHandler implements CommandHandler {
 				pageNum = Integer.parseInt(pageNumStr);
 			}
 			UserPageINF userPageINF = managementService.getUserList(pageNum);
-			
+
 			req.setAttribute("userpageINF", userPageINF);
 
 			return FORM_VIEW;
 		} catch (YourNotAdminException e) {
 			e.printStackTrace();
-			error.put("errorCode", "notAdmin");	
+			error.put("errorCode", "notAdmin");
 		} catch (SQLException e) {
 			error.put("errorCode", "dbError");
 			error.put("from", "/admin/userManagement");

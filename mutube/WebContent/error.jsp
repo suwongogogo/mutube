@@ -11,8 +11,7 @@
 </head>
 <body>
 	<%
-		Map<String, String> map = new HashMap<String, String>();
-		map = (Map) request.getAttribute("error");
+		Map<String, String> map = (Map<String, String>) request.getAttribute("error");
 		String errorCode = map.get("errorCode");
 		String from = map.get("from");
 
@@ -23,6 +22,14 @@
 			
 		case "postNotFound":
 			out.print("<script>alert('게시글을 찾을 수 없습니다.'); location.href='/mutube" + from + "';</script>");
+			break;
+			
+		case "unexpectedFormat":
+			out.print("<script>alert('올바르지 않은 파일 형식입니다. 이미지 파일만 업로드 해주세요'); location.href='/mutube" + from + "';</script>");
+			break;
+			
+		case "fileUpload":
+			out.print("<script>alert('파일 업로드에 실패했습니다.'); location.href='/mutube" + from + "';</script>");
 			break;
 			
 		case "dbError":
@@ -103,6 +110,10 @@
 		
 		case "ComfirmPasswordNotMatch":
 			out.print("<script>alert('입력하신 비밀번호가 일치하지 않습니다.'); location.href='/mutube" + from + "';</script>");
+			break;
+			
+		case "DeleteFail":
+			out.print("<script>alert('삭제 실패.'); location.href='/mutube" + from + "';</script>");
 			break;
 		}
 	%>

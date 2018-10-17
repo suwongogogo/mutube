@@ -21,6 +21,9 @@
 						<a href="/mutube/admin/postManagement">
 							<button class="submit input">모든 게시물 조회</button>
 						</a>
+						<a href="/mutube/admin/noticeManagement">
+							<button class="submit input">모든 공지 조회</button>
+						</a>
 					</div>
 				</div>
 			</div>
