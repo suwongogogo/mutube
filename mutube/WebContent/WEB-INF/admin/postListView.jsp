@@ -45,6 +45,35 @@
 								<td class="interval"></td>
 								<td class="table-title tc">삭제</td>
 							</tr>
+		   				<form action="/mutube/admin/deletePost?check=true" onsubmit="return false">
+				   			<table class="view-real-table">
+								<tr class="border-line-bottom">
+									<td class="table-title tc"><input type="checkbox" id="allDelete" onclick="checkAll()"></td>
+									<td class="interval"></td>
+									<td class="table-title tc">postId</td>
+									<td class="interval"></td>
+									<td class="table-title tc">userId</td>
+									<td class="interval"></td>
+									<td class="table-title tc">name</td>
+									<td class="interval"></td>
+									<td class="table-title pointer">title</td>
+									<td class="table-title tc">genre</td>
+									<td class="interval"></td>
+									<td class="table-title tc">country</td>
+									<td class="interval"></td>
+									<td class="table-title tc">instrument</td>
+									<td class="interval"></td>
+									<td class="table-title tc">write_date</td>
+									<td class="interval"></td>
+									<td class="table-title tc">update_date</td>
+									<td class="interval"></td>
+									<td class="table-title tc">views</td>
+									<td class="interval"></td>
+									<td class="table-title tc">able</td>
+									<td class="interval"></td>
+									<td class="table-title tc">삭제</td>
+								</tr>
+>>>>>>> branch 'master' of https://github.com/suwongogogo/mutube.git
 							<c:forEach var="post" items="${postPageINF.postList }">
 								<tr class="border-line-bottom">
 									<td class="tc">${post.postId }</td>
