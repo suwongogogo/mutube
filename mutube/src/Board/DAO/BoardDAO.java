@@ -46,18 +46,17 @@ public class BoardDAO {
 	}
 	
 	public List<Board> getBoard(Connection conn, int startRow, int size) throws SQLException {
-		String sql = "select boardId, userId, name, title, "
+		String sql = "select boardId, userId, loginId, name, title, "
 				+ "date_format(write_date, '%Y-%m-%d %H:%i'), date_format(update_date, '%Y-%m-%d %H:%i'), views, able "
 				+ "from board "
 				+ "where able=1 order by boardId desc limit ?, ?";
 		try (PreparedStatement pst = conn.prepareStatement(sql)) {
 			pst.setInt(1, startRow);
 			pst.setInt(2, size);
-			try (ResultSet rs = pst.executeQuery(sql)) {
+			try (ResultSet rs = pst.executeQuery()) {
 				List<Board> boardList = new ArrayList<>();
 				while (rs.next()) {
-					boardList
-							.add(new Board(rs.getString("title"), new Writer(rs.getInt("userId"), rs.getString("loginId"), rs.getString("name")),
+					boardList.add(new Board(rs.getString("title"), new Writer(rs.getInt("userId"), rs.getString("loginId"), rs.getString("name")),
 									rs.getTimestamp("write_date").toLocalDateTime(),
 									rs.getTimestamp("update_date").toLocalDateTime()));
 				}

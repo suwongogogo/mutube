@@ -13,9 +13,9 @@ public class Board {
 	private String wdateStr;
 	private String udateStr;
 	
-	public Board(String title, Writer writers, LocalDateTime write_date,
+	public Board(int boardId, String title, Writer writer, LocalDateTime write_date,
 			LocalDateTime update_date) {
-		super();
+		this.boardId = boardId;
 		this.title = title;
 		this.writer = writer;
 		this.write_date = write_date;
