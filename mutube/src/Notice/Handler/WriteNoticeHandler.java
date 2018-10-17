@@ -19,6 +19,7 @@ import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
 import Admin.Exception.YourNotAdminException;
+import Board.DAO.BoardDAO;
 import Handler.CommandHandler;
 import Notice.Model.Notice;
 import Notice.Model.NoticeContent;
@@ -127,7 +128,7 @@ public class WriteNoticeHandler implements CommandHandler{
 			return FORM_VIEW;
 		}
 		// 글 정보는 Post, 내용은 PostContent 객체에 담아 WriteRequest를 생성.
-		Notice notice = new Notice(new Writer(loginUser.getUserId(), loginUser.getName()), params.get("title"));
+		Notice notice = new Notice(new Writer(loginUser.getUserId(), loginUser.getLoginId(), loginUser.getName()), params.get("title"));
 	
 		
 		NoticeContent noticeContent = null;
@@ -151,7 +152,7 @@ public class WriteNoticeHandler implements CommandHandler{
 				System.out.println(as);
 			return FORM_VIEW;
 		}
-
+		
 		// WriteService를 이용한다.
 		WriteNoticeService writeNoticeService = WriteNoticeService.getInstance();
 		int noticeId = 0;

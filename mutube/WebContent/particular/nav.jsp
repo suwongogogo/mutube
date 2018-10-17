@@ -56,7 +56,7 @@
                 <li class="drop-li">
                     <div class="clicked"></div>
                     <div class="list-container">
-                        <a class="droplist" href="/mutube/post/list">전체글</a>
+                        <a class="droplist" href="/mutube/board/board">전체글</a>
                     </div>
                 </li>
                 <li class="drop-li">

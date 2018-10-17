@@ -3,6 +3,7 @@ package Notice.Service;
 import java.sql.Connection;
 import java.sql.SQLException;
 
+import Board.DAO.BoardDAO;
 import Connection.ConnectionProvider;
 import Notice.DAO.NoticeContentDAO;
 import Notice.DAO.NoticeDAO;
@@ -67,6 +68,11 @@ public class WriteNoticeService {
 				throw new WriteNoticeFailException("Content 삽입 실패");
 			}
 
+			BoardDAO boardDAO = BoardDAO.getInstance();
+			int boardCount = boardDAO.insertNoticeinBoard(conn, notice);
+			
+			System.out.println(boardCount);
+			
 			conn.commit();
 			return noticeId;
 			} catch (SQLException e) {

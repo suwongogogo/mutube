@@ -101,5 +101,7 @@
 		<url-pattern>/admin/deleteUser</url-pattern>
 		<url-pattern>/admin/deletePost</url-pattern>
 		<url-pattern>/admin/deleteNotice</url-pattern>
+		
+		<url-pattern>/board/board</url-pattern>
 	</servlet-mapping>
 </web-app>

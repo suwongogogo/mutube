@@ -3,6 +3,7 @@ package Post.Service;
 import java.sql.Connection;
 import java.sql.SQLException;
 
+import Board.DAO.BoardDAO;
 import Connection.ConnectionProvider;
 
 import Post.DAO.PostContentDAO;
@@ -55,6 +56,9 @@ public class WritePostService {
 				throw new WritePostFailException("Content 삽입 실패");
 			}
 
+			BoardDAO boardDAO = BoardDAO.getInstance();
+			boardDAO.insertPostinBoard(conn, post);
+			
 			conn.commit();
 			return postId;
 		}catch(SQLException e) {

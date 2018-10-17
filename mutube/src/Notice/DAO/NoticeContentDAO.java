@@ -27,7 +27,6 @@ public class NoticeContentDAO {
 			pst.setString(3, noticeContent.getVideo_link());
 			pst.setString(4, noticeContent.getImageNamesStr());
 			return pst.executeUpdate();
-		
 		}
 	}
 

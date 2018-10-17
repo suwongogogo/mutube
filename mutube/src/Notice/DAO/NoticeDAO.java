@@ -23,11 +23,12 @@ public class NoticeDAO {
 	}
 	
 	public Notice insertNotice(Connection conn, Notice notice) throws SQLException {
-		String sql = "insert into notice(userId, name, title ,write_date) values(?, ?, ?, now())";
+		String sql = "insert into notice(userId, loginId, name, title ,write_date) values(?, ?, ?, ?, now())";
 		try(PreparedStatement pst = conn.prepareStatement(sql)){
 			pst.setInt(1, notice.getWriter().getUserId());
-			pst.setString(2, notice.getWriter().getName());
-			pst.setString(3, notice.getTitle());
+			pst.setString(2, notice.getWriter().getLoginId());
+			pst.setString(3, notice.getWriter().getName());
+			pst.setString(4, notice.getTitle());
 			int count = pst.executeUpdate();
 			
 			if(count > 0) {

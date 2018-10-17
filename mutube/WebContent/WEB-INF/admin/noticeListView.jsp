@@ -16,13 +16,15 @@
 		   	<div class="board">
 		   		<div class="table-view-container">
 		   			<div class="post-information">
-		   				<span class="post-title">Post Information</span>
+		   				<span class="post-title">Notice Information</span>
 		   				<span class="back-button"><a href="/mutube/managementList.jsp">뒤로가기</a></span>
 		   			</div>
 		   			<div class="table-view-div">
 				   		<table class="view-real-table">
 							<tr class="border-line-bottom">
-								<td class="table-title tc">postId</td>
+								<td class="table-title tc">선택</td>
+								<td class="interval"></td>
+								<td class="table-title tc">noticeId</td>
 								<td class="interval"></td>
 								<td class="table-title tc">userId</td>
 								<td class="interval"></td>
@@ -41,6 +43,8 @@
 							</tr>
 							<c:forEach var="notice" items="${noticePageINF.noticeList }">
 								<tr class="border-line-bottom">
+									<td class="tc"><input type="checkbox" name="check"></td>
+									<td></td>
 									<td class="tc">${notice.noticeId }</td>
 									<td></td>
 									<td class="tc">${notice.writer.userId }</td>
