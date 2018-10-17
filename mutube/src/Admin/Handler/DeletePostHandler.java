@@ -22,15 +22,31 @@ public class DeletePostHandler implements CommandHandler{
 		req.setAttribute("error", error);
 		
 		try {
-			int postId = 0;
-			if(req.getParameter("postId") != null) {
-				postId = Integer.parseInt(req.getParameter("postId"));
-			}	
-			DeletePostService deletePostService = DeletePostService.getInstance();
-			deletePostService.DeletePost(postId);
+			
+			if(req.getParameter("check")!=null && req.getParameter("check").equals("true")) {
+				String[] selected = req.getParameterValues("delete");
 				
-			resp.sendRedirect(req.getContextPath() + "/admin/postManagement");
-			return null;
+				DeletePostService deletePostService = DeletePostService.getInstance();
+				
+				for(String s : selected) {
+					int postId = Integer.parseInt(s);
+					deletePostService.DeletePost(postId);
+				}
+				resp.sendRedirect(req.getContextPath() + "/admin/postManagement");
+				return null;
+			}else {
+				
+				int postId = 0;
+				if(req.getParameter("postId") != null) {
+					postId = Integer.parseInt(req.getParameter("postId"));
+				}	
+				
+				DeletePostService deletePostService = DeletePostService.getInstance();
+				deletePostService.DeletePost(postId);
+					
+				resp.sendRedirect(req.getContextPath() + "/admin/postManagement");
+				return null;
+			}
 			
 		}catch(PostNotFoundException e) {
 			e.printStackTrace();
